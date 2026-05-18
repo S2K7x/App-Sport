@@ -839,7 +839,7 @@
 
       <!-- Planning hebdo -->
       <div class="schedule-strip">
-        <div class="schedule-day active">
+        <div class="schedule-day">
           <span class="schedule-day-name">Dim</span>
           <div class="schedule-day-pill">Force<br>A</div>
         </div>
@@ -1392,6 +1392,49 @@
 
   // init
   calcMacros();
+
+  // ── MISE À JOUR AUTOMATIQUE DE LA DATE ──
+  function updateCurrentDay() {
+    const today = new Date().getDay(); // 0: Dimanche, 1: Lundi, etc.
+    const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    const todayName = dayNames[today];
+
+    // 1. Mettre à jour la barre de planning (bulles)
+    const scheduleDays = document.querySelectorAll('.schedule-day');
+    if (scheduleDays[today]) {
+      scheduleDays.forEach(d => d.classList.remove('active'));
+      scheduleDays[today].classList.add('active');
+      
+      // Auto-scroll pour centrer le jour actuel
+      setTimeout(() => {
+        scheduleDays[today].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }, 100);
+    }
+
+    // 2. Mettre à jour les cartes de séances
+    const seanceCards = document.querySelectorAll('.seance-card');
+    seanceCards.forEach(card => {
+      const dayEl = card.querySelector('.seance-day');
+      if (dayEl && dayEl.textContent.includes(todayName)) {
+        // Remplacer le nom du jour par "Aujourd'hui"
+        dayEl.innerHTML = dayEl.innerHTML.replace(todayName, "Aujourd'hui");
+        // Mettre en évidence la carte
+        card.style.borderColor = "var(--red)";
+        card.style.boxShadow = "0 0 15px rgba(230, 48, 48, 0.15)";
+        // Remonter la séance du jour tout en haut de la liste
+        card.parentNode.prepend(card);
+      }
+    });
+
+    // 3. Mettre à jour les données de la modale
+    for (const key in sessions) {
+      if (sessions[key].day.includes(todayName)) {
+        sessions[key].day = sessions[key].day.replace(todayName, "Aujourd'hui");
+      }
+    }
+  }
+
+  updateCurrentDay();
 </script>
 </body>
 </html>

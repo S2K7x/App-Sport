@@ -1,0 +1,1168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pulse Sport">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>Pulse Sport</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f7;
+      --red: #e63030;
+      --gray-900: #101012;
+      --gray-800: #1c1c1e;
+      --gray-700: #252528;
+      --gray-500: #3a3a3c;
+      --muted: rgba(245, 245, 247, 0.62);
+      --line: rgba(245, 245, 247, 0.11);
+      --glass: rgba(28, 28, 30, 0.58);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --spring: cubic-bezier(.2, .9, .18, 1.12);
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--black);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Archivo", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 18% 6%, rgba(230, 48, 48, 0.22), transparent 28rem),
+        radial-gradient(circle at 95% 18%, rgba(245, 245, 247, 0.08), transparent 18rem),
+        linear-gradient(135deg, #050505 0%, #0a0a0a 48%, #151517 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Archivo", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: 0.25;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .app {
+      width: min(100%, 620px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: calc(env(safe-area-inset-top) + 20px) 18px calc(104px + env(safe-area-inset-bottom));
+    }
+
+    .hero {
+      position: relative;
+      margin-bottom: 18px;
+      padding: 24px 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(138deg, rgba(245, 245, 247, 0.13), rgba(245, 245, 247, 0.025)),
+        rgba(28, 28, 30, 0.38);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      animation: rise 700ms var(--spring) both;
+    }
+
+    .hero::after {
+      position: absolute;
+      right: -58px;
+      bottom: -84px;
+      width: 190px;
+      height: 190px;
+      border: 1px solid rgba(230, 48, 48, 0.34);
+      border-radius: 999px;
+      content: "";
+      background: radial-gradient(circle, rgba(230, 48, 48, 0.34), transparent 64%);
+      filter: blur(1px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      content: "";
+      background: var(--red);
+      box-shadow: 0 0 22px rgba(230, 48, 48, 0.9);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 10ch;
+      margin-bottom: 12px;
+      font-size: clamp(3.2rem, 16vw, 6.4rem);
+      font-weight: 900;
+      line-height: 0.78;
+      letter-spacing: -0.085em;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 32ch;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.5;
+    }
+
+    .page {
+      display: none;
+      animation: pageIn 440ms var(--spring) both;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 24px 2px 12px;
+    }
+
+    .section-title h2 {
+      margin-bottom: 0;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .workout-card,
+    .panel,
+    .recipe-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(245, 245, 247, 0.12), rgba(245, 245, 247, 0.035)),
+        var(--glass);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(22px);
+    }
+
+    .workout-card {
+      min-height: 235px;
+      padding: 22px;
+      isolation: isolate;
+      transform: translateZ(0);
+      transition: transform 360ms var(--spring), border-color 250ms ease, background 250ms ease;
+      animation: rise 700ms var(--spring) both;
+      animation-delay: calc(var(--i) * 65ms);
+    }
+
+    .workout-card:active {
+      transform: scale(0.985);
+    }
+
+    .workout-card::before {
+      position: absolute;
+      inset: auto -46px -62px auto;
+      z-index: -1;
+      width: 210px;
+      height: 210px;
+      border-radius: 999px;
+      content: "";
+      background:
+        radial-gradient(circle at 36% 36%, rgba(245, 245, 247, 0.2), transparent 24%),
+        radial-gradient(circle, var(--card-accent), transparent 62%);
+      opacity: 0.62;
+      filter: blur(1px);
+      transition: transform 450ms var(--spring);
+    }
+
+    .workout-card:hover::before {
+      transform: scale(1.1) rotate(8deg);
+    }
+
+    .workout-card::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      background:
+        linear-gradient(115deg, rgba(255,255,255,0.08), transparent 28%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 14px);
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+
+    .workout-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .session-kicker,
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 6px 10px;
+      border: 1px solid rgba(245, 245, 247, 0.12);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(10, 10, 10, 0.36);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .workout-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border-radius: 18px;
+      color: var(--white);
+      background: linear-gradient(145deg, rgba(230, 48, 48, 0.85), rgba(230, 48, 48, 0.18));
+      box-shadow: 0 12px 36px rgba(230, 48, 48, 0.24);
+    }
+
+    .workout-card h3 {
+      max-width: 9ch;
+      margin-bottom: 12px;
+      font-size: clamp(2.35rem, 12vw, 4.7rem);
+      font-weight: 900;
+      line-height: 0.83;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+    }
+
+    .muscle-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 20px;
+    }
+
+    .muscle-tags span {
+      padding: 7px 9px;
+      border: 1px solid rgba(245, 245, 247, 0.1);
+      border-radius: 999px;
+      color: rgba(245, 245, 247, 0.76);
+      background: rgba(245, 245, 247, 0.055);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .detail-btn,
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 16px;
+      border-radius: 999px;
+      color: var(--black);
+      background: var(--white);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 260ms var(--spring), background 220ms ease;
+    }
+
+    .detail-btn:active,
+    .primary-btn:active {
+      transform: scale(0.96);
+    }
+
+    .nutrition-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 122px;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      min-height: 56px;
+      border: 1px solid rgba(245, 245, 247, 0.12);
+      border-radius: 20px;
+      outline: 0;
+      color: var(--white);
+      background: rgba(10, 10, 10, 0.55);
+      padding: 0 16px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      transition: border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    input[type="number"]:focus {
+      border-color: rgba(230, 48, 48, 0.7);
+      box-shadow: 0 0 0 4px rgba(230, 48, 48, 0.14);
+    }
+
+    .unit-pill {
+      min-height: 56px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(245, 245, 247, 0.1);
+      border-radius: 20px;
+      color: var(--muted);
+      background: rgba(245, 245, 247, 0.055);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .goal-switch {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 6px;
+      border: 1px solid rgba(245, 245, 247, 0.1);
+      border-radius: 22px;
+      background: rgba(10, 10, 10, 0.46);
+    }
+
+    .goal-btn {
+      min-height: 44px;
+      border-radius: 17px;
+      color: var(--muted);
+      background: transparent;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 220ms ease, background 220ms ease, transform 260ms var(--spring);
+    }
+
+    .goal-btn.active {
+      color: var(--white);
+      background: linear-gradient(145deg, rgba(230, 48, 48, 0.92), rgba(230, 48, 48, 0.52));
+      box-shadow: 0 10px 28px rgba(230, 48, 48, 0.25);
+    }
+
+    .macro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .macro-card {
+      min-height: 154px;
+      padding: 16px;
+      border: 1px solid rgba(245, 245, 247, 0.1);
+      border-radius: 26px;
+      background: rgba(10, 10, 10, 0.34);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .macro-card::after {
+      position: absolute;
+      inset: auto 0 0;
+      height: 4px;
+      content: "";
+      background: var(--macro-color);
+      opacity: 0.85;
+      transform: scaleX(var(--bar));
+      transform-origin: left;
+      transition: transform 420ms var(--spring);
+    }
+
+    .macro-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .macro-value {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 2.15rem;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+    }
+
+    .macro-ring {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background:
+        conic-gradient(var(--macro-color) calc(var(--bar) * 360deg), rgba(245, 245, 247, 0.1) 0);
+      display: grid;
+      place-items: center;
+      transition: background 420ms var(--spring);
+    }
+
+    .macro-ring::before {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      content: "";
+      background: #111113;
+    }
+
+    .recipe-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .recipe-card {
+      padding: 18px;
+      animation: rise 680ms var(--spring) both;
+      animation-delay: calc(var(--i) * 55ms);
+    }
+
+    .recipe-card header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .recipe-card h3 {
+      margin-bottom: 6px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+    }
+
+    .recipe-card p {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.42;
+    }
+
+    .recipe-card .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .badge.red {
+      border-color: rgba(230, 48, 48, 0.35);
+      color: var(--white);
+      background: rgba(230, 48, 48, 0.16);
+    }
+
+    .tabbar {
+      position: fixed;
+      right: 14px;
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      left: 14px;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      width: min(calc(100% - 28px), 588px);
+      margin: 0 auto;
+      padding: 8px;
+      border: 1px solid rgba(245, 245, 247, 0.11);
+      border-radius: 28px;
+      background: rgba(20, 20, 22, 0.72);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(28px);
+    }
+
+    .tab {
+      display: grid;
+      min-height: 62px;
+      place-items: center;
+      gap: 4px;
+      border-radius: 22px;
+      color: rgba(245, 245, 247, 0.58);
+      background: transparent;
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 220ms ease, background 220ms ease, transform 280ms var(--spring);
+    }
+
+    .tab svg {
+      width: 23px;
+      height: 23px;
+      stroke: currentColor;
+    }
+
+    .tab.active {
+      color: var(--white);
+      background: rgba(245, 245, 247, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      align-items: end;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(16px);
+    }
+
+    .modal.open {
+      display: flex;
+      animation: fadeIn 220ms ease both;
+    }
+
+    .modal-sheet {
+      width: min(100%, 590px);
+      max-height: min(82vh, 740px);
+      margin: 0 auto;
+      padding: 20px;
+      overflow: auto;
+      border: 1px solid rgba(245, 245, 247, 0.13);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(230, 48, 48, 0.24), transparent 18rem),
+        rgba(18, 18, 20, 0.92);
+      box-shadow: var(--shadow);
+      animation: sheetIn 430ms var(--spring) both;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .modal h2 {
+      margin-bottom: 8px;
+      font-size: clamp(2.1rem, 10vw, 4.2rem);
+      font-weight: 900;
+      line-height: 0.84;
+      letter-spacing: -0.075em;
+      text-transform: uppercase;
+    }
+
+    .close-btn {
+      display: grid;
+      min-width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(245, 245, 247, 0.1);
+      font-size: 1.3rem;
+    }
+
+    .exercise-list {
+      display: grid;
+      gap: 9px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .exercise-list li,
+    .tip-box {
+      padding: 14px;
+      border: 1px solid rgba(245, 245, 247, 0.09);
+      border-radius: 20px;
+      background: rgba(245, 245, 247, 0.055);
+    }
+
+    .exercise-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(245, 245, 247, 0.84);
+      line-height: 1.35;
+    }
+
+    .exercise-list strong {
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .tip-box {
+      border-color: rgba(230, 48, 48, 0.24);
+      background: rgba(230, 48, 48, 0.1);
+    }
+
+    .tip-box h3 {
+      margin-bottom: 8px;
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tip-box p {
+      margin-bottom: 0;
+      color: rgba(245, 245, 247, 0.78);
+      line-height: 1.5;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes sheetIn {
+      from {
+        opacity: 0;
+        transform: translateY(34px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (min-width: 720px) {
+      .app {
+        padding-top: 32px;
+      }
+
+      .hero {
+        padding: 32px;
+      }
+
+      .nutrition-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+
+      .recipe-grid.two {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .modal {
+        align-items: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero" aria-label="Présentation">
+      <p class="eyebrow">Personal Sport OS</p>
+      <h1>Train. Fuel. Repeat.</h1>
+      <p>Une PWA sombre, directe et calibrée pour tes séances calisthenics, tes macros et ton carburant maison.</p>
+    </section>
+
+    <section class="page active" id="sessions" aria-label="Séances">
+      <div class="section-title">
+        <h2>Séances</h2>
+        <span>5 blocs fixes</span>
+      </div>
+      <div class="stack" id="workoutList"></div>
+    </section>
+
+    <section class="page" id="nutrition" aria-label="Nutrition">
+      <div class="section-title">
+        <h2>Mes Macros</h2>
+        <span>Temps réel</span>
+      </div>
+      <div class="nutrition-grid">
+        <div class="panel">
+          <div class="input-row">
+            <div>
+              <label for="weight">Poids actuel</label>
+              <input id="weight" type="number" min="35" max="160" step="0.1" value="65" inputmode="decimal" aria-label="Poids actuel en kilogrammes">
+            </div>
+            <div class="unit-pill">kg</div>
+          </div>
+          <label>Objectif</label>
+          <div class="goal-switch" role="group" aria-label="Objectif nutrition">
+            <button class="goal-btn active" type="button" data-goal="maintien">Maintien</button>
+            <button class="goal-btn" type="button" data-goal="masse">Masse</button>
+            <button class="goal-btn" type="button" data-goal="seche">Sèche</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="macro-grid">
+            <article class="macro-card" style="--macro-color:#f5f5f7;--bar:.7">
+              <strong>Calories</strong>
+              <span class="macro-value" id="calories">0</span>
+              <div class="macro-ring" id="calRing" aria-hidden="true"></div>
+            </article>
+            <article class="macro-card" style="--macro-color:#e63030;--bar:.7">
+              <strong>Protéines</strong>
+              <span class="macro-value" id="protein">0g</span>
+              <div class="macro-ring" id="proteinRing" aria-hidden="true"></div>
+            </article>
+            <article class="macro-card" style="--macro-color:#f5f5f7;--bar:.7">
+              <strong>Glucides</strong>
+              <span class="macro-value" id="carbs">0g</span>
+              <div class="macro-ring" id="carbRing" aria-hidden="true"></div>
+            </article>
+            <article class="macro-card" style="--macro-color:#3a3a3c;--bar:.7">
+              <strong>Lipides</strong>
+              <span class="macro-value" id="fat">0g</span>
+              <div class="macro-ring" id="fatRing" aria-hidden="true"></div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <h2>Plats recommandés</h2>
+        <span>Simples</span>
+      </div>
+      <div class="recipe-grid">
+        <article class="recipe-card" style="--i:0">
+          <header>
+            <div>
+              <h3>Riz + œufs + légumes sautés</h3>
+              <p>Rapide, économique, 35g protéines, glucides complexes.</p>
+            </div>
+            <span class="badge red">35g P</span>
+          </header>
+          <div class="meta"><span class="badge">Rapide</span><span class="badge">Économique</span></div>
+        </article>
+        <article class="recipe-card" style="--i:1">
+          <header>
+            <div>
+              <h3>Avoine + banane + beurre de cacahuète</h3>
+              <p>Petit-déj ou post-workout, énergie longue durée.</p>
+            </div>
+            <span class="badge red">Fuel</span>
+          </header>
+          <div class="meta"><span class="badge">Post-workout</span><span class="badge">Longue durée</span></div>
+        </article>
+        <article class="recipe-card" style="--i:2">
+          <header>
+            <div>
+              <h3>Galettes d’avoine + yaourt grec</h3>
+              <p>Simple, high protein, peu de sucre.</p>
+            </div>
+            <span class="badge red">Protein</span>
+          </header>
+          <div class="meta"><span class="badge">Simple</span><span class="badge">Peu sucré</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="fuel" aria-label="Fuel">
+      <div class="section-title">
+        <h2>Snacks</h2>
+        <span>Maison</span>
+      </div>
+      <div class="recipe-grid two" id="snackList"></div>
+
+      <div class="section-title">
+        <h2>Boissons</h2>
+        <span>Hydratation</span>
+      </div>
+      <div class="recipe-grid two" id="drinkList"></div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Navigation principale">
+    <button class="tab active" type="button" data-page="sessions" aria-label="Afficher les séances">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 7v10M17 7v10M4 10v4M20 10v4M7 12h10"/>
+        <path d="M12 3c1.9 2 3 3.8 3 5.4A3 3 0 0 1 9 8.4C9 6.8 10.1 5 12 3Z"/>
+      </svg>
+      Séances
+    </button>
+    <button class="tab" type="button" data-page="nutrition" aria-label="Afficher la nutrition">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 3v8M10 3v8M8 11v10"/>
+        <path d="M18 3c-3.2 1-5 3.4-5 6.2 2.7.3 5.8-1.3 7-5.5.4 5.8-2.4 9.1-7 9.7"/>
+      </svg>
+      Nutrition
+    </button>
+    <button class="tab" type="button" data-page="fuel" aria-label="Afficher fuel">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m13 2-8 12h6l-1 8 9-13h-6l0-7Z"/>
+        <path d="M18 15c1.6 1.8 2.4 3.1 2.4 4a2.4 2.4 0 0 1-4.8 0c0-.9.8-2.2 2.4-4Z"/>
+      </svg>
+      Fuel
+    </button>
+  </nav>
+
+  <div class="modal" id="workoutModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Détail séance</p>
+          <h2 id="modalTitle"></h2>
+          <div class="muscle-tags" id="modalMuscles"></div>
+        </div>
+        <button class="close-btn" type="button" aria-label="Fermer les détails">×</button>
+      </div>
+      <ul class="exercise-list" id="modalExercises"></ul>
+      <div class="tip-box">
+        <h3>Tip d’optimisation</h3>
+        <p id="modalTip"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const workouts = [
+      {
+        name: "Séance A",
+        subtitle: "Force + Planche",
+        accent: "rgba(230, 48, 48, 0.9)",
+        exercises: ["Pseudo planche push-ups (4x8)", "Tuck planche holds (4x10s)", "Pike push-ups (3x10)", "Dips (4x10)", "Dead hangs (3x30s)"],
+        muscles: ["Épaules", "Triceps", "Core", "Serratus anterior"],
+        tip: "Engagement scapulaire constant, respiration contrôlée, ne jamais laisser les hanches tomber."
+      },
+      {
+        name: "Séance B",
+        subtitle: "Force + Front Lever",
+        accent: "rgba(245, 245, 247, 0.42)",
+        exercises: ["Tuck front lever holds (4x8s)", "Australian pull-ups (4x10)", "Hollow body holds (4x20s)", "L-sit progressions (3x10s)", "Band-assisted front lever rows (3x8)"],
+        muscles: ["Grand dorsal", "Core", "Biceps", "Ischio-jambiers"],
+        tip: "Garder le corps en ligne rigide, pousser les épaules en dépression, regarder vers les pieds."
+      },
+      {
+        name: "Séance C",
+        subtitle: "Volume + Jambes",
+        accent: "rgba(230, 48, 48, 0.72)",
+        exercises: ["Squats bulgares (4x10 chaque jambe)", "Nordic curls (3x5)", "Box jumps (4x8)", "Calf raises weighted (4x15)", "Glute bridges (3x15)"],
+        muscles: ["Quadriceps", "Ischio-jambiers", "Fessiers", "Mollets"],
+        tip: "Descente contrôlée (3 sec), genou dans l’axe du pied, core engagé tout au long."
+      },
+      {
+        name: "Cardio",
+        subtitle: "Course / Corde",
+        accent: "rgba(245, 245, 247, 0.34)",
+        exercises: ["Échauffement 5 min marche", "HIIT corde 30s on / 30s off x10", "Course 20 min zone 2", "Cool-down 5 min"],
+        muscles: ["Cardiovasculaire", "Mollets", "Coordination"],
+        tip: "Zone 2 = pouvoir tenir une conversation. Pour la corde : poignets, pas les bras."
+      },
+      {
+        name: "Séance 4",
+        subtitle: "Skills + Prehab",
+        accent: "rgba(58, 58, 60, 0.9)",
+        exercises: ["Wrist circles & mobility (5 min)", "Shoulder dislocations (3x10)", "Jefferson curls (3x8)", "Skin the cat (3x5)", "Crow pose progressions (4x10s)"],
+        muscles: ["Mobilité globale", "Coiffe des rotateurs", "Chaîne postérieure", "Poignets"],
+        tip: "Jamais de douleur, lenteur = intensité. Séance de prévention, pas d’ego."
+      }
+    ];
+
+    const snacks = [
+      {
+        name: "Energy Balls",
+        body: "Flocons d’avoine + miel + beurre de cacahuète + cacao. Mélanger, former des boules, 20 min au frigo.",
+        macros: "~180 kcal, 6g protéines",
+        badges: ["Facile", "Économique"]
+      },
+      {
+        name: "Toast avocat + œuf poché",
+        body: "Pain complet, avocat écrasé, œuf poché, sel/piment. Prêt en 5 min.",
+        macros: "~320 kcal, 18g protéines",
+        badges: ["5 min", "Facile"]
+      },
+      {
+        name: "Banana protein mash",
+        body: "Banane écrasée + 2 c.s. beurre de cacahuète + graines de chia. No-cook.",
+        macros: "~280 kcal, 9g protéines",
+        badges: ["No-cook", "Facile"]
+      },
+      {
+        name: "Galette riz + thon + citron",
+        body: "Galette de riz, boîte de thon, jus citron, poivre. Deux minutes, zéro friction.",
+        macros: "~200 kcal, 22g protéines",
+        badges: ["2 min", "Économique"]
+      }
+    ];
+
+    const drinks = [
+      {
+        name: "Electrolyte maison",
+        body: "500ml eau + jus de citron + 1 pincée sel + 1 c.c. miel. Post-workout hydratation.",
+        macros: "Hydratation",
+        badges: ["Facile", "Post-workout"]
+      },
+      {
+        name: "Smoothie récupération",
+        body: "Banane + lait + 2 c.s. flocons d’avoine + beurre de cacahuète. Blender 30s.",
+        macros: "~350 kcal",
+        badges: ["30s", "Recovery"]
+      },
+      {
+        name: "Eau infusée menthe-concombre",
+        body: "Eau froide + tranches concombre + feuilles menthe. Fraîche, anti-inflammatoire.",
+        macros: "Zéro lourdeur",
+        badges: ["Facile", "Frais"]
+      },
+      {
+        name: "Café glacé maison",
+        body: "Café fort refroidi + glaçons + trait de lait. Pre-workout naturel, zéro sucre.",
+        macros: "Pre-workout",
+        badges: ["5 min", "Zéro sucre"]
+      }
+    ];
+
+    const workoutList = document.querySelector("#workoutList");
+    const modal = document.querySelector("#workoutModal");
+    const modalTitle = document.querySelector("#modalTitle");
+    const modalMuscles = document.querySelector("#modalMuscles");
+    const modalExercises = document.querySelector("#modalExercises");
+    const modalTip = document.querySelector("#modalTip");
+
+    function iconSvg(index) {
+      const icons = [
+        '<path d="M12 3c2.2 2.4 3.4 4.4 3.4 6.2a3.4 3.4 0 1 1-6.8 0C8.6 7.4 9.8 5.4 12 3Z"/><path d="M7 15h10M5 12v6M19 12v6"/>',
+        '<path d="M7 7v10M17 7v10M4 10v4M20 10v4M7 12h10"/>',
+        '<path d="M7 20V9l5-5 5 5v11"/><path d="M10 20v-6h4v6"/>',
+        '<path d="M4 17c4.8-1 8-3.8 9.5-8.5"/><path d="M13 9h5v5"/><path d="M8 19c2.7.7 5.7.5 9-1"/>',
+        '<path d="M5 12c3-5 8.8-5 14 0"/><path d="M7 16c2.8 2.5 7.2 2.5 10 0"/><path d="M12 8v8"/>'
+      ];
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[index]}</svg>`;
+    }
+
+    workoutList.innerHTML = workouts.map((workout, index) => `
+      <article class="workout-card" style="--i:${index};--card-accent:${workout.accent}">
+        <div class="workout-top">
+          <span class="session-kicker">${workout.subtitle}</span>
+          <div class="workout-icon">${iconSvg(index)}</div>
+        </div>
+        <h3>${workout.name}</h3>
+        <div class="muscle-tags">${workout.muscles.map(muscle => `<span>${muscle}</span>`).join("")}</div>
+        <button class="detail-btn" type="button" data-workout="${index}">Voir détails</button>
+      </article>
+    `).join("");
+
+    function renderRecipeList(target, items) {
+      document.querySelector(target).innerHTML = items.map((item, index) => `
+        <article class="recipe-card" style="--i:${index}">
+          <header>
+            <div>
+              <h3>${item.name}</h3>
+              <p>${item.body}</p>
+            </div>
+            <span class="badge red">${item.macros}</span>
+          </header>
+          <div class="meta">${item.badges.map(badge => `<span class="badge">${badge}</span>`).join("")}</div>
+        </article>
+      `).join("");
+    }
+
+    renderRecipeList("#snackList", snacks);
+    renderRecipeList("#drinkList", drinks);
+
+    function openWorkout(index) {
+      const workout = workouts[index];
+      modalTitle.textContent = `${workout.name} — ${workout.subtitle}`;
+      modalMuscles.innerHTML = workout.muscles.map(muscle => `<span>${muscle}</span>`).join("");
+      modalExercises.innerHTML = workout.exercises.map((exercise, i) => {
+        const parts = exercise.match(/^(.*) \((.*)\)$/);
+        const name = parts ? parts[1] : exercise;
+        const reps = parts ? parts[2] : "";
+        return `<li><strong>${name}</strong><span>${reps}</span></li>`;
+      }).join("");
+      modalTip.textContent = workout.tip;
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeWorkout() {
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    workoutList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-workout]");
+      if (button) openWorkout(Number(button.dataset.workout));
+    });
+
+    document.querySelector(".close-btn").addEventListener("click", closeWorkout);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeWorkout();
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeWorkout();
+    });
+
+    const tabs = document.querySelectorAll(".tab");
+    const pages = document.querySelectorAll(".page");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(item => item.classList.toggle("active", item === tab));
+        pages.forEach(page => {
+          page.classList.toggle("active", page.id === tab.dataset.page);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+
+    const weightInput = document.querySelector("#weight");
+    const goalButtons = document.querySelectorAll(".goal-btn");
+    let activeGoal = "maintien";
+
+    function round(value) {
+      return Math.round(Number.isFinite(value) ? value : 0);
+    }
+
+    function setMacro(cardId, value, suffix, bar) {
+      const element = document.querySelector(cardId);
+      const card = element.closest(".macro-card");
+      element.textContent = `${round(value)}${suffix}`;
+      card.style.setProperty("--bar", Math.max(0.08, Math.min(bar, 1)).toFixed(2));
+    }
+
+    function recalcMacros() {
+      const weight = Math.max(1, parseFloat(weightInput.value) || 65);
+      const basal = (10 * weight) + (6.25 * 170) - (5 * 23) + 5;
+      const tdee = basal * 1.55;
+      const adjustment = activeGoal === "masse" ? 300 : activeGoal === "seche" ? -400 : 0;
+      const calories = tdee + adjustment;
+      const protein = 2 * weight;
+      const carbs = (calories * 0.45) / 4;
+      const fat = (calories * 0.25) / 9;
+
+      setMacro("#calories", calories, "", calories / 3300);
+      setMacro("#protein", protein, "g", protein / 180);
+      setMacro("#carbs", carbs, "g", carbs / 420);
+      setMacro("#fat", fat, "g", fat / 110);
+    }
+
+    weightInput.addEventListener("input", recalcMacros);
+    goalButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        activeGoal = button.dataset.goal;
+        goalButtons.forEach(item => item.classList.toggle("active", item === button));
+        recalcMacros();
+      });
+    });
+
+    recalcMacros();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-title" content="PLANCHE OS">
+  <title>PLANCHE OS</title>
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #1c1c1e;
+      --surface2: #2c2c2e;
+      --border: #3a3a3c;
+      --red: #e63030;
+      --red-dim: rgba(230, 48, 48, 0.12);
+      --white: #f5f5f7;
+      --muted: #8e8e93;
+      --tab-h: 72px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html { height: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      height: 100%;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Grain texture */
+    .grain {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ── PAGES ── */
+    #app {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pages {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      bottom: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 24px 16px calc(var(--tab-h) + 24px);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .page.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    /* scrollbar invisible */
+    .page::-webkit-scrollbar { display: none; }
+    .page { scrollbar-width: none; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      margin-bottom: 28px;
+    }
+
+    .page-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .page-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    /* ── TAB BAR ── */
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--tab-h);
+      background: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: stretch;
+      z-index: 100;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .tab-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      padding: 8px 0;
+      transition: opacity 0.2s;
+    }
+
+    .tab-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+      border-radius: 0 0 2px 2px;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tab-btn.active::before {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .tab-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--muted);
+      transition: color 0.2s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tab-btn.active .tab-icon {
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .tab-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .tab-btn.active .tab-label {
+      color: var(--white);
+    }
+
+    /* ── WORKOUT CARDS ── */
+    .seance-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .seance-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  border-color 0.2s;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .seance-card:active {
+      transform: scale(0.97);
+    }
+
+    .seance-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle at top right, rgba(230,48,48,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .seance-day {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    .seance-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .seance-muscles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .muscle-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .seance-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .seance-count {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .btn-details {
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn-details:active {
+      opacity: 0.8;
+      transform: scale(0.95);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-height: 90vh;
+      background: #141414;
+      border-radius: 24px 24px 0 0;
+      border-top: 1px solid var(--border);
+      z-index: 201;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal.open {
+      transform: translateY(0);
+    }
+
+    .modal-handle {
+      width: 36px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 12px auto 0;
+      flex-shrink: 0;
+    }
+
+    .modal-header {
+      padding: 16px 24px 0;
+      flex-shrink: 0;
+    }
+
+    .modal-day {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 2px;
+    }
+
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.03em;
+      color: var(--white);
+    }
+
+    .modal-body {
+      overflow-y: auto;
+      padding: 20px 24px 40px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-body::-webkit-scrollbar { display: none; }
+
+    .modal-section-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-section-title:first-child {
+      margin-top: 0;
+    }
+
+    .exercise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .exercise-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .exercise-item:last-child {
+      border-bottom: none;
+    }
+
+    .exercise-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .exercise-name {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .exercise-sets {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .modal-tip {
+      background: var(--red-dim);
+      border: 1px solid rgba(230,48,48,0.25);
+      border-left: 3px solid var(--red);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 20px;
+    }
+
+    .modal-tip-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+
+    .modal-tip p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(245,245,247,0.85);
+    }
+
+    .modal-muscles-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .modal-muscle-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--white);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: none;
+      color: var(--muted);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .modal-close:active { background: var(--border); }
+
+    /* ── NUTRITION PAGE ── */
+    .calc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 14px;
+    }
+
+    .calc-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .calc-input-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .calc-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 48px 14px 16px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      -webkit-appearance: none;
+      appearance: none;
+      outline: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      transition: border-color 0.2s;
+    }
+
+    .calc-input:focus {
+      border-color: var(--red);
+    }
+
+    .calc-input-unit {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .goal-toggle {
+      display: flex;
+      gap: 6px;
+    }
+
+    .goal-btn {
+      flex: 1;
+      padding: 10px 4px;
+      border-radius: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .goal-btn.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+      transform: scale(1.04);
+    }
+
+    .macros-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .macro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .macro-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .macro-icon {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .macro-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .macro-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+
+    .macro-unit {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    .macro-bar-track {
+      height: 3px;
+      background: var(--surface2);
+      border-radius: 2px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .macro-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.34, 1.1, 0.64, 1);
+    }
+
+    .macro-bar-fill.red { background: var(--red); }
+    .macro-bar-fill.white { background: var(--white); }
+    .macro-bar-fill.grey { background: var(--muted); }
+    .macro-bar-fill.orange { background: #ff8c42; }
+
+    .macro-card.full .macro-value {
+      font-size: 48px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin: 28px 0 14px;
+    }
+
+    /* ── MEAL CARDS ── */
+    .meal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 10px;
+    }
+
+    .meal-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .meal-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .meal-macro {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--red);
+    }
+
+    /* ── FUEL PAGE ── */
+    .fuel-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 10px;
+    }
+
+    .fuel-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .fuel-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      flex: 1;
+    }
+
+    .fuel-badges {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .badge-green { background: rgba(52, 199, 89, 0.15); color: #34c759; border: 1px solid rgba(52, 199, 89, 0.3); }
+    .badge-blue  { background: rgba(10, 132, 255, 0.15); color: #0a84ff; border: 1px solid rgba(10, 132, 255, 0.3); }
+    .badge-yellow { background: rgba(255, 214, 10, 0.15); color: #ffd60a; border: 1px solid rgba(255, 214, 10, 0.3); }
+
+    .fuel-ingredients {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .fuel-steps {
+      font-size: 13px;
+      color: rgba(245,245,247,0.75);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .fuel-macros {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--red);
+    }
+
+    .fuel-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    .fuel-section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .fuel-section-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fuel-section-icon.snack { background: rgba(230,48,48,0.12); }
+    .fuel-section-icon.drink { background: rgba(10,132,255,0.12); }
+
+    .fuel-section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── SCHEDULE STRIP ── */
+    .schedule-strip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 24px;
+      scrollbar-width: none;
+    }
+
+    .schedule-strip::-webkit-scrollbar { display: none; }
+
+    .schedule-day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      width: 44px;
+    }
+
+    .schedule-day-name {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .schedule-day-pill {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .schedule-day.active .schedule-day-pill {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .schedule-day.rest .schedule-day-pill {
+      color: rgba(255,255,255,0.15);
+    }
+  </style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div id="app">
+  <div class="pages">
+
+    <!-- ═══ PAGE 1 — SÉANCES ═══ -->
+    <div class="page active" id="page-seances">
+      <div class="page-header">
+        <div class="page-eyebrow">Programme</div>
+        <div class="page-title">SÉANCES</div>
+      </div>
+
+      <!-- Planning hebdo -->
+      <div class="schedule-strip">
+        <div class="schedule-day active">
+          <span class="schedule-day-name">Dim</span>
+          <div class="schedule-day-pill">Force<br>A</div>
+        </div>
+        <div class="schedule-day">
+          <span class="schedule-day-name">Lun</span>
+          <div class="schedule-day-pill">Car<br>dio</div>
+        </div>
+        <div class="schedule-day">
+          <span class="schedule-day-name">Mar</span>
+          <div class="schedule-day-pill">Force<br>B</div>
+        </div>
+        <div class="schedule-day rest">
+          <span class="schedule-day-name">Mer</span>
+          <div class="schedule-day-pill">—</div>
+        </div>
+        <div class="schedule-day">
+          <span class="schedule-day-name">Jeu</span>
+          <div class="schedule-day-pill">Vol<br>C</div>
+        </div>
+        <div class="schedule-day">
+          <span class="schedule-day-name">Ven</span>
+          <div class="schedule-day-pill">Skill<br>D</div>
+        </div>
+        <div class="schedule-day rest">
+          <span class="schedule-day-name">Sam</span>
+          <div class="schedule-day-pill">—</div>
+        </div>
+      </div>
+
+      <div class="seance-grid">
+
+        <!-- Séance A -->
+        <div class="seance-card" onclick="openModal('a')">
+          <div class="seance-day">Dimanche · Séance A</div>
+          <div class="seance-name">Force + Planche</div>
+          <div class="seance-muscles">
+            <span class="muscle-tag">Épaules</span>
+            <span class="muscle-tag">Triceps</span>
+            <span class="muscle-tag">Pectoraux</span>
+            <span class="muscle-tag">Serratus</span>
+            <span class="muscle-tag">Core</span>
+          </div>
+          <div class="seance-footer">
+            <span class="seance-count">6 exercices · ~60 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('a')">VOIR DÉTAILS</button>
+          </div>
+        </div>
+
+        <!-- Séance B -->
+        <div class="seance-card" onclick="openModal('b')">
+          <div class="seance-day">Mardi · Séance B</div>
+          <div class="seance-name">Force + Front Lever</div>
+          <div class="seance-muscles">
+            <span class="muscle-tag">Grand dorsal</span>
+            <span class="muscle-tag">Rhomboïdes</span>
+            <span class="muscle-tag">Biceps</span>
+            <span class="muscle-tag">Core</span>
+            <span class="muscle-tag">Avant-bras</span>
+          </div>
+          <div class="seance-footer">
+            <span class="seance-count">6 exercices · ~60 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">VOIR DÉTAILS</button>
+          </div>
+        </div>
+
+        <!-- Cardio -->
+        <div class="seance-card" onclick="openModal('cardio')">
+          <div class="seance-day">Lundi · Cardio</div>
+          <div class="seance-name">Course / Corde</div>
+          <div class="seance-muscles">
+            <span class="muscle-tag">Cardiovasculaire</span>
+            <span class="muscle-tag">Mollets</span>
+            <span class="muscle-tag">Coordination</span>
+          </div>
+          <div class="seance-footer">
+            <span class="seance-count">4 phases · ~40 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio')">VOIR DÉTAILS</button>
+          </div>
+        </div>
+
+        <!-- Séance C -->
+        <div class="seance-card" onclick="openModal('c')">
+          <div class="seance-day">Jeudi · Séance C</div>
+          <div class="seance-name">Volume + Jambes</div>
+          <div class="seance-muscles">
+            <span class="muscle-tag">Quadriceps</span>
+            <span class="muscle-tag">Ischio-jambiers</span>
+            <span class="muscle-tag">Fessiers</span>
+            <span class="muscle-tag">Mollets</span>
+          </div>
+          <div class="seance-footer">
+            <span class="seance-count">6 exercices · ~65 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('c')">VOIR DÉTAILS</button>
+          </div>
+        </div>
+
+        <!-- Séance D -->
+        <div class="seance-card" onclick="openModal('d')">
+          <div class="seance-day">Vendredi · Séance D</div>
+          <div class="seance-name">Handstand + Mobilité</div>
+          <div class="seance-muscles">
+            <span class="muscle-tag">Poignets</span>
+            <span class="muscle-tag">Épaules</span>
+            <span class="muscle-tag">Mobilité spinale</span>
+            <span class="muscle-tag">Coiffe</span>
+          </div>
+          <div class="seance-footer">
+            <span class="seance-count">6 exercices · ~45 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('d')">VOIR DÉTAILS</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 2 — NUTRITION ═══ -->
+    <div class="page" id="page-nutrition">
+      <div class="page-header">
+        <div class="page-eyebrow">Alimentation</div>
+        <div class="page-title">NUTRITION</div>
+      </div>
+
+      <!-- Calculatrice -->
+      <div class="calc-card">
+        <div class="calc-label">Poids actuel</div>
+        <div class="calc-input-wrap">
+          <input class="calc-input" type="number" id="weightInput" value="65" min="40" max="150" inputmode="numeric">
+          <span class="calc-input-unit">kg</span>
+        </div>
+        <div class="calc-label">Objectif</div>
+        <div class="goal-toggle">
+          <button class="goal-btn" data-goal="maintien" onclick="setGoal('maintien')">Maintien</button>
+          <button class="goal-btn active" data-goal="masse" onclick="setGoal('masse')">Prise masse</button>
+          <button class="goal-btn" data-goal="seche" onclick="setGoal('seche')">Sèche</button>
+        </div>
+      </div>
+
+      <!-- Macros -->
+      <div class="macros-grid">
+        <div class="macro-card full">
+          <div class="macro-label">Calories totales</div>
+          <div>
+            <span class="macro-value" id="kcalVal">2784</span>
+            <span class="macro-unit">kcal</span>
+          </div>
+          <div class="macro-bar-track">
+            <div class="macro-bar-fill orange" id="kcalBar" style="width:100%"></div>
+          </div>
+        </div>
+        <div class="macro-card">
+          <div class="macro-label">Protéines</div>
+          <div>
+            <span class="macro-value" id="protVal">130</span>
+            <span class="macro-unit">g</span>
+          </div>
+          <div class="macro-bar-track">
+            <div class="macro-bar-fill red" id="protBar" style="width:68%"></div>
+          </div>
+        </div>
+        <div class="macro-card">
+          <div class="macro-label">Glucides</div>
+          <div>
+            <span class="macro-value" id="glucVal">313</span>
+            <span class="macro-unit">g</span>
+          </div>
+          <div class="macro-bar-track">
+            <div class="macro-bar-fill white" id="glucBar" style="width:82%"></div>
+          </div>
+        </div>
+        <div class="macro-card full">
+          <div class="macro-label">Lipides</div>
+          <div>
+            <span class="macro-value" id="lipVal">77</span>
+            <span class="macro-unit">g</span>
+          </div>
+          <div class="macro-bar-track">
+            <div class="macro-bar-fill grey" id="lipBar" style="width:55%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plats recommandés -->
+      <div class="section-title">Plats recommandés</div>
+
+      <div class="meal-card">
+        <div class="meal-name">Riz + Œufs + Légumes sautés</div>
+        <div class="meal-desc">Rapide, économique, glucides complexes et protéines complètes. Idéal post-workout ou repas principal.</div>
+        <div class="meal-macro">~35g protéines · ~60g glucides · ~10g lipides</div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-name">Avoine + Banane + Beurre de cacahuète</div>
+        <div class="meal-desc">Petit-déj ou collation pré/post-workout. Énergie longue durée, digestion progressive.</div>
+        <div class="meal-macro">~18g protéines · ~70g glucides · ~18g lipides</div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-name">Galettes d'avoine + Yaourt grec</div>
+        <div class="meal-desc">Simple, high protein, peu de sucres ajoutés. Peut se préparer en batch pour la semaine.</div>
+        <div class="meal-macro">~22g protéines · ~40g glucides · ~8g lipides</div>
+      </div>
+
+    </div>
+
+    <!-- ═══ PAGE 3 — FUEL ═══ -->
+    <div class="page" id="page-fuel">
+      <div class="page-header">
+        <div class="page-eyebrow">Énergie</div>
+        <div class="page-title">FUEL</div>
+      </div>
+
+      <!-- Snacks -->
+      <div class="fuel-section-header">
+        <div class="fuel-section-icon snack">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e63030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="fuel-section-label">Snacks</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Energy Balls</div>
+          <div class="fuel-badges">
+            <span class="badge badge-green">Facile</span>
+            <span class="badge badge-yellow">Économique</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">Flocons d'avoine · miel · beurre de cacahuète · cacao en poudre</div>
+        <div class="fuel-steps">Mélanger tous les ingrédients. Former des boules de la taille d'une noix. 20 min au frigo. Se conserve 5 jours.</div>
+        <div class="fuel-macros">~180 kcal · 6g protéines · 22g glucides · 8g lipides (par boule)</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Toast Avocat + Œuf Poché</div>
+          <div class="fuel-badges">
+            <span class="badge badge-blue">5 min</span>
+            <span class="badge badge-green">Facile</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">Pain complet · avocat · 1 œuf · sel · piment de Cayenne</div>
+        <div class="fuel-steps">Toaster le pain. Écraser l'avocat avec sel et piment. Pocher l'œuf 3 min. Assembler.</div>
+        <div class="fuel-macros">~320 kcal · 18g protéines · 28g glucides · 16g lipides</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Banana Protein Mash</div>
+          <div class="fuel-badges">
+            <span class="badge badge-blue">2 min</span>
+            <span class="badge badge-yellow">Économique</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">1 banane · 2 c.s. beurre de cacahuète · 1 c.s. graines de chia</div>
+        <div class="fuel-steps">Écraser la banane à la fourchette. Incorporer le beurre de cacahuète et les graines. Manger directement.</div>
+        <div class="fuel-macros">~280 kcal · 9g protéines · 35g glucides · 12g lipides</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Galette Riz + Thon + Citron</div>
+          <div class="fuel-badges">
+            <span class="badge badge-blue">2 min</span>
+            <span class="badge badge-yellow">Économique</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">Galette de riz soufflé · 1 boîte de thon · jus de citron · poivre</div>
+        <div class="fuel-steps">Égoutter le thon. Poser sur la galette. Presser le citron, poivrer. Prêt.</div>
+        <div class="fuel-macros">~200 kcal · 22g protéines · 15g glucides · 4g lipides</div>
+      </div>
+
+      <div class="fuel-divider"></div>
+
+      <!-- Boissons -->
+      <div class="fuel-section-header">
+        <div class="fuel-section-icon drink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a84ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a2 2 0 1 0 0-4h14a2 2 0 1 0 0 4M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12v4M14 12v4"/></svg>
+        </div>
+        <div class="fuel-section-label">Boissons</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Électrolyte Maison</div>
+          <div class="fuel-badges">
+            <span class="badge badge-blue">5 min</span>
+            <span class="badge badge-yellow">Économique</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">500 ml eau · jus de ½ citron · 1 pincée de sel · 1 c.c. miel</div>
+        <div class="fuel-steps">Mélanger dans une gourde. Boire pendant ou juste après l'entraînement. Remplace les électrolytes perdus.</div>
+        <div class="fuel-macros">~20 kcal · 0g protéines · 5g glucides · 0g lipides</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Smoothie Récupération</div>
+          <div class="fuel-badges">
+            <span class="badge badge-green">Facile</span>
+            <span class="badge badge-blue">5 min</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">1 banane · 250 ml lait · 2 c.s. flocons d'avoine · 1 c.s. beurre de cacahuète</div>
+        <div class="fuel-steps">Tout dans le blender. 30 secondes. Boire dans les 30 min post-entraînement pour la fenêtre anabolique.</div>
+        <div class="fuel-macros">~350 kcal · 14g protéines · 52g glucides · 10g lipides</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Eau Infusée Menthe-Concombre</div>
+          <div class="fuel-badges">
+            <span class="badge badge-green">Facile</span>
+            <span class="badge badge-yellow">Économique</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">Eau froide · ½ concombre en tranches · feuilles de menthe fraîche</div>
+        <div class="fuel-steps">Mettre les tranches et la menthe dans une carafe. Laisser infuser 30 min au frigo. Anti-inflammatoire naturel.</div>
+        <div class="fuel-macros">~5 kcal · 0g protéines · 1g glucides · 0g lipides</div>
+      </div>
+
+      <div class="fuel-card">
+        <div class="fuel-card-header">
+          <div class="fuel-name">Café Glacé Maison</div>
+          <div class="fuel-badges">
+            <span class="badge badge-blue">5 min</span>
+            <span class="badge badge-yellow">Économique</span>
+          </div>
+        </div>
+        <div class="fuel-ingredients">Café fort refroidi · glaçons · trait de lait (optionnel)</div>
+        <div class="fuel-steps">Préparer un café serré. Laisser refroidir 10 min. Verser sur glaçons. Pre-workout naturel, 0 sucre ajouté.</div>
+        <div class="fuel-macros">~10 kcal · 0g protéines · 1g glucides · 0g lipides</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ TAB BAR ═══ -->
+  <nav class="tabbar">
+    <button class="tab-btn active" id="tab-seances" onclick="switchTab('seances')">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6.5 6.5h11M6.5 17.5h11M6 12h12M3 8.5l3-2v11l-3-2M21 8.5l-3-2v11l3-2"/>
+      </svg>
+      <span class="tab-label">Séances</span>
+    </button>
+    <button class="tab-btn" id="tab-nutrition" onclick="switchTab('nutrition')">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/>
+        <path d="M12 6v6l4 2"/>
+        <path d="M6 12c0-3.31 2.69-6 6-6"/>
+      </svg>
+      <span class="tab-label">Nutrition</span>
+    </button>
+    <button class="tab-btn" id="tab-fuel" onclick="switchTab('fuel')">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+      <span class="tab-label">Fuel</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ═══ MODALS ═══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-handle"></div>
+  <button class="modal-close" onclick="closeModal()">×</button>
+  <div class="modal-header">
+    <div class="modal-day" id="modalDay"></div>
+    <div class="modal-title" id="modalTitle"></div>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+</div>
+
+<script>
+  // ── TAB NAVIGATION ──
+  function switchTab(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+
+  // ── MODAL DATA ──
+  const sessions = {
+    a: {
+      day: 'Dimanche · Séance A',
+      title: 'Force + Planche',
+      exercises: [
+        { name: 'Scapular push-ups', sets: '3 × 10 reps', note: 'Activation' },
+        { name: 'Tuck Planche holds', sets: '5 × 10 s', note: 'Qualité > quantité' },
+        { name: 'Pseudo Planche Push-ups', sets: '4 × 6 reps', note: 'Excentrique 3 s' },
+        { name: 'Ring Dips', sets: '4 × 8 reps', note: 'Amplitude complète' },
+        { name: 'Pike Push-ups → HSPU', sets: '3 × 8 reps', note: 'Selon niveau' },
+        { name: 'Hollow body hold', sets: '3 × 30 s', note: 'Corps rigide' },
+      ],
+      muscles: ['Épaules', 'Triceps', 'Pectoraux', 'Serratus', 'Core'],
+      tip: 'Les Pseudo Planche Push-ups sont LE mouvement clé — engagement scapulaire maximal en protraction constante. Ne jamais laisser les hanches descendre. La tension dans le serratus doit être permanente.'
+    },
+    b: {
+      day: 'Mardi · Séance B',
+      title: 'Force + Front Lever',
+      exercises: [
+        { name: 'Dead hangs', sets: '3 × 30 s', note: 'Santé des épaules' },
+        { name: 'Tuck Front Lever', sets: '5 × 8 s', note: 'Dépression scapulaire' },
+        { name: 'Front Lever Negatives', sets: '3 × 5 reps', note: 'Contrôle excentrique' },
+        { name: 'Archer Pull-ups', sets: '4 × 6 reps', note: 'Chaque côté' },
+        { name: 'Australian Pull-ups', sets: '3 × 12 reps', note: 'Tirer vers le sternum' },
+        { name: 'Hanging Leg Raises', sets: '3 × 12 reps', note: 'Sans balancier' },
+      ],
+      muscles: ['Grand dorsal', 'Rhomboïdes', 'Biceps', 'Core', 'Avant-bras'],
+      tip: 'Les Australian pull-ups sont la base du Front Lever — ils entraînent le pattern de traction horizontal. Corps en planche rigide, pousser les épaules en dépression, tirer vers le sternum en prenant le dessus sur la gravité.'
+    },
+    cardio: {
+      day: 'Lundi · Cardio',
+      title: 'Course / Corde',
+      exercises: [
+        { name: 'Échauffement marche', sets: '5 min', note: 'Cadence progressive' },
+        { name: 'HIIT corde à sauter', sets: '10 rounds', note: '30s on / 30s off' },
+        { name: 'Course Zone 2', sets: '20 min', note: '60-70% FC max' },
+        { name: 'Cool-down marche', sets: '5 min', note: 'Stretch mollets' },
+      ],
+      muscles: ['Cardiovasculaire', 'Mollets', 'Coordination'],
+      tip: 'Zone 2 = pouvoir tenir une conversation sans s\'essouffler (60-70% FC max). Pour la corde : poignets souples, enjambements petits, bras proches du corps. Le HIIT booste l\'adaptation aérobie plus vite que le cardio seul.'
+    },
+    c: {
+      day: 'Jeudi · Séance C',
+      title: 'Volume + Jambes',
+      exercises: [
+        { name: 'Bulgarian Split Squats', sets: '4 × 10 / jambe', note: 'Descente 3 s' },
+        { name: 'Nordic Curls', sets: '3 × 5 reps', note: 'Excentrique uniquement' },
+        { name: 'Box Jumps', sets: '4 × 8 reps', note: 'Atterrissage souple' },
+        { name: 'Calf Raises lestées', sets: '4 × 20 reps', note: 'Amplitude complète' },
+        { name: 'Dips', sets: '3 × 12 reps', note: 'Volume push' },
+        { name: 'Pull-ups', sets: '3 × 12 reps', note: 'Volume pull' },
+      ],
+      muscles: ['Quadriceps', 'Ischio-jambiers', 'Fessiers', 'Mollets'],
+      tip: 'Nordic Curls = meilleur exercice pour les ischio-jambiers. En excentrique uniquement au début : se laisser tomber en contrôlant, se relever avec les mains. Descente 3-4 s minimum. Knee tracking sur les bulgares : genou dans l\'axe du 2e orteil.'
+    },
+    d: {
+      day: 'Vendredi · Séance D',
+      title: 'Handstand + Mobilité',
+      exercises: [
+        { name: 'Wrist mobility', sets: '5 min', note: 'Circles + compressions' },
+        { name: 'Wall Handstand', sets: '5 × 20-30 s', note: 'Alignement parfait' },
+        { name: 'Handstand kick-ups', sets: '10 tentatives', note: 'Libre ou mur' },
+        { name: 'Jefferson Curls', sets: '3 × 8 reps', note: 'Lentement, léger' },
+        { name: 'Shoulder dislocations', sets: '3 × 10 reps', note: 'Bande élastique' },
+        { name: 'Skin the cat', sets: '3 × 5 reps', note: 'Contrôle total' },
+      ],
+      muscles: ['Poignets', 'Épaules', 'Coiffe des rotateurs', 'Mobilité spinale'],
+      tip: 'Le handstand se pratique idéalement chaque jour, même 5 min. Jefferson curls = mobilité spinale incomparable — toujours léger et lent. Jamais de douleur aiguë. Le skin the cat renforce la coiffe et ouvre les épaules comme rien d\'autre.'
+    }
+  };
+
+  // ── MODAL OPEN/CLOSE ──
+  function openModal(id) {
+    const s = sessions[id];
+    if (!s) return;
+
+    document.getElementById('modalDay').textContent = s.day;
+    document.getElementById('modalTitle').textContent = s.title;
+
+    let html = '<div class="modal-section-title">Exercices</div>';
+    html += '<div class="exercise-list">';
+    s.exercises.forEach(ex => {
+      html += `<div class="exercise-item">
+        <div class="exercise-dot"></div>
+        <div class="exercise-name">${ex.name}<br><span style="font-size:11px;color:var(--muted);font-weight:400">${ex.note}</span></div>
+        <div class="exercise-sets">${ex.sets}</div>
+      </div>`;
+    });
+    html += '</div>';
+
+    html += '<div class="modal-section-title" style="margin-top:20px">Muscles ciblés</div>';
+    html += '<div class="modal-muscles-wrap">';
+    s.muscles.forEach(m => {
+      html += `<span class="modal-muscle-tag">${m}</span>`;
+    });
+    html += '</div>';
+
+    html += `<div class="modal-tip">
+      <div class="modal-tip-label">Tip d'optimisation</div>
+      <p>${s.tip}</p>
+    </div>`;
+
+    document.getElementById('modalBody').innerHTML = html;
+
+    document.getElementById('modal').classList.add('open');
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // swipe down to close modal
+  let touchStartY = 0;
+  document.getElementById('modal').addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  document.getElementById('modal').addEventListener('touchmove', e => {
+    const dy = e.touches[0].clientY - touchStartY;
+    if (dy > 60) closeModal();
+  }, { passive: true });
+
+  // ── NUTRITION CALCULATOR ──
+  let currentGoal = 'masse';
+
+  function calcMacros() {
+    const weight = parseFloat(document.getElementById('weightInput').value) || 65;
+    const mb = (10 * weight) + (6.25 * 170) - (5 * 23) + 5;
+    const tdee = mb * 1.55;
+
+    let kcal;
+    if (currentGoal === 'maintien') kcal = tdee;
+    else if (currentGoal === 'masse') kcal = tdee + 300;
+    else kcal = tdee - 400;
+
+    kcal = Math.round(kcal);
+    const prot = Math.round(2 * weight);
+    const gluc = Math.round((kcal * 0.45) / 4);
+    const lip  = Math.round((kcal * 0.25) / 9);
+
+    document.getElementById('kcalVal').textContent = kcal;
+    document.getElementById('protVal').textContent = prot;
+    document.getElementById('glucVal').textContent = gluc;
+    document.getElementById('lipVal').textContent  = lip;
+
+    // bar widths (relative to max plausible)
+    const maxKcal = 3500;
+    document.getElementById('kcalBar').style.width = Math.min(100, (kcal / maxKcal) * 100) + '%';
+    document.getElementById('protBar').style.width = Math.min(100, (prot / 200) * 100) + '%';
+    document.getElementById('glucBar').style.width = Math.min(100, (gluc / 450) * 100) + '%';
+    document.getElementById('lipBar').style.width  = Math.min(100, (lip  / 120) * 100) + '%';
+  }
+
+  function setGoal(goal) {
+    currentGoal = goal;
+    document.querySelectorAll('.goal-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.goal === goal);
+    });
+    calcMacros();
+  }
+
+  document.getElementById('weightInput').addEventListener('input', calcMacros);
+
+  // init
+  calcMacros();
+</script>
+</body>
+</html>

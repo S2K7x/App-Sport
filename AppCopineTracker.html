@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#fafafc">
+<title>LUMEN OS — Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafc;
+    --surface: #ffffff;
+    --surface2: #f2f2f7;
+    --border: #e5e5ea;
+    --accent: #b28bda; /* Soft Lavande */
+    --accent2: #e0b0b0; /* Rose cendré */
+    --text: #1c1c1e;
+    --muted: #8e8e93;
+    --success: #34c759;
+    --warning: #ff9500;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(178,139,218,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(178,139,218,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,250,252,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    cursor: pointer;
+  }
+
+  .nav-logo span { color: var(--muted); }
+
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .nav-tab {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .nav-tab:hover { color: var(--text); background: var(--surface2); }
+  .nav-tab.active { color: var(--accent); background: rgba(178,139,218,0.08); }
+
+  .nav-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ---- PAGES ---- */
+  .page { display: none; padding: 32px 24px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; padding-bottom: 90px; }
+  .page.active { display: block; }
+
+  /* ---- DASHBOARD ---- */
+  .dashboard-header {
+    margin-bottom: 32px;
+  }
+
+  .greeting {
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .dashboard-title {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .dashboard-title .highlight { color: var(--accent); }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    opacity: 0.8;
+  }
+
+  .stat-card.calories::before { background: var(--accent2); }
+  .stat-card.weight::before { background: var(--success); }
+
+  .stat-label {
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .stat-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ---- WEEK GRID ---- */
+  .section-title {
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .day-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .day-cell:hover { border-color: var(--accent); }
+  .day-cell.done { border-color: var(--success); background: rgba(52,199,89,0.05); }
+  .day-cell.today { border-color: var(--accent); background: rgba(178,139,218,0.05); }
+  .day-cell.rest { opacity: 0.5; cursor: default; }
+
+  .day-name {
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .day-type {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .day-check {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--success);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #fff;
+  }
+
+  .day-cell.done .day-check { display: flex; }
+
+  /* ---- SEANCE PAGE ---- */
+  .seance-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .seance-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .seance-btn:hover, .seance-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(178,139,218,0.06);
+  }
+
+  .seance-content { display: none; }
+  .seance-content.active { display: block; }
+
+  .bloc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .bloc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .bloc-header:hover { background: rgba(178,139,218,0.04); }
+
+  .bloc-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bloc-tag {
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    background: rgba(178,139,218,0.15); 
+    color: var(--accent);
+  }
+
+  .bloc-name {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .bloc-chevron {
+    color: var(--muted);
+    transition: transform 0.2s;
+    font-size: 12px;
+  }
+
+  .bloc-card.open .bloc-chevron { transform: rotate(180deg); }
+
+  .bloc-body {
+    display: none;
+    padding: 16px 20px;
+  }
+
+  .bloc-card.open .bloc-body { display: block; }
+
+  .exercise-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(229,229,234,0.5);
+  }
+
+  .exercise-row:last-child { border-bottom: none; }
+
+  /* Checkbox with sleek look */
+  .ex-check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    font-size: 11px;
+    background: var(--surface);
+    color: transparent;
+  }
+
+  .ex-check:hover { border-color: var(--accent); }
+  .ex-check.checked { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .ex-content { flex: 1; }
+
+  .ex-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .ex-detail {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .seance-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn-primary {
+    background: var(--text);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover { background: #333; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--text); border-color: var(--text); }
+
+  /* ---- OTHERS ---- */
+  .weight-list {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .weight-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .weight-item:last-child { border-bottom: none; }
+
+  .weight-date { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); }
+  .weight-val { font-weight: 700; font-size: 16px; color: var(--text); }
+
+  /* ---- TIMER (Pinned Bottom) ---- */
+  .timer-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 200;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
+  .timer-bar.visible { transform: translateY(0); }
+
+  .timer-display {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 80px;
+  }
+
+  .timer-label { font-size: 13px; color: var(--muted); flex: 1; }
+
+  .timer-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    transition: all 0.15s;
+    font-weight: bold;
+  }
+
+  .timer-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Easter Egg sparkles */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: sparkleAni 0.8s ease-out forwards;
+    z-index: 9999;
+  }
+  @keyframes sparkleAni {
+    0% { transform: scale(1) translateY(0); opacity: 1; }
+    100% { transform: scale(0) translateY(-30px); opacity: 0; }
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+    nav { padding: 0 16px; }
+    .nav-tab { padding: 6px 10px; font-size: 11px; }
+    .page { padding: 20px 16px; padding-bottom: 100px; }
+    .nav-date { display: none; }
+    .dashboard-title { font-size: 28px; }
+    .stat-value { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="sparkleEffect(event)">LUMEN<span>OS</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('dashboard')">Dashboard</button>
+    <button class="nav-tab" onclick="showPage('seance')">Séance</button>
+    <button class="nav-tab" onclick="showPage('nutrition')">Nutrition</button>
+    <button class="nav-tab" onclick="showPage('recettes')">Recettes</button>
+  </div>
+  <div class="nav-date" id="navDate"></div>
+</nav>
+
+<!-- ======================== DASHBOARD ======================== -->
+<div class="page active" id="page-dashboard">
+  <div class="dashboard-header">
+    <div class="greeting">// VITALITÉ & OBJECTIFS</div>
+    <div class="dashboard-title">
+      Goal : <span class="highlight">47 kg</span>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">// Fréquence</div>
+      <div class="stat-value">3</div>
+      <div class="stat-sub">séances / semaine</div>
+    </div>
+    <div class="stat-card calories">
+      <div class="stat-label">// Énergie Max</div>
+      <div class="stat-value">1350</div>
+      <div class="stat-sub">kcal / jour</div>
+    </div>
+    <div class="stat-card weight">
+      <div class="stat-label">// Poids Actuel</div>
+      <div class="stat-value">50.6<span style="font-size:16px">kg</span></div>
+      <div class="stat-sub">Dernier relevé : 01/04</div>
+    </div>
+  </div>
+
+  <div class="section-title">// Cible de la semaine</div>
+  <div class="week-grid" id="weekGrid"></div>
+
+  <div class="stat-card" style="box-shadow: none; border-style: dashed; background: transparent; display: flex; align-items: center; justify-content: center; padding: 15px; margin-top: -16px;">
+    <div class="stat-label" style="margin-bottom: 0; font-style: italic;">"Un jours, Maitre Shai-fu a dit: La discipline est le pont entre tes objectifs et tes résultats."</div>
+  </div>
+</div>
+
+<!-- ======================== SÉANCE ======================== -->
+<div class="page" id="page-seance">
+  <div class="dashboard-header">
+    <div class="greeting">// TON SEUL ADVERSAIRE, C'EST TOI-MÊME, DEFONCE TOUT JE T'AIME</div>
+    <div class="dashboard-title">Initier la <span class="highlight">session</span></div>
+  </div>
+
+  <div class="seance-selector">
+    <button class="seance-btn active" onclick="selectSeance('S34')">Phase 1<br><small style="font-size:10px;opacity:0.6">Semaine 3+4</small></button>
+    <button class="seance-btn" onclick="selectSeance('S56')">Phase 2<br><small style="font-size:10px;opacity:0.6">Semaine 5+6</small></button>
+    <button class="seance-btn" onclick="selectSeance('S78')">Phase 3<br><small style="font-size:10px;opacity:0.6">Semaine 7+8</small></button>
+  </div>
+
+  <div id="seance-S34" class="seance-content active"></div>
+  <div id="seance-S56" class="seance-content"></div>
+  <div id="seance-S78" class="seance-content"></div>
+
+  <div class="seance-actions">
+    <button class="btn-primary" onclick="sparkleEffect(event)">✓ Terminer Session</button>
+    <button class="btn-secondary" onclick="resetChecks()">Reset checks</button>
+  </div>
+</div>
+
+<!-- ======================== NUTRITION ======================== -->
+<div class="page" id="page-nutrition">
+  <div class="dashboard-header">
+    <div class="greeting">// PLAN ALIMENTAIRE — JE TE TUE SI TU CONTINUE A ME DIRE QUE TU TE SENT PAS BIEN A CAUSE DE LA NUTRITION</div>
+    <div class="dashboard-title">Objectif <span class="highlight">1350 kcal</span></div>
+  </div>
+
+  <div class="stats-row" style="margin-bottom: 24px;">
+    <div class="stat-card calories">
+      <div class="stat-label">// Protéines</div>
+      <div class="stat-value">100<span style="font-size:16px">g</span></div>
+      <div class="stat-sub">Maintien musculaire</div>
+    </div>
+    <div class="stat-card" style="box-shadow: none;">
+      <div class="stat-label">// Hydratation</div>
+      <div class="stat-value" style="color: var(--accent);">2.0<span style="font-size:16px">L</span></div>
+      <div class="stat-sub">Minimum par jour</div>
+    </div>
+  </div>
+
+  <div class="section-title">// Idées de Repas (Exemple Type)</div>
+  <div class="weight-list" style="margin-bottom: 24px;">
+    <div class="weight-item" onclick="sparkleEffect(event)" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="weight-date" style="color:var(--accent);">PETIT DÉJEUNER (~300 kcal)</div>
+      </div>
+      <div class="weight-val" style="font-size: 13px; font-weight: 500; line-height: 1.5; color: var(--muted);">
+        • Flocons d'avoine (40g) au lait d'amande<br>
+        • 1/2 banane ou fruits rouges<br>
+        • Thé vert ou Café (sans sucre)
+      </div>
+    </div>
+    
+    <div class="weight-item" onclick="sparkleEffect(event)" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="weight-date" style="color:var(--success);">DÉJEUNER (~450 kcal)</div>
+      </div>
+      <div class="weight-val" style="font-size: 13px; font-weight: 500; line-height: 1.5; color: var(--muted);">
+        • Blanc de poulet ou tofu (120g)<br>
+        • Riz basmati (45g cru / 130g cuit)<br>
+        • Légumes verts à volonté (brocolis, courgettes) avec 1 c.à.s d'huile d'olive
+      </div>
+    </div>
+
+    <div class="weight-item" onclick="sparkleEffect(event)" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="weight-date" style="color:var(--warning);">COLLATION (~150 kcal)</div>
+      </div>
+      <div class="weight-val" style="font-size: 13px; font-weight: 500; line-height: 1.5; color: var(--muted);">
+        • Skyr ou fromage blanc 0% (150g)<br>
+        • 10 amandes ou une pomme
+      </div>
+    </div>
+
+    <div class="weight-item" onclick="sparkleEffect(event)" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="weight-date" style="color:var(--accent2);">DÎNER (~450 kcal)</div>
+      </div>
+      <div class="weight-val" style="font-size: 13px; font-weight: 500; line-height: 1.5; color: var(--muted);">
+        • Poisson blanc ou 2 oeufs<br>
+        • Patate douce (150g au four)<br>
+        • Salade ou soupe de légumes de saison
+      </div>
+    </div>
+  </div>
+
+  <div class="bloc-card">
+    <div class="bloc-header" style="cursor: default;">
+      <div class="bloc-title-row">
+        <span class="bloc-tag" style="background:rgba(255,149,0,0.15);color:var(--warning)">TIPS</span>
+        <span class="bloc-name">Règles d'Or</span>
+      </div>
+    </div>
+    <div class="bloc-body" style="display:block; font-size: 13px; line-height: 1.6; color: var(--muted);">
+      • Garde toujours au moins <b>1.5 à 2L d'eau</b> par jour.<br>
+      • Essaie d'espacer tes repas pour éviter les fringales.<br>
+      • Les épices et herbes sont tes amies (zéro calorie, plein de goût !)<br>
+      • Ne sois pas trop stricte : un petit écart de temps en temps, c'est bon pour le moral !
+    </div>
+  </div>
+</div>
+
+<!-- ======================== RECETTES ======================== -->
+<div class="page" id="page-recettes">
+  <div class="dashboard-header">
+    <div class="greeting">// RECETTES SANTÉ & PLAISIR</div>
+    <div class="dashboard-title">Idées <span class="highlight">Gourmandes</span></div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:4px;">
+    
+    <!-- Pancake -->
+    <div class="bloc-card" id="recette-1">
+      <div class="bloc-header" onclick="toggleBloc('recette-1')">
+        <div class="bloc-title-row">
+          <span class="bloc-tag" style="background:var(--accent);color:#fff">90 kcal</span>
+          <span class="bloc-name">Pancake Rapide</span>
+        </div>
+        <div class="bloc-chevron">▼</div>
+      </div>
+      <div class="bloc-body" style="font-size: 14px; line-height: 1.6; color: var(--muted);">
+        <b>Ingrédients :</b><br>
+        • Banane écrasée<br>
+        • Lait<br>
+        • Farine<br>
+        • 2 c.à.c de levure<br><br>
+        <b>Préparation :</b> Mélanger le tout et faire cuire à la poêle.
+      </div>
+    </div>
+    
+    <!-- Naan -->
+    <div class="bloc-card" id="recette-2">
+      <div class="bloc-header" onclick="toggleBloc('recette-2')">
+        <div class="bloc-title-row">
+          <span class="bloc-tag" style="background:var(--accent);color:#fff">155 kcal / Naan</span>
+          <span class="bloc-name">Naans Fourrés (330 kcal total)</span>
+        </div>
+        <div class="bloc-chevron">▼</div>
+      </div>
+      <div class="bloc-body" style="font-size: 14px; line-height: 1.6; color: var(--muted);">
+        <b>Ingrédients :</b><br>
+        • 6 c.à.s de fromage blanc<br>
+        • 8 c.à.s de farine<br>
+        • 3g levure + sel<br>
+        • Fromage à tartiner (pour le cœur)<br><br>
+        <b>Préparation :</b><br>
+        1. Mélanger le fromage blanc, farine, levure et sel.<br>
+        2. Faire des boules.<br>
+        3. Écraser, mettre un peu de fromage à tartiner au milieu, refermer et aplatir à nouveau.<br>
+        4. Cuire 2-3 min à la poêle sans huile.
+      </div>
+    </div>
+
+    <!-- Pâtes courgette -->
+    <div class="bloc-card" id="recette-3">
+      <div class="bloc-header" onclick="toggleBloc('recette-3')">
+        <div class="bloc-title-row">
+          <span class="bloc-tag" style="background:var(--success);color:#fff">225 kcal</span>
+          <span class="bloc-name">Pâtes de Courgette au Saumon</span>
+        </div>
+        <div class="bloc-chevron">▼</div>
+      </div>
+      <div class="bloc-body" style="font-size: 14px; line-height: 1.6; color: var(--muted);">
+        <b>Ingrédients :</b><br>
+        • 1 courgette<br>
+        • 1/2 oignon<br>
+        • 2 tranches de saumon fumé<br>
+        • 2 c.à.s fromage blanc 0%<br>
+        • 1/2 c.à.s huile d'olive<br><br>
+        <b>Préparation :</b><br>
+        1. Éplucher et couper la courgette en forme de pâtes. Faire revenir à la poêle avec l'huile d'olive.<br>
+        2. Couper le demi oignon et le faire revenir avec le saumon fumé.<br>
+        3. Quand c'est cuit, ajouter le fromage blanc 0% et mélanger.
+      </div>
+    </div>
+
+    <!-- Spring Roll -->
+    <div class="bloc-card" id="recette-4">
+      <div class="bloc-header" onclick="toggleBloc('recette-4')">
+        <div class="bloc-title-row">
+          <span class="bloc-tag" style="background:var(--success);color:#fff">220 kcal</span>
+          <span class="bloc-name">Spring Roll Fraîcheur</span>
+        </div>
+        <div class="bloc-chevron">▼</div>
+      </div>
+      <div class="bloc-body" style="font-size: 14px; line-height: 1.6; color: var(--muted);">
+        <b>Ingrédients :</b><br>
+        • 1 tranche de saumon fumé<br>
+        • Concombre<br>
+        • 2 c.à.s fromage blanc 0%<br>
+        • Citron<br>
+        • 1/2 oignon rouge<br>
+        • 1/4 avocat<br>
+        • 1 feuille de riz<br><br>
+        <b>Préparation :</b><br>
+        1. Mélanger le saumon, concombre, fromage blanc, filet de citron, oignon rouge et l'avocat coupé.<br>
+        2. Tremper la feuille de riz dans l'eau tiède pour la ramollir.<br>
+        3. Placer la garniture au centre et enrouler.
+      </div>
+    </div>
+    
+    <!-- Overnight Oat -->
+    <div class="bloc-card" id="recette-5">
+      <div class="bloc-header" onclick="toggleBloc('recette-5')">
+        <div class="bloc-title-row">
+          <span class="bloc-tag" style="background:var(--warning);color:#fff">350 kcal</span>
+          <span class="bloc-name">Overnight Oats aux Fruits</span>
+        </div>
+        <div class="bloc-chevron">▼</div>
+      </div>
+      <div class="bloc-body" style="font-size: 14px; line-height: 1.6; color: var(--muted);">
+        <b>Ingrédients :</b><br>
+        • 4 c.à.s flocons d'avoine<br>
+        • 2 c.à.c graines de chia (séparées)<br>
+        • Lait<br>
+        • Fruits rouges ou banane<br>
+        • Fromage blanc<br><br>
+        <b>Préparation :</b><br>
+        1. Mélanger l'avoine, 1 c.à.c de chia et le lait. Passer au micro-ondes 2 minutes.<br>
+        2. Écraser les fruits rouges/banane avec 1 c.à.c de chia.<br>
+        3. Ajouter une couche de fromage blanc par-dessus l'avoine, puis la purée de fruits par-dessus.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== TIMER ======================== -->
+<div class="timer-bar" id="timerBar">
+  <div class="timer-display" id="timerDisplay">0:30</div>
+  <div class="timer-label">Repos en cours</div>
+  <button class="timer-btn" id="timerToggle" onclick="toggleTimer()">▶</button>
+  <button class="timer-btn" onclick="closeTimer()">✕</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+
+const WEEK_PLAN = [
+  { day: 'Lun', type: 'Session', tag: 'workout' },
+  { day: 'Mar', type: 'Repos', tag: 'rest' },
+  { day: 'Mer', type: 'Session', tag: 'workout' },
+  { day: 'Jeu', type: 'Repos', tag: 'rest' },
+  { day: 'Ven', type: 'Session', tag: 'workout' },
+  { day: 'Sam', type: 'Repos', tag: 'rest' },
+  { day: 'Dim', type: 'Repos', tag: 'rest' },
+];
+
+const SEANCES = {
+  S34: {
+    title: 'SEMAINE 3+4',
+    blocs: [
+      {
+        tag: 'workout', name: 'Circuit Principal', duration: 'Repos 30s', open: true,
+        exercises: [
+          { name: 'Side plank', detail: '3 x 12 (par côté)' },
+          { name: 'Heels tap', detail: '3 x 30 (15 par côté)' },
+          { name: 'Single leg glute bridge', detail: '3 x 12 (par jambe)' },
+          { name: 'Curtsy lunges', detail: '3 x 15 (par jambe)' },
+          { name: 'Crab walk', detail: '3 x 20' },
+          { name: 'Stomach vacuum', detail: '4 x 20s' },
+        ]
+      }
+    ]
+  },
+  S56: {
+    title: 'SEMAINE 5+6',
+    blocs: [
+      {
+        tag: 'workout', name: 'Circuit Principal', duration: 'Repos 30s', open: true,
+        exercises: [
+          { name: 'Commando plank', detail: '3 x 16 (8/bras)' },
+          { name: 'Crunch rotatif', detail: '3 x 20 alterné' },
+          { name: 'Fente bulgare', detail: '4 x 10 (par jambe)' },
+          { name: 'Soulève de terre unijambiste', detail: '3 x 12 (par jambe)' },
+          { name: 'Glute bridge', detail: '3 x 15 (maintien long)' },
+          { name: 'Stomach vacuum debout', detail: '5 x 20s' },
+        ]
+      }
+    ]
+  },
+  S78: {
+    title: 'SEMAINE 7+8',
+    blocs: [
+      {
+        tag: 'workout', name: 'Circuit Principal', duration: 'Repos 30s', open: true,
+        exercises: [
+          { name: 'Bicycle crunch + reverse crunch', detail: '4 x 20+15' },
+          { name: 'Squat jump', detail: '4 x 15' },
+          { name: 'Fente bulgare + pulsation', detail: '3 x 10+10 (pulsation en bas)' },
+          { name: 'Frog pump', detail: '3 x 30' },
+          { name: 'Mountain climber', detail: '4 x 45' },
+          { name: 'Stomach vacuum', detail: '5 x 25s' },
+        ]
+      }
+    ]
+  }
+};
+
+let weekDone = {};
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ═══════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════
+
+function renderDashboard() {
+  const now = new Date();
+  document.getElementById('navDate').textContent = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+
+  const grid = document.getElementById('weekGrid');
+  grid.innerHTML = '';
+  let today = now.getDay() - 1;
+  if(today < 0) today = 6;
+
+  WEEK_PLAN.forEach((d, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'day-cell';
+    if (d.tag === 'rest') cell.classList.add('rest');
+    if (i === today) cell.classList.add('today');
+    if (weekDone[i]) cell.classList.add('done');
+
+    if (d.tag !== 'rest') {
+      cell.onclick = (e) => {
+        weekDone[i] = !weekDone[i];
+        cell.classList.toggle('done');
+        if(weekDone[i]) sparkleEffect(e);
+      };
+    }
+
+    cell.innerHTML = `
+      <div class="day-name">${d.day}</div>
+      <div class="day-type">${d.type}</div>
+      <div class="day-check">✓</div>
+    `;
+    grid.appendChild(cell);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// SÉANCES
+// ═══════════════════════════════════════════════
+
+function buildSeances() {
+  Object.entries(SEANCES).forEach(([key, seance]) => {
+    const container = document.getElementById('seance-' + key);
+    if (!container) return;
+    container.innerHTML = seance.blocs.map((bloc, bi) => `
+      <div class="bloc-card ${bloc.open ? 'open' : ''}" id="bloc-${key}-${bi}">
+        <div class="bloc-header" onclick="toggleBloc('bloc-${key}-${bi}')">
+          <div class="bloc-title-row">
+            <span class="bloc-tag">${bloc.tag.toUpperCase()}</span>
+            <span class="bloc-name">${bloc.name}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--muted)">${bloc.duration}</span>
+            <span class="bloc-chevron">▼</span>
+          </div>
+        </div>
+        <div class="bloc-body">
+          ${bloc.exercises.map((ex, ei) => `
+            <div class="exercise-row">
+              <div class="ex-check" onclick="toggleCheck(this, event)">✓</div>
+              <div class="ex-content">
+                <div class="ex-name">${ex.name}</div>
+                <div class="ex-detail">${ex.detail}</div>
+              </div>
+              <button class="timer-btn" style="padding:4px 8px; font-size: 10px;" onclick="openTimerFor(30)">⏱</button>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  });
+}
+
+function toggleBloc(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function toggleCheck(el, ev) {
+  el.classList.toggle('checked');
+  if(el.classList.contains('checked')){
+    sparkleEffect(ev);
+  }
+}
+
+function selectSeance(key) {
+  document.querySelectorAll('.seance-btn').forEach((b, i) => {
+    const keys = ['S34','S56','S78'];
+    b.classList.toggle('active', keys[i] === key);
+  });
+  document.querySelectorAll('.seance-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('seance-' + key).classList.add('active');
+}
+
+function resetChecks() {
+  document.querySelectorAll('.ex-check').forEach(c => c.classList.remove('checked'));
+}
+
+// ═══════════════════════════════════════════════
+// TIMER (Identique à MonAppTacking)
+// ═══════════════════════════════════════════════
+
+let timerInterval = null;
+let timerSeconds = 0;
+let timerRunning = false;
+
+function openTimerFor(seconds) {
+  startTimer(seconds);
+}
+
+function startTimer(seconds) {
+  clearInterval(timerInterval);
+  timerSeconds = seconds;
+  timerRunning = false;
+  updateTimerDisplay();
+  document.getElementById('timerBar').classList.add('visible');
+  document.getElementById('timerToggle').textContent = '▶';
+}
+
+function toggleTimer() {
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById('timerToggle').textContent = '▶';
+  } else {
+    timerRunning = true;
+    document.getElementById('timerToggle').textContent = '⏸';
+    timerInterval = setInterval(() => {
+      timerSeconds--;
+      updateTimerDisplay();
+      if (timerSeconds <= 0) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        document.getElementById('timerToggle').textContent = '▶';
+        
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.frequency.value = 880;
+          gain.gain.setValueAtTime(0.2, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 0.5);
+        } catch(e) {}
+      }
+    }, 1000);
+  }
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(timerSeconds / 60);
+  const s = timerSeconds % 60;
+  document.getElementById('timerDisplay').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+function closeTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  document.getElementById('timerBar').classList.remove('visible');
+}
+
+// ═══════════════════════════════════════════════
+// SUBTLE EASTER EGG (Sparkles)
+// ═══════════════════════════════════════════════
+function sparkleEffect(e) {
+  for(let i=0; i<3; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = (e.clientX + (Math.random()*20-10)) + 'px';
+    s.style.top = (e.clientY + (Math.random()*20-10)) + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 800);
+  }
+}
+
+// INIT
+buildSeances();
+renderDashboard();
+</script>
+</body>
+</html>

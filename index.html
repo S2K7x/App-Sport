@@ -821,6 +821,119 @@
     .schedule-day.rest .schedule-day-pill {
       color: rgba(255,255,255,0.15);
     }
+
+    /* ── PHASES DE PROGRESSION ── */
+    .phases-section { margin-bottom: 24px; }
+
+    .phases-toggle {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      transition: border-color 0.2s;
+    }
+    .phases-toggle:active { border-color: var(--red); }
+
+    .phases-toggle-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .phases-chevron {
+      color: var(--muted);
+      transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+      flex-shrink: 0;
+    }
+    .phases-chevron.open { transform: rotate(180deg); }
+
+    .phases-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    .phases-content.open { max-height: 700px; opacity: 1; }
+
+    .phase-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+    .phase-card.phase-current {
+      border-color: rgba(230,48,48,0.4);
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(230,48,48,0.05) 100%);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .phase-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+    .phase-badge-dim {
+      background: var(--surface2, rgba(255,255,255,0.08));
+      color: var(--muted);
+    }
+
+    .phase-period {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .phase-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .phase-targets { display: flex; flex-direction: column; gap: 4px; }
+
+    .phase-target {
+      font-size: 13px;
+      color: rgba(245,245,247,0.75);
+      padding-left: 14px;
+      position: relative;
+    }
+    .phase-target::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--red);
+      opacity: 0.6;
+    }
   </style>
 </head>
 <body>
@@ -841,7 +954,7 @@
       <div class="schedule-strip">
         <div class="schedule-day">
           <span class="schedule-day-name">Dim</span>
-          <div class="schedule-day-pill">Force<br>A</div>
+          <div class="schedule-day-pill">Planche<br>A</div>
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Lun</span>
@@ -849,7 +962,7 @@
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Mar</span>
-          <div class="schedule-day-pill">Force<br>B</div>
+          <div class="schedule-day-pill">Planche<br>B</div>
         </div>
         <div class="schedule-day rest">
           <span class="schedule-day-name">Mer</span>
@@ -857,7 +970,7 @@
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Jeu</span>
-          <div class="schedule-day-pill">Vol<br>C</div>
+          <div class="schedule-day-pill">Skill<br>C</div>
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Ven</span>
@@ -869,12 +982,58 @@
         </div>
       </div>
 
+      <!-- Phases de progression -->
+      <div class="phases-section">
+        <button class="phases-toggle" onclick="togglePhases()">
+          <span class="phases-toggle-label">PHASES DE PROGRESSION</span>
+          <svg class="phases-chevron" id="phasesChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="phases-content" id="phasesContent">
+          <div class="phase-card phase-current">
+            <div class="phase-header">
+              <span class="phase-badge">Phase 1</span>
+              <span class="phase-period">Mois 1–3 · En cours</span>
+            </div>
+            <div class="phase-title">Consolider le Tuck Planche</div>
+            <div class="phase-targets">
+              <div class="phase-target">Tuck planche 15 s × 3 séries propres</div>
+              <div class="phase-target">Advanced tuck 8 s</div>
+              <div class="phase-target">Freestanding handstand 30 s</div>
+            </div>
+          </div>
+          <div class="phase-card">
+            <div class="phase-header">
+              <span class="phase-badge phase-badge-dim">Phase 2</span>
+              <span class="phase-period">Mois 4–9</span>
+            </div>
+            <div class="phase-title">Advanced Tuck → Straddle</div>
+            <div class="phase-targets">
+              <div class="phase-target">Advanced tuck 12-15 s × 3 séries</div>
+              <div class="phase-target">Straddle planche 5 s contrôlé</div>
+            </div>
+          </div>
+          <div class="phase-card">
+            <div class="phase-header">
+              <span class="phase-badge phase-badge-dim">Phase 3</span>
+              <span class="phase-period">Mois 10–18</span>
+            </div>
+            <div class="phase-title">Straddle → Full Planche</div>
+            <div class="phase-targets">
+              <div class="phase-target">Straddle planche 10 s</div>
+              <div class="phase-target">Full planche 2-3 s contrôlé</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="seance-grid">
 
         <!-- Séance A -->
         <div class="seance-card" onclick="openModal('a')">
-          <div class="seance-day">Dimanche · Séance A</div>
-          <div class="seance-name">Force + Planche</div>
+          <div class="seance-day">Dimanche · Planche A</div>
+          <div class="seance-name">Planche Force Max</div>
           <div class="seance-muscles">
             <span class="muscle-tag">Épaules</span>
             <span class="muscle-tag">Triceps</span>
@@ -883,15 +1042,15 @@
             <span class="muscle-tag">Core</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">6 exercices · ~60 min</span>
+            <span class="seance-count">8 exercices · ~70 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('a')">VOIR DÉTAILS</button>
           </div>
         </div>
 
         <!-- Séance B -->
         <div class="seance-card" onclick="openModal('b')">
-          <div class="seance-day">Mardi · Séance B</div>
-          <div class="seance-name">Force + Front Lever</div>
+          <div class="seance-day">Mardi · Planche B</div>
+          <div class="seance-name">Planche Volume</div>
           <div class="seance-muscles">
             <span class="muscle-tag">Grand dorsal</span>
             <span class="muscle-tag">Rhomboïdes</span>
@@ -900,7 +1059,7 @@
             <span class="muscle-tag">Avant-bras</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">6 exercices · ~60 min</span>
+            <span class="seance-count">7 exercices · ~65 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">VOIR DÉTAILS</button>
           </div>
         </div>
@@ -922,24 +1081,26 @@
 
         <!-- Séance C -->
         <div class="seance-card" onclick="openModal('c')">
-          <div class="seance-day">Jeudi · Séance C</div>
-          <div class="seance-name">Volume + Jambes</div>
+          <div class="seance-day">Jeudi · Skill C</div>
+          <div class="seance-name">Jambes + Muscle-up</div>
           <div class="seance-muscles">
             <span class="muscle-tag">Quadriceps</span>
             <span class="muscle-tag">Ischio-jambiers</span>
             <span class="muscle-tag">Fessiers</span>
             <span class="muscle-tag">Mollets</span>
+            <span class="muscle-tag">Grand dorsal</span>
+            <span class="muscle-tag">Avant-bras</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">6 exercices · ~65 min</span>
+            <span class="seance-count">8 exercices · ~70 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('c')">VOIR DÉTAILS</button>
           </div>
         </div>
 
         <!-- Séance D -->
         <div class="seance-card" onclick="openModal('d')">
-          <div class="seance-day">Vendredi · Séance D</div>
-          <div class="seance-name">Handstand + Mobilité</div>
+          <div class="seance-day">Vendredi · Skill D</div>
+          <div class="seance-name">Handstand Long</div>
           <div class="seance-muscles">
             <span class="muscle-tag">Poignets</span>
             <span class="muscle-tag">Épaules</span>
@@ -947,7 +1108,7 @@
             <span class="muscle-tag">Coiffe</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">6 exercices · ~45 min</span>
+            <span class="seance-count">6 exercices · ~50 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('d')">VOIR DÉTAILS</button>
           </div>
         </div>
@@ -975,6 +1136,9 @@
           <button class="goal-btn active" data-goal="masse" onclick="setGoal('masse')">Prise masse</button>
           <button class="goal-btn" data-goal="seche" onclick="setGoal('seche')">Sèche</button>
         </div>
+        <p style="margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5;">
+          <span style="color:var(--red);font-weight:700;">Note :</span> Maintien 65–67 kg optimal pour la planche (rapport force/poids). Ne pas couper agressivement — la force absolue en dépend.
+        </p>
       </div>
 
       <!-- Macros -->
@@ -1017,6 +1181,34 @@
           </div>
           <div class="macro-bar-track">
             <div class="macro-bar-fill grey" id="lipBar" style="width:55%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suppléments -->
+      <div class="section-title">Suppléments</div>
+      <div class="calc-card" style="margin-bottom:14px;">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Créatine monohydrate — 5 g/j</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Améliore la force maximale et la récupération. En maintien continu.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Oméga-3 — 2-3 g EPA+DHA/j</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Anti-inflammatoire, récupération articulaire et tendineuse. Essentiel en planche-training.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Hydratation — 35-40 ml/kg/j</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Prioritaire pour la force et la résistance des tendons. ~2,3–2,6 L/j à 65 kg.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1226,32 +1418,35 @@
   // ── MODAL DATA ──
   const sessions = {
     a: {
-      day: 'Dimanche · Séance A',
-      title: 'Force + Planche',
+      day: 'Dimanche · Planche A',
+      title: 'Planche Force Max',
       exercises: [
-        { name: 'Scapular push-ups', sets: '3 × 10 reps', note: 'Activation' },
-        { name: 'Tuck Planche holds', sets: '5 × 10 s', note: 'Qualité > quantité' },
-        { name: 'Pseudo Planche Push-ups', sets: '4 × 6 reps', note: 'Excentrique 3 s' },
-        { name: 'Ring Dips', sets: '4 × 8 reps', note: 'Amplitude complète' },
-        { name: 'Pike Push-ups → HSPU', sets: '3 × 8 reps', note: 'Selon niveau' },
-        { name: 'Hollow body hold', sets: '3 × 30 s', note: 'Corps rigide' },
+        { name: 'Warm-up poignets & scapula', sets: '5-7 min', note: 'Rotations, compressions, protraction' },
+        { name: 'Handstand skill', sets: '8-10 min', note: 'Drills mur ou freestanding' },
+        { name: 'Tuck Planche isométrique', sets: '5 × 8-10 s', note: 'Intent "pousser le sol", repos 2-3 min' },
+        { name: 'Pseudo Planche PU sur parallettes', sets: '4 × 5-8 reps', note: 'Tempo 3-1-1, lean maximal' },
+        { name: 'Planche lean → tuck dynamique / négative', sets: '3 × 3-5', note: 'Transition contrôlée' },
+        { name: 'Ring Dips lestés', sets: '3 × 6-8 reps', note: 'Amplitude complète, anneau stable' },
+        { name: 'Scapular PU + Élévation 45° haltère', sets: '3 × 10 + 3 × 12', note: 'Superset serratus & deltoïde ant.' },
+        { name: 'Cool-down poignets', sets: '3 min', note: 'Extensions, flexions passives' },
       ],
       muscles: ['Épaules', 'Triceps', 'Pectoraux', 'Serratus', 'Core'],
-      tip: 'Les Pseudo Planche Push-ups sont LE mouvement clé — engagement scapulaire maximal en protraction constante. Ne jamais laisser les hanches descendre. La tension dans le serratus doit être permanente.'
+      tip: 'Intent ballistique sur l\'isométrie : imaginer pousser le sol vers les pieds. Vadnal recommande 4×6 Pseudo Planche PU lean maximum — chaque rep doit simuler la position finale de planche. Qualité absolue sur chaque seconde tenue.'
     },
     b: {
-      day: 'Mardi · Séance B',
-      title: 'Force + Front Lever',
+      day: 'Mardi · Planche B',
+      title: 'Planche Volume',
       exercises: [
-        { name: 'Dead hangs', sets: '3 × 30 s', note: 'Santé des épaules' },
-        { name: 'Tuck Front Lever', sets: '5 × 8 s', note: 'Dépression scapulaire' },
-        { name: 'Front Lever Negatives', sets: '3 × 5 reps', note: 'Contrôle excentrique' },
-        { name: 'Archer Pull-ups', sets: '4 × 6 reps', note: 'Chaque côté' },
-        { name: 'Australian Pull-ups', sets: '3 × 12 reps', note: 'Tirer vers le sternum' },
-        { name: 'Hanging Leg Raises', sets: '3 × 12 reps', note: 'Sans balancier' },
+        { name: 'Warm-up', sets: '5 min', note: 'Poignets + mobilisation épaules' },
+        { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding' },
+        { name: 'Planche volume — 60 s total', sets: '6×10s / 5×12s / 4×15s', note: 'Repos 90 s, progresser le format chaque semaine' },
+        { name: 'Tuck Front Lever', sets: '4 × 6-10 s', note: 'En assistance uniquement, dépression scapulaire' },
+        { name: 'Tractions lestées', sets: '4 × 5 reps', note: 'Ceinture ou gilet leste' },
+        { name: 'Front Lever Raises', sets: '3 × 6 reps', note: 'Contrôle excentrique 3 s' },
+        { name: 'Dragon Flag / L-sit', sets: '3×6 / 4×20-30s', note: 'Choisir selon fatigue core' },
       ],
       muscles: ['Grand dorsal', 'Rhomboïdes', 'Biceps', 'Core', 'Avant-bras'],
-      tip: 'Les Australian pull-ups sont la base du Front Lever — ils entraînent le pattern de traction horizontal. Corps en planche rigide, pousser les épaules en dépression, tirer vers le sternum en prenant le dessus sur la gravité.'
+      tip: 'Objectif : accumuler 60 s total de tuck planche en volume. Commencer à 6×10 s puis progresser vers 4×15 s sur 4-6 semaines. Le Front Lever est en assistance uniquement — priorité au dos, le FL vient après les tractions.'
     },
     cardio: {
       day: 'Lundi · Cardio',
@@ -1266,32 +1461,34 @@
       tip: 'Zone 2 = pouvoir tenir une conversation sans s\'essouffler (60-70% FC max). Pour la corde : poignets souples, enjambements petits, bras proches du corps. Le HIIT booste l\'adaptation aérobie plus vite que le cardio seul.'
     },
     c: {
-      day: 'Jeudi · Séance C',
-      title: 'Volume + Jambes',
+      day: 'Jeudi · Skill C',
+      title: 'Jambes + Muscle-up',
       exercises: [
-        { name: 'Bulgarian Split Squats', sets: '4 × 10 / jambe', note: 'Descente 3 s' },
-        { name: 'Nordic Curls', sets: '3 × 5 reps', note: 'Excentrique uniquement' },
-        { name: 'Box Jumps', sets: '4 × 8 reps', note: 'Atterrissage souple' },
-        { name: 'Calf Raises lestées', sets: '4 × 20 reps', note: 'Amplitude complète' },
-        { name: 'Dips', sets: '3 × 12 reps', note: 'Volume push' },
-        { name: 'Pull-ups', sets: '3 × 12 reps', note: 'Volume pull' },
+        { name: 'Handstand skill', sets: '10 min', note: 'Début de séance, esprit frais' },
+        { name: 'Bulgarian Split Squats', sets: '4 × 10 / jambe', note: 'Descente 3 s, genou dans l\'axe' },
+        { name: 'Nordic Curls', sets: '3 × 5 reps', note: 'Excentrique uniquement, 3-4 s' },
+        { name: 'Box Jumps', sets: '4 × 8 reps', note: 'Atterrissage souple, reset complet' },
+        { name: 'Calf Raises lestées', sets: '4 × 20 reps', note: 'Amplitude totale, pause basse' },
+        { name: 'False grip ring holds', sets: '5 × 10-15 s', note: 'Poignet fléchi par-dessus l\'anneau' },
+        { name: 'Chest-to-bar explosif', sets: '4 × 3-5 reps', note: 'Pull ultra-haut, coudes vers hanches' },
+        { name: 'Slow MU négatif / Ring MU strict', sets: '3 × 3-4 / 3-4 séries', note: 'Négatif 5-7 s, puis reps qualité' },
       ],
-      muscles: ['Quadriceps', 'Ischio-jambiers', 'Fessiers', 'Mollets'],
-      tip: 'Nordic Curls = meilleur exercice pour les ischio-jambiers. En excentrique uniquement au début : se laisser tomber en contrôlant, se relever avec les mains. Descente 3-4 s minimum. Knee tracking sur les bulgares : genou dans l\'axe du 2e orteil.'
+      muscles: ['Quadriceps', 'Ischio-jambiers', 'Fessiers', 'Mollets', 'Grand dorsal', 'Avant-bras'],
+      tip: 'Le muscle-up se construit en 3 briques : false grip (poignet au-dessus de l\'anneau), pull chest-to-bar ultra-haut, et transition coudes vers hanches. Le slow négatif 5-7 s vaut plus que 10 reps sloppy. Maîtriser chaque brique séparément.'
     },
     d: {
-      day: 'Vendredi · Séance D',
-      title: 'Handstand + Mobilité',
+      day: 'Vendredi · Skill D',
+      title: 'Handstand Long',
       exercises: [
-        { name: 'Wrist mobility', sets: '5 min', note: 'Circles + compressions' },
-        { name: 'Wall Handstand', sets: '5 × 20-30 s', note: 'Alignement parfait' },
-        { name: 'Handstand kick-ups', sets: '10 tentatives', note: 'Libre ou mur' },
-        { name: 'Jefferson Curls', sets: '3 × 8 reps', note: 'Lentement, léger' },
-        { name: 'Shoulder dislocations', sets: '3 × 10 reps', note: 'Bande élastique' },
-        { name: 'Skin the cat', sets: '3 × 5 reps', note: 'Contrôle total' },
+        { name: 'Wrist mobility', sets: '5 min', note: 'Circles, compressions, extensions passives' },
+        { name: 'Handstand long', sets: '25-35 min', note: 'Chest-to-wall, freestanding, shapes' },
+        { name: 'Shoulder dislocations', sets: '3 × 10 reps', note: 'Bande élastique, progression ampleur' },
+        { name: 'Skin the cat', sets: '3 × 5 reps', note: 'Contrôle total, pause basse 2 s' },
+        { name: 'Planche lean léger', sets: '3-4 séries', note: 'Sans charge, protraction serratus' },
+        { name: 'Jefferson Curls', sets: '3 × 8 reps', note: 'Lentement, léger, vertèbre par vertèbre' },
       ],
       muscles: ['Poignets', 'Épaules', 'Coiffe des rotateurs', 'Mobilité spinale'],
-      tip: 'Le handstand se pratique idéalement chaque jour, même 5 min. Jefferson curls = mobilité spinale incomparable — toujours léger et lent. Jamais de douleur aiguë. Le skin the cat renforce la coiffe et ouvre les épaules comme rien d\'autre.'
+      tip: '4-5 expositions courtes/semaine battent 1 longue session. Le planche lean léger ici consolide le pattern moteur sans fatigue — idéal en fin de semaine. Pratique distribuée validée par la recherche en apprentissage moteur (Schmidt & Lee 2019).'
     }
   };
 
@@ -1358,12 +1555,12 @@
     const tdee = mb * 1.55;
 
     let kcal;
-    if (currentGoal === 'maintien') kcal = tdee;
+    if (currentGoal === 'maintien') kcal = tdee + 150;
     else if (currentGoal === 'masse') kcal = tdee + 300;
     else kcal = tdee - 400;
 
     kcal = Math.round(kcal);
-    const prot = Math.round(2 * weight);
+    const prot = Math.round(1.8 * weight);
     const gluc = Math.round((kcal * 0.45) / 4);
     const lip  = Math.round((kcal * 0.25) / 9);
 
@@ -1435,6 +1632,15 @@
   }
 
   updateCurrentDay();
+
+  // ── PHASES TOGGLE ──
+  function togglePhases() {
+    const content = document.getElementById('phasesContent');
+    const chevron = document.getElementById('phasesChevron');
+    const isOpen = content.classList.contains('open');
+    content.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+  }
 </script>
 </body>
 </html>

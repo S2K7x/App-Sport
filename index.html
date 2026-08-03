@@ -9,6 +9,7 @@
   <meta name="theme-color" content="#0a0a0a">
   <meta name="apple-mobile-web-app-title" content="PLANCHE OS">
   <title>PLANCHE OS</title>
+  <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="icon" href="icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -934,6 +935,420 @@
       background: var(--red);
       opacity: 0.6;
     }
+
+    /* ── BOUTON DÉMARRER ── */
+    .btn-start {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 19px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .btn-start:active { transform: scale(0.97); opacity: 0.9; }
+    .btn-start.secondary { background: var(--surface2); color: var(--white); }
+
+    /* ── WORKOUT PLAYER ── */
+    .player {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      /* visibility suit l'animation : une fois refermé le player sort de
+         l'ordre de tabulation et de l'arbre d'accessibilité. */
+      visibility: hidden;
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.32s;
+    }
+    .player.open { transform: translateY(0); visibility: visible; }
+
+    .player-top {
+      padding: max(16px, env(safe-area-inset-top)) 16px 12px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .player-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .player-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 21px;
+      letter-spacing: 0.04em;
+    }
+    .player-meta { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .player-quit {
+      background: var(--surface2);
+      border: none;
+      color: var(--muted);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .player-bar-track {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+    .player-bar-fill {
+      height: 100%;
+      background: var(--red);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .player-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .player-body::-webkit-scrollbar { display: none; }
+
+    .player-ex-index {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .player-ex-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+    .player-ex-target {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: var(--red-dim);
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .player-ex-note {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(245,245,247,0.72);
+      margin-bottom: 22px;
+    }
+
+    .player-sets-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .set-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 14px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .set-row.done { border-color: var(--red); background: var(--red-dim); }
+    .set-row.current { border-color: rgba(230,48,48,0.5); }
+    .set-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      color: var(--muted);
+      width: 62px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+      /* la mise en page ne doit pas casser si la police distante ne charge pas */
+      white-space: nowrap;
+    }
+    .set-row.done .set-num { color: var(--red); }
+    .set-input {
+      flex: 1;
+      min-width: 0;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--white);
+      padding: 9px 10px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      text-align: center;
+      -webkit-appearance: none;
+    }
+    .set-input:focus { outline: none; border-color: var(--red); }
+    .set-unit { font-size: 12px; color: var(--muted); width: 40px; flex-shrink: 0; }
+    .set-check {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 17px;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s ease;
+    }
+    .set-row.done .set-check { background: var(--red); border-color: var(--red); color: #fff; }
+
+    .player-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    .player-actions-row { display: flex; gap: 8px; }
+    .player-actions-row .btn-start { flex: 1; }
+
+    /* ── TIMER ── */
+    .timer-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 1300;
+      background: rgba(10,10,10,0.97);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+    .timer-panel.open { display: flex; }
+    .timer-label {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .timer-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 92px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      font-variant-numeric: tabular-nums;
+    }
+    .timer-value.warn { color: var(--red); }
+    .timer-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+    .timer-ring { margin-bottom: 6px; }
+    .timer-btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .timer-btn {
+      padding: 12px 20px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .timer-btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+
+    /* ── PAGE PROGRÈS ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .stat-unit { font-size: 13px; color: var(--muted); margin-left: 4px; font-family: inherit; }
+
+    .week-dots { display: flex; gap: 6px; margin-top: 10px; }
+    .week-dot {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--surface2);
+    }
+    .week-dot.on { background: var(--red); }
+
+    /* Échelle de skill */
+    .skill-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 10px;
+    }
+    .skill-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .skill-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+    }
+    .skill-level { font-size: 12px; color: var(--red); font-weight: 700; }
+    .skill-track { display: flex; gap: 4px; margin-bottom: 10px; }
+    .skill-node {
+      flex: 1;
+      height: 5px;
+      border-radius: 3px;
+      background: var(--surface2);
+      transition: background 0.2s ease;
+    }
+    .skill-node.done { background: var(--red); }
+    .skill-current { font-size: 13px; color: rgba(245,245,247,0.8); margin-bottom: 12px; }
+    .skill-btns { display: flex; gap: 8px; }
+    .skill-btn {
+      flex: 1;
+      padding: 9px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .skill-btn:disabled { opacity: 0.35; cursor: default; }
+
+    /* Historique */
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 14px;
+      margin-bottom: 8px;
+    }
+    .history-date {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 15px;
+      color: var(--red);
+      width: 52px;
+      flex-shrink: 0;
+      letter-spacing: 0.04em;
+    }
+    .history-main { flex: 1; min-width: 0; }
+    .history-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .history-sub { font-size: 11px; color: var(--muted); }
+    .history-del {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 6px;
+      flex-shrink: 0;
+    }
+
+    .empty-note {
+      text-align: center;
+      padding: 28px 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+    }
+
+    /* Bandeau installation PWA */
+    .install-banner {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--red);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+    .install-banner.show { display: flex; }
+    .install-text { flex: 1; font-size: 13px; line-height: 1.5; }
+    .install-btn {
+      background: var(--red);
+      border: none;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(var(--tab-h) + 20px);
+      transform: translate(-50%, 20px);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 1400;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
   </style>
 </head>
 <body>
@@ -948,6 +1363,12 @@
       <div class="page-header">
         <div class="page-eyebrow">Programme</div>
         <div class="page-title">SÉANCES</div>
+      </div>
+
+      <!-- Installation PWA -->
+      <div class="install-banner" id="installBanner">
+        <div class="install-text">Installe l'app sur ton écran d'accueil — elle fonctionne hors ligne à la salle.</div>
+        <button class="install-btn" onclick="installApp()">Installer</button>
       </div>
 
       <!-- Planning hebdo -->
@@ -1048,6 +1469,7 @@
             <span class="seance-count">9 exercices · ~78 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('a')">VOIR DÉTAILS</button>
           </div>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('a')">▶ DÉMARRER</button>
         </div>
 
         <!-- Séance B -->
@@ -1065,6 +1487,7 @@
             <span class="seance-count">7 exercices · ~65 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">VOIR DÉTAILS</button>
           </div>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('b')">▶ DÉMARRER</button>
         </div>
 
         <!-- Cardio -->
@@ -1080,6 +1503,7 @@
             <span class="seance-count">4 phases · ~40 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio')">VOIR DÉTAILS</button>
           </div>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('cardio')">▶ DÉMARRER</button>
         </div>
 
         <!-- Séance C -->
@@ -1098,6 +1522,7 @@
             <span class="seance-count">9 exercices · ~75 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('c')">VOIR DÉTAILS</button>
           </div>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('c')">▶ DÉMARRER</button>
         </div>
 
         <!-- Séance D -->
@@ -1114,9 +1539,41 @@
             <span class="seance-count">7 exercices · ~50 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('d')">VOIR DÉTAILS</button>
           </div>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('d')">▶ DÉMARRER</button>
         </div>
 
       </div>
+    </div>
+
+    <!-- ═══ PAGE — PROGRÈS ═══ -->
+    <div class="page" id="page-progres">
+      <div class="page-header">
+        <div class="page-eyebrow">Suivi</div>
+        <div class="page-title">PROGRÈS</div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Série en cours</div>
+          <div><span class="stat-value" id="statStreak">0</span><span class="stat-unit">sem.</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total séances</div>
+          <div><span class="stat-value" id="statTotal">0</span></div>
+        </div>
+        <div class="stat-card full" style="grid-column:1/-1">
+          <div class="stat-label">Cette semaine</div>
+          <div><span class="stat-value" id="statWeek">0</span><span class="stat-unit">/ 5 séances</span></div>
+          <div class="week-dots" id="weekDots"></div>
+        </div>
+      </div>
+
+      <div class="section-title">Niveaux de skill</div>
+      <div id="skillsWrap"></div>
+
+      <div class="section-title">Historique</div>
+      <div id="historyWrap"></div>
+
     </div>
 
     <!-- ═══ PAGE 2 — NUTRITION ═══ -->
@@ -1407,6 +1864,12 @@
       </svg>
       <span class="tab-label">Séances</span>
     </button>
+    <button class="tab-btn" id="tab-progres" onclick="switchTab('progres')">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 20h18M6 20V10M11 20V4M16 20v-7M21 20v-3"/>
+      </svg>
+      <span class="tab-label">Progrès</span>
+    </button>
     <button class="tab-btn" id="tab-nutrition" onclick="switchTab('nutrition')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/>
@@ -1437,6 +1900,40 @@
   <div class="modal-body" id="modalBody"></div>
 </div>
 
+<!-- ═══ WORKOUT PLAYER ═══ -->
+<div class="player" id="player">
+  <div class="player-top">
+    <div class="player-top-row">
+      <div style="min-width:0">
+        <div class="player-title" id="playerTitle"></div>
+        <div class="player-meta" id="playerMeta"></div>
+      </div>
+      <button class="player-quit" onclick="quitWorkout()" aria-label="Quitter la séance">×</button>
+    </div>
+    <div class="player-bar-track"><div class="player-bar-fill" id="playerBar" style="width:0%"></div></div>
+  </div>
+  <div class="player-body" id="playerBody"></div>
+  <div class="player-actions">
+    <div class="player-actions-row">
+      <button class="btn-start secondary" onclick="prevExercise()">◀</button>
+      <button class="btn-start" id="playerNextBtn" onclick="nextExercise()">SUIVANT</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TIMER PLEIN ÉCRAN ═══ -->
+<div class="timer-panel" id="timerPanel">
+  <div class="timer-label" id="timerLabel">Repos</div>
+  <div class="timer-value" id="timerValue">0:00</div>
+  <div class="timer-sub" id="timerSub"></div>
+  <div class="timer-btns">
+    <button class="timer-btn" onclick="addTimer(15)">+15 s</button>
+    <button class="timer-btn primary" onclick="dismissTimer()">Passer</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
   // ── TAB NAVIGATION ──
   function switchTab(name) {
@@ -1444,6 +1941,7 @@
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
     document.getElementById('tab-' + name).classList.add('active');
+    if (name === 'progres') renderProgress();
   }
 
   // ── MODAL DATA ──
@@ -1556,6 +2054,8 @@
       <div class="modal-tip-label">Tip d'optimisation</div>
       <p>${s.tip}</p>
     </div>`;
+
+    html += `<button class="btn-start" style="margin-top:18px" onclick="startWorkout('${id}')">▶ DÉMARRER CETTE SÉANCE</button>`;
 
     document.getElementById('modalBody').innerHTML = html;
 
@@ -1675,6 +2175,553 @@
     content.classList.toggle('open', !isOpen);
     chevron.classList.toggle('open', !isOpen);
   }
+
+  /* ══════════════════════════════════════════════════════
+     STOCKAGE — tout est local, l'app marche hors ligne
+     ══════════════════════════════════════════════════════ */
+  const STORE_KEY = 'planche_os_v1';
+
+  const SKILL_LADDERS = {
+    planche:    { name: 'Planche',           steps: ['Planche Lean', 'Tuck Planche', 'Adv. Tuck 1 jambe', 'Advanced Tuck', 'Straddle Planche', 'Half Lay', 'Full Planche'] },
+    hspu:       { name: 'Handstand Push-Up', steps: ['Pike Push-Up', 'Pike pieds surélevés', 'Wall HSPU négatif', 'Wall HSPU strict', 'Deficit HSPU', 'HSPU freestanding'] },
+    handstand:  { name: 'Handstand',         steps: ['Wall HS 30 s', 'Wall HS 60 s', 'Kick-up libre', 'HS libre 5 s', 'HS libre 15 s', 'HS libre 30 s'] },
+    frontlever: { name: 'Front Lever',       steps: ['Tuck FL', 'One-Leg FL', 'Half Lay FL', 'Straddle FL', 'Full Front Lever'] },
+    muscleup:   { name: 'Muscle-Up',         steps: ['False grip hold', 'Chest-to-bar', 'MU négatif lent', 'Ring MU strict', 'MU barre strict'] },
+  };
+
+  // Niveaux de départ alignés sur la Phase 1 du programme.
+  const DEFAULT_SKILLS = { planche: 1, hspu: 2, handstand: 1, frontlever: 0, muscleup: 1 };
+
+  let store = { history: [], skills: { ...DEFAULT_SKILLS } };
+
+  function loadStore() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        store = {
+          history: Array.isArray(parsed.history) ? parsed.history : [],
+          skills: { ...DEFAULT_SKILLS, ...(parsed.skills || {}) },
+        };
+      }
+    } catch (e) {
+      console.warn('Store illisible, réinitialisation', e);
+    }
+  }
+
+  function saveStore() {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify(store));
+    } catch (e) {
+      toast('Sauvegarde impossible (stockage plein)');
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(el._t);
+    el._t = setTimeout(() => el.classList.remove('show'), 2400);
+  }
+
+  /* ══════════════════════════════════════════════════════
+     PARSING DES SÉRIES
+     Les séances restent la source de vérité en texte lisible
+     ("4 × 3-6 reps"). On en déduit juste le nombre de lignes à
+     afficher et l'unité à logger — le libellé original est
+     toujours montré tel quel.
+     ══════════════════════════════════════════════════════ */
+  function parseSets(setsStr, note) {
+    const raw = (setsStr || '').trim();
+    // "6×10s / 5×12s / 4×15s" ou "3×6 / 4×20-30s" → on garde la 1re option
+    // "3 × 10 + 3 × 12" (superset) → on cadence sur la 1re partie
+    const seg = raw.split(/\s*\/\s*/)[0].split(/\s*\+\s*/)[0].trim();
+
+    let count = 1;
+    let target = seg;
+    let type = 'reps';
+
+    const mult   = seg.match(/^(\d+)\s*[×x]\s*(.+)$/i);
+    const rounds = seg.match(/^(\d+)\s*rounds?\b/i);
+    const series = seg.match(/^(\d+)(?:-\d+)?\s*séries?\b/i);
+    const timeOnly = seg.match(/^\d+(?:-\d+)?\s*min\b/i);
+
+    if (mult) {
+      count = parseInt(mult[1], 10);
+      target = mult[2].trim();
+    } else if (rounds) {
+      count = parseInt(rounds[1], 10);
+      target = 'round';
+    } else if (series) {
+      count = parseInt(series[1], 10);
+      target = '';
+    } else if (timeOnly) {
+      type = 'time';
+    }
+
+    if (type !== 'time') {
+      if (/\bmin\b/i.test(target)) type = 'time';
+      else if (/\d\s*s\b/i.test(target) && !/reps?/i.test(target)) type = 'hold';
+    }
+
+    if (!Number.isFinite(count) || count < 1) count = 1;
+    if (count > 12) count = 12; // garde-fou affichage
+
+    return { count, type, rest: parseRest(note, type) };
+  }
+
+  // Le repos est souvent écrit dans la note ("repos 90 s", "repos 2-3 min").
+  function parseRest(note, type) {
+    const n = note || '';
+    const minMatch = n.match(/repos\s*(\d+)(?:\s*-\s*\d+)?\s*min/i);
+    if (minMatch) return parseInt(minMatch[1], 10) * 60;
+    const secMatch = n.match(/repos\s*(\d+)\s*s/i);
+    if (secMatch) return parseInt(secMatch[1], 10);
+    if (type === 'time') return 0;
+    return type === 'hold' ? 120 : 90;
+  }
+
+  function unitFor(type) {
+    if (type === 'hold') return 'sec';
+    if (type === 'time') return 'min';
+    return 'reps';
+  }
+
+  /* ══════════════════════════════════════════════════════
+     WORKOUT PLAYER
+     ══════════════════════════════════════════════════════ */
+  let session = null;   // séance en cours
+  let wakeLock = null;
+
+  async function startWorkout(key) {
+    const s = sessions[key];
+    if (!s) return;
+    closeModal();
+
+    session = {
+      key,
+      title: s.title,
+      day: s.day,
+      startedAt: Date.now(),
+      idx: 0,
+      exercises: s.exercises.map(ex => {
+        const meta = parseSets(ex.sets, ex.note);
+        return {
+          name: ex.name,
+          sets: ex.sets,
+          note: ex.note,
+          type: meta.type,
+          rest: meta.rest,
+          entries: Array.from({ length: meta.count }, () => ({ done: false, value: '' })),
+        };
+      }),
+    };
+
+    document.getElementById('playerTitle').textContent = s.title;
+    document.getElementById('player').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    renderExercise();
+    requestWakeLock();
+  }
+
+  function renderExercise() {
+    if (!session) return;
+    const ex = session.exercises[session.idx];
+    const total = session.exercises.length;
+
+    document.getElementById('playerMeta').textContent = `Exercice ${session.idx + 1} / ${total}`;
+    document.getElementById('playerBar').style.width = ((session.idx) / total * 100) + '%';
+    document.getElementById('playerNextBtn').textContent =
+      session.idx === total - 1 ? 'TERMINER' : 'SUIVANT';
+
+    const unit = unitFor(ex.type);
+    const rows = ex.entries.map((entry, i) => `
+      <div class="set-row ${entry.done ? 'done' : ''}" id="setRow${i}">
+        <span class="set-num">${ex.entries.length > 1 ? 'SÉRIE ' + (i + 1) : 'SÉRIE'}</span>
+        <input class="set-input" type="number" inputmode="decimal" placeholder="—"
+               value="${entry.value}" oninput="setValue(${i}, this.value)">
+        <span class="set-unit">${unit}</span>
+        <button class="set-check" onclick="toggleSet(${i})" aria-label="Valider la série">✓</button>
+      </div>`).join('');
+
+    const holdBtn = ex.type === 'hold'
+      ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">⏱ CHRONO DE HOLD</button>`
+      : '';
+
+    document.getElementById('playerBody').innerHTML = `
+      <div class="player-ex-index">Exercice ${session.idx + 1} sur ${total}</div>
+      <div class="player-ex-name">${ex.name}</div>
+      <div class="player-ex-target">${ex.sets}</div>
+      <div class="player-ex-note">${ex.note}</div>
+      <div class="player-sets-label">Séries — note tes ${unit}</div>
+      ${rows}
+      ${holdBtn}
+    `;
+    document.getElementById('playerBody').scrollTop = 0;
+  }
+
+  function setValue(i, val) {
+    if (!session) return;
+    session.exercises[session.idx].entries[i].value = val;
+  }
+
+  function toggleSet(i) {
+    if (!session) return;
+    const ex = session.exercises[session.idx];
+    const entry = ex.entries[i];
+    entry.done = !entry.done;
+    document.getElementById('setRow' + i).classList.toggle('done', entry.done);
+
+    if (entry.done) {
+      vibrate(30);
+      // Repos automatique, sauf sur la dernière série de l'exercice.
+      const isLast = i === ex.entries.length - 1;
+      if (ex.rest > 0 && !isLast) startRestTimer(ex.rest);
+    }
+  }
+
+  function nextExercise() {
+    if (!session) return;
+    if (session.idx === session.exercises.length - 1) {
+      finishWorkout();
+      return;
+    }
+    session.idx++;
+    renderExercise();
+  }
+
+  function prevExercise() {
+    if (!session || session.idx === 0) return;
+    session.idx--;
+    renderExercise();
+  }
+
+  function quitWorkout() {
+    if (!session) return;
+    const anyDone = session.exercises.some(e => e.entries.some(s => s.done));
+    if (anyDone && !confirm('Quitter la séance ? La progression non enregistrée sera perdue.')) return;
+    closePlayer();
+  }
+
+  function closePlayer() {
+    stopTimer();
+    releaseWakeLock();
+    session = null;
+    document.getElementById('player').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function finishWorkout() {
+    if (!session) return;
+    const setsDone = session.exercises.reduce((n, e) => n + e.entries.filter(s => s.done).length, 0);
+    const totalSets = session.exercises.reduce((n, e) => n + e.entries.length, 0);
+    const durationMin = Math.max(1, Math.round((Date.now() - session.startedAt) / 60000));
+
+    store.history.unshift({
+      id: Date.now(),
+      date: new Date().toISOString(),
+      key: session.key,
+      title: session.title,
+      durationMin,
+      setsDone,
+      totalSets,
+      exercises: session.exercises
+        .filter(e => e.entries.some(s => s.done))
+        .map(e => ({
+          name: e.name,
+          type: e.type,
+          values: e.entries.filter(s => s.done).map(s => s.value).filter(Boolean),
+        })),
+    });
+    if (store.history.length > 300) store.history.length = 300;
+    saveStore();
+
+    closePlayer();
+    renderProgress();
+    switchTab('progres');
+    toast(`Séance enregistrée — ${setsDone}/${totalSets} séries · ${durationMin} min`);
+  }
+
+  /* ══════════════════════════════════════════════════════
+     TIMERS (repos + hold)
+     ══════════════════════════════════════════════════════ */
+  let timerId = null;
+  let timerRemaining = 0;
+  let timerMode = 'rest';
+  let holdElapsed = 0;
+
+  function startRestTimer(seconds) {
+    timerMode = 'rest';
+    timerRemaining = seconds;
+    document.getElementById('timerLabel').textContent = 'Repos';
+    document.getElementById('timerSub').textContent = 'Le chrono démarre tout seul après chaque série';
+    document.getElementById('timerPanel').classList.add('open');
+    tickRest();
+    clearInterval(timerId);
+    timerId = setInterval(tickRest, 1000);
+  }
+
+  function tickRest() {
+    const el = document.getElementById('timerValue');
+    el.textContent = fmtTime(timerRemaining);
+    el.classList.toggle('warn', timerRemaining <= 10);
+    if (timerRemaining <= 0) {
+      beep();
+      vibrate([120, 80, 120]);
+      stopTimer();
+      toast('Repos terminé — série suivante');
+      return;
+    }
+    timerRemaining--;
+  }
+
+  function startHoldTimer() {
+    timerMode = 'hold';
+    holdElapsed = 0;
+    document.getElementById('timerLabel').textContent = 'Hold';
+    document.getElementById('timerSub').textContent = 'Arrête dès que la forme casse';
+    document.getElementById('timerPanel').classList.add('open');
+    document.getElementById('timerValue').textContent = '0:00';
+    clearInterval(timerId);
+    timerId = setInterval(() => {
+      holdElapsed++;
+      document.getElementById('timerValue').textContent = fmtTime(holdElapsed);
+    }, 1000);
+  }
+
+  function addTimer(sec) {
+    if (timerMode === 'rest') {
+      timerRemaining += sec;
+      document.getElementById('timerValue').textContent = fmtTime(timerRemaining);
+    }
+  }
+
+  // "Passer" : sur un hold, on récupère le temps tenu dans la 1re série vide.
+  function dismissTimer() {
+    if (timerMode === 'hold' && holdElapsed > 0 && session) {
+      const ex = session.exercises[session.idx];
+      const target = ex.entries.find(e => !e.done && !e.value);
+      if (target) {
+        target.value = String(holdElapsed);
+        renderExercise();
+        toast(`${holdElapsed} s reportées sur la série`);
+      }
+    }
+    stopTimer();
+  }
+
+  function stopTimer() {
+    clearInterval(timerId);
+    timerId = null;
+    document.getElementById('timerPanel').classList.remove('open');
+    document.getElementById('timerValue').classList.remove('warn');
+  }
+
+  function fmtTime(s) {
+    const m = Math.floor(Math.max(0, s) / 60);
+    const sec = Math.max(0, s) % 60;
+    return m + ':' + String(sec).padStart(2, '0');
+  }
+
+  function vibrate(pattern) {
+    if (navigator.vibrate) navigator.vibrate(pattern);
+  }
+
+  // Bip synthétisé — évite d'embarquer un fichier son dans le cache offline.
+  function beep() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      const ctx = new Ctx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.25, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.5);
+      setTimeout(() => ctx.close(), 800);
+    } catch (e) { /* audio bloqué : la vibration suffit */ }
+  }
+
+  async function requestWakeLock() {
+    try {
+      if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
+    } catch (e) { /* non critique */ }
+  }
+
+  function releaseWakeLock() {
+    if (wakeLock) { wakeLock.release().catch(() => {}); wakeLock = null; }
+  }
+
+  // L'écran se rendort si l'app passe en arrière-plan : on redemande au retour.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && session) requestWakeLock();
+  });
+
+  /* ══════════════════════════════════════════════════════
+     PAGE PROGRÈS
+     ══════════════════════════════════════════════════════ */
+  function startOfWeek(d) {
+    const date = new Date(d);
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() - date.getDay()); // semaine démarre dimanche, comme le programme
+    return date;
+  }
+
+  function renderProgress() {
+    const now = new Date();
+    const weekStart = startOfWeek(now);
+
+    const thisWeek = store.history.filter(h => new Date(h.date) >= weekStart);
+    document.getElementById('statWeek').textContent = thisWeek.length;
+    document.getElementById('statTotal').textContent = store.history.length;
+    document.getElementById('statStreak').textContent = computeStreak();
+
+    // 7 points = les 7 jours de la semaine en cours
+    const days = Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(weekStart);
+      d.setDate(d.getDate() + i);
+      return store.history.some(h => {
+        const hd = new Date(h.date);
+        return hd.toDateString() === d.toDateString();
+      });
+    });
+    document.getElementById('weekDots').innerHTML =
+      days.map(on => `<div class="week-dot ${on ? 'on' : ''}"></div>`).join('');
+
+    renderSkills();
+    renderHistory();
+  }
+
+  // Nombre de semaines consécutives (en remontant) avec au moins 3 séances.
+  function computeStreak() {
+    if (!store.history.length) return 0;
+    let streak = 0;
+    let cursor = startOfWeek(new Date());
+    for (let i = 0; i < 260; i++) {
+      const end = new Date(cursor);
+      end.setDate(end.getDate() + 7);
+      const count = store.history.filter(h => {
+        const d = new Date(h.date);
+        return d >= cursor && d < end;
+      }).length;
+      if (count >= 3) streak++;
+      // La semaine en cours est encore en construction : elle ne casse pas la série.
+      else if (i > 0) break;
+      cursor.setDate(cursor.getDate() - 7);
+    }
+    return streak;
+  }
+
+  function renderSkills() {
+    document.getElementById('skillsWrap').innerHTML = Object.entries(SKILL_LADDERS).map(([key, ladder]) => {
+      const lvl = Math.min(store.skills[key] ?? 0, ladder.steps.length - 1);
+      const nodes = ladder.steps.map((_, i) =>
+        `<div class="skill-node ${i <= lvl ? 'done' : ''}"></div>`).join('');
+      const next = lvl < ladder.steps.length - 1
+        ? `Prochain : ${ladder.steps[lvl + 1]}`
+        : 'Palier final atteint 🎯';
+      return `
+        <div class="skill-block">
+          <div class="skill-head">
+            <span class="skill-name">${ladder.name}</span>
+            <span class="skill-level">${lvl + 1} / ${ladder.steps.length}</span>
+          </div>
+          <div class="skill-track">${nodes}</div>
+          <div class="skill-current"><strong>${ladder.steps[lvl]}</strong><br>
+            <span style="color:var(--muted);font-size:12px">${next}</span></div>
+          <div class="skill-btns">
+            <button class="skill-btn" onclick="bumpSkill('${key}', -1)" ${lvl === 0 ? 'disabled' : ''}>−</button>
+            <button class="skill-btn" onclick="bumpSkill('${key}', 1)" ${lvl >= ladder.steps.length - 1 ? 'disabled' : ''}>Palier validé +</button>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function bumpSkill(key, delta) {
+    const ladder = SKILL_LADDERS[key];
+    const cur = store.skills[key] ?? 0;
+    const next = Math.max(0, Math.min(ladder.steps.length - 1, cur + delta));
+    store.skills[key] = next;
+    saveStore();
+    renderSkills();
+    if (delta > 0) {
+      vibrate([40, 60, 40]);
+      toast(`${ladder.name} → ${ladder.steps[next]}`);
+    }
+  }
+
+  function renderHistory() {
+    const wrap = document.getElementById('historyWrap');
+    if (!store.history.length) {
+      wrap.innerHTML = `<div class="empty-note">Aucune séance enregistrée.<br>
+        Lance une séance depuis l'onglet <strong>Séances</strong> — elle apparaîtra ici avec tes séries et ton temps.</div>`;
+      return;
+    }
+    wrap.innerHTML = store.history.slice(0, 30).map(h => {
+      const d = new Date(h.date);
+      const day = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
+      return `
+        <div class="history-item">
+          <span class="history-date">${day}</span>
+          <div class="history-main">
+            <div class="history-title">${h.title}</div>
+            <div class="history-sub">${h.setsDone}/${h.totalSets} séries · ${h.durationMin} min</div>
+          </div>
+          <button class="history-del" onclick="deleteEntry(${h.id})" aria-label="Supprimer">×</button>
+        </div>`;
+    }).join('');
+  }
+
+  function deleteEntry(id) {
+    if (!confirm('Supprimer cette séance de l\'historique ?')) return;
+    store.history = store.history.filter(h => h.id !== id);
+    saveStore();
+    renderProgress();
+  }
+
+  /* ══════════════════════════════════════════════════════
+     PWA — service worker + installation
+     ══════════════════════════════════════════════════════ */
+  let deferredPrompt = null;
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(e => console.warn('SW non enregistré', e));
+    });
+  }
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('installBanner').classList.add('show');
+  });
+
+  async function installApp() {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    document.getElementById('installBanner').classList.remove('show');
+  }
+
+  window.addEventListener('appinstalled', () => {
+    document.getElementById('installBanner').classList.remove('show');
+    toast('App installée 💪');
+  });
+
+  /* ══════════════════════════════════════════════════════
+     INIT
+     ══════════════════════════════════════════════════════ */
+  loadStore();
+  renderProgress();
+
+  const tabParam = new URLSearchParams(location.search).get('tab');
+  if (tabParam && document.getElementById('page-' + tabParam)) switchTab(tabParam);
 </script>
 </body>
 </html>

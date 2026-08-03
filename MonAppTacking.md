@@ -120,3 +120,34 @@ Tip : 4-5 expositions courtes/semaine battent 1 longue session (pratique distrib
 ## Suivi recommandé
 - Objectif semaine : 4-5 séances (planche A/B, cardio, skill C, skill D)
 - Log à noter après chaque séance : type de séance, durée, RPE, PR, sensations, douleurs, progression
+
+## L'app (PWA)
+
+`index.html` est une PWA installable — "Ajouter à l'écran d'accueil" sur mobile.
+Une fois installée elle fonctionne **hors ligne** (utile en salle ou en sous-sol) :
+le programme et l'interface sont mis en cache, et toutes les données
+d'entraînement sont stockées localement sur le téléphone.
+
+### Dérouler une séance
+- Onglet **Séances** → `▶ DÉMARRER` sur la séance du jour
+- Le player guide exercice par exercice : nom, cible, note technique
+- Une ligne par série, où tu notes tes reps ou tes secondes de hold
+- Le **timer de repos démarre automatiquement** après chaque série validée,
+  avec la durée lue dans la note de l'exercice ("repos 90 s", "repos 2-3 min").
+  Bip + vibration à la fin, bouton `+15 s` si tu as besoin de plus.
+- Sur les isométries, `⏱ CHRONO DE HOLD` compte le temps tenu et le reporte
+  automatiquement dans la série
+- L'écran reste allumé pendant toute la séance
+
+### Suivre la progression
+Onglet **Progrès** :
+- Séances de la semaine, total, et série de semaines consécutives (≥ 3 séances)
+- Échelles de skill (planche, HSPU, handstand, front lever, muscle-up) —
+  valide un palier quand tu le tiens avec forme parfaite
+- Historique des séances avec séries validées et durée
+
+### Note technique
+Les séances restent écrites en texte lisible dans `index.html` (`4 × 3-6 reps`,
+`5 × 8-10 s`). L'app en déduit toute seule le nombre de séries, l'unité à logger
+et le temps de repos — donc modifier le programme suffit, il n'y a pas de
+structure de données séparée à maintenir en parallèle.

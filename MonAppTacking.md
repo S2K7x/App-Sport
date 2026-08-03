@@ -1,140 +1,122 @@
 # PLANCHE OS — Programme Calisthenics
 
+## Profil
+- 1m69, ~67 kg, 23 ans
+- Objectifs : Full Planche, Handstand Push-Up (HSPU), physique sculpté/esthétique
+
 ## Objectif principal
-- Full Planche
+- Full Planche + Handstand Push-Up
 
 ## Structure hebdomadaire
-- Dimanche : Séance A (Force + Planche)
-- Lundi : Cardio
-- Mardi : Séance B (Force + Front Lever)
+- Dimanche : Séance A — Planche Force Max (+ HSPU)
+- Lundi : Cardio (Course / Corde)
+- Mardi : Séance B — Planche Volume
 - Mercredi : Repos
-- Jeudi : Séance C (Volume + Jambes)
-- Vendredi : Séance 4 (Skills + Mobilité)
-- Samedi : Shabbat (repos)
+- Jeudi : Séance C — Jambes + Muscle-up (+ finisher bras/épaules)
+- Vendredi : Séance D — Handstand Long (+ HSPU)
+- Samedi : Repos
 
-## Roadmap Skills
+## Phases de progression
 
-### Planche (24-36 mois)
-1. Planche Lean
-2. Tuck Planche
-3. One-Leg Adv. Tuck
-4. Advanced Tuck
-5. Straddle Planche
-6. Half Lay
-7. Full Planche
+### Phase 1 — Mois 1-3 : Consolider le Tuck Planche
+- Tuck planche 15 s × 3 séries propres
+- Advanced tuck 8 s
+- Freestanding handstand 30 s
+- Wall HSPU négatif contrôlé 4 × 5 (descente 4-5 s)
 
-### Front Lever (12-24 mois)
-1. Tuck FL
-2. One-Leg FL
-3. Half Lay FL
-4. Straddle FL
-5. Full Front Lever
+### Phase 2 — Mois 4-9 : Advanced Tuck → Straddle
+- Advanced tuck 12-15 s × 3 séries
+- Straddle planche 5 s contrôlé
+- Wall HSPU strict 3 × 5 amplitude complète
 
-### Back Lever (6-12 mois)
-1. German Hang
-2. Tuck BL
-3. One-Leg BL
-4. Straddle BL
-5. Full Back Lever
+### Phase 3 — Mois 10-18 : Straddle → Full Planche
+- Straddle planche 10 s
+- Full planche 2-3 s contrôlé
+- Deficit HSPU (10-15 cm) 3 × 5
 
-### Handstand (6-18 mois)
-1. Wall HS 30s
-2. Wall HS 60s
-3. Kick-up libre
-4. HS 5s libre
-5. HS 15s libre
-6. HS 30s libre
+## Séances détaillées
 
-## Seances detaillees
+## Séance A — Planche Force Max (Dimanche)
 
-## Seance A — Force + Planche
+- Warm-up poignets & scapula — 5-7 min : rotations, compressions, protraction + rotation externe bande 2×12 (coiffe des rotateurs)
+- Handstand skill — 8-10 min : drills mur ou freestanding
+- **HSPU Force — négatif contrôlé — 4 × 3-6 reps** : Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip.
+- Tuck Planche isométrique — 5 × 8-10 s : intent "pousser le sol", repos 2-3 min
+- Pseudo Planche PU sur parallettes — 4 × 5-8 reps : tempo 3-1-1, lean maximal
+- Planche lean → tuck dynamique / négative — 3 × 3-5 : transition contrôlée
+- Ring Dips lestés — 3 × 6-8 reps : amplitude complète, anneau stable
+- Scapular PU + Élévation 45° haltère — 3 × 10 + 3 × 12 : superset serratus & deltoïde antérieur
+- Cool-down poignets — 3 min : extensions, flexions passives
 
-### Warm-up (8 min)
-- Corde a sauter : 3 min tempo modere
-- Wrist circles + wrist push-ups : 2 min
-- Scapular push-ups : 2 x 10 reps
-- Hollow body hold : 2 x 20s
+Muscles ciblés : Épaules, Triceps, Pectoraux, Serratus, Core
 
-### Bloc 1 — Skills Planche (15 min)
-- Planche Lean (mesure) : 4 x 10-15s, repos 90s
-- Tuck Planche / Advanced Tuck : 4 x 8-12s, repos 90s
-- Pseudo Planche Push-ups : 3 x 5-8 reps, eccentrique 3s
+Tip : Intent ballistique sur l'isométrie — imaginer pousser le sol vers les pieds. 4×6 Pseudo Planche PU lean maximum, chaque rep doit simuler la position finale de planche. Pour le HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentric — ça protège la nuque et les épaules pendant que la force se construit.
 
-### Bloc 2 — Force Push (20 min)
-- Dips lestes : 4 x 5-8, RPE 8, repos 90s
-- Dips normaux / Ring Dips : 3 x 6-8, repos 90s
+## Séance B — Planche Volume (Mardi)
 
-### Bloc 3 — Back Lever (10 min)
-- Tuck Back Lever : 3 x 8-10s, repos 90s
-- German Hang : 2 x 20-30s
+- Warm-up — 5 min : poignets + mobilisation épaules
+- Handstand skill — 8-10 min : expositions freestanding
+- Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine
+- Tuck Front Lever — 4 × 6-10 s : en assistance uniquement, dépression scapulaire
+- Tractions lestées — 4 × 5 reps : ceinture ou gilet lesté
+- Front Lever Raises — 3 × 6 reps : contrôle excentrique 3 s
+- Dragon Flag / L-sit — 3×6 / 4×20-30s : choisir selon fatigue core
 
-### Finisher Core (5 min)
-- Hollow body hold : 3 x 30-45s
-- L-sit (sol ou parallettes) : 3 x max hold
+Muscles ciblés : Grand dorsal, Rhomboïdes, Biceps, Core, Avant-bras
 
-## Seance B — Force + Front Lever
+Tip : accumuler 60 s total de tuck planche en volume, progresser de 6×10s vers 4×15s sur 4-6 semaines. Le Front Lever reste en assistance — priorité au dos, le FL vient après les tractions.
 
-### Warm-up (8 min)
-- Corde a sauter : 3 min + 2 min sauts alternes
-- Band pull-aparts : 2 x 15 reps
-- Scapular retractions en hang : 2 x 10 reps
+## Cardio — Course / Corde (Lundi)
 
-### Bloc 1 — Skills Front Lever (15 min)
-- Tuck Front Lever : 4 x 8-12s, repos 90s
-- One-Leg Front Lever : 3 x 6-8s/cote, repos 90s
-- Front Lever Row (en Tuck) : 3 x 5-8 reps
+- Échauffement marche — 5 min : cadence progressive
+- HIIT corde à sauter — 10 rounds : 30 s on / 30 s off
+- Course Zone 2 — 20 min : 60-70 % FC max
+- Cool-down marche — 5 min : stretch mollets
 
-### Bloc 2 — Force Pull/Push (20 min)
-- Tractions lestees : 4 x 5-8, RPE 8, repos 90s
-- Dips (superset) : 3 x 6-8, repos 90s
+Muscles ciblés : Cardiovasculaire, Mollets, Coordination
 
-### Bloc 3 — Handstand (10 min)
-- Wall Handstand : 4 x 20-30s
-- Kick-up libre (si niveau) : 10 tentatives
+Tip : Zone 2 = pouvoir tenir une conversation sans s'essouffler. Le HIIT booste l'adaptation aérobie plus vite que le cardio seul.
 
-### Finisher Jambes + Core (7 min)
-- Pistol Squats : 3 x 6/jambe
-- Hanging Leg Raises : 3 x 10-12 reps
+## Séance C — Jambes + Muscle-up (Jeudi)
 
-## Seance C — Volume + Jambes
+- Handstand skill — 10 min : début de séance, esprit frais
+- Bulgarian Split Squats — 4 × 10 / jambe : descente 3 s, genou dans l'axe
+- Nordic Curls — 3 × 5 reps : excentrique uniquement, 3-4 s
+- Box Jumps — 4 × 8 reps : atterrissage souple, reset complet
+- Calf Raises lestées — 4 × 20 reps : amplitude totale, pause basse
+- False grip ring holds — 5 × 10-15 s : poignet fléchi par-dessus l'anneau
+- Chest-to-bar explosif — 4 × 3-5 reps : pull ultra-haut, coudes vers hanches
+- Slow MU négatif / Ring MU strict — 3 × 3-4 / 3-4 séries : négatif 5-7 s, puis reps qualité
+- **Curl biceps haltères + Élévations latérales — 3 × 12-15 + 3 × 15** : superset esthétique, tempo 2-0-2
 
-### Warm-up (5 min)
-- Course legere ou corde : 5 min continu
+Muscles ciblés : Quadriceps, Ischio-jambiers, Fessiers, Mollets, Grand dorsal, Avant-bras, Deltoïdes
 
-### Bloc 1 — Volume Push/Pull (25 min)
-- Pompes diamant : 3 x 12-15 reps, repos 60s
-- Pompes larges : 3 x 12-15 reps, repos 60s
-- Pompes archer : 3 x 8/cote, repos 60s
-- Tractions prise neutre : 3 x 8-10 reps, repos 60s
-- Dips bodyweight : 3 x 10-12 reps, repos 60s
+Tip : le muscle-up se construit en 3 briques — false grip, pull chest-to-bar ultra-haut, transition coudes vers hanches. Le superset bras/épaules en fin de séance ajoute du volume direct pour l'hypertrophie, utile pour le physique sans nuire aux skills.
 
-### Bloc 2 — Jambes + Lombaires (15 min)
-- Pistol Squats : 3 x 8/jambe
-- Romanian Deadlift : 3 x 12 reps
-- Extensions lombaires : 3 x 12 reps (ou Superman holds 3 x 30s)
-- Hanging Leg Raises : 3 x 12 reps
+## Séance D — Handstand Long (Vendredi)
 
-## Cardio — Course / Corde
+- Wrist mobility — 5 min : circles, compressions, extensions passives + rotation externe bande 2×15
+- **HSPU Force — Deficit / Wall — 4 × 3-6 reps** : priorité amplitude complète, contrôle 3-5 s en excentrique avant de forcer le concentric
+- Handstand long — 15-20 min : chest-to-wall, freestanding, shapes
+- Shoulder dislocations — 3 × 10 reps : bande élastique, progression ampleur
+- Skin the cat — 3 × 5 reps : contrôle total, pause basse 2 s
+- Planche lean léger — 3-4 séries : sans charge, protraction serratus
+- Jefferson Curls — 3 × 8 reps : lentement, léger, vertèbre par vertèbre
 
-### Option A — Corde HIIT (20 min)
-- Echauffement : 2 min tempo lent
-- HIIT corde : 8 rounds (45s intense / 15s repos)
-- Recuperation active : 3 min marche + stretch mollets
+Muscles ciblés : Poignets, Épaules, Coiffe des rotateurs, Mobilité spinale
 
-### Option B — Corde Steady State (20 min)
-- Corde continue : 15-20 min tempo modere
-- Cool-down : 5 min marche
+Tip : 4-5 expositions courtes/semaine battent 1 longue session (pratique distribuée, Schmidt & Lee 2019). Pour le HSPU, progresse par phases concentrique → excentrique → isométrique ; le Deficit HSPU (mains surélevées) est le pont direct vers la version freestanding.
 
-### Option C — Course (30-40 min)
-- Footing facile : 5-8 km a pace confortable
-- Strides optionnels : 4 x 80m a 80% en fin de run
+## Règle de progression
+- Ne passe au niveau suivant que lorsque tu tiens la position cible avec forme parfaite, sur 3 séries stables, sans douleur.
+- Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines pour éviter le plateau et protéger poignets/tendons.
 
-## Regle de progression
-- Ne passe au niveau suivant que lorsque tu tiens 10s avec forme parfaite, sur 3 series stables, sans douleur.
+## Nutrition
+- Maintien 66-68 kg optimal pour le ratio force/poids
+- Protéines : 1,8 g/kg/j (cible recherche : 1,6-2,2 g/kg/j), idéalement réparties sur la journée + 30-40 g avant le coucher
+- Créatine monohydrate 5 g/j, Oméga-3 2-3 g EPA+DHA/j, hydratation 35-40 ml/kg/j
+- Sommeil 7-9 h/nuit — c'est le principal levier de récupération pour les isométries (planche, front lever, HSPU)
 
-## Suivi recommande
-- Objectif semaine : 3 a 4 seances
-- Log a noter apres chaque seance :
-  - Type de seance
-  - Duree (minutes)
-  - Notes (RPE, PR, sensations, douleurs, progression)
+## Suivi recommandé
+- Objectif semaine : 4-5 séances (planche A/B, cardio, skill C, skill D)
+- Log à noter après chaque séance : type de séance, durée, RPE, PR, sensations, douleurs, progression

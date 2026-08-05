@@ -59,12 +59,13 @@ Tip : Intent ballistique sur l'isométrie — imaginer pousser le sol vers les p
 - Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine
 - Tuck Front Lever — 4 × 6-10 s : en assistance uniquement, dépression scapulaire
 - Tractions lestées — 4 × 5 reps : ceinture ou gilet lesté
+- **Rowing anneaux / Australian pull-ups — 4 × 8-12 reps** : pause 1 s poitrine aux anneaux, omoplates serrées, pieds surélevés pour durcir
 - Front Lever Raises — 3 × 6 reps : contrôle excentrique 3 s
 - Dragon Flag / L-sit — 3×6 / 4×20-30s : choisir selon fatigue core
 
-Muscles ciblés : Grand dorsal, Rhomboïdes, Biceps, Core, Avant-bras
+Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Core, Avant-bras
 
-Tip : accumuler 60 s total de tuck planche en volume, progresser de 6×10s vers 4×15s sur 4-6 semaines. Le Front Lever reste en assistance — priorité au dos, le FL vient après les tractions.
+Tip : accumuler 60 s total de tuck planche en volume, progresser de 6×10s vers 4×15s sur 4-6 semaines. Le Front Lever reste en assistance — priorité au dos, le FL vient après les tractions. Le rowing est le contrepoids indispensable : planche et HSPU travaillent tous les deux en protraction, sans tirage horizontal les rhomboïdes et le trapèze moyen/inférieur décrochent.
 
 ## Cardio — Course / Corde (Lundi)
 
@@ -99,13 +100,36 @@ Tip : le muscle-up se construit en 3 briques — false grip, pull chest-to-bar u
 - **HSPU Force — Deficit / Wall — 4 × 3-6 reps** : priorité amplitude complète, contrôle 3-5 s en excentrique avant de forcer le concentric
 - Handstand long — 15-20 min : chest-to-wall, freestanding, shapes
 - Shoulder dislocations — 3 × 10 reps : bande élastique, progression ampleur
+- **Face pulls + Y-T-W au sol — 3 × 15 + 3 × 8/lettre** : deltoïde postérieur et trapèze inférieur, léger, coudes hauts, sans à-coups
 - Skin the cat — 3 × 5 reps : contrôle total, pause basse 2 s
 - Planche lean léger — 3-4 séries : sans charge, protraction serratus
 - Jefferson Curls — 3 × 8 reps : lentement, léger, vertèbre par vertèbre
 
-Muscles ciblés : Poignets, Épaules, Coiffe des rotateurs, Mobilité spinale
+Muscles ciblés : Poignets, Épaules, Coiffe des rotateurs, Deltoïde postérieur, Trapèze inférieur, Mobilité spinale
 
 Tip : 4-5 expositions courtes/semaine battent 1 longue session (pratique distribuée, Schmidt & Lee 2019). Pour le HSPU, progresse par phases concentrique → excentrique → isométrique ; le Deficit HSPU (mains surélevées) est le pont direct vers la version freestanding.
+
+## Équilibre push / pull
+
+Le programme est naturellement dominé par la poussée : planche, HSPU, dips et
+pseudo planche push-ups représentent à eux seuls ~35 séries par semaine, et
+**tout ce volume travaille en protraction scapulaire**.
+
+Volume hebdomadaire par catégorie :
+
+| Catégorie | Séries / semaine |
+|---|---|
+| Poussée (planche, HSPU, dips, PPPU) | ~35 |
+| Tirage vertical (tractions, C2B, muscle-up) | 11 |
+| Bras tendus (front lever) | 7 |
+| Tirage horizontal + rétraction (rowing, face pulls) | 7 |
+
+Le tirage horizontal n'est pas là pour "faire du dos" — c'est le contrepoids
+mécanique de la protraction. Sans lui, le trapèze supérieur compense pendant que
+le trapèze inférieur et les rhomboïdes décrochent, ce qui est le mécanisme
+classique de l'impingement d'épaule — le risque n°1 en handstand. Ne saute pas
+le rowing en séance B ni les face pulls en séance D, même un jour de fatigue :
+ce sont eux qui te gardent en état de continuer à pousser.
 
 ## Règle de progression
 - Ne passe au niveau suivant que lorsque tu tiens la position cible avec forme parfaite, sur 3 séries stables, sans douleur.

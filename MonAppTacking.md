@@ -58,14 +58,14 @@ Tip : Intent ballistique sur l'isométrie — imaginer pousser le sol vers les p
 - Handstand skill — 8-10 min : expositions freestanding
 - Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine
 - Tuck Front Lever — 4 × 6-10 s : en assistance uniquement, dépression scapulaire
-- Tractions lestées — 4 × 5 reps : ceinture ou gilet lesté
+- **Tractions tempo / Archer — 4 × 5-6 reps** : sans lest, 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; passer aux Archer (3-5/côté) une fois 10 tractions strictes acquises
 - **Rowing anneaux / Australian pull-ups — 4 × 8-12 reps** : pause 1 s poitrine aux anneaux, omoplates serrées, pieds surélevés pour durcir
 - Front Lever Raises — 3 × 6 reps : contrôle excentrique 3 s
 - Dragon Flag / L-sit — 3×6 / 4×20-30s : choisir selon fatigue core
 
 Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Core, Avant-bras
 
-Tip : accumuler 60 s total de tuck planche en volume, progresser de 6×10s vers 4×15s sur 4-6 semaines. Le Front Lever reste en assistance — priorité au dos, le FL vient après les tractions. Le rowing est le contrepoids indispensable : planche et HSPU travaillent tous les deux en protraction, sans tirage horizontal les rhomboïdes et le trapèze moyen/inférieur décrochent.
+Tip : accumuler 60 s total de tuck planche en volume, progresser de 6×10s vers 4×15s sur 4-6 semaines. Le Front Lever reste en assistance — priorité au dos, le FL vient après les tractions. Sans lest, la surcharge passe par le tempo puis par le levier : 3 s d'excentrique et une pause en haut rendent 5 reps bien plus dures que 5 reps rapides lestées, et l'Archer déplace la charge sur un bras — c'est la vraie route vers la traction à un bras. Le rowing est le contrepoids indispensable : planche et HSPU travaillent tous les deux en protraction, sans tirage horizontal les rhomboïdes et le trapèze moyen/inférieur décrochent.
 
 ## Cardio — Course / Corde (Lundi)
 
@@ -169,6 +169,19 @@ Onglet **Progrès** :
 - Échelles de skill (planche, HSPU, handstand, front lever, muscle-up) —
   valide un palier quand tu le tiens avec forme parfaite
 - Historique des séances avec séries validées et durée
+
+### Design
+
+Interface inspirée d'iOS : typographie système (SF sur iPhone), couleurs
+système, séparateurs fins, surfaces translucides et angles arrondis généreux.
+L'app suit automatiquement le **thème clair ou sombre** du téléphone.
+
+Deux règles tenues dans tout le code :
+- **Aucune émoticône dans l'interface** — elles se rendent différemment selon
+  l'OS et cassent l'alignement typographique. Tous les pictogrammes sont des
+  SVG en tracé, regroupés dans l'objet `ICONS` en haut du script.
+- **Aucune police distante** — la typographie système garantit un rendu
+  identique hors ligne, sans requête réseau au chargement.
 
 ### Note technique
 Les séances restent écrites en texte lisible dans `index.html` (`4 × 3-6 reps`,

@@ -6,853 +6,257 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-title" content="PLANCHE OS">
   <title>PLANCHE OS</title>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="icon" href="icon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
+    /* ════════════════════════════════════════════════════════
+       PLANCHE OS — système de design
+       Inspiration iOS : typographie système, couleurs système,
+       séparateurs fins, surfaces translucides, angles généreux.
+       Aucune police distante : l'app garde son rendu hors ligne.
+       ════════════════════════════════════════════════════════ */
     :root {
-      --bg: #0a0a0a;
+      color-scheme: light dark;
+
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
+              'Segoe UI', Roboto, system-ui, sans-serif;
+
+      /* Rayons — progression douce, jamais d'angle vif */
+      --r-xl: 22px;
+      --r-lg: 18px;
+      --r-md: 13px;
+      --r-sm: 9px;
+
+      --tab-h: 56px;
+      --gutter: 20px;
+
+      /* Palette sombre (défaut) — couleurs système iOS */
+      --bg: #000000;
       --surface: #1c1c1e;
-      --surface2: #2c2c2e;
-      --border: #3a3a3c;
-      --red: #e63030;
-      --red-dim: rgba(230, 48, 48, 0.12);
-      --white: #f5f5f7;
-      --muted: #8e8e93;
-      --tab-h: 72px;
+      --surface-2: #2c2c2e;
+      --fill: rgba(120, 120, 128, 0.20);
+      --separator: rgba(84, 84, 88, 0.5);
+      --label: #ffffff;
+      --label-2: rgba(235, 235, 245, 0.62);
+      --label-3: rgba(235, 235, 245, 0.32);
+      --accent: #ff453a;
+      --accent-soft: rgba(255, 69, 58, 0.16);
+      --accent-line: rgba(255, 69, 58, 0.4);
+      --tabbar-bg: rgba(22, 22, 24, 0.82);
+      --shadow: none;
+      --shadow-lift: 0 8px 30px rgba(0, 0, 0, 0.55);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f2f2f7;
+        --surface: #ffffff;
+        --surface-2: #f2f2f7;
+        --fill: rgba(118, 118, 128, 0.12);
+        --separator: rgba(60, 60, 67, 0.16);
+        --label: #1d1d1f;
+        --label-2: rgba(60, 60, 67, 0.62);
+        --label-3: rgba(60, 60, 67, 0.34);
+        --accent: #ff3b30;
+        --accent-soft: rgba(255, 59, 48, 0.10);
+        --accent-line: rgba(255, 59, 48, 0.35);
+        --tabbar-bg: rgba(249, 249, 251, 0.82);
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow-lift: 0 10px 40px rgba(0, 0, 0, 0.14);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     html { height: 100%; }
 
     body {
       background: var(--bg);
-      color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--label);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.45;
       height: 100%;
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
-    /* Grain texture */
-    .grain {
-      position: fixed;
-      inset: -50%;
-      width: 200%;
-      height: 200%;
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-    }
+    button, input, textarea, select { font-family: inherit; }
 
     /* ── PAGES ── */
-    #app {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
+    #app { height: 100%; display: flex; flex-direction: column; }
 
-    .pages {
-      flex: 1;
-      overflow: hidden;
-      position: relative;
-    }
+    .pages { flex: 1; overflow: hidden; position: relative; }
 
     .page {
       position: absolute;
       inset: 0;
-      bottom: 0;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 24px 16px calc(var(--tab-h) + 24px);
+      padding: max(20px, env(safe-area-inset-top)) var(--gutter)
+               calc(var(--tab-h) + env(safe-area-inset-bottom) + 32px);
       opacity: 0;
-      transform: translateY(12px);
       pointer-events: none;
-      transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(6px);
+      transition: opacity 0.24s ease, transform 0.24s ease;
       -webkit-overflow-scrolling: touch;
     }
-
-    .page.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-    }
-
-    /* scrollbar invisible */
+    .page.active { opacity: 1; transform: none; pointer-events: auto; }
     .page::-webkit-scrollbar { display: none; }
     .page { scrollbar-width: none; }
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      margin-bottom: 28px;
-    }
+    /* ── EN-TÊTE DE PAGE (large title iOS) ── */
+    .page-header { margin: 8px 0 26px; }
 
     .page-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: var(--red);
-      text-transform: uppercase;
-      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--label-3);
+      letter-spacing: 0;
+      margin-bottom: 2px;
     }
 
     .page-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      color: var(--white);
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.028em;
+      line-height: 1.1;
+      color: var(--label);
     }
 
-    /* ── TAB BAR ── */
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--label-2);
+      letter-spacing: -0.005em;
+      margin: 30px 0 10px;
+    }
+
+    /* ── BARRE D'ONGLETS ── */
     .tabbar {
       position: fixed;
-      bottom: 0;
       left: 0;
       right: 0;
-      height: var(--tab-h);
-      background: rgba(10, 10, 10, 0.88);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex;
-      align-items: stretch;
-      z-index: 100;
+      bottom: 0;
+      height: calc(var(--tab-h) + env(safe-area-inset-bottom));
       padding-bottom: env(safe-area-inset-bottom);
+      display: flex;
+      background: var(--tabbar-bg);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      backdrop-filter: saturate(180%) blur(22px);
+      border-top: 0.5px solid var(--separator);
+      z-index: 900;
     }
 
     .tab-btn {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
       background: none;
       border: none;
-      cursor: pointer;
-      position: relative;
-      padding: 8px 0;
-      transition: opacity 0.2s;
-    }
-
-    .tab-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      width: 32px;
-      height: 2px;
-      background: var(--red);
-      border-radius: 0 0 2px 2px;
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .tab-btn.active::before {
-      transform: translateX(-50%) scaleX(1);
-    }
-
-    .tab-icon {
-      width: 22px;
-      height: 22px;
-      color: var(--muted);
-      transition: color 0.2s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .tab-btn.active .tab-icon {
-      color: var(--white);
-      transform: translateY(-1px);
-    }
-
-    .tab-label {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
-
-    .tab-btn.active .tab-label {
-      color: var(--white);
-    }
-
-    /* ── WORKOUT CARDS ── */
-    .seance-grid {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-    }
-
-    .seance-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 22px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  border-color 0.2s;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-
-    .seance-card:active {
-      transform: scale(0.97);
-    }
-
-    .seance-card::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 120px; height: 120px;
-      background: radial-gradient(circle at top right, rgba(230,48,48,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .seance-day {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 4px;
-    }
-
-    .seance-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 30px;
-      letter-spacing: 0.03em;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .seance-muscles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-
-    .muscle-tag {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 3px 10px;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .seance-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .seance-count {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .btn-details {
-      background: var(--red);
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      transition: opacity 0.15s, transform 0.15s;
-    }
-
-    .btn-details:active {
-      opacity: 0.8;
-      transform: scale(0.95);
-    }
-
-    /* ── MODAL ── */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 200;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      max-height: 90vh;
-      background: #141414;
-      border-radius: 24px 24px 0 0;
-      border-top: 1px solid var(--border);
-      z-index: 201;
-      transform: translateY(100%);
-      transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .modal.open {
-      transform: translateY(0);
-    }
-
-    .modal-handle {
-      width: 36px;
-      height: 4px;
-      background: var(--border);
-      border-radius: 2px;
-      margin: 12px auto 0;
-      flex-shrink: 0;
-    }
-
-    .modal-header {
-      padding: 16px 24px 0;
-      flex-shrink: 0;
-    }
-
-    .modal-day {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 2px;
-    }
-
-    .modal-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      letter-spacing: 0.03em;
-      color: var(--white);
-    }
-
-    .modal-body {
-      overflow-y: auto;
-      padding: 20px 24px 40px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .modal-body::-webkit-scrollbar { display: none; }
-
-    .modal-section-title {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-      margin-top: 20px;
-    }
-
-    .modal-section-title:first-child {
-      margin-top: 0;
-    }
-
-    .exercise-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .exercise-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .exercise-item:last-child {
-      border-bottom: none;
-    }
-
-    .exercise-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--red);
-      flex-shrink: 0;
-    }
-
-    .exercise-name {
-      flex: 1;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--white);
-    }
-
-    .exercise-sets {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .modal-tip {
-      background: var(--red-dim);
-      border: 1px solid rgba(230,48,48,0.25);
-      border-left: 3px solid var(--red);
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-top: 20px;
-    }
-
-    .modal-tip-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 6px;
-    }
-
-    .modal-tip p {
-      font-size: 13px;
-      line-height: 1.55;
-      color: rgba(245,245,247,0.85);
-    }
-
-    .modal-muscles-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .modal-muscle-tag {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 12px;
-      color: var(--white);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--surface2);
-      border: none;
-      color: var(--muted);
-      font-size: 18px;
-      display: flex;
       align-items: center;
       justify-content: center;
+      gap: 3px;
+      color: var(--label-3);
       cursor: pointer;
-      transition: background 0.2s;
+      transition: color 0.18s ease;
+      padding: 0;
     }
+    .tab-btn.active { color: var(--accent); }
+    .tab-icon { width: 24px; height: 24px; display: block; }
+    .tab-label { font-size: 10px; font-weight: 500; letter-spacing: 0; }
 
-    .modal-close:active { background: var(--border); }
-
-    /* ── NUTRITION PAGE ── */
-    .calc-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 22px;
-      margin-bottom: 14px;
-    }
-
-    .calc-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .calc-input-wrap {
-      position: relative;
-      margin-bottom: 16px;
-    }
-
-    .calc-input {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 48px 14px 16px;
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--white);
-      -webkit-appearance: none;
-      appearance: none;
-      outline: none;
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      transition: border-color 0.2s;
-    }
-
-    .calc-input:focus {
-      border-color: var(--red);
-    }
-
-    .calc-input-unit {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted);
-    }
-
-    .goal-toggle {
-      display: flex;
-      gap: 6px;
-    }
-
-    .goal-btn {
-      flex: 1;
-      padding: 10px 4px;
-      border-radius: 10px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .goal-btn.active {
-      background: var(--red);
-      border-color: var(--red);
-      color: #fff;
-      transform: scale(1.04);
-    }
-
-    .macros-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .macro-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .macro-card.full {
-      grid-column: 1 / -1;
-    }
-
-    .macro-icon {
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    .macro-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .macro-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      line-height: 1;
-      color: var(--white);
-      letter-spacing: 0.02em;
-    }
-
-    .macro-unit {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      margin-left: 2px;
-    }
-
-    .macro-bar-track {
-      height: 3px;
-      background: var(--surface2);
-      border-radius: 2px;
-      margin-top: 10px;
-      overflow: hidden;
-    }
-
-    .macro-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-      transition: width 0.5s cubic-bezier(0.34, 1.1, 0.64, 1);
-    }
-
-    .macro-bar-fill.red { background: var(--red); }
-    .macro-bar-fill.white { background: var(--white); }
-    .macro-bar-fill.grey { background: var(--muted); }
-    .macro-bar-fill.orange { background: #ff8c42; }
-
-    .macro-card.full .macro-value {
-      font-size: 48px;
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 0.03em;
-      color: var(--white);
-      margin: 28px 0 14px;
-    }
-
-    /* ── MEAL CARDS ── */
-    .meal-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 10px;
-    }
-
-    .meal-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-
-    .meal-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 10px;
-    }
-
-    .meal-macro {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--red);
-    }
-
-    /* ── FUEL PAGE ── */
-    .fuel-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 10px;
-    }
-
-    .fuel-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .fuel-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--white);
-      flex: 1;
-    }
-
-    .fuel-badges {
-      display: flex;
-      gap: 4px;
-      flex-shrink: 0;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .badge {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 3px 7px;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    .badge-green { background: rgba(52, 199, 89, 0.15); color: #34c759; border: 1px solid rgba(52, 199, 89, 0.3); }
-    .badge-blue  { background: rgba(10, 132, 255, 0.15); color: #0a84ff; border: 1px solid rgba(10, 132, 255, 0.3); }
-    .badge-yellow { background: rgba(255, 214, 10, 0.15); color: #ffd60a; border: 1px solid rgba(255, 214, 10, 0.3); }
-
-    .fuel-ingredients {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .fuel-steps {
-      font-size: 13px;
-      color: rgba(245,245,247,0.75);
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-
-    .fuel-macros {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--red);
-    }
-
-    .fuel-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 20px 0;
-    }
-
-    .fuel-section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .fuel-section-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .fuel-section-icon.snack { background: rgba(230,48,48,0.12); }
-    .fuel-section-icon.drink { background: rgba(10,132,255,0.12); }
-
-    .fuel-section-label {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 26px;
-      letter-spacing: 0.03em;
-    }
-
-    /* ── SCHEDULE STRIP ── */
+    /* ── BANDEAU PLANNING ── */
     .schedule-strip {
       display: flex;
-      gap: 6px;
-      overflow-x: auto;
+      gap: 5px;
       padding-bottom: 4px;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
       scrollbar-width: none;
     }
-
     .schedule-strip::-webkit-scrollbar { display: none; }
 
     .schedule-day {
+      /* Les 7 jours partagent la largeur à parts égales : la semaine tient
+         entière à l'écran, sans scroll horizontal ni jour tronqué. */
+      flex: 1 1 0;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-      width: 44px;
+      gap: 6px;
     }
-
     .schedule-day-name {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--label-3);
+    }
+    .schedule-day-pill {
+      width: 100%;
+      padding: 9px 2px;
+      border-radius: var(--r-sm);
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
       font-size: 9px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .schedule-day-pill {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--muted);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
       text-align: center;
-      line-height: 1.2;
+      color: var(--label-2);
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
-
+    .schedule-day.rest .schedule-day-pill {
+      background: transparent;
+      color: var(--label-3);
+      border-color: var(--separator);
+      border-style: dashed;
+    }
+    /* `.active` passe après `.rest` : le jour courant reste toujours mis en
+       avant, y compris quand c'est un jour de repos. */
     .schedule-day.active .schedule-day-pill {
-      background: var(--red);
-      border-color: var(--red);
+      background: var(--accent);
+      border-color: transparent;
+      border-style: solid;
       color: #fff;
     }
 
-    .schedule-day.rest .schedule-day-pill {
-      color: rgba(255,255,255,0.15);
-    }
-
-    /* ── PHASES DE PROGRESSION ── */
-    .phases-section { margin-bottom: 24px; }
+    /* ── PHASES ── */
+    .phases-section { margin-bottom: 26px; }
 
     .phases-toggle {
       width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 15px 16px;
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
+      color: var(--label);
       cursor: pointer;
-      color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      transition: border-color 0.2s;
+      box-shadow: var(--shadow);
     }
-    .phases-toggle:active { border-color: var(--red); }
-
     .phases-toggle-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
     }
-
     .phases-chevron {
-      color: var(--muted);
-      transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+      color: var(--label-3);
+      transition: transform 0.28s ease;
       flex-shrink: 0;
     }
     .phases-chevron.open { transform: rotate(180deg); }
@@ -861,24 +265,21 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-top: 10px;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
       opacity: 0;
+      transition: max-height 0.36s ease, opacity 0.28s ease, margin-top 0.36s ease;
     }
-    .phases-content.open { max-height: 850px; opacity: 1; }
+    .phases-content.open { max-height: 900px; opacity: 1; margin-top: 8px; }
 
     .phase-card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 18px;
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      box-shadow: var(--shadow);
     }
-    .phase-card.phase-current {
-      border-color: rgba(230,48,48,0.4);
-      background: linear-gradient(135deg, var(--surface) 0%, rgba(230,48,48,0.05) 100%);
-    }
+    .phase-card.phase-current { border-color: var(--accent-line); }
 
     .phase-header {
       display: flex;
@@ -886,76 +287,297 @@
       gap: 8px;
       margin-bottom: 8px;
     }
-
     .phase-badge {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--red);
-      color: #fff;
-      padding: 3px 8px;
-      border-radius: 20px;
-    }
-    .phase-badge-dim {
-      background: var(--surface2, rgba(255,255,255,0.08));
-      color: var(--muted);
-    }
-
-    .phase-period {
       font-size: 11px;
-      color: var(--muted);
-      font-weight: 500;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 100px;
+      background: var(--accent-soft);
+      color: var(--accent);
     }
+    .phase-badge.phase-badge-dim {
+      background: var(--fill);
+      color: var(--label-2);
+    }
+    .phase-period { font-size: 12px; color: var(--label-3); }
 
     .phase-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 0.03em;
-      color: var(--white);
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
       margin-bottom: 10px;
     }
-
-    .phase-targets { display: flex; flex-direction: column; gap: 4px; }
-
+    .phase-targets { display: flex; flex-direction: column; gap: 6px; }
     .phase-target {
-      font-size: 13px;
-      color: rgba(245,245,247,0.75);
-      padding-left: 14px;
+      font-size: 14px;
+      color: var(--label-2);
+      padding-left: 15px;
       position: relative;
+      line-height: 1.4;
     }
     .phase-target::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 7px;
-      width: 4px;
-      height: 4px;
+      top: 8px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: var(--red);
-      opacity: 0.6;
+      background: var(--accent);
+      opacity: 0.7;
     }
 
-    /* ── BOUTON DÉMARRER ── */
+    /* ── CARTES DE SÉANCE ── */
+    .seance-grid { display: flex; flex-direction: column; gap: 12px; }
+
+    .seance-card {
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-xl);
+      padding: 18px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.18s ease;
+    }
+    .seance-card:active { transform: scale(0.988); }
+
+    .seance-day {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 3px;
+      letter-spacing: -0.005em;
+    }
+    .seance-name {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      line-height: 1.2;
+      margin-bottom: 13px;
+    }
+
+    .seance-muscles, .modal-muscles-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .muscle-tag, .modal-muscle-tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: var(--fill);
+      color: var(--label-2);
+    }
+
+    .seance-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 13px;
+      border-top: 0.5px solid var(--separator);
+    }
+    .seance-count { font-size: 13px; color: var(--label-3); }
+
+    .btn-details {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 4px 0;
+      letter-spacing: -0.01em;
+    }
+    .btn-details:active { opacity: 0.5; }
+
+    /* ── BOUTONS ── */
     .btn-start {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 7px;
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       border: none;
-      border-radius: 12px;
-      background: var(--red);
+      border-radius: var(--r-md);
+      background: var(--accent);
       color: #fff;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 19px;
-      letter-spacing: 0.08em;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
       cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      transition: opacity 0.16s ease, transform 0.16s ease;
     }
-    .btn-start:active { transform: scale(0.97); opacity: 0.9; }
-    .btn-start.secondary { background: var(--surface2); color: var(--white); }
+    .btn-start:active { opacity: 0.82; transform: scale(0.985); }
+    .btn-start svg { width: 17px; height: 17px; flex-shrink: 0; }
+    .btn-start.secondary {
+      background: var(--fill);
+      color: var(--label);
+    }
+
+    /* ── MODALE ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .modal {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: 90vh;
+      background: var(--surface);
+      border-radius: var(--r-xl) var(--r-xl) 0 0;
+      z-index: 1001;
+      transform: translateY(100%);
+      visibility: hidden;
+      transition: transform 0.36s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.36s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lift);
+    }
+    .modal.open { transform: translateY(0); visibility: visible; }
+
+    .modal-handle {
+      width: 36px;
+      height: 5px;
+      border-radius: 3px;
+      background: var(--label-3);
+      opacity: 0.4;
+      margin: 8px auto 0;
+      flex-shrink: 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background: var(--fill);
+      color: var(--label-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .modal-close svg { width: 14px; height: 14px; }
+    .modal-close:active { opacity: 0.6; }
+
+    .modal-header {
+      padding: 18px 20px 12px;
+      flex-shrink: 0;
+    }
+    .modal-day {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .modal-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      padding-right: 40px;
+    }
+
+    .modal-body {
+      overflow-y: auto;
+      padding: 4px 20px calc(28px + env(safe-area-inset-bottom));
+      -webkit-overflow-scrolling: touch;
+    }
+    .modal-body::-webkit-scrollbar { display: none; }
+
+    .modal-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--label-3);
+      margin: 18px 0 8px;
+    }
+    .modal-section-title:first-child { margin-top: 6px; }
+
+    /* Liste d'exercices — style liste groupée iOS */
+    .exercise-list {
+      background: var(--surface-2);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .exercise-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 13px 14px;
+      border-bottom: 0.5px solid var(--separator);
+    }
+    .exercise-item:last-child { border-bottom: none; }
+    .exercise-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+      opacity: 0.75;
+    }
+    .exercise-name {
+      flex: 1;
+      min-width: 0;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
+    .exercise-note {
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--label-3);
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    .exercise-sets {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+      text-align: right;
+      padding-top: 1px;
+    }
+
+    .modal-tip {
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: var(--r-lg);
+      background: var(--accent-soft);
+    }
+    .modal-tip-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .modal-tip p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--label-2);
+    }
 
     /* ── WORKOUT PLAYER ── */
     .player {
@@ -969,13 +591,13 @@
       /* visibility suit l'animation : une fois refermé le player sort de
          l'ordre de tabulation et de l'arbre d'accessibilité. */
       visibility: hidden;
-      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.32s;
+      transition: transform 0.36s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.36s;
     }
     .player.open { transform: translateY(0); visibility: visible; }
 
     .player-top {
-      padding: max(16px, env(safe-area-inset-top)) 16px 12px;
-      border-bottom: 1px solid var(--border);
+      padding: max(16px, env(safe-area-inset-top)) var(--gutter) 13px;
+      border-bottom: 0.5px solid var(--separator);
       flex-shrink: 0;
     }
     .player-top-row {
@@ -986,132 +608,144 @@
       margin-bottom: 12px;
     }
     .player-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 21px;
-      letter-spacing: 0.04em;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.018em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .player-meta { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .player-meta { font-size: 13px; color: var(--label-3); }
+
     .player-quit {
-      background: var(--surface2);
-      border: none;
-      color: var(--muted);
-      width: 34px;
-      height: 34px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      font-size: 20px;
-      line-height: 1;
+      border: none;
+      background: var(--fill);
+      color: var(--label-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
     }
+    .player-quit svg { width: 14px; height: 14px; }
+
     .player-bar-track {
-      height: 4px;
+      height: 3px;
       border-radius: 2px;
-      background: var(--surface2);
+      background: var(--fill);
       overflow: hidden;
     }
     .player-bar-fill {
       height: 100%;
-      background: var(--red);
+      background: var(--accent);
       border-radius: 2px;
-      transition: width 0.3s ease;
+      transition: width 0.32s ease;
     }
 
     .player-body {
       flex: 1;
       overflow-y: auto;
-      padding: 24px 16px;
+      padding: 26px var(--gutter);
       -webkit-overflow-scrolling: touch;
     }
     .player-body::-webkit-scrollbar { display: none; }
 
     .player-ex-index {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--red);
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
     }
     .player-ex-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      line-height: 1.05;
-      letter-spacing: 0.02em;
-      margin-bottom: 10px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.028em;
+      line-height: 1.12;
+      margin-bottom: 12px;
     }
     .player-ex-target {
       display: inline-block;
       padding: 5px 12px;
-      border-radius: 20px;
-      background: var(--red-dim);
-      color: var(--red);
-      font-size: 13px;
-      font-weight: 700;
+      border-radius: 100px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
       margin-bottom: 12px;
     }
     .player-ex-note {
-      font-size: 13px;
-      line-height: 1.6;
-      color: rgba(245,245,247,0.72);
-      margin-bottom: 22px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--label-2);
+      margin-bottom: 26px;
     }
 
     .player-sets-label {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--label-3);
+      margin-bottom: 9px;
     }
+
     .set-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 13px 14px;
-      border-radius: 12px;
+      gap: 11px;
+      padding: 11px 13px;
+      border-radius: var(--r-md);
       background: var(--surface);
-      border: 1px solid var(--border);
+      border: 0.5px solid var(--separator);
       margin-bottom: 8px;
       transition: border-color 0.2s ease, background 0.2s ease;
     }
-    .set-row.done { border-color: var(--red); background: var(--red-dim); }
-    .set-row.current { border-color: rgba(230,48,48,0.5); }
+    .set-row.done { border-color: var(--accent-line); background: var(--accent-soft); }
+
     .set-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 16px;
-      color: var(--muted);
-      width: 62px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--label-2);
+      width: 58px;
       flex-shrink: 0;
-      letter-spacing: 0.05em;
-      /* la mise en page ne doit pas casser si la police distante ne charge pas */
       white-space: nowrap;
     }
-    .set-row.done .set-num { color: var(--red); }
+    .set-row.done .set-num { color: var(--accent); }
+
     .set-input {
       flex: 1;
       min-width: 0;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--white);
+      background: var(--fill);
+      border: 1px solid transparent;
+      border-radius: var(--r-sm);
+      color: var(--label);
       padding: 9px 10px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
-      font-family: inherit;
       text-align: center;
+      font-variant-numeric: tabular-nums;
       -webkit-appearance: none;
+      appearance: none;
     }
-    .set-input:focus { outline: none; border-color: var(--red); }
-    .set-unit { font-size: 12px; color: var(--muted); width: 40px; flex-shrink: 0; }
+    .set-input::-webkit-outer-spin-button,
+    .set-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .set-input:focus { outline: none; border-color: var(--accent); }
+
+    .set-unit {
+      font-size: 13px;
+      color: var(--label-3);
+      width: 34px;
+      flex-shrink: 0;
+    }
+
     .set-check {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      color: var(--muted);
-      font-size: 17px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid var(--separator);
+      background: transparent;
+      color: var(--label-3);
       cursor: pointer;
       flex-shrink: 0;
       display: flex;
@@ -1119,241 +753,560 @@
       justify-content: center;
       transition: all 0.18s ease;
     }
-    .set-row.done .set-check { background: var(--red); border-color: var(--red); color: #fff; }
+    .set-check svg { width: 15px; height: 15px; }
+    .set-row.done .set-check {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
 
     .player-actions {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
-      border-top: 1px solid var(--border);
+      padding: 13px var(--gutter) calc(13px + env(safe-area-inset-bottom));
+      border-top: 0.5px solid var(--separator);
       background: var(--surface);
       flex-shrink: 0;
     }
-    .player-actions-row { display: flex; gap: 8px; }
+    .player-actions-row { display: flex; gap: 9px; }
     .player-actions-row .btn-start { flex: 1; }
+    .player-actions-row .btn-start.secondary { flex: 0 0 60px; }
 
     /* ── TIMER ── */
     .timer-panel {
       position: fixed;
       inset: 0;
       z-index: 1300;
-      background: rgba(10,10,10,0.97);
+      background: var(--bg);
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 24px;
+      gap: 6px;
+      padding: 28px;
       text-align: center;
     }
     .timer-panel.open { display: flex; }
+
     .timer-label {
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--label-2);
+      letter-spacing: -0.01em;
     }
     .timer-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 92px;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      color: var(--white);
+      font-size: 86px;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
       font-variant-numeric: tabular-nums;
+      color: var(--label);
     }
-    .timer-value.warn { color: var(--red); }
-    .timer-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
-    .timer-ring { margin-bottom: 6px; }
-    .timer-btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    .timer-btn {
-      padding: 12px 20px;
-      border-radius: 11px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      color: var(--white);
+    .timer-value.warn { color: var(--accent); }
+    .timer-sub {
       font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
+      color: var(--label-3);
+      margin-bottom: 24px;
+      max-width: 260px;
+      line-height: 1.45;
     }
-    .timer-btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+    .timer-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .timer-btn {
+      padding: 12px 22px;
+      border-radius: 100px;
+      border: none;
+      background: var(--fill);
+      color: var(--label);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+    .timer-btn:active { opacity: 0.7; }
+    .timer-btn.primary { background: var(--accent); color: #fff; }
 
     /* ── PAGE PROGRÈS ── */
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 11px;
+      margin-bottom: 8px;
     }
     .stat-card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
       padding: 16px;
+      box-shadow: var(--shadow);
     }
     .stat-label {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--label-2);
+      margin-bottom: 6px;
     }
     .stat-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: 0.02em;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
     }
-    .stat-unit { font-size: 13px; color: var(--muted); margin-left: 4px; font-family: inherit; }
+    .stat-unit {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--label-3);
+      margin-left: 4px;
+      letter-spacing: 0;
+    }
 
-    .week-dots { display: flex; gap: 6px; margin-top: 10px; }
+    .week-dots { display: flex; gap: 5px; margin-top: 12px; }
     .week-dot {
       flex: 1;
-      height: 6px;
+      height: 5px;
       border-radius: 3px;
-      background: var(--surface2);
+      background: var(--fill);
     }
-    .week-dot.on { background: var(--red); }
+    .week-dot.on { background: var(--accent); }
 
-    /* Échelle de skill */
+    /* Échelles de skill */
     .skill-block {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
       padding: 16px;
       margin-bottom: 10px;
+      box-shadow: var(--shadow);
     }
     .skill-head {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       gap: 10px;
       margin-bottom: 12px;
     }
     .skill-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      letter-spacing: 0.04em;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.018em;
     }
-    .skill-level { font-size: 12px; color: var(--red); font-weight: 700; }
-    .skill-track { display: flex; gap: 4px; margin-bottom: 10px; }
+    .skill-level {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--label-3);
+      font-variant-numeric: tabular-nums;
+    }
+    .skill-track { display: flex; gap: 4px; margin-bottom: 12px; }
     .skill-node {
       flex: 1;
-      height: 5px;
-      border-radius: 3px;
-      background: var(--surface2);
-      transition: background 0.2s ease;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--fill);
+      transition: background 0.22s ease;
     }
-    .skill-node.done { background: var(--red); }
-    .skill-current { font-size: 13px; color: rgba(245,245,247,0.8); margin-bottom: 12px; }
+    .skill-node.done { background: var(--accent); }
+
+    .skill-current {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+    .skill-current span {
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--label-3);
+      margin-top: 2px;
+    }
+
     .skill-btns { display: flex; gap: 8px; }
     .skill-btn {
-      flex: 1;
-      padding: 9px;
-      border-radius: 9px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 700;
+      padding: 9px 14px;
+      border-radius: var(--r-sm);
+      border: none;
+      background: var(--fill);
+      color: var(--label);
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      letter-spacing: -0.01em;
     }
-    .skill-btn:disabled { opacity: 0.35; cursor: default; }
+    .skill-btn svg { width: 14px; height: 14px; }
+    .skill-btn:first-child { flex: 0 0 48px; }
+    .skill-btn:last-child { flex: 1; background: var(--accent-soft); color: var(--accent); }
+    .skill-btn:disabled { opacity: 0.32; cursor: default; }
+    .skill-btn:active:not(:disabled) { opacity: 0.65; }
 
     /* Historique */
     .history-item {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 13px;
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-md);
       padding: 13px 14px;
       margin-bottom: 8px;
+      box-shadow: var(--shadow);
     }
     .history-date {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 15px;
-      color: var(--red);
-      width: 52px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      width: 46px;
       flex-shrink: 0;
-      letter-spacing: 0.04em;
+      font-variant-numeric: tabular-nums;
     }
     .history-main { flex: 1; min-width: 0; }
-    .history-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-    .history-sub { font-size: 11px; color: var(--muted); }
+    .history-title {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 1px;
+    }
+    .history-sub { font-size: 13px; color: var(--label-3); }
     .history-del {
       background: none;
       border: none;
-      color: var(--muted);
-      font-size: 18px;
+      color: var(--label-3);
       cursor: pointer;
-      padding: 4px 6px;
+      padding: 6px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
     }
+    .history-del svg { width: 15px; height: 15px; }
+    .history-del:active { color: var(--accent); }
 
     .empty-note {
       text-align: center;
-      padding: 28px 20px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
+      padding: 34px 24px;
+      color: var(--label-3);
+      font-size: 14px;
+      line-height: 1.55;
       background: var(--surface);
-      border: 1px dashed var(--border);
-      border-radius: 14px;
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
     }
+    .empty-note strong { color: var(--label-2); font-weight: 600; }
 
-    /* Bandeau installation PWA */
+    /* ── BANDEAU INSTALLATION ── */
     .install-banner {
       display: none;
       align-items: center;
-      gap: 12px;
+      gap: 13px;
       background: var(--surface);
-      border: 1px solid var(--red);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 18px;
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
     }
     .install-banner.show { display: flex; }
-    .install-text { flex: 1; font-size: 13px; line-height: 1.5; }
+    .install-text { flex: 1; font-size: 14px; line-height: 1.45; color: var(--label-2); }
     .install-btn {
-      background: var(--red);
+      background: var(--accent);
       border: none;
       color: #fff;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 13px;
+      padding: 9px 16px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 14px;
       cursor: pointer;
       flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+    .install-btn:active { opacity: 0.8; }
+
+    /* ── NUTRITION ── */
+    .calc-card {
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-xl);
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+    .calc-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--label-2);
+      margin-bottom: 8px;
+    }
+    .calc-input-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+    .calc-input {
+      flex: 1;
+      min-width: 0;
+      background: var(--fill);
+      border: 1px solid transparent;
+      border-radius: var(--r-md);
+      color: var(--label);
+      padding: 12px 14px;
+      font-size: 19px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .calc-input::-webkit-outer-spin-button,
+    .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .calc-input:focus { outline: none; border-color: var(--accent); }
+    .calc-input-unit { font-size: 15px; color: var(--label-3); }
+
+    /* Segmented control iOS */
+    .goal-toggle {
+      display: flex;
+      gap: 2px;
+      background: var(--fill);
+      border-radius: var(--r-sm);
+      padding: 2px;
+    }
+    .goal-btn {
+      flex: 1;
+      padding: 8px 4px;
+      border: none;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--label-2);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease;
+      letter-spacing: -0.01em;
+    }
+    .goal-btn.active {
+      background: var(--surface);
+      color: var(--label);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
     }
 
-    /* Toast */
+    .macros-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+      margin-bottom: 8px;
+    }
+    .macro-card {
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .macro-card.full { grid-column: 1 / -1; }
+    .macro-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--label-2);
+      margin-bottom: 5px;
+    }
+    .macro-value {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .macro-unit { font-size: 14px; color: var(--label-3); margin-left: 3px; }
+
+    .macro-bar-track {
+      height: 5px;
+      border-radius: 3px;
+      background: var(--fill);
+      overflow: hidden;
+      margin-top: 11px;
+    }
+    .macro-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.36s ease;
+      background: var(--accent);
+    }
+    /* Teintes système iOS pour distinguer les macros */
+    .macro-bar-fill.orange { background: #ff9f0a; }
+    .macro-bar-fill.red    { background: var(--accent); }
+    .macro-bar-fill.white  { background: #64d2ff; }
+    .macro-bar-fill.grey   { background: var(--label-3); }
+
+    .meal-card {
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+    }
+    .meal-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 5px;
+    }
+    .meal-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--label-2);
+      margin-bottom: 9px;
+    }
+    .meal-macro { font-size: 13px; color: var(--label-3); }
+
+    /* Liste d'informations (suppléments, récupération) */
+    .info-list { display: flex; flex-direction: column; }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 0.5px solid var(--separator);
+    }
+    .info-item:first-child { padding-top: 0; }
+    .info-item:last-child { padding-bottom: 0; border-bottom: none; }
+    .info-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+      opacity: 0.75;
+    }
+    .info-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.012em;
+      margin-bottom: 2px;
+    }
+    .info-desc { font-size: 13px; line-height: 1.5; color: var(--label-2); }
+
+    .calc-note {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--label-2);
+    }
+    .calc-note b { color: var(--accent); font-weight: 600; }
+
+    /* ── FUEL ── */
+    .fuel-section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 26px 0 12px;
+    }
+    .fuel-section-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--fill);
+      color: var(--label-2);
+    }
+    .fuel-section-icon svg { width: 17px; height: 17px; }
+    .fuel-section-icon.snack { background: var(--accent-soft); color: var(--accent); }
+    .fuel-section-icon.drink { background: rgba(10, 132, 255, 0.16); color: #0a84ff; }
+    .fuel-section-label {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.022em;
+    }
+
+    .fuel-card {
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+    }
+    .fuel-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 9px;
+    }
+    .fuel-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+    .fuel-badges { display: flex; gap: 5px; flex-wrap: wrap; flex-shrink: 0; }
+    .badge {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .badge-green  { background: rgba(48, 209, 88, 0.16); color: #30d158; }
+    .badge-yellow { background: rgba(255, 159, 10, 0.16); color: #ff9f0a; }
+    .badge-blue   { background: rgba(10, 132, 255, 0.16); color: #0a84ff; }
+
+    .fuel-ingredients {
+      font-size: 14px;
+      color: var(--label-2);
+      margin-bottom: 7px;
+      line-height: 1.45;
+    }
+    .fuel-steps {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--label-2);
+      margin-bottom: 9px;
+    }
+    .fuel-macros { font-size: 13px; color: var(--label-3); }
+
+    .fuel-divider {
+      height: 0.5px;
+      background: var(--separator);
+      margin: 26px 0;
+    }
+
+    /* ── TOAST ── */
     .toast {
       position: fixed;
       left: 50%;
-      bottom: calc(var(--tab-h) + 20px);
-      transform: translate(-50%, 20px);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--white);
+      bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 18px);
+      transform: translate(-50%, 12px);
+      background: var(--surface);
+      border: 0.5px solid var(--separator);
+      color: var(--label);
       padding: 12px 20px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: 600;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      max-width: calc(100% - 40px);
+      text-align: center;
       z-index: 1400;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      box-shadow: var(--shadow-lift);
+      transition: opacity 0.26s ease, transform 0.26s ease;
     }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* Respect des préférences d'accessibilité */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
-
-<div class="grain" aria-hidden="true"></div>
 
 <div id="app">
   <div class="pages">
@@ -1362,7 +1315,7 @@
     <div class="page active" id="page-seances">
       <div class="page-header">
         <div class="page-eyebrow">Programme</div>
-        <div class="page-title">SÉANCES</div>
+        <div class="page-title">Séances</div>
       </div>
 
       <!-- Installation PWA -->
@@ -1379,7 +1332,7 @@
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Lun</span>
-          <div class="schedule-day-pill">Car<br>dio</div>
+          <div class="schedule-day-pill">Cardio</div>
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Mar</span>
@@ -1406,7 +1359,7 @@
       <!-- Phases de progression -->
       <div class="phases-section">
         <button class="phases-toggle" onclick="togglePhases()">
-          <span class="phases-toggle-label">PHASES DE PROGRESSION</span>
+          <span class="phases-toggle-label">Phases de progression</span>
           <svg class="phases-chevron" id="phasesChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
@@ -1467,9 +1420,9 @@
           </div>
           <div class="seance-footer">
             <span class="seance-count">9 exercices · ~78 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('a')">VOIR DÉTAILS</button>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('a')">Voir détails</button>
           </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('a')">▶ DÉMARRER</button>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('a')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
         <!-- Séance B -->
@@ -1479,15 +1432,16 @@
           <div class="seance-muscles">
             <span class="muscle-tag">Grand dorsal</span>
             <span class="muscle-tag">Rhomboïdes</span>
+            <span class="muscle-tag">Trapèze moyen</span>
             <span class="muscle-tag">Biceps</span>
             <span class="muscle-tag">Core</span>
             <span class="muscle-tag">Avant-bras</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">7 exercices · ~65 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">VOIR DÉTAILS</button>
+            <span class="seance-count">8 exercices · ~72 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">Voir détails</button>
           </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('b')">▶ DÉMARRER</button>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('b')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
         <!-- Cardio -->
@@ -1501,9 +1455,9 @@
           </div>
           <div class="seance-footer">
             <span class="seance-count">4 phases · ~40 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio')">VOIR DÉTAILS</button>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio')">Voir détails</button>
           </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('cardio')">▶ DÉMARRER</button>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('cardio')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
         <!-- Séance C -->
@@ -1520,9 +1474,9 @@
           </div>
           <div class="seance-footer">
             <span class="seance-count">9 exercices · ~75 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('c')">VOIR DÉTAILS</button>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('c')">Voir détails</button>
           </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('c')">▶ DÉMARRER</button>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('c')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
         <!-- Séance D -->
@@ -1532,14 +1486,16 @@
           <div class="seance-muscles">
             <span class="muscle-tag">Poignets</span>
             <span class="muscle-tag">Épaules</span>
+            <span class="muscle-tag">Deltoïde post.</span>
+            <span class="muscle-tag">Trapèze inf.</span>
             <span class="muscle-tag">Mobilité spinale</span>
             <span class="muscle-tag">Coiffe</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">7 exercices · ~50 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('d')">VOIR DÉTAILS</button>
+            <span class="seance-count">8 exercices · ~56 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('d')">Voir détails</button>
           </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('d')">▶ DÉMARRER</button>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('d')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
       </div>
@@ -1549,7 +1505,7 @@
     <div class="page" id="page-progres">
       <div class="page-header">
         <div class="page-eyebrow">Suivi</div>
-        <div class="page-title">PROGRÈS</div>
+        <div class="page-title">Progrès</div>
       </div>
 
       <div class="stat-grid">
@@ -1580,7 +1536,7 @@
     <div class="page" id="page-nutrition">
       <div class="page-header">
         <div class="page-eyebrow">Alimentation</div>
-        <div class="page-title">NUTRITION</div>
+        <div class="page-title">Nutrition</div>
       </div>
 
       <!-- Calculatrice -->
@@ -1596,8 +1552,8 @@
           <button class="goal-btn active" data-goal="masse" onclick="setGoal('masse')">Prise masse</button>
           <button class="goal-btn" data-goal="seche" onclick="setGoal('seche')">Sèche</button>
         </div>
-        <p style="margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;">Note :</span> Maintien 65–67 kg optimal pour la planche (rapport force/poids). Ne pas couper agressivement — la force absolue en dépend.
+        <p class="calc-note">
+          <b>Note :</b> Maintien 65–67 kg optimal pour la planche (rapport force/poids). Ne pas couper agressivement — la force absolue en dépend.
         </p>
       </div>
 
@@ -1647,27 +1603,27 @@
 
       <!-- Suppléments -->
       <div class="section-title">Suppléments</div>
-      <div class="calc-card" style="margin-bottom:14px;">
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          <div style="display:flex;align-items:flex-start;gap:12px;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+      <div class="calc-card">
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-dot"></div>
             <div>
-              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Créatine monohydrate — 5 g/j</div>
-              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Améliore la force maximale et la récupération. En maintien continu.</div>
+              <div class="info-title">Créatine monohydrate — 5 g/j</div>
+              <div class="info-desc">Améliore la force maximale et la récupération. En maintien continu.</div>
             </div>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+          <div class="info-item">
+            <div class="info-dot"></div>
             <div>
-              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Oméga-3 — 2-3 g EPA+DHA/j</div>
-              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Anti-inflammatoire, récupération articulaire et tendineuse. Essentiel en planche-training.</div>
+              <div class="info-title">Oméga-3 — 2-3 g EPA+DHA/j</div>
+              <div class="info-desc">Anti-inflammatoire, récupération articulaire et tendineuse. Essentiel en planche-training.</div>
             </div>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+          <div class="info-item">
+            <div class="info-dot"></div>
             <div>
-              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Hydratation — 35-40 ml/kg/j</div>
-              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Prioritaire pour la force et la résistance des tendons. ~2,3–2,7 L/j à 67 kg.</div>
+              <div class="info-title">Hydratation — 35-40 ml/kg/j</div>
+              <div class="info-desc">Prioritaire pour la force et la résistance des tendons. ~2,3–2,7 L/j à 67 kg.</div>
             </div>
           </div>
         </div>
@@ -1675,27 +1631,27 @@
 
       <!-- Récupération -->
       <div class="section-title">Récupération</div>
-      <div class="calc-card" style="margin-bottom:14px;">
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          <div style="display:flex;align-items:flex-start;gap:12px;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+      <div class="calc-card">
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-dot"></div>
             <div>
-              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Sommeil — 7-9 h/nuit</div>
-              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Le levier de récup n°1. La fatigue périphérique et nerveuse générée par les isométries (planche, HSPU) se résorbe surtout pendant le sommeil profond.</div>
+              <div class="info-title">Sommeil — 7-9 h/nuit</div>
+              <div class="info-desc">Le levier de récup n°1. La fatigue périphérique et nerveuse générée par les isométries (planche, HSPU) se résorbe surtout pendant le sommeil profond.</div>
             </div>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+          <div class="info-item">
+            <div class="info-dot"></div>
             <div>
-              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Protéine avant coucher — 30-40 g</div>
-              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Caséine/whey ou skyr avant dodo, favorise la synthèse protéique nocturne. La quantité totale/jour reste plus importante que le timing exact.</div>
+              <div class="info-title">Protéine avant coucher — 30-40 g</div>
+              <div class="info-desc">Caséine/whey ou skyr avant dodo, favorise la synthèse protéique nocturne. La quantité totale/jour reste plus importante que le timing exact.</div>
             </div>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:6px;"></div>
+          <div class="info-item">
+            <div class="info-dot"></div>
             <div>
-              <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;">Deload — 1 semaine toutes les 5-6 semaines</div>
-              <div style="font-size:12px;color:var(--muted);line-height:1.5;">Réduire le volume d'environ 40-50 % (moins de séries, pas de lest ajouté, holds à 60-70 % du max). Ne saute pas le geste, allège-le — ça évite le plateau et protège tendons/poignets.</div>
+              <div class="info-title">Deload — 1 semaine toutes les 5-6 semaines</div>
+              <div class="info-desc">Réduire le volume d'environ 40-50 % (moins de séries, pas de lest ajouté, holds à 60-70 % du max). Ne saute pas le geste, allège-le — ça évite le plateau et protège tendons/poignets.</div>
             </div>
           </div>
         </div>
@@ -1728,13 +1684,13 @@
     <div class="page" id="page-fuel">
       <div class="page-header">
         <div class="page-eyebrow">Énergie</div>
-        <div class="page-title">FUEL</div>
+        <div class="page-title">Fuel</div>
       </div>
 
       <!-- Snacks -->
       <div class="fuel-section-header">
         <div class="fuel-section-icon snack">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e63030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <div class="fuel-section-label">Snacks</div>
       </div>
@@ -1796,7 +1752,7 @@
       <!-- Boissons -->
       <div class="fuel-section-header">
         <div class="fuel-section-icon drink">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a84ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a2 2 0 1 0 0-4h14a2 2 0 1 0 0 4M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12v4M14 12v4"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a2 2 0 1 0 0-4h14a2 2 0 1 0 0 4M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12v4M14 12v4"/></svg>
         </div>
         <div class="fuel-section-label">Boissons</div>
       </div>
@@ -1892,7 +1848,7 @@
 
 <div class="modal" id="modal">
   <div class="modal-handle"></div>
-  <button class="modal-close" onclick="closeModal()">×</button>
+  <button class="modal-close" onclick="closeModal()" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
   <div class="modal-header">
     <div class="modal-day" id="modalDay"></div>
     <div class="modal-title" id="modalTitle"></div>
@@ -1908,15 +1864,15 @@
         <div class="player-title" id="playerTitle"></div>
         <div class="player-meta" id="playerMeta"></div>
       </div>
-      <button class="player-quit" onclick="quitWorkout()" aria-label="Quitter la séance">×</button>
+      <button class="player-quit" onclick="quitWorkout()" aria-label="Quitter la séance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
     </div>
     <div class="player-bar-track"><div class="player-bar-fill" id="playerBar" style="width:0%"></div></div>
   </div>
   <div class="player-body" id="playerBody"></div>
   <div class="player-actions">
     <div class="player-actions-row">
-      <button class="btn-start secondary" onclick="prevExercise()">◀</button>
-      <button class="btn-start" id="playerNextBtn" onclick="nextExercise()">SUIVANT</button>
+      <button class="btn-start secondary" onclick="prevExercise()" aria-label="Exercice précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="btn-start" id="playerNextBtn" onclick="nextExercise()">Suivant</button>
     </div>
   </div>
 </div>
@@ -1943,6 +1899,21 @@
     document.getElementById('tab-' + name).classList.add('active');
     if (name === 'progres') renderProgress();
   }
+
+  /* Jeu d'icônes — tracé unique, dans l'esprit SF Symbols. Aucune émoticône
+     dans l'interface : elles se rendent différemment selon l'OS et cassent
+     l'alignement typographique. */
+  const ICONS = {
+    play:  '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>',
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>',
+    back:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+    minus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>',
+    plus:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+    timer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 2M9 2h6"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-12"/></svg>',
+    flag:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 3.5L16 11H5"/></svg>',
+  };
 
   // ── MODAL DATA ──
   const sessions = {
@@ -1971,12 +1942,13 @@
         { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding' },
         { name: 'Planche volume — 60 s total', sets: '6×10s / 5×12s / 4×15s', note: 'Repos 90 s, progresser le format chaque semaine' },
         { name: 'Tuck Front Lever', sets: '4 × 6-10 s', note: 'En assistance uniquement, dépression scapulaire' },
-        { name: 'Tractions lestées', sets: '4 × 5 reps', note: 'Ceinture ou gilet leste' },
+        { name: 'Tractions tempo / Archer', sets: '4 × 5-6 reps', note: 'Sans lest : 3 s excentrique + 1 s pause menton au-dessus de la barre. Passe aux Archer (3-5/côté) une fois 10 tractions strictes acquises. Repos 120s' },
+        { name: 'Rowing anneaux / Australian pull-ups', sets: '4 × 8-12 reps', note: 'Pause 1 s poitrine aux anneaux, omoplates serrées. Pieds surélevés pour durcir. Repos 90s' },
         { name: 'Front Lever Raises', sets: '3 × 6 reps', note: 'Contrôle excentrique 3 s' },
         { name: 'Dragon Flag / L-sit', sets: '3×6 / 4×20-30s', note: 'Choisir selon fatigue core' },
       ],
-      muscles: ['Grand dorsal', 'Rhomboïdes', 'Biceps', 'Core', 'Avant-bras'],
-      tip: 'Objectif : accumuler 60 s total de tuck planche en volume. Commencer à 6×10 s puis progresser vers 4×15 s sur 4-6 semaines. Le Front Lever est en assistance uniquement — priorité au dos, le FL vient après les tractions.'
+      muscles: ['Grand dorsal', 'Rhomboïdes', 'Trapèze moyen', 'Biceps', 'Core', 'Avant-bras'],
+      tip: 'Objectif : accumuler 60 s total de tuck planche en volume. Commencer à 6×10 s puis progresser vers 4×15 s sur 4-6 semaines. Le Front Lever est en assistance uniquement — priorité au dos, le FL vient après les tractions. Sans lest, la surcharge passe par le tempo puis par le levier : 3 s d\'excentrique et une pause en haut rendent 5 reps bien plus dures que 5 reps rapides lestées, et l\'Archer déplace la charge sur un bras — c\'est la vraie route vers la traction à un bras. Le rowing est le contrepoids indispensable : toute la planche et le HSPU travaillent en protraction, sans tirage horizontal les rhomboïdes et le trapèze moyen/inférieur décrochent (facteur n°1 de l\'impingement d\'épaule). Serre les omoplates 1 s en haut de chaque rep.'
     },
     cardio: {
       day: 'Lundi · Cardio',
@@ -2015,11 +1987,12 @@
         { name: 'HSPU Force — Deficit / Wall', sets: '4 × 3-6 reps', note: 'Priorité amplitude complète, contrôle 3-5 s en excentrique avant de forcer le concentric' },
         { name: 'Handstand long', sets: '15-20 min', note: 'Chest-to-wall, freestanding, shapes' },
         { name: 'Shoulder dislocations', sets: '3 × 10 reps', note: 'Bande élastique, progression ampleur' },
+        { name: 'Face pulls + Y-T-W au sol', sets: '3 × 15 + 3 × 8/lettre', note: 'Deltoïde postérieur et trapèze inférieur. Léger, coudes hauts, sans à-coups. Repos 60s' },
         { name: 'Skin the cat', sets: '3 × 5 reps', note: 'Contrôle total, pause basse 2 s' },
         { name: 'Planche lean léger', sets: '3-4 séries', note: 'Sans charge, protraction serratus' },
         { name: 'Jefferson Curls', sets: '3 × 8 reps', note: 'Lentement, léger, vertèbre par vertèbre' },
       ],
-      muscles: ['Poignets', 'Épaules', 'Coiffe des rotateurs', 'Mobilité spinale'],
+      muscles: ['Poignets', 'Épaules', 'Coiffe des rotateurs', 'Deltoïde postérieur', 'Trapèze inférieur', 'Mobilité spinale'],
       tip: '4-5 expositions courtes/semaine battent 1 longue session. Le planche lean léger ici consolide le pattern moteur sans fatigue — idéal en fin de semaine. Pratique distribuée validée par la recherche en apprentissage moteur (Schmidt & Lee 2019). Pour le HSPU, progresse par phases : concentrique → excentrique → isométrique. Le Deficit HSPU (mains surélevées sur parallettes/plots) ajoute de l\'amplitude progressivement — c\'est le pont direct entre le Wall HSPU et la version freestanding.'
     }
   };
@@ -2037,7 +2010,7 @@
     s.exercises.forEach(ex => {
       html += `<div class="exercise-item">
         <div class="exercise-dot"></div>
-        <div class="exercise-name">${ex.name}<br><span style="font-size:11px;color:var(--muted);font-weight:400">${ex.note}</span></div>
+        <div class="exercise-name">${ex.name}<br><span class="exercise-note">${ex.note}</span></div>
         <div class="exercise-sets">${ex.sets}</div>
       </div>`;
     });
@@ -2055,7 +2028,7 @@
       <p>${s.tip}</p>
     </div>`;
 
-    html += `<button class="btn-start" style="margin-top:18px" onclick="startWorkout('${id}')">▶ DÉMARRER CETTE SÉANCE</button>`;
+    html += `<button class="btn-start" style="margin-top:18px" onclick="startWorkout('${id}')">${ICONS.play}Démarrer cette séance</button>`;
 
     document.getElementById('modalBody').innerHTML = html;
 
@@ -2135,11 +2108,6 @@
     if (scheduleDays[today]) {
       scheduleDays.forEach(d => d.classList.remove('active'));
       scheduleDays[today].classList.add('active');
-      
-      // Auto-scroll pour centrer le jour actuel
-      setTimeout(() => {
-        scheduleDays[today].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }, 100);
     }
 
     // 2. Mettre à jour les cartes de séances
@@ -2150,8 +2118,8 @@
         // Remplacer le nom du jour par "Aujourd'hui"
         dayEl.innerHTML = dayEl.innerHTML.replace(todayName, "Aujourd'hui");
         // Mettre en évidence la carte
-        card.style.borderColor = "var(--red)";
-        card.style.boxShadow = "0 0 15px rgba(230, 48, 48, 0.15)";
+        card.style.borderColor = "var(--accent)";
+        card.style.boxShadow = "var(--shadow)";
         // Remonter la séance du jour tout en haut de la liste
         card.parentNode.prepend(card);
       }
@@ -2333,20 +2301,20 @@
     document.getElementById('playerMeta').textContent = `Exercice ${session.idx + 1} / ${total}`;
     document.getElementById('playerBar').style.width = ((session.idx) / total * 100) + '%';
     document.getElementById('playerNextBtn').textContent =
-      session.idx === total - 1 ? 'TERMINER' : 'SUIVANT';
+      session.idx === total - 1 ? 'Terminer' : 'Suivant';
 
     const unit = unitFor(ex.type);
     const rows = ex.entries.map((entry, i) => `
       <div class="set-row ${entry.done ? 'done' : ''}" id="setRow${i}">
-        <span class="set-num">${ex.entries.length > 1 ? 'SÉRIE ' + (i + 1) : 'SÉRIE'}</span>
+        <span class="set-num">${ex.entries.length > 1 ? 'Série ' + (i + 1) : 'Série'}</span>
         <input class="set-input" type="number" inputmode="decimal" placeholder="—"
                value="${entry.value}" oninput="setValue(${i}, this.value)">
         <span class="set-unit">${unit}</span>
-        <button class="set-check" onclick="toggleSet(${i})" aria-label="Valider la série">✓</button>
+        <button class="set-check" onclick="toggleSet(${i})" aria-label="Valider la série">${ICONS.check}</button>
       </div>`).join('');
 
     const holdBtn = ex.type === 'hold'
-      ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">⏱ CHRONO DE HOLD</button>`
+      ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">${ICONS.timer}Chrono de hold</button>`
       : '';
 
     document.getElementById('playerBody').innerHTML = `
@@ -2624,7 +2592,7 @@
         `<div class="skill-node ${i <= lvl ? 'done' : ''}"></div>`).join('');
       const next = lvl < ladder.steps.length - 1
         ? `Prochain : ${ladder.steps[lvl + 1]}`
-        : 'Palier final atteint 🎯';
+        : 'Palier final atteint';
       return `
         <div class="skill-block">
           <div class="skill-head">
@@ -2632,11 +2600,10 @@
             <span class="skill-level">${lvl + 1} / ${ladder.steps.length}</span>
           </div>
           <div class="skill-track">${nodes}</div>
-          <div class="skill-current"><strong>${ladder.steps[lvl]}</strong><br>
-            <span style="color:var(--muted);font-size:12px">${next}</span></div>
+          <div class="skill-current">${ladder.steps[lvl]}<span>${next}</span></div>
           <div class="skill-btns">
-            <button class="skill-btn" onclick="bumpSkill('${key}', -1)" ${lvl === 0 ? 'disabled' : ''}>−</button>
-            <button class="skill-btn" onclick="bumpSkill('${key}', 1)" ${lvl >= ladder.steps.length - 1 ? 'disabled' : ''}>Palier validé +</button>
+            <button class="skill-btn" onclick="bumpSkill('${key}', -1)" ${lvl === 0 ? 'disabled' : ''} aria-label="Redescendre d'un palier">${ICONS.minus}</button>
+            <button class="skill-btn" onclick="bumpSkill('${key}', 1)" ${lvl >= ladder.steps.length - 1 ? 'disabled' : ''}>${ICONS.check}Palier validé</button>
           </div>
         </div>`;
     }).join('');
@@ -2672,7 +2639,7 @@
             <div class="history-title">${h.title}</div>
             <div class="history-sub">${h.setsDone}/${h.totalSets} séries · ${h.durationMin} min</div>
           </div>
-          <button class="history-del" onclick="deleteEntry(${h.id})" aria-label="Supprimer">×</button>
+          <button class="history-del" onclick="deleteEntry(${h.id})" aria-label="Supprimer cette séance">${ICONS.trash}</button>
         </div>`;
     }).join('');
   }
@@ -2711,7 +2678,7 @@
 
   window.addEventListener('appinstalled', () => {
     document.getElementById('installBanner').classList.remove('show');
-    toast('App installée 💪');
+    toast('App installée');
   });
 
   /* ══════════════════════════════════════════════════════

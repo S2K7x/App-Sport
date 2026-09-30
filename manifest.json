@@ -33,10 +33,10 @@
       "url": "./index.html?tab=seances"
     },
     {
-      "name": "Synchro",
-      "short_name": "Synchro",
-      "description": "Importer les activités d'Apple Santé, Garmin et adidas Running",
-      "url": "./index.html?tab=sync"
+      "name": "Réglages",
+      "short_name": "Réglages",
+      "description": "Profil, zones cardio, thème et synchronisation Apple Santé",
+      "url": "./index.html?tab=reglages"
     }
   ]
 }

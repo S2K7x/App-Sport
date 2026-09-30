@@ -393,7 +393,10 @@
       box-shadow: var(--shadow);
       padding: 12px 6px;
     }
+    .wk-day.rest { cursor: default; }
     .wk-day {
+      font: inherit;
+      line-height: 1.45;
       flex: 1 1 0;
       min-width: 0;
       display: flex;
@@ -446,6 +449,11 @@
     .wk-tag em { display: block; font-style: normal; font-weight: 500; color: var(--label-3); }
     .wk-day.rest .wk-tag { color: var(--label-3); }
     .wk-day.active .wk-tag { color: var(--accent); }
+    @media (max-width: 374px) {
+      .wk-tag { font-size: 0; }
+      .wk-tag em { font-size: 11px; font-weight: 700; color: inherit; }
+      .wk-num { width: 30px; height: 30px; font-size: 14px; }
+    }
 
     /* ── CARTE HERO (séance du jour) ── */
     .hero {
@@ -487,6 +495,14 @@
       justify-content: space-between;
       gap: 12px;
       margin-top: 14px;
+    }
+    .hero-bottom { flex-wrap: wrap; }
+    .hero-stat span { white-space: nowrap; }
+    .hero-actions { display: flex; gap: 8px; margin-left: auto; }
+    @media (max-width: 374px) {
+      .hero-actions { flex: 1 1 100%; }
+      .hero-actions .hero-btn:last-child { flex: 1; justify-content: center; }
+      .hero-btn { padding: 13px 16px; }
     }
     .hero-stat b { display: block; font-size: 40px; line-height: 1; }
     .hero-stat span { font-size: 12px; color: var(--on-navy-2); }
@@ -713,6 +729,7 @@
       right: 0;
       bottom: 0;
       max-height: 92vh;
+      max-height: 92dvh;
       background: var(--surface);
       border-radius: 28px 28px 0 0;
       z-index: 1001;
@@ -1196,6 +1213,7 @@
     /* ── PAGE PROGRÈS ── */
     .chart-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
     .chart-big { font-size: 44px; line-height: 1; }
+    .chart-avg { text-align: right; padding-bottom: 4px; }
     .chart-big small { font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--on-navy-2); margin-left: 4px; }
 
     .stat-grid {
@@ -1516,8 +1534,10 @@
     }
     .macro-bar-fill {
       height: 100%;
+      width: 100%;
       border-radius: 3px;
-      transition: width 0.36s ease;
+      transform-origin: left center;
+      transition: transform 0.36s cubic-bezier(0.2, 0.8, 0.2, 1);
       background: #fff;
     }
     .macro-bar-fill.kcal { background: linear-gradient(90deg, var(--accent-2), #fff); }
@@ -1709,11 +1729,11 @@
       <div class="kpi-row">
         <div class="kpi">
           <div class="kpi-value num" id="kpiTotal">0</div>
-          <div class="kpi-label">séances réalisées</div>
+          <div class="kpi-label" id="kpiTotalLabel">séances réalisées</div>
         </div>
         <div class="kpi">
           <div class="kpi-value num" id="kpiSets">0</div>
-          <div class="kpi-label">séries validées</div>
+          <div class="kpi-label" id="kpiSetsLabel">séries validées</div>
         </div>
         <div class="kpi">
           <div class="kpi-value num"><span id="kpiWeek">0</span><small>/6</small></div>
@@ -1737,13 +1757,13 @@
       <!-- Phases de progression -->
       <div class="section-head"><span class="section-title caps">Progression</span></div>
       <div class="phases-section">
-        <button class="phases-toggle" onclick="togglePhases()">
+        <button class="phases-toggle" onclick="togglePhases()" aria-expanded="false" aria-controls="phasesContent">
           <span class="phases-toggle-label">Phases de progression<small>3 phases · 18 mois vers la full planche</small></span>
           <svg class="phases-chevron" id="phasesChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-        <div class="phases-content" id="phasesContent">
+        <div class="phases-content" id="phasesContent" inert>
           <div class="phase-card phase-current">
             <div class="phase-header">
               <span class="phase-badge">Phase 1</span>
@@ -1795,12 +1815,10 @@
       </div>
 
       <div class="hero">
+        <div class="hero-eyebrow caps">Séances · 8 semaines</div>
         <div class="chart-head">
-          <div>
-            <div class="hero-eyebrow caps">Séances · 8 semaines</div>
-            <div class="chart-big num" id="chartTotal">0</div>
-          </div>
-          <div class="hero-sub" id="chartAvg"></div>
+          <div class="chart-big num" id="chartTotal">0</div>
+          <div class="hero-sub chart-avg" id="chartAvg"></div>
         </div>
         <div class="hero-chart" id="weeksChart"></div>
       </div>
@@ -1812,11 +1830,11 @@
         </div>
         <div class="stat-card">
           <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg></div>
-          <div><span class="stat-value num" id="statTotal">0</span><div class="stat-label">séances au total</div></div>
+          <div><span class="stat-value num" id="statTotal">0</span><div class="stat-label" id="statTotalLabel">séances au total</div></div>
         </div>
         <div class="stat-card">
           <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
-          <div><span class="stat-value num" id="statSets">0</span><div class="stat-label">séries validées</div></div>
+          <div><span class="stat-value num" id="statSets">0</span><div class="stat-label" id="statSetsLabel">séries validées</div></div>
         </div>
         <div class="stat-card">
           <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 2M9 2h6"/></svg></div>
@@ -1858,7 +1876,7 @@
       <div class="calc-card">
         <div class="calc-label caps">Poids actuel</div>
         <div class="calc-input-wrap">
-          <input class="calc-input" type="number" id="weightInput" value="67" min="40" max="150" inputmode="numeric">
+          <input class="calc-input" type="text" id="weightInput" value="67" inputmode="decimal" autocomplete="off" aria-label="Poids en kg">
           <span class="calc-input-unit">kg</span>
         </div>
         <div class="calc-label caps">Objectif</div>
@@ -1877,7 +1895,7 @@
         <div class="hero-eyebrow caps">Calories par jour</div>
         <div class="macro-kcal num"><span id="kcalVal">2784</span><small>kcal</small></div>
         <div class="macro-bar-track" style="margin-top:14px">
-          <div class="macro-bar-fill kcal" id="kcalBar" style="width:100%"></div>
+          <div class="macro-bar-fill kcal" id="kcalBar"></div>
         </div>
         <div class="macro-rows">
           <div>
@@ -1885,21 +1903,21 @@
               <span class="macro-label">Protéines</span>
               <span><span class="macro-value" id="protVal">130</span><span class="macro-unit">g</span></span>
             </div>
-            <div class="macro-bar-track"><div class="macro-bar-fill prot" id="protBar" style="width:68%"></div></div>
+            <div class="macro-bar-track"><div class="macro-bar-fill prot" id="protBar"></div></div>
           </div>
           <div>
             <div class="macro-row-head">
               <span class="macro-label">Glucides</span>
               <span><span class="macro-value" id="glucVal">313</span><span class="macro-unit">g</span></span>
             </div>
-            <div class="macro-bar-track"><div class="macro-bar-fill gluc" id="glucBar" style="width:82%"></div></div>
+            <div class="macro-bar-track"><div class="macro-bar-fill gluc" id="glucBar"></div></div>
           </div>
           <div>
             <div class="macro-row-head">
               <span class="macro-label">Lipides</span>
               <span><span class="macro-value" id="lipVal">77</span><span class="macro-unit">g</span></span>
             </div>
-            <div class="macro-bar-track"><div class="macro-bar-fill lip" id="lipBar" style="width:55%"></div></div>
+            <div class="macro-bar-track"><div class="macro-bar-fill lip" id="lipBar"></div></div>
           </div>
         </div>
       </div>
@@ -2219,7 +2237,7 @@
   <div class="timer-sub" id="timerSub"></div>
   <div class="timer-btns">
     <button class="timer-btn" id="timerAddBtn" onclick="addTimer(15)">+15 s</button>
-    <button class="timer-btn primary" onclick="dismissTimer()">Passer</button>
+    <button class="timer-btn primary" id="timerMainBtn" onclick="dismissTimer()">Passer</button>
   </div>
 </div>
 
@@ -2676,10 +2694,21 @@
   })();
 
   // ── NUTRITION CALCULATOR ──
+  const NUTRI_KEY = 'planche_os_nutri';
   let currentGoal = 'masse';
 
+  // "67,5" (clavier français) comme "67.5" ; hors bornes plausibles → valeur par défaut.
+  function readWeight() {
+    const w = parseFloat(String(document.getElementById('weightInput').value).replace(',', '.'));
+    return w >= 30 && w <= 250 ? w : 67;
+  }
+
+  function saveNutri() {
+    try { localStorage.setItem(NUTRI_KEY, JSON.stringify({ weight: document.getElementById('weightInput').value, goal: currentGoal })); } catch (e) {}
+  }
+
   function calcMacros() {
-    const weight = parseFloat(document.getElementById('weightInput').value) || 65;
+    const weight = readWeight();
     const mb = (10 * weight) + (6.25 * 169) - (5 * 23) + 5;
     const tdee = mb * 1.55;
 
@@ -2700,24 +2729,34 @@
 
     // bar widths (relative to max plausible)
     const maxKcal = 3500;
-    document.getElementById('kcalBar').style.width = Math.min(100, (kcal / maxKcal) * 100) + '%';
-    document.getElementById('protBar').style.width = Math.min(100, (prot / 200) * 100) + '%';
-    document.getElementById('glucBar').style.width = Math.min(100, (gluc / 450) * 100) + '%';
-    document.getElementById('lipBar').style.width  = Math.min(100, (lip  / 120) * 100) + '%';
+    const bar = (id, ratio) => {
+      document.getElementById(id).style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+    };
+    bar('kcalBar', kcal / maxKcal);
+    bar('protBar', prot / 200);
+    bar('glucBar', gluc / 450);
+    bar('lipBar',  lip / 120);
   }
 
   function setGoal(goal) {
     currentGoal = goal;
     document.querySelectorAll('.goal-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.goal === goal);
+      const on = b.dataset.goal === goal;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on);
     });
     calcMacros();
+    saveNutri();
   }
 
-  document.getElementById('weightInput').addEventListener('input', calcMacros);
+  document.getElementById('weightInput').addEventListener('input', () => { calcMacros(); saveNutri(); });
 
-  // init
-  calcMacros();
+  // init : on retrouve le poids et l'objectif de la dernière visite
+  try {
+    const n = JSON.parse(localStorage.getItem(NUTRI_KEY) || 'null');
+    if (n && n.weight) document.getElementById('weightInput').value = n.weight;
+    setGoal(n && ['maintien', 'masse', 'seche'].includes(n.goal) ? n.goal : 'masse');
+  } catch (e) { setGoal('masse'); }
 
   /* ══════════════════════════════════════════════════════
      TABLEAU DE BORD (onglet Séances)
@@ -2753,6 +2792,10 @@
     document.getElementById('kpiTotal').textContent = store.history.length;
     document.getElementById('kpiSets').textContent = compact(store.history.reduce((n, h) => n + (h.setsDone || 0), 0));
     document.getElementById('kpiWeek').textContent = thisWeek.length;
+    const nTotal = store.history.length;
+    const nSets = store.history.reduce((n, h) => n + (h.setsDone || 0), 0);
+    document.getElementById('kpiTotalLabel').textContent = nTotal > 1 ? 'séances réalisées' : 'séance réalisée';
+    document.getElementById('kpiSetsLabel').textContent = nSets > 1 ? 'séries validées' : 'série validée';
 
     // Dernière séance
     const last = store.history[0];
@@ -2776,12 +2819,14 @@
       const tag = key
         ? `${SESSION_META[key].tag}<em>${SESSION_META[key].short}</em>`
         : 'Shabbat<em>off</em>';
-      return `<button class="wk-day ${key ? '' : 'rest'} ${i === today ? 'active' : ''} ${done ? 'done' : ''}"
-                ${key ? `onclick="openModal('${key}')"` : ''} aria-label="${DAY_NAMES[i]}">
+      const tagName = key ? 'button' : 'div';
+      const label = `${DAY_NAMES[i]} ${d.getDate()} : ${key ? sessions[key].title : 'Shabbat, repos'}${done ? ', séance faite' : ''}`;
+      return `<${tagName} class="wk-day ${key ? '' : 'rest'} ${i === today ? 'active' : ''} ${done ? 'done' : ''}"
+                ${key ? `onclick="openModal('${key}')"` : ''} aria-label="${label}" ${i === today ? 'aria-current="date"' : ''}>
           <span class="wk-name">${name}</span>
           <span class="wk-num">${d.getDate()}</span>
           <span class="wk-tag">${tag}</span>
-        </button>`;
+        </${tagName}>`;
     }).join('');
 
     // Séance du jour
@@ -2800,9 +2845,9 @@
           <div class="hero-chart-label">Séries par exercice</div>
           <div class="hero-bottom">
             <div class="hero-stat"><b class="num">${times}</b><span>fois réalisée</span></div>
-            <div style="display:flex;gap:8px">
+            <div class="hero-actions">
               <button class="hero-btn ghost" onclick="openModal('${todayKey}')" aria-label="Voir le détail">${ICONS.list}</button>
-              <button class="hero-btn" onclick="startWorkout('${todayKey}')">${ICONS.play}Start</button>
+              <button class="hero-btn" onclick="startWorkout('${todayKey}')">${ICONS.play}Démarrer</button>
             </div>
           </div>
         </div>`;
@@ -2826,7 +2871,8 @@
       const meta = SESSION_META[key];
       const isToday = meta.dow === today;
       const fig = bodyPair(s.muscles);
-      return `<div class="w-card ${isToday ? 'today' : ''}" onclick="openModal('${key}')">
+      return `<div class="w-card ${isToday ? 'today' : ''}" role="button" tabindex="0" aria-label="${s.title}, ${dayLabel(key)}"
+          onclick="openModal('${key}')" onkeydown="if (event.target === this && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openModal('${key}'); }">
           <div class="w-fig">${meta.blocks ? fig.back : (key === 'b' ? fig.back : fig.front)}</div>
           <div class="w-main">
             <div class="w-day caps">${dayLabel(key)}</div>
@@ -2852,7 +2898,9 @@
     const chevron = document.getElementById('phasesChevron');
     const isOpen = content.classList.contains('open');
     content.classList.toggle('open', !isOpen);
+    content.inert = isOpen;
     chevron.classList.toggle('open', !isOpen);
+    document.querySelector('.phases-toggle').setAttribute('aria-expanded', !isOpen);
   }
 
   /* ══════════════════════════════════════════════════════
@@ -3010,6 +3058,11 @@
     return [];
   }
 
+  // "6 × 400 m", "5 km" : effort mesuré au temps, où plus court = mieux.
+  function isDistance(sets) {
+    return /\d\s*k?m\b/i.test(sets || '');
+  }
+
   function startWorkout(key) {
     const s = sessions[key];
     if (!s) return;
@@ -3031,6 +3084,7 @@
           note: ex.note,
           type: meta.type,
           rest: meta.rest,
+          dist: isDistance(ex.sets),
           prev: previousValues(key, ex.name),
           entries: Array.from({ length: meta.count }, () => ({ done: false, value: '' })),
         };
@@ -3085,7 +3139,7 @@
     const rows = ex.entries.map((entry, i) => `
       <div class="set-row ${entry.done ? 'done' : ''}" id="setRow${i}">
         <span class="set-num">${ex.entries.length > 1 ? 'Série ' + (i + 1) : 'Série'}</span>
-        <input class="set-input" type="number" inputmode="decimal" enterkeyhint="done"
+        <input class="set-input" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off"
                placeholder="${hintFor(ex, i)}" aria-label="${unit}, série ${i + 1}"
                value="${entry.value}" oninput="setValue(${i}, this.value)"
                onkeydown="if (event.key === 'Enter') { event.preventDefault(); this.blur(); if (!session.exercises[session.idx].entries[${i}].done) toggleSet(${i}); }">
@@ -3098,7 +3152,7 @@
       : '';
 
     const holdBtn = ex.type === 'hold'
-      ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">${ICONS.timer}Chrono de hold</button>`
+      ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">${ICONS.timer}${ex.dist ? 'Chrono de la fraction' : 'Chrono de hold'}</button>`
       : '';
 
     const nextEx = session.exercises[session.idx + 1];
@@ -3272,8 +3326,12 @@
     document.getElementById('timerLabel').textContent = label;
     document.getElementById('timerSub').textContent = sub;
     document.getElementById('timerAddBtn').hidden = !canAdd;
+    // Repos : on peut le passer ; hold/chrono : on l'arrête pour noter le temps.
+    const main = document.getElementById('timerMainBtn');
+    main.textContent = canAdd ? 'Passer' : 'Arrêter';
     document.getElementById('timerPanel').classList.add('open');
     syncInert();
+    main.focus({ preventScroll: true });
     lastShown = -1;
     clearInterval(timerId);
     // 4 ticks/s : l'affichage change pile à la seconde sans dériver.
@@ -3293,7 +3351,9 @@
     unlockAudio();
     timerMode = 'hold';
     holdStart = Date.now();
-    openTimerPanel('Hold', 'Arrête dès que la forme casse', false);
+    const dist = session && session.exercises[session.idx].dist;
+    openTimerPanel(dist ? 'Chrono' : 'Hold',
+      dist ? 'Arrête à la fin de la fraction — le temps est reporté sur la série' : 'Arrête dès que la forme casse', false);
   }
 
   function restRemaining() {
@@ -3448,7 +3508,10 @@
     document.getElementById('statWeek').textContent = thisWeek.length;
     document.getElementById('statTotal').textContent = H.length;
     document.getElementById('statStreak').textContent = computeStreak();
-    document.getElementById('statSets').textContent = compact(H.reduce((n, h) => n + (h.setsDone || 0), 0));
+    const nSets = H.reduce((n, h) => n + (h.setsDone || 0), 0);
+    document.getElementById('statSets').textContent = compact(nSets);
+    document.getElementById('statSetsLabel').textContent = nSets > 1 ? 'séries validées' : 'série validée';
+    document.getElementById('statTotalLabel').textContent = H.length > 1 ? 'séances au total' : 'séance au total';
     document.getElementById('statAvg').textContent = H.length
       ? Math.round(H.reduce((n, h) => n + (h.durationMin || 0), 0) / H.length)
       : 0;
@@ -3505,14 +3568,22 @@
   }
 
   // Meilleure valeur enregistrée par exercice (reps, secondes tenues…).
+  // Retrouve la prescription d'un exercice par son nom (pour savoir si c'est une distance).
+  const EX_SETS = {};
+  Object.values(sessions).forEach(s => s.exercises.forEach(ex => { EX_SETS[ex.name] = ex.sets; }));
+
   function renderRecords() {
     const best = {};
     store.history.forEach(h => (h.exercises || []).forEach(e => {
-      const v = Math.max(...(e.values || []).map(x => parseFloat(String(x).replace(',', '.'))).filter(Number.isFinite));
-      if (!Number.isFinite(v) || v <= 0) return;
-      // Pour un temps de course (min), le meilleur est le plus court.
-      const better = !best[e.name] || (e.type === 'time' ? v < best[e.name].v : v > best[e.name].v);
-      if (better) best[e.name] = { v, type: e.type, date: h.date };
+      const lower = isDistance(EX_SETS[e.name]);
+      // Durées d'échauffement / mobilité / skill : pas des performances.
+      if (e.type === 'time' && !lower) return;
+      const vals = (e.values || []).map(x => parseFloat(String(x).replace(',', '.'))).filter(x => Number.isFinite(x) && x > 0);
+      if (!vals.length) return;
+      // Sur une distance, le meilleur temps est le plus court.
+      const v = lower ? Math.min(...vals) : Math.max(...vals);
+      const cur = best[e.name];
+      if (!cur || (lower ? v < cur.v : v > cur.v)) best[e.name] = { v, type: e.type, date: h.date };
     }));
     const list = Object.entries(best)
       .sort((a, b) => new Date(b[1].date) - new Date(a[1].date))

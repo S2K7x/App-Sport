@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f3f4f9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d24" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-title" content="PLANCHE OS">
   <title>PLANCHE OS</title>
   <link rel="manifest" href="manifest.json">
@@ -16,58 +16,86 @@
   <style>
     /* ════════════════════════════════════════════════════════
        PLANCHE OS — système de design
-       Inspiration iOS : typographie système, couleurs système,
-       séparateurs fins, surfaces translucides, angles généreux.
+       Surfaces claires, cartes « hero » bleu nuit, accent bleu roi,
+       grands chiffres fins et petits libellés en capitales espacées.
        Aucune police distante : l'app garde son rendu hors ligne.
        ════════════════════════════════════════════════════════ */
     :root {
-      color-scheme: light dark;
+      color-scheme: light;
 
-      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue',
               'Segoe UI', Roboto, system-ui, sans-serif;
 
-      /* Rayons — progression douce, jamais d'angle vif */
-      --r-xl: 22px;
+      --r-xl: 24px;
       --r-lg: 18px;
-      --r-md: 13px;
-      --r-sm: 9px;
+      --r-md: 14px;
+      --r-sm: 10px;
 
-      --tab-h: 56px;
+      --tab-h: 62px;
       --gutter: 20px;
 
-      /* Palette sombre (défaut) — couleurs système iOS */
-      --bg: #000000;
-      --surface: #1c1c1e;
-      --surface-2: #2c2c2e;
-      --fill: rgba(120, 120, 128, 0.20);
-      --separator: rgba(84, 84, 88, 0.5);
-      --label: #ffffff;
-      --label-2: rgba(235, 235, 245, 0.62);
-      --label-3: rgba(235, 235, 245, 0.32);
-      --accent: #ff453a;
-      --accent-soft: rgba(255, 69, 58, 0.16);
-      --accent-line: rgba(255, 69, 58, 0.4);
-      --tabbar-bg: rgba(22, 22, 24, 0.82);
-      --shadow: none;
-      --shadow-lift: 0 8px 30px rgba(0, 0, 0, 0.55);
+      /* Palette claire (défaut) */
+      --bg: #f3f4f9;
+      --surface: #ffffff;
+      --surface-2: #f6f7fc;
+      --fill: #eef0f8;
+      --separator: #e5e7f1;
+      --label: #141a3c;
+      --label-2: #5d6487;
+      --label-3: #a0a5c0;
+
+      --accent: #3f51e8;          /* bleu roi : actions, sélection */
+      --accent-2: #6272f5;        /* bleu clair : barres secondaires */
+      --accent-soft: rgba(63, 81, 232, 0.09);
+      --accent-line: rgba(63, 81, 232, 0.35);
+
+      --navy: #1c2474;            /* cartes hero, en-têtes */
+      --navy-2: #28339a;
+      --on-navy: #ffffff;
+      --on-navy-2: rgba(255, 255, 255, 0.62);
+      --on-navy-3: rgba(255, 255, 255, 0.32);
+
+      /* Silhouette musculaire */
+      --body-fill: #ffffff;
+      --body-line: #2a3170;
+      --muscle-1: #3f51e8;
+      --muscle-2: #9aa5fb;
+
+      --tabbar-bg: rgba(255, 255, 255, 0.9);
+      --shadow: 0 1px 2px rgba(28, 36, 116, 0.04), 0 8px 24px rgba(28, 36, 116, 0.06);
+      --shadow-hero: 0 18px 40px rgba(28, 36, 116, 0.28);
+      --shadow-lift: 0 18px 50px rgba(20, 26, 60, 0.22);
     }
 
-    @media (prefers-color-scheme: light) {
+    @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #f2f2f7;
-        --surface: #ffffff;
-        --surface-2: #f2f2f7;
-        --fill: rgba(118, 118, 128, 0.12);
-        --separator: rgba(60, 60, 67, 0.16);
-        --label: #1d1d1f;
-        --label-2: rgba(60, 60, 67, 0.62);
-        --label-3: rgba(60, 60, 67, 0.34);
-        --accent: #ff3b30;
-        --accent-soft: rgba(255, 59, 48, 0.10);
-        --accent-line: rgba(255, 59, 48, 0.35);
-        --tabbar-bg: rgba(249, 249, 251, 0.82);
-        --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-        --shadow-lift: 0 10px 40px rgba(0, 0, 0, 0.14);
+        color-scheme: dark;
+        --bg: #0a0d24;
+        --surface: #141a3d;
+        --surface-2: #1a2149;
+        --fill: rgba(140, 150, 230, 0.12);
+        --separator: rgba(140, 150, 230, 0.16);
+        --label: #f3f4ff;
+        --label-2: rgba(222, 226, 255, 0.66);
+        --label-3: rgba(222, 226, 255, 0.36);
+
+        --accent: #6a7bff;
+        --accent-2: #8e9bff;
+        --accent-soft: rgba(106, 123, 255, 0.16);
+        --accent-line: rgba(106, 123, 255, 0.45);
+
+        --navy: #26309a;
+        --navy-2: #3440c0;
+
+        --body-fill: #1c2352;
+        --body-line: #8f9ae6;
+        --muscle-1: #6a7bff;
+        --muscle-2: #3d4aa8;
+
+        --tabbar-bg: rgba(16, 20, 48, 0.9);
+        --shadow: none;
+        --shadow-hero: 0 18px 40px rgba(0, 0, 0, 0.45);
+        --shadow-lift: 0 18px 50px rgba(0, 0, 0, 0.6);
       }
     }
 
@@ -91,9 +119,31 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
     }
 
     button, input, textarea, select { font-family: inherit; }
+    button { touch-action: manipulation; }
+    :focus { outline: none; }
+    :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+    [hidden] { display: none !important; }
+    button { -webkit-appearance: none; appearance: none; }
+
+    /* Chiffres : fins et larges, comme sur un cadran */
+    .num {
+      font-weight: 300;
+      letter-spacing: -0.035em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Petit libellé en capitales espacées */
+    .caps {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
 
     /* ── PAGES ── */
     #app { height: 100%; display: flex; flex-direction: column; }
@@ -105,44 +155,87 @@
       inset: 0;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: max(20px, env(safe-area-inset-top)) var(--gutter)
-               calc(var(--tab-h) + env(safe-area-inset-bottom) + 32px);
+      padding: calc(env(safe-area-inset-top) + 22px) calc(var(--gutter) + env(safe-area-inset-right))
+               calc(var(--tab-h) + env(safe-area-inset-bottom) + 34px) calc(var(--gutter) + env(safe-area-inset-left));
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
-      transform: translateY(6px);
-      transition: opacity 0.24s ease, transform 0.24s ease;
+      transform: translateY(8px);
+      transition: opacity 0.22s ease, transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.26s;
       -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
     }
-    .page.active { opacity: 1; transform: none; pointer-events: auto; }
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
     .page::-webkit-scrollbar { display: none; }
     .page { scrollbar-width: none; }
 
-    /* ── EN-TÊTE DE PAGE (large title iOS) ── */
-    .page-header { margin: 8px 0 26px; }
-
-    .page-eyebrow {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--label-3);
-      letter-spacing: 0;
-      margin-bottom: 2px;
+    /* ── EN-TÊTE DE PAGE ── */
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 10px 0 24px;
     }
-
+    .page-eyebrow { color: var(--label-3); margin-bottom: 4px; }
     .page-title {
       font-size: 34px;
       font-weight: 700;
-      letter-spacing: -0.028em;
-      line-height: 1.1;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
       color: var(--label);
     }
 
-    .section-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--label-2);
-      letter-spacing: -0.005em;
-      margin: 30px 0 10px;
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 30px 0 12px;
     }
+    .section-title { color: var(--label-3); }
+    .section-link {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0;
+    }
+    .section-link:active { opacity: 0.5; }
+
+    /* Pastille date « 30 SEPT » */
+    .date-badge {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      border-radius: var(--r-sm);
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      box-shadow: 0 6px 16px rgba(63, 81, 232, 0.35);
+    }
+    .date-badge b { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
+    .date-badge span {
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      margin-top: 3px;
+      opacity: 0.85;
+    }
+    .date-badge.sm { width: 40px; height: 40px; box-shadow: none; }
+    .date-badge.sm b { font-size: 16px; }
 
     /* ── BARRE D'ONGLETS ── */
     .tabbar {
@@ -151,12 +244,12 @@
       right: 0;
       bottom: 0;
       height: calc(var(--tab-h) + env(safe-area-inset-bottom));
-      padding-bottom: env(safe-area-inset-bottom);
+      padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
       display: flex;
       background: var(--tabbar-bg);
       -webkit-backdrop-filter: saturate(180%) blur(22px);
       backdrop-filter: saturate(180%) blur(22px);
-      border-top: 0.5px solid var(--separator);
+      border-top: 1px solid var(--separator);
       z-index: 900;
     }
 
@@ -168,91 +261,358 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
+      gap: 4px;
       color: var(--label-3);
       cursor: pointer;
       transition: color 0.18s ease;
       padding: 0;
+      position: relative;
+    }
+    .tab-btn::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      width: 26px;
+      height: 3px;
+      border-radius: 0 0 3px 3px;
+      background: var(--accent);
+      transform: translateX(-50%) scaleX(0);
+      transition: transform 0.22s ease;
     }
     .tab-btn.active { color: var(--accent); }
-    .tab-icon { width: 24px; height: 24px; display: block; }
-    .tab-label { font-size: 10px; font-weight: 500; letter-spacing: 0; }
+    .tab-btn:active .tab-icon { transform: scale(0.88); }
+    .tab-icon { transition: transform 0.16s ease; }
+    .tab-btn.active::before { transform: translateX(-50%) scaleX(1); }
+    .tab-icon { width: 23px; height: 23px; display: block; }
+    .tab-label { font-size: 10.5px; font-weight: 600; letter-spacing: 0.01em; }
 
-    /* ── BANDEAU PLANNING ── */
-    .schedule-strip {
+    /* ── REPRISE DE SÉANCE ── */
+    .resume-card {
       display: flex;
-      gap: 5px;
-      padding-bottom: 4px;
-      margin-bottom: 26px;
-      scrollbar-width: none;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 14px 14px 16px;
+      margin-bottom: 12px;
+      border-radius: var(--r-lg);
+      background: linear-gradient(150deg, var(--navy-2), var(--navy));
+      color: var(--on-navy);
+      box-shadow: var(--shadow-hero);
+      animation: rise 0.36s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     }
-    .schedule-strip::-webkit-scrollbar { display: none; }
+    .resume-main { flex: 1; min-width: 0; }
+    .resume-eyebrow { color: #b7c0ff; font-size: 10px; }
+    .resume-title { font-size: 16px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .resume-sub { font-size: 12px; color: var(--on-navy-2); }
+    .resume-x {
+      width: 36px;
+      height: 44px;
+      border: none;
+      background: none;
+      color: var(--on-navy-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .resume-x svg { width: 14px; height: 14px; }
+    .resume-card { flex-wrap: wrap; }
+    .resume-card .hero-btn { flex: 1 1 100%; justify-content: center; margin-top: 4px; }
 
-    .schedule-day {
-      /* Les 7 jours partagent la largeur à parts égales : la semaine tient
-         entière à l'écran, sans scroll horizontal ni jour tronqué. */
+    /* ── TABLEAU DE BORD : CHIFFRES CLÉS ── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow);
+      padding: 16px 4px;
+    }
+    .kpi {
+      padding: 0 12px;
+      border-left: 1px solid var(--separator);
+      min-width: 0;
+    }
+    .kpi:first-child { border-left: none; }
+    .kpi-value {
+      font-size: 30px;
+      line-height: 1;
+      color: var(--label);
+    }
+    .kpi-value small {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--label-3);
+      margin-left: 2px;
+    }
+    .kpi-label {
+      font-size: 12px;
+      line-height: 1.3;
+      color: var(--label-2);
+      margin-top: 7px;
+    }
+
+    /* Ligne « dernière séance » */
+    .last-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      text-align: left;
+      color: inherit;
+    }
+    .last-row:active { transform: scale(0.99); }
+    .last-main { flex: 1; min-width: 0; }
+    .last-eyebrow { font-size: 12px; color: var(--label-3); }
+    .last-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .last-sub { font-size: 12.5px; color: var(--label-2); }
+    .chev { width: 16px; height: 16px; color: var(--label-3); flex-shrink: 0; }
+
+    /* ── SEMAINE (calendrier) ── */
+    .week-strip {
+      display: flex;
+      gap: 4px;
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow);
+      padding: 12px 6px;
+    }
+    .wk-day.rest { cursor: default; }
+    .wk-day {
+      font: inherit;
+      line-height: 1.45;
       flex: 1 1 0;
       min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      padding: 0;
     }
-    .schedule-day-name {
-      font-size: 11px;
+    .wk-name { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; color: var(--label-3); }
+    .wk-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
       font-weight: 500;
-      color: var(--label-3);
+      font-variant-numeric: tabular-nums;
+      color: var(--label);
+      position: relative;
     }
-    .schedule-day-pill {
-      width: 100%;
-      padding: 9px 2px;
-      border-radius: var(--r-sm);
-      background: var(--surface);
-      border: 0.5px solid var(--separator);
-      font-size: 9px;
+    .wk-day.done .wk-num::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .wk-day.active .wk-num {
+      background: var(--accent);
+      color: #fff;
       font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
+      box-shadow: 0 6px 14px rgba(63, 81, 232, 0.35);
+    }
+    .wk-day.active.done .wk-num::after { background: #fff; bottom: 3px; width: 4px; height: 4px; }
+    .wk-tag {
+      font-size: 9.5px;
+      font-weight: 600;
+      line-height: 1.2;
       text-align: center;
       color: var(--label-2);
+    }
+    .wk-tag em { display: block; font-style: normal; font-weight: 500; color: var(--label-3); }
+    .wk-day.rest .wk-tag { color: var(--label-3); }
+    .wk-day.active .wk-tag { color: var(--accent); }
+    @media (max-width: 374px) {
+      .wk-tag { font-size: 0; }
+      .wk-tag em { font-size: 11px; font-weight: 700; color: inherit; }
+      .wk-num { width: 30px; height: 30px; font-size: 14px; }
+    }
+
+    /* ── CARTE HERO (séance du jour) ── */
+    .hero {
+      position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow);
+      border-radius: var(--r-xl);
+      background: linear-gradient(150deg, var(--navy-2) 0%, var(--navy) 62%);
+      color: var(--on-navy);
+      padding: 22px 20px 20px;
+      box-shadow: var(--shadow-hero);
     }
-    .schedule-day.rest .schedule-day-pill {
-      background: transparent;
-      color: var(--label-3);
-      border-color: var(--separator);
-      border-style: dashed;
+    .hero::after {
+      /* reflet diagonal discret, comme sur la maquette */
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 80%;
+      height: 120%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0));
+      transform: rotate(28deg);
+      pointer-events: none;
     }
-    /* `.active` passe après `.rest` : le jour courant reste toujours mis en
-       avant, y compris quand c'est un jour de repos. */
-    .schedule-day.active .schedule-day-pill {
+    .hero > * { position: relative; z-index: 1; }
+    .hero-eyebrow { color: var(--on-navy-2); margin-bottom: 6px; }
+    .hero-title {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+    }
+    .hero-sub { font-size: 13px; color: var(--on-navy-2); margin-top: 3px; }
+    .hero-chart { margin: 18px -4px 6px; }
+    .hero-chart svg { display: block; width: 100%; height: auto; }
+    .hero-chart-label { font-size: 11px; color: var(--on-navy-3); margin-top: 2px; }
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .hero-bottom { flex-wrap: wrap; }
+    .hero-stat span { white-space: nowrap; }
+    .hero-actions { display: flex; gap: 8px; margin-left: auto; }
+    @media (max-width: 374px) {
+      .hero-actions { flex: 1 1 100%; }
+      .hero-actions .hero-btn:last-child { flex: 1; justify-content: center; }
+      .hero-btn { padding: 13px 16px; }
+    }
+    .hero-stat b { display: block; font-size: 40px; line-height: 1; }
+    .hero-stat span { font-size: 12px; color: var(--on-navy-2); }
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border: none;
+      border-radius: var(--r-sm);
       background: var(--accent);
-      border-color: transparent;
-      border-style: solid;
       color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+      transition: transform 0.16s ease, opacity 0.16s ease;
     }
+    .hero-btn svg { width: 14px; height: 14px; }
+    .hero-btn:active { transform: scale(0.97); opacity: 0.85; }
+    .hero-btn.ghost { background: rgba(255, 255, 255, 0.14); box-shadow: none; }
+    .hero-text { font-size: 14px; line-height: 1.55; color: var(--on-navy-2); margin-top: 12px; }
+
+    /* ── LISTE DES SÉANCES ── */
+    .w-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .w-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 12px 12px 12px 8px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.18s ease;
+    }
+    .w-card:active { transform: scale(0.988); }
+    .w-card.today { border-color: var(--accent-line); }
+
+    .w-fig {
+      width: 58px;
+      flex-shrink: 0;
+      background: var(--surface-2);
+      border-radius: var(--r-md);
+      padding: 6px 3px;
+    }
+    .w-fig svg { display: block; width: 100%; height: auto; }
+
+    .w-main { flex: 1; min-width: 0; }
+    .w-day { color: var(--accent); font-size: 10px; margin-bottom: 3px; }
+    .w-title {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.018em;
+      line-height: 1.2;
+      margin-bottom: 7px;
+    }
+    .w-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
+    .w-chip {
+      font-size: 10.5px;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 5px;
+      border: 1px solid var(--separator);
+      color: var(--label-2);
+    }
+    .w-meta { font-size: 12px; color: var(--label-3); }
+
+    .w-play {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .w-play svg { width: 15px; height: 15px; margin-left: 2px; }
+    .w-card.today .w-play { background: var(--accent); color: #fff; }
+    .w-play:active { transform: scale(0.92); }
 
     /* ── PHASES ── */
-    .phases-section { margin-bottom: 26px; }
-
     .phases-toggle {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 16px;
+      padding: 16px;
       background: var(--surface);
-      border: 0.5px solid var(--separator);
+      border: none;
       border-radius: var(--r-lg);
       color: var(--label);
       cursor: pointer;
       box-shadow: var(--shadow);
     }
-    .phases-toggle-label {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+    .phases-toggle-label { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+    .phases-toggle-label small {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--label-3);
+      margin-top: 1px;
     }
     .phases-chevron {
       color: var(--label-3);
@@ -264,49 +624,39 @@
     .phases-content {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       transition: max-height 0.36s ease, opacity 0.28s ease, margin-top 0.36s ease;
     }
-    .phases-content.open { max-height: 900px; opacity: 1; margin-top: 8px; }
+    .phases-content.open { max-height: 1000px; opacity: 1; margin-top: 10px; }
 
     .phase-card {
       background: var(--surface);
-      border: 0.5px solid var(--separator);
       border-radius: var(--r-lg);
       padding: 16px;
       box-shadow: var(--shadow);
     }
-    .phase-card.phase-current { border-color: var(--accent-line); }
-
-    .phase-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
+    .phase-card.phase-current {
+      background: linear-gradient(150deg, var(--navy-2), var(--navy));
+      color: var(--on-navy);
     }
+    .phase-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
     .phase-badge {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 100px;
-      background: var(--accent-soft);
-      color: var(--accent);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
     }
-    .phase-badge.phase-badge-dim {
-      background: var(--fill);
-      color: var(--label-2);
-    }
+    .phase-badge.phase-badge-dim { background: var(--fill); color: var(--label-2); }
     .phase-period { font-size: 12px; color: var(--label-3); }
-
-    .phase-title {
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      margin-bottom: 10px;
-    }
+    .phase-current .phase-period { color: var(--on-navy-2); }
+    .phase-title { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 10px; }
     .phase-targets { display: flex; flex-direction: column; gap: 6px; }
     .phase-target {
       font-size: 14px;
@@ -315,114 +665,55 @@
       position: relative;
       line-height: 1.4;
     }
+    .phase-current .phase-target { color: var(--on-navy-2); }
     .phase-target::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 8px;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
+      top: 7px;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
       background: var(--accent);
-      opacity: 0.7;
     }
-
-    /* ── CARTES DE SÉANCE ── */
-    .seance-grid { display: flex; flex-direction: column; gap: 12px; }
-
-    .seance-card {
-      background: var(--surface);
-      border: 0.5px solid var(--separator);
-      border-radius: var(--r-xl);
-      padding: 18px;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: transform 0.18s ease;
-    }
-    .seance-card:active { transform: scale(0.988); }
-
-    .seance-day {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 3px;
-      letter-spacing: -0.005em;
-    }
-    .seance-name {
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: -0.022em;
-      line-height: 1.2;
-      margin-bottom: 13px;
-    }
-
-    .seance-muscles, .modal-muscles-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-    .muscle-tag, .modal-muscle-tag {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 100px;
-      background: var(--fill);
-      color: var(--label-2);
-    }
-
-    .seance-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-top: 13px;
-      border-top: 0.5px solid var(--separator);
-    }
-    .seance-count { font-size: 13px; color: var(--label-3); }
-
-    .btn-details {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-size: 15px;
-      font-weight: 500;
-      cursor: pointer;
-      padding: 4px 0;
-      letter-spacing: -0.01em;
-    }
-    .btn-details:active { opacity: 0.5; }
+    .phase-current .phase-target::before { background: var(--accent-2); }
 
     /* ── BOUTONS ── */
     .btn-start {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 8px;
       width: 100%;
-      padding: 14px;
+      padding: 15px;
       border: none;
       border-radius: var(--r-md);
       background: var(--accent);
       color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       cursor: pointer;
+      box-shadow: 0 10px 22px rgba(63, 81, 232, 0.28);
       transition: opacity 0.16s ease, transform 0.16s ease;
     }
-    .btn-start:active { opacity: 0.82; transform: scale(0.985); }
-    .btn-start svg { width: 17px; height: 17px; flex-shrink: 0; }
+    .btn-start:active { opacity: 0.85; transform: scale(0.985); }
+    .btn-start svg { width: 16px; height: 16px; flex-shrink: 0; }
     .btn-start.secondary {
       background: var(--fill);
       color: var(--label);
+      box-shadow: none;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-weight: 600;
     }
 
-    /* ── MODALE ── */
+    /* ── MODALE (fiche séance) ── */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(12, 16, 48, 0.45);
       -webkit-backdrop-filter: blur(3px);
       backdrop-filter: blur(3px);
       opacity: 0;
@@ -437,9 +728,10 @@
       left: 0;
       right: 0;
       bottom: 0;
-      max-height: 90vh;
+      max-height: 92vh;
+      max-height: 92dvh;
       background: var(--surface);
-      border-radius: var(--r-xl) var(--r-xl) 0 0;
+      border-radius: 28px 28px 0 0;
       z-index: 1001;
       transform: translateY(100%);
       visibility: hidden;
@@ -449,23 +741,28 @@
       box-shadow: var(--shadow-lift);
     }
     .modal.open { transform: translateY(0); visibility: visible; }
+    .modal-handle, .modal-header { touch-action: none; }
+    @media (min-width: 640px) {
+      /* Tablette / desktop : fiche centrée plutôt que pleine largeur */
+      .modal { left: 50%; right: auto; width: 560px; margin-left: -280px; }
+    }
 
     .modal-handle {
-      width: 36px;
+      width: 38px;
       height: 5px;
       border-radius: 3px;
       background: var(--label-3);
-      opacity: 0.4;
+      opacity: 0.5;
       margin: 8px auto 0;
       flex-shrink: 0;
     }
 
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 30px;
-      height: 30px;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: none;
       background: var(--fill);
@@ -480,39 +777,79 @@
     .modal-close:active { opacity: 0.6; }
 
     .modal-header {
-      padding: 18px 20px 12px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 18px 64px 6px 20px;
       flex-shrink: 0;
     }
-    .modal-day {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 2px;
-    }
+    .modal-day { color: var(--label-3); font-size: 10.5px; margin-bottom: 2px; }
     .modal-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.025em;
-      line-height: 1.15;
-      padding-right: 40px;
+      line-height: 1.12;
     }
 
     .modal-body {
       overflow-y: auto;
+      overscroll-behavior: contain;
       padding: 4px 20px calc(28px + env(safe-area-inset-bottom));
       -webkit-overflow-scrolling: touch;
     }
     .modal-body::-webkit-scrollbar { display: none; }
 
-    .modal-section-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--label-3);
-      margin: 18px 0 8px;
-    }
-    .modal-section-title:first-child { margin-top: 6px; }
+    .modal-section-title { color: var(--label-3); margin: 22px 0 10px; }
 
-    /* Liste d'exercices — style liste groupée iOS */
+    /* Silhouettes face / dos */
+    .body-map {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin: 8px auto 0;
+      max-width: 300px;
+    }
+    .body-map figure { flex: 1; text-align: center; }
+    .body-map svg { display: block; width: 100%; height: auto; }
+    .body-map figcaption { font-size: 10px; letter-spacing: 0.1em; color: var(--label-3); margin-top: 4px; }
+
+    .fig .bd { fill: var(--body-fill); stroke: var(--body-line); stroke-width: 0.7; stroke-linejoin: round; }
+    .fig .m { fill: var(--body-fill); stroke: var(--body-line); stroke-width: 0.7; stroke-linejoin: round; }
+    .fig .m.on1 { fill: var(--muscle-1); }
+    .fig .m.on2 { fill: var(--muscle-2); }
+    .fig .ln { fill: none; stroke: var(--body-line); stroke-width: 0.5; opacity: 0.6; }
+    .w-fig .fig .bd, .w-fig .fig .m { stroke-width: 1.1; }
+    .w-fig .fig .ln { display: none; }
+
+    .muscle-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .muscle-chip {
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: 7px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .muscle-chip.sec { background: var(--accent-soft); color: var(--accent); }
+
+    .about-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .about {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 12px 10px;
+      background: var(--surface-2);
+      border-radius: var(--r-md);
+    }
+    .about svg { width: 17px; height: 17px; color: var(--accent); flex-shrink: 0; margin-top: 4px; }
+    .about b { display: block; font-size: 22px; line-height: 1.1; }
+    .about span { font-size: 11px; color: var(--label-3); line-height: 1.25; display: block; }
+
+    /* Liste d'exercices numérotée */
     .exercise-list {
       background: var(--surface-2);
       border-radius: var(--r-lg);
@@ -521,25 +858,30 @@
     .exercise-item {
       display: flex;
       align-items: flex-start;
-      gap: 11px;
+      gap: 12px;
       padding: 13px 14px;
-      border-bottom: 0.5px solid var(--separator);
+      border-bottom: 1px solid var(--separator);
     }
     .exercise-item:last-child { border-bottom: none; }
-    .exercise-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
+    .exercise-idx {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-      margin-top: 7px;
-      opacity: 0.75;
+      font-variant-numeric: tabular-nums;
     }
     .exercise-name {
       flex: 1;
       min-width: 0;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: -0.01em;
       line-height: 1.35;
     }
@@ -547,44 +889,36 @@
       display: block;
       font-size: 13px;
       font-weight: 400;
-      color: var(--label-3);
-      line-height: 1.4;
-      margin-top: 2px;
+      color: var(--label-2);
+      line-height: 1.45;
+      margin-top: 3px;
     }
-
     .exercise-sets {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 12.5px;
+      font-weight: 700;
       color: var(--accent);
       flex-shrink: 0;
       text-align: right;
-      padding-top: 1px;
+      max-width: 38%;
+      padding-top: 2px;
     }
 
     .modal-tip {
-      margin-top: 18px;
-      padding: 15px;
+      margin-top: 20px;
+      padding: 18px;
       border-radius: var(--r-lg);
-      background: var(--accent-soft);
+      background: linear-gradient(150deg, var(--navy-2), var(--navy));
+      color: var(--on-navy);
     }
-    .modal-tip-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 5px;
-    }
-    .modal-tip p {
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--label-2);
-    }
+    .modal-tip-label { color: var(--on-navy-2); margin-bottom: 7px; }
+    .modal-tip p { font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.86); }
 
     /* ── WORKOUT PLAYER ── */
     .player {
       position: fixed;
       inset: 0;
       z-index: 1200;
-      background: var(--bg);
+      background: var(--navy);
       display: flex;
       flex-direction: column;
       transform: translateY(100%);
@@ -596,8 +930,9 @@
     .player.open { transform: translateY(0); visibility: visible; }
 
     .player-top {
-      padding: max(16px, env(safe-area-inset-top)) var(--gutter) 13px;
-      border-bottom: 0.5px solid var(--separator);
+      padding: calc(env(safe-area-inset-top) + 14px) var(--gutter) 34px;
+      background: linear-gradient(150deg, var(--navy-2), var(--navy));
+      color: var(--on-navy);
       flex-shrink: 0;
     }
     .player-top-row {
@@ -605,25 +940,24 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 18px;
     }
+    .player-meta { color: var(--on-navy-2); }
     .player-title {
-      font-size: 18px;
+      font-size: 26px;
       font-weight: 600;
-      letter-spacing: -0.018em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      margin-bottom: 16px;
     }
-    .player-meta { font-size: 13px; color: var(--label-3); }
 
     .player-quit {
-      width: 30px;
-      height: 30px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       border: none;
-      background: var(--fill);
-      color: var(--label-2);
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -633,34 +967,51 @@
     .player-quit svg { width: 14px; height: 14px; }
 
     .player-bar-track {
-      height: 3px;
+      height: 4px;
       border-radius: 2px;
-      background: var(--fill);
+      background: rgba(255, 255, 255, 0.16);
       overflow: hidden;
     }
     .player-bar-fill {
       height: 100%;
-      background: var(--accent);
+      width: 100%;
+      background: #fff;
       border-radius: 2px;
-      transition: width 0.32s ease;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.36s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+    .player-body.enter > * { animation: rise 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .player-body.enter > *:nth-child(2) { animation-delay: 0.03s; }
+    .player-body.enter > *:nth-child(n+3) { animation-delay: 0.06s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+    .prev-hint {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--label-2);
+      margin: -2px 0 12px;
+    }
+    .prev-hint svg { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; }
+    .prev-hint b { color: var(--label); font-weight: 600; font-variant-numeric: tabular-nums; }
 
     .player-body {
       flex: 1;
       overflow-y: auto;
       padding: 26px var(--gutter);
+      margin-top: -18px;
+      background: var(--bg);
+      border-radius: 24px 24px 0 0;
       -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
     }
     .player-body::-webkit-scrollbar { display: none; }
 
-    .player-ex-index {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
+    .player-ex-index { color: var(--accent); margin-bottom: 6px; }
     .player-ex-name {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 700;
       letter-spacing: -0.028em;
       line-height: 1.12;
@@ -668,11 +1019,11 @@
     }
     .player-ex-target {
       display: inline-block;
-      padding: 5px 12px;
-      border-radius: 100px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 7px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13.5px;
       font-weight: 600;
       margin-bottom: 12px;
     }
@@ -680,34 +1031,35 @@
       font-size: 15px;
       line-height: 1.5;
       color: var(--label-2);
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
-    .player-sets-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--label-3);
-      margin-bottom: 9px;
-    }
+    .player-sets-label { color: var(--label-3); margin-bottom: 10px; }
 
     .set-row {
       display: flex;
       align-items: center;
-      gap: 11px;
-      padding: 11px 13px;
+      gap: 12px;
+      padding: 10px 12px 10px 16px;
       border-radius: var(--r-md);
       background: var(--surface);
-      border: 0.5px solid var(--separator);
+      box-shadow: var(--shadow);
+      border: 1.5px solid transparent;
       margin-bottom: 8px;
       transition: border-color 0.2s ease, background 0.2s ease;
     }
-    .set-row.done { border-color: var(--accent-line); background: var(--accent-soft); }
+    .set-row.done { border-color: var(--accent-line); }
+    .set-check:active { transform: scale(0.9); }
+    .set-row.done .set-check svg { animation: pop 0.28s cubic-bezier(0.3, 1.6, 0.5, 1); }
+    @keyframes pop { from { transform: scale(0.4); } to { transform: scale(1); } }
 
     .set-num {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--label-2);
-      width: 58px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--label-3);
+      width: 54px;
       flex-shrink: 0;
       white-space: nowrap;
     }
@@ -716,32 +1068,29 @@
     .set-input {
       flex: 1;
       min-width: 0;
-      background: var(--fill);
-      border: 1px solid transparent;
+      background: var(--surface-2);
+      border: 1.5px solid transparent;
       border-radius: var(--r-sm);
       color: var(--label);
-      padding: 9px 10px;
-      font-size: 16px;
-      font-weight: 600;
+      padding: 7px 10px;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
       text-align: center;
       font-variant-numeric: tabular-nums;
       -webkit-appearance: none;
       appearance: none;
     }
+    .set-input::placeholder { color: var(--label-3); }
     .set-input::-webkit-outer-spin-button,
     .set-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     .set-input:focus { outline: none; border-color: var(--accent); }
 
-    .set-unit {
-      font-size: 13px;
-      color: var(--label-3);
-      width: 34px;
-      flex-shrink: 0;
-    }
+    .set-unit { font-size: 12px; font-weight: 500; color: var(--label-3); width: 30px; flex-shrink: 0; }
 
     .set-check {
-      width: 34px;
-      height: 34px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       border: 1.5px solid var(--separator);
       background: transparent;
@@ -760,12 +1109,25 @@
       color: #fff;
     }
 
+    .up-next {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: var(--r-md);
+      background: var(--accent-soft);
+    }
+    .up-next-label { color: var(--accent); font-size: 10px; }
+    .up-next-name { font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; }
+    .up-next-sets { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--label-2); text-align: right; }
+
     .player-actions {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      padding: 13px var(--gutter) calc(13px + env(safe-area-inset-bottom));
-      border-top: 0.5px solid var(--separator);
+      padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--separator);
       background: var(--surface);
       flex-shrink: 0;
     }
@@ -778,102 +1140,177 @@
       position: fixed;
       inset: 0;
       z-index: 1300;
-      background: var(--bg);
-      display: none;
+      background: radial-gradient(120% 80% at 50% 20%, var(--navy-2) 0%, var(--navy) 55%, #11175a 100%);
+      color: var(--on-navy);
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 6px;
       padding: 28px;
       text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.04);
+      transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.28s;
     }
-    .timer-panel.open { display: flex; }
+    .timer-panel.open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
 
-    .timer-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--label-2);
-      letter-spacing: -0.01em;
+    .timer-label { color: var(--on-navy-2); margin-bottom: 18px; }
+    .timer-ring {
+      position: relative;
+      width: min(72vw, 280px);
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
     }
+    .timer-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+    .timer-ring .trk { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 5; }
+    .timer-ring .prg {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 5;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s linear, stroke 0.2s ease;
+    }
+    .timer-ring.warn .prg { stroke: #8e9bff; }
     .timer-value {
-      font-size: 86px;
-      font-weight: 300;
+      font-size: 76px;
+      font-weight: 200;
       letter-spacing: -0.04em;
-      line-height: 1.05;
+      line-height: 1;
       font-variant-numeric: tabular-nums;
-      color: var(--label);
+      color: #fff;
     }
-    .timer-value.warn { color: var(--accent); }
+    .timer-value.warn { color: #b7c0ff; }
     .timer-sub {
       font-size: 14px;
-      color: var(--label-3);
-      margin-bottom: 24px;
+      color: var(--on-navy-2);
+      margin-bottom: 26px;
       max-width: 260px;
       line-height: 1.45;
     }
     .timer-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
     .timer-btn {
-      padding: 12px 22px;
-      border-radius: 100px;
+      padding: 14px 26px;
+      border-radius: var(--r-sm);
       border: none;
-      background: var(--fill);
-      color: var(--label);
-      font-size: 15px;
-      font-weight: 600;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       cursor: pointer;
-      letter-spacing: -0.01em;
     }
-    .timer-btn:active { opacity: 0.7; }
-    .timer-btn.primary { background: var(--accent); color: #fff; }
+    .timer-btn:active { opacity: 0.7; transform: scale(0.97); }
+    .timer-btn { min-height: 48px; }
+    #timerAddBtn { text-transform: none; letter-spacing: 0.02em; }
+    .timer-btn.primary { background: var(--accent); box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25); }
 
     /* ── PAGE PROGRÈS ── */
+    .chart-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+    .chart-big { font-size: 44px; line-height: 1; }
+    .chart-avg { text-align: right; padding-bottom: 4px; }
+    .chart-big small { font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--on-navy-2); margin-left: 4px; }
+
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 11px;
-      margin-bottom: 8px;
+      gap: 10px;
+      margin-top: 12px;
     }
     .stat-card {
       background: var(--surface);
-      border: 0.5px solid var(--separator);
+      border-radius: var(--r-lg);
+      padding: 15px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+    .stat-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .stat-icon svg { width: 16px; height: 16px; }
+    .stat-value { font-size: 28px; line-height: 1.05; }
+    .stat-unit { font-size: 13px; font-weight: 500; color: var(--label-3); margin-left: 3px; letter-spacing: 0; }
+    .stat-label { font-size: 12px; color: var(--label-2); line-height: 1.3; margin-top: 3px; }
+
+    .week-card {
+      background: var(--surface);
       border-radius: var(--r-lg);
       padding: 16px;
       box-shadow: var(--shadow);
+      margin-top: 10px;
     }
-    .stat-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--label-2);
-      margin-bottom: 6px;
-    }
-    .stat-value {
-      font-size: 32px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-      line-height: 1.1;
-    }
-    .stat-unit {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--label-3);
-      margin-left: 4px;
-      letter-spacing: 0;
-    }
-
+    .week-card-head { display: flex; align-items: baseline; justify-content: space-between; }
+    .week-card-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+    .week-card-count { font-size: 13px; color: var(--label-2); }
+    .week-card-count b { font-size: 20px; font-weight: 300; color: var(--label); letter-spacing: -0.02em; }
     .week-dots { display: flex; gap: 5px; margin-top: 12px; }
-    .week-dot {
-      flex: 1;
-      height: 5px;
+    .week-dot { flex: 1; text-align: center; }
+    .week-dot i {
+      display: block;
+      height: 6px;
       border-radius: 3px;
       background: var(--fill);
+      margin-bottom: 5px;
     }
-    .week-dot.on { background: var(--accent); }
+    .week-dot.on i { background: var(--accent); }
+    .week-dot span { font-size: 10px; font-weight: 600; color: var(--label-3); letter-spacing: 0.04em; }
+    .week-dot.today span { color: var(--accent); }
+
+    /* Records (« key lifts ») */
+    .records {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      margin: 0 calc(-1 * var(--gutter));
+      padding: 0 var(--gutter) 6px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .records::-webkit-scrollbar { display: none; }
+    .record {
+      flex: 0 0 62%;
+      max-width: 240px;
+      scroll-snap-align: start;
+      border-radius: var(--r-lg);
+      padding: 16px;
+      background: linear-gradient(150deg, var(--navy-2), var(--navy));
+      color: var(--on-navy);
+      box-shadow: var(--shadow);
+    }
+    .record:nth-child(even) { background: linear-gradient(150deg, var(--accent-2), var(--accent)); }
+    .record-name {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--on-navy-2);
+      min-height: 34px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .record-val { font-size: 44px; line-height: 1; margin-top: 10px; }
+    .record-val small { font-size: 14px; font-weight: 500; letter-spacing: 0; margin-left: 4px; color: var(--on-navy-2); }
+    .record-date { font-size: 11.5px; color: var(--on-navy-3); margin-top: 6px; }
 
     /* Échelles de skill */
     .skill-block {
       background: var(--surface);
-      border: 0.5px solid var(--separator);
       border-radius: var(--r-lg);
       padding: 16px;
       margin-bottom: 10px;
@@ -886,33 +1323,27 @@
       gap: 10px;
       margin-bottom: 12px;
     }
-    .skill-name {
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -0.018em;
-    }
+    .skill-name { font-size: 17px; font-weight: 600; letter-spacing: -0.018em; }
     .skill-level {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--label-3);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
       font-variant-numeric: tabular-nums;
     }
-    .skill-track { display: flex; gap: 4px; margin-bottom: 12px; }
+    .skill-track { display: flex; gap: 4px; margin-bottom: 12px; align-items: flex-end; }
     .skill-node {
       flex: 1;
-      height: 4px;
-      border-radius: 2px;
+      border-radius: 3px;
       background: var(--fill);
       transition: background 0.22s ease;
     }
-    .skill-node.done { background: var(--accent); }
+    .skill-node.done { background: var(--accent-2); }
+    .skill-node.cur { background: var(--accent); }
 
-    .skill-current {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-bottom: 14px;
-    }
+    .skill-current { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 14px; }
     .skill-current span {
       display: block;
       font-size: 13px;
@@ -923,13 +1354,14 @@
 
     .skill-btns { display: flex; gap: 8px; }
     .skill-btn {
-      padding: 9px 14px;
+      min-height: 44px;
+      padding: 10px 14px;
       border-radius: var(--r-sm);
       border: none;
       background: var(--fill);
       color: var(--label);
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -939,7 +1371,7 @@
     }
     .skill-btn svg { width: 14px; height: 14px; }
     .skill-btn:first-child { flex: 0 0 48px; }
-    .skill-btn:last-child { flex: 1; background: var(--accent-soft); color: var(--accent); }
+    .skill-btn:last-child { flex: 1; background: var(--accent); color: #fff; }
     .skill-btn:disabled { opacity: 0.32; cursor: default; }
     .skill-btn:active:not(:disabled) { opacity: 0.65; }
 
@@ -949,217 +1381,195 @@
       align-items: center;
       gap: 13px;
       background: var(--surface);
-      border: 0.5px solid var(--separator);
       border-radius: var(--r-md);
-      padding: 13px 14px;
+      padding: 11px 12px;
       margin-bottom: 8px;
       box-shadow: var(--shadow);
-    }
-    .history-date {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      width: 46px;
-      flex-shrink: 0;
-      font-variant-numeric: tabular-nums;
     }
     .history-main { flex: 1; min-width: 0; }
     .history-title {
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: -0.01em;
       margin-bottom: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .history-sub { font-size: 13px; color: var(--label-3); }
+    .history-sub { font-size: 12.5px; color: var(--label-3); }
     .history-del {
       background: none;
       border: none;
       color: var(--label-3);
       cursor: pointer;
-      padding: 6px;
+      padding: 0;
+      width: 44px;
+      height: 44px;
+      margin-right: -8px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
+      justify-content: center;
     }
-    .history-del svg { width: 15px; height: 15px; }
+    .history-del svg { width: 16px; height: 16px; }
     .history-del:active { color: var(--accent); }
 
     .empty-note {
       text-align: center;
-      padding: 34px 24px;
+      padding: 30px 24px;
       color: var(--label-3);
       font-size: 14px;
       line-height: 1.55;
       background: var(--surface);
-      border: 0.5px solid var(--separator);
       border-radius: var(--r-lg);
+      box-shadow: var(--shadow);
     }
-    .empty-note strong { color: var(--label-2); font-weight: 600; }
+    .empty-note strong { color: var(--accent); font-weight: 600; }
 
     /* ── BANDEAU INSTALLATION ── */
     .install-banner {
       display: none;
       align-items: center;
       gap: 13px;
-      background: var(--surface);
-      border: 0.5px solid var(--separator);
+      background: linear-gradient(150deg, var(--navy-2), var(--navy));
+      color: var(--on-navy);
       border-radius: var(--r-lg);
       padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow);
+      margin-bottom: 16px;
     }
     .install-banner.show { display: flex; }
-    .install-text { flex: 1; font-size: 14px; line-height: 1.45; color: var(--label-2); }
+    .install-text { flex: 1; font-size: 14px; line-height: 1.45; color: rgba(255, 255, 255, 0.85); }
     .install-btn {
       background: var(--accent);
       border: none;
       color: #fff;
-      padding: 9px 16px;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: var(--r-sm);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
       flex-shrink: 0;
-      letter-spacing: -0.01em;
     }
     .install-btn:active { opacity: 0.8; }
 
     /* ── NUTRITION ── */
     .calc-card {
       background: var(--surface);
-      border: 0.5px solid var(--separator);
-      border-radius: var(--r-xl);
+      border-radius: var(--r-lg);
       padding: 18px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       box-shadow: var(--shadow);
     }
-    .calc-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--label-2);
-      margin-bottom: 8px;
-    }
+    .calc-label { color: var(--label-3); margin-bottom: 8px; }
     .calc-input-wrap {
       display: flex;
       align-items: baseline;
-      gap: 7px;
+      gap: 8px;
       margin-bottom: 18px;
+      border-bottom: 1.5px solid var(--separator);
+      transition: border-color 0.2s ease;
     }
+    .calc-input-wrap:focus-within { border-color: var(--accent); }
     .calc-input {
       flex: 1;
       min-width: 0;
-      background: var(--fill);
-      border: 1px solid transparent;
-      border-radius: var(--r-md);
+      background: none;
+      border: none;
       color: var(--label);
-      padding: 12px 14px;
-      font-size: 19px;
-      font-weight: 600;
+      padding: 2px 0 8px;
+      font-size: 44px;
+      font-weight: 300;
+      letter-spacing: -0.035em;
       font-variant-numeric: tabular-nums;
       -webkit-appearance: none;
       appearance: none;
     }
     .calc-input::-webkit-outer-spin-button,
     .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-    .calc-input:focus { outline: none; border-color: var(--accent); }
-    .calc-input-unit { font-size: 15px; color: var(--label-3); }
+    .calc-input:focus { outline: none; }
+    .calc-input-unit { font-size: 15px; font-weight: 500; color: var(--label-3); }
 
-    /* Segmented control iOS */
+    /* Contrôle segmenté */
     .goal-toggle {
       display: flex;
-      gap: 2px;
-      background: var(--fill);
+      gap: 4px;
+      background: var(--surface-2);
       border-radius: var(--r-sm);
-      padding: 2px;
+      padding: 4px;
     }
     .goal-btn {
       flex: 1;
-      padding: 8px 4px;
+      min-height: 40px;
+      padding: 9px 4px;
       border: none;
       border-radius: 7px;
       background: transparent;
       color: var(--label-2);
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: background 0.18s ease, color 0.18s ease;
-      letter-spacing: -0.01em;
     }
     .goal-btn.active {
-      background: var(--surface);
-      color: var(--label);
-      font-weight: 600;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(63, 81, 232, 0.3);
     }
 
-    .macros-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 11px;
-      margin-bottom: 8px;
-    }
-    .macro-card {
-      background: var(--surface);
-      border: 0.5px solid var(--separator);
-      border-radius: var(--r-lg);
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-    .macro-card.full { grid-column: 1 / -1; }
-    .macro-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--label-2);
-      margin-bottom: 5px;
-    }
-    .macro-value {
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-    }
-    .macro-unit { font-size: 14px; color: var(--label-3); margin-left: 3px; }
-
+    .macro-hero .hero-eyebrow { margin-bottom: 8px; }
+    .macro-kcal { font-size: 54px; line-height: 1; }
+    .macro-kcal small { font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--on-navy-2); margin-left: 5px; }
+    .macro-rows { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
+    .macro-row-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+    .macro-label { font-size: 13px; color: var(--on-navy-2); }
+    .macro-value { font-size: 22px; font-weight: 300; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .macro-unit { font-size: 12px; color: var(--on-navy-2); margin-left: 2px; }
     .macro-bar-track {
-      height: 5px;
+      height: 6px;
       border-radius: 3px;
-      background: var(--fill);
+      background: rgba(255, 255, 255, 0.12);
       overflow: hidden;
-      margin-top: 11px;
     }
     .macro-bar-fill {
       height: 100%;
+      width: 100%;
       border-radius: 3px;
-      transition: width 0.36s ease;
-      background: var(--accent);
+      transform-origin: left center;
+      transition: transform 0.36s cubic-bezier(0.2, 0.8, 0.2, 1);
+      background: #fff;
     }
-    /* Teintes système iOS pour distinguer les macros */
-    .macro-bar-fill.orange { background: #ff9f0a; }
-    .macro-bar-fill.red    { background: var(--accent); }
-    .macro-bar-fill.white  { background: #64d2ff; }
-    .macro-bar-fill.grey   { background: var(--label-3); }
+    .macro-bar-fill.kcal { background: linear-gradient(90deg, var(--accent-2), #fff); }
+    .macro-bar-fill.prot { background: #fff; }
+    .macro-bar-fill.gluc { background: #9aa5fb; }
+    .macro-bar-fill.lip  { background: #6272f5; }
 
     .meal-card {
+      display: flex;
+      gap: 13px;
       background: var(--surface);
-      border: 0.5px solid var(--separator);
       border-radius: var(--r-lg);
       padding: 16px;
       margin-bottom: 10px;
       box-shadow: var(--shadow);
     }
-    .meal-name {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      margin-bottom: 5px;
+    .meal-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
-    .meal-desc {
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--label-2);
-      margin-bottom: 9px;
-    }
-    .meal-macro { font-size: 13px; color: var(--label-3); }
+    .meal-name { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 4px; }
+    .meal-desc { font-size: 14px; line-height: 1.5; color: var(--label-2); margin-bottom: 9px; }
+    .meal-macro { font-size: 12.5px; font-weight: 600; color: var(--accent); }
 
     /* Liste d'informations (suppléments, récupération) */
     .info-list { display: flex; flex-direction: column; }
@@ -1167,66 +1577,58 @@
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      padding: 13px 0;
-      border-bottom: 0.5px solid var(--separator);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--separator);
     }
     .info-item:first-child { padding-top: 0; }
     .info-item:last-child { padding-bottom: 0; border-bottom: none; }
     .info-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
       background: var(--accent);
       flex-shrink: 0;
       margin-top: 7px;
-      opacity: 0.75;
     }
-    .info-title {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.012em;
-      margin-bottom: 2px;
-    }
+    .info-title { font-size: 15px; font-weight: 600; letter-spacing: -0.012em; margin-bottom: 2px; }
     .info-desc { font-size: 13px; line-height: 1.5; color: var(--label-2); }
 
     .calc-note {
-      margin-top: 14px;
+      margin-top: 16px;
       font-size: 13px;
       line-height: 1.5;
       color: var(--label-2);
+      padding: 12px 14px;
+      background: var(--accent-soft);
+      border-radius: var(--r-sm);
     }
-    .calc-note b { color: var(--accent); font-weight: 600; }
+    .calc-note b { color: var(--accent); font-weight: 700; }
 
     /* ── FUEL ── */
     .fuel-section-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin: 26px 0 12px;
+      gap: 11px;
+      margin: 8px 0 12px;
     }
     .fuel-section-icon {
-      width: 30px;
-      height: 30px;
+      width: 36px;
+      height: 36px;
       border-radius: var(--r-sm);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      background: var(--fill);
-      color: var(--label-2);
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(63, 81, 232, 0.3);
     }
-    .fuel-section-icon svg { width: 17px; height: 17px; }
-    .fuel-section-icon.snack { background: var(--accent-soft); color: var(--accent); }
-    .fuel-section-icon.drink { background: rgba(10, 132, 255, 0.16); color: #0a84ff; }
-    .fuel-section-label {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.022em;
-    }
+    .fuel-section-icon svg { width: 18px; height: 18px; }
+    .fuel-section-icon.drink { background: var(--navy); box-shadow: 0 6px 14px rgba(28, 36, 116, 0.3); }
+    .fuel-section-label { font-size: 22px; font-weight: 700; letter-spacing: -0.022em; }
 
     .fuel-card {
       background: var(--surface);
-      border: 0.5px solid var(--separator);
       border-radius: var(--r-lg);
       padding: 16px;
       margin-bottom: 10px;
@@ -1239,42 +1641,30 @@
       gap: 10px;
       margin-bottom: 9px;
     }
-    .fuel-name {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-    }
-    .fuel-badges { display: flex; gap: 5px; flex-wrap: wrap; flex-shrink: 0; }
+    .fuel-name { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }
+    .fuel-badges { display: flex; gap: 5px; flex-wrap: wrap; flex-shrink: 0; justify-content: flex-end; }
     .badge {
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 10.5px;
+      font-weight: 600;
       padding: 3px 8px;
-      border-radius: 100px;
+      border-radius: 5px;
       white-space: nowrap;
     }
-    .badge-green  { background: rgba(48, 209, 88, 0.16); color: #30d158; }
-    .badge-yellow { background: rgba(255, 159, 10, 0.16); color: #ff9f0a; }
-    .badge-blue   { background: rgba(10, 132, 255, 0.16); color: #0a84ff; }
+    .badge-green  { background: var(--accent-soft); color: var(--accent); }
+    .badge-yellow { background: transparent; color: var(--label-2); box-shadow: inset 0 0 0 1px var(--separator); }
+    .badge-blue   { background: var(--accent); color: #fff; }
 
-    .fuel-ingredients {
-      font-size: 14px;
-      color: var(--label-2);
-      margin-bottom: 7px;
-      line-height: 1.45;
+    .fuel-ingredients { font-size: 14px; color: var(--label); font-weight: 500; margin-bottom: 7px; line-height: 1.45; }
+    .fuel-steps { font-size: 14px; line-height: 1.5; color: var(--label-2); margin-bottom: 10px; }
+    .fuel-macros {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+      padding-top: 10px;
+      border-top: 1px solid var(--separator);
     }
-    .fuel-steps {
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--label-2);
-      margin-bottom: 9px;
-    }
-    .fuel-macros { font-size: 13px; color: var(--label-3); }
 
-    .fuel-divider {
-      height: 0.5px;
-      background: var(--separator);
-      margin: 26px 0;
-    }
+    .fuel-divider { height: 1px; background: var(--separator); margin: 26px 0 22px; }
 
     /* ── TOAST ── */
     .toast {
@@ -1282,11 +1672,10 @@
       left: 50%;
       bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 18px);
       transform: translate(-50%, 12px);
-      background: var(--surface);
-      border: 0.5px solid var(--separator);
-      color: var(--label);
+      background: var(--navy);
+      color: #fff;
       padding: 12px 20px;
-      border-radius: 100px;
+      border-radius: var(--r-sm);
       font-size: 14px;
       font-weight: 500;
       letter-spacing: -0.01em;
@@ -1298,11 +1687,17 @@
       box-shadow: var(--shadow-lift);
       transition: opacity 0.26s ease, transform 0.26s ease;
     }
+    .player.open ~ .toast { bottom: calc(96px + env(safe-area-inset-bottom)); }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
     /* Respect des préférences d'accessibilité */
     @media (prefers-reduced-motion: reduce) {
-      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
@@ -1311,11 +1706,14 @@
 <div id="app">
   <div class="pages">
 
-    <!-- ═══ PAGE 1 — SÉANCES ═══ -->
+    <!-- ═══ PAGE 1 — SÉANCES (tableau de bord) ═══ -->
     <div class="page active" id="page-seances">
       <div class="page-header">
-        <div class="page-eyebrow">Programme</div>
-        <div class="page-title">Séances</div>
+        <div>
+          <div class="page-eyebrow caps">Programme</div>
+          <div class="page-title">Séances</div>
+        </div>
+        <div class="date-badge" id="todayBadge"></div>
       </div>
 
       <!-- Installation PWA -->
@@ -1324,47 +1722,48 @@
         <button class="install-btn" onclick="installApp()">Installer</button>
       </div>
 
-      <!-- Planning hebdo -->
-      <div class="schedule-strip">
-        <div class="schedule-day">
-          <span class="schedule-day-name">Dim</span>
-          <div class="schedule-day-pill">Push<br>A</div>
+      <!-- Séance interrompue (app fermée en cours de route) -->
+      <div id="resumeWrap"></div>
+
+      <!-- Chiffres clés -->
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-value num" id="kpiTotal">0</div>
+          <div class="kpi-label" id="kpiTotalLabel">séances réalisées</div>
         </div>
-        <div class="schedule-day">
-          <span class="schedule-day-name">Lun</span>
-          <div class="schedule-day-pill">Course<br>Q</div>
+        <div class="kpi">
+          <div class="kpi-value num" id="kpiSets">0</div>
+          <div class="kpi-label" id="kpiSetsLabel">séries validées</div>
         </div>
-        <div class="schedule-day">
-          <span class="schedule-day-name">Mar</span>
-          <div class="schedule-day-pill">Pull<br>B</div>
-        </div>
-        <div class="schedule-day">
-          <span class="schedule-day-name">Mer</span>
-          <div class="schedule-day-pill">Push<br>C</div>
-        </div>
-        <div class="schedule-day">
-          <span class="schedule-day-name">Jeu</span>
-          <div class="schedule-day-pill">Course<br>Z2</div>
-        </div>
-        <div class="schedule-day">
-          <span class="schedule-day-name">Ven</span>
-          <div class="schedule-day-pill">Jambes<br>D</div>
-        </div>
-        <div class="schedule-day rest">
-          <span class="schedule-day-name">Sam</span>
-          <div class="schedule-day-pill">Shab-<br>bat</div>
+        <div class="kpi">
+          <div class="kpi-value num"><span id="kpiWeek">0</span><small>/6</small></div>
+          <div class="kpi-label">cette semaine</div>
         </div>
       </div>
+      <div id="lastWrap"></div>
+
+      <!-- Planning hebdo -->
+      <div class="section-head"><span class="section-title caps">Cette semaine</span></div>
+      <div class="week-strip" id="weekStrip"></div>
+
+      <!-- Séance du jour -->
+      <div class="section-head"><span class="section-title caps">Aujourd'hui</span></div>
+      <div id="heroWrap"></div>
+
+      <!-- Toutes les séances -->
+      <div class="section-head"><span class="section-title caps">Mes séances</span></div>
+      <div class="w-list" id="seanceList"></div>
 
       <!-- Phases de progression -->
+      <div class="section-head"><span class="section-title caps">Progression</span></div>
       <div class="phases-section">
-        <button class="phases-toggle" onclick="togglePhases()">
-          <span class="phases-toggle-label">Phases de progression</span>
+        <button class="phases-toggle" onclick="togglePhases()" aria-expanded="false" aria-controls="phasesContent">
+          <span class="phases-toggle-label">Phases de progression<small>3 phases · 18 mois vers la full planche</small></span>
           <svg class="phases-chevron" id="phasesChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-        <div class="phases-content" id="phasesContent">
+        <div class="phases-content" id="phasesContent" inert>
           <div class="phase-card phase-current">
             <div class="phase-header">
               <span class="phase-badge">Phase 1</span>
@@ -1404,143 +1803,62 @@
           </div>
         </div>
       </div>
-
-      <div class="seance-grid">
-
-        <!-- Séance A -->
-        <div class="seance-card" onclick="openModal('a')">
-          <div class="seance-day">Dimanche · Push Force</div>
-          <div class="seance-name">Planche Force Max</div>
-          <div class="seance-muscles">
-            <span class="muscle-tag">Épaules</span>
-            <span class="muscle-tag">Triceps</span>
-            <span class="muscle-tag">Pectoraux</span>
-            <span class="muscle-tag">Serratus</span>
-            <span class="muscle-tag">Core</span>
-          </div>
-          <div class="seance-footer">
-            <span class="seance-count">9 exercices · ~75 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('a')">Voir détails</button>
-          </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('a')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
-        </div>
-
-        <!-- Course qualité -->
-        <div class="seance-card" onclick="openModal('cardio')">
-          <div class="seance-day">Lundi · Course qualité</div>
-          <div class="seance-name">Course 5 km — Fractionné</div>
-          <div class="seance-muscles">
-            <span class="muscle-tag">Cardiovasculaire</span>
-            <span class="muscle-tag">Mollets</span>
-            <span class="muscle-tag">Ischio-jambiers</span>
-          </div>
-          <div class="seance-footer">
-            <span class="seance-count">5 blocs · ~35 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio')">Voir détails</button>
-          </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('cardio')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
-        </div>
-
-        <!-- Séance B -->
-        <div class="seance-card" onclick="openModal('b')">
-          <div class="seance-day">Mardi · Pull + Muscle-up</div>
-          <div class="seance-name">Tirage & Muscle-up</div>
-          <div class="seance-muscles">
-            <span class="muscle-tag">Grand dorsal</span>
-            <span class="muscle-tag">Rhomboïdes</span>
-            <span class="muscle-tag">Trapèze moyen</span>
-            <span class="muscle-tag">Biceps</span>
-            <span class="muscle-tag">Avant-bras</span>
-          </div>
-          <div class="seance-footer">
-            <span class="seance-count">9 exercices · ~75 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">Voir détails</button>
-          </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('b')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
-        </div>
-
-        <!-- Séance C -->
-        <div class="seance-card" onclick="openModal('c')">
-          <div class="seance-day">Mercredi · Planche Volume</div>
-          <div class="seance-name">Planche & HSPU Volume</div>
-          <div class="seance-muscles">
-            <span class="muscle-tag">Épaules</span>
-            <span class="muscle-tag">Pectoraux</span>
-            <span class="muscle-tag">Triceps</span>
-            <span class="muscle-tag">Deltoïdes</span>
-            <span class="muscle-tag">Core</span>
-          </div>
-          <div class="seance-footer">
-            <span class="seance-count">8 exercices · ~70 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('c')">Voir détails</button>
-          </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('c')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
-        </div>
-
-        <!-- Course facile -->
-        <div class="seance-card" onclick="openModal('cardio2')">
-          <div class="seance-day">Jeudi · Course facile</div>
-          <div class="seance-name">Course 5 km — Zone 2</div>
-          <div class="seance-muscles">
-            <span class="muscle-tag">Cardiovasculaire</span>
-            <span class="muscle-tag">Mollets</span>
-            <span class="muscle-tag">Récupération active</span>
-          </div>
-          <div class="seance-footer">
-            <span class="seance-count">4 blocs · ~40 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio2')">Voir détails</button>
-          </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('cardio2')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
-        </div>
-
-        <!-- Séance D -->
-        <div class="seance-card" onclick="openModal('d')">
-          <div class="seance-day">Vendredi · Jambes + Handstand</div>
-          <div class="seance-name">Jambes & Handstand</div>
-          <div class="seance-muscles">
-            <span class="muscle-tag">Quadriceps</span>
-            <span class="muscle-tag">Ischio-jambiers</span>
-            <span class="muscle-tag">Fessiers</span>
-            <span class="muscle-tag">Mollets</span>
-            <span class="muscle-tag">Poignets</span>
-          </div>
-          <div class="seance-footer">
-            <span class="seance-count">8 exercices · ~60 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('d')">Voir détails</button>
-          </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('d')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
-        </div>
-
-      </div>
     </div>
 
-    <!-- ═══ PAGE — PROGRÈS ═══ -->
+    <!-- ═══ PAGE — PROGRÈS (statistiques) ═══ -->
     <div class="page" id="page-progres">
       <div class="page-header">
-        <div class="page-eyebrow">Suivi</div>
-        <div class="page-title">Progrès</div>
+        <div>
+          <div class="page-eyebrow caps">Statistiques</div>
+          <div class="page-title">Progrès</div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-eyebrow caps">Séances · 8 semaines</div>
+        <div class="chart-head">
+          <div class="chart-big num" id="chartTotal">0</div>
+          <div class="hero-sub chart-avg" id="chartAvg"></div>
+        </div>
+        <div class="hero-chart" id="weeksChart"></div>
       </div>
 
       <div class="stat-grid">
         <div class="stat-card">
-          <div class="stat-label">Série en cours</div>
-          <div><span class="stat-value" id="statStreak">0</span><span class="stat-unit">sem.</span></div>
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5.3 1.6 1.2 2.5 2 2.5-.5-3 0-5.5 1-8z"/></svg></div>
+          <div><span class="stat-value num" id="statStreak">0</span><span class="stat-unit">sem.</span><div class="stat-label">série en cours</div></div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Total séances</div>
-          <div><span class="stat-value" id="statTotal">0</span></div>
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg></div>
+          <div><span class="stat-value num" id="statTotal">0</span><div class="stat-label" id="statTotalLabel">séances au total</div></div>
         </div>
-        <div class="stat-card full" style="grid-column:1/-1">
-          <div class="stat-label">Cette semaine</div>
-          <div><span class="stat-value" id="statWeek">0</span><span class="stat-unit">/ 6 séances</span></div>
-          <div class="week-dots" id="weekDots"></div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+          <div><span class="stat-value num" id="statSets">0</span><div class="stat-label" id="statSetsLabel">séries validées</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 2M9 2h6"/></svg></div>
+          <div><span class="stat-value num" id="statAvg">0</span><span class="stat-unit">min</span><div class="stat-label">durée moyenne</div></div>
         </div>
       </div>
 
-      <div class="section-title">Niveaux de skill</div>
+      <div class="week-card">
+        <div class="week-card-head">
+          <span class="week-card-title">Cette semaine</span>
+          <span class="week-card-count"><b id="statWeek">0</b> / 6 séances</span>
+        </div>
+        <div class="week-dots" id="weekDots"></div>
+      </div>
+
+      <div id="recordsSection" hidden>
+        <div class="section-head"><span class="section-title caps">Meilleures perfs</span></div>
+        <div class="records" id="recordsWrap"></div>
+      </div>
+
+      <div class="section-head"><span class="section-title caps">Niveaux de skill</span></div>
       <div id="skillsWrap"></div>
 
-      <div class="section-title">Historique</div>
+      <div class="section-head"><span class="section-title caps">Historique</span></div>
       <div id="historyWrap"></div>
 
     </div>
@@ -1548,18 +1866,20 @@
     <!-- ═══ PAGE 2 — NUTRITION ═══ -->
     <div class="page" id="page-nutrition">
       <div class="page-header">
-        <div class="page-eyebrow">Alimentation</div>
-        <div class="page-title">Nutrition</div>
+        <div>
+          <div class="page-eyebrow caps">Alimentation</div>
+          <div class="page-title">Nutrition</div>
+        </div>
       </div>
 
       <!-- Calculatrice -->
       <div class="calc-card">
-        <div class="calc-label">Poids actuel</div>
+        <div class="calc-label caps">Poids actuel</div>
         <div class="calc-input-wrap">
-          <input class="calc-input" type="number" id="weightInput" value="67" min="40" max="150" inputmode="numeric">
+          <input class="calc-input" type="text" id="weightInput" value="67" inputmode="decimal" autocomplete="off" aria-label="Poids en kg">
           <span class="calc-input-unit">kg</span>
         </div>
-        <div class="calc-label">Objectif</div>
+        <div class="calc-label caps">Objectif</div>
         <div class="goal-toggle">
           <button class="goal-btn" data-goal="maintien" onclick="setGoal('maintien')">Maintien</button>
           <button class="goal-btn active" data-goal="masse" onclick="setGoal('masse')">Prise masse</button>
@@ -1571,51 +1891,39 @@
       </div>
 
       <!-- Macros -->
-      <div class="macros-grid">
-        <div class="macro-card full">
-          <div class="macro-label">Calories totales</div>
-          <div>
-            <span class="macro-value" id="kcalVal">2784</span>
-            <span class="macro-unit">kcal</span>
-          </div>
-          <div class="macro-bar-track">
-            <div class="macro-bar-fill orange" id="kcalBar" style="width:100%"></div>
-          </div>
+      <div class="hero macro-hero">
+        <div class="hero-eyebrow caps">Calories par jour</div>
+        <div class="macro-kcal num"><span id="kcalVal">2784</span><small>kcal</small></div>
+        <div class="macro-bar-track" style="margin-top:14px">
+          <div class="macro-bar-fill kcal" id="kcalBar"></div>
         </div>
-        <div class="macro-card">
-          <div class="macro-label">Protéines</div>
+        <div class="macro-rows">
           <div>
-            <span class="macro-value" id="protVal">130</span>
-            <span class="macro-unit">g</span>
+            <div class="macro-row-head">
+              <span class="macro-label">Protéines</span>
+              <span><span class="macro-value" id="protVal">130</span><span class="macro-unit">g</span></span>
+            </div>
+            <div class="macro-bar-track"><div class="macro-bar-fill prot" id="protBar"></div></div>
           </div>
-          <div class="macro-bar-track">
-            <div class="macro-bar-fill red" id="protBar" style="width:68%"></div>
-          </div>
-        </div>
-        <div class="macro-card">
-          <div class="macro-label">Glucides</div>
           <div>
-            <span class="macro-value" id="glucVal">313</span>
-            <span class="macro-unit">g</span>
+            <div class="macro-row-head">
+              <span class="macro-label">Glucides</span>
+              <span><span class="macro-value" id="glucVal">313</span><span class="macro-unit">g</span></span>
+            </div>
+            <div class="macro-bar-track"><div class="macro-bar-fill gluc" id="glucBar"></div></div>
           </div>
-          <div class="macro-bar-track">
-            <div class="macro-bar-fill white" id="glucBar" style="width:82%"></div>
-          </div>
-        </div>
-        <div class="macro-card full">
-          <div class="macro-label">Lipides</div>
           <div>
-            <span class="macro-value" id="lipVal">77</span>
-            <span class="macro-unit">g</span>
-          </div>
-          <div class="macro-bar-track">
-            <div class="macro-bar-fill grey" id="lipBar" style="width:55%"></div>
+            <div class="macro-row-head">
+              <span class="macro-label">Lipides</span>
+              <span><span class="macro-value" id="lipVal">77</span><span class="macro-unit">g</span></span>
+            </div>
+            <div class="macro-bar-track"><div class="macro-bar-fill lip" id="lipBar"></div></div>
           </div>
         </div>
       </div>
 
       <!-- Suppléments -->
-      <div class="section-title">Suppléments</div>
+      <div class="section-head"><span class="section-title caps">Suppléments</span></div>
       <div class="calc-card">
         <div class="info-list">
           <div class="info-item">
@@ -1643,7 +1951,7 @@
       </div>
 
       <!-- Récupération -->
-      <div class="section-title">Récupération</div>
+      <div class="section-head"><span class="section-title caps">Récupération</span></div>
       <div class="calc-card">
         <div class="info-list">
           <div class="info-item">
@@ -1685,24 +1993,33 @@
       </div>
 
       <!-- Plats recommandés -->
-      <div class="section-title">Plats recommandés</div>
+      <div class="section-head"><span class="section-title caps">Plats recommandés</span></div>
 
       <div class="meal-card">
-        <div class="meal-name">Riz + Œufs + Légumes sautés</div>
-        <div class="meal-desc">Rapide, économique, glucides complexes et protéines complètes. Idéal post-workout ou repas principal.</div>
-        <div class="meal-macro">~35g protéines · ~60g glucides · ~10g lipides</div>
+        <div class="meal-num">1</div>
+        <div>
+          <div class="meal-name">Riz + Œufs + Légumes sautés</div>
+          <div class="meal-desc">Rapide, économique, glucides complexes et protéines complètes. Idéal post-workout ou repas principal.</div>
+          <div class="meal-macro">~35g protéines · ~60g glucides · ~10g lipides</div>
+        </div>
       </div>
 
       <div class="meal-card">
-        <div class="meal-name">Avoine + Banane + Beurre de cacahuète</div>
-        <div class="meal-desc">Petit-déj ou collation pré/post-workout. Énergie longue durée, digestion progressive.</div>
-        <div class="meal-macro">~18g protéines · ~70g glucides · ~18g lipides</div>
+        <div class="meal-num">2</div>
+        <div>
+          <div class="meal-name">Avoine + Banane + Beurre de cacahuète</div>
+          <div class="meal-desc">Petit-déj ou collation pré/post-workout. Énergie longue durée, digestion progressive.</div>
+          <div class="meal-macro">~18g protéines · ~70g glucides · ~18g lipides</div>
+        </div>
       </div>
 
       <div class="meal-card">
-        <div class="meal-name">Galettes d'avoine + Yaourt grec</div>
-        <div class="meal-desc">Simple, high protein, peu de sucres ajoutés. Peut se préparer en batch pour la semaine.</div>
-        <div class="meal-macro">~22g protéines · ~40g glucides · ~8g lipides</div>
+        <div class="meal-num">3</div>
+        <div>
+          <div class="meal-name">Galettes d'avoine + Yaourt grec</div>
+          <div class="meal-desc">Simple, high protein, peu de sucres ajoutés. Peut se préparer en batch pour la semaine.</div>
+          <div class="meal-macro">~22g protéines · ~40g glucides · ~8g lipides</div>
+        </div>
       </div>
 
     </div>
@@ -1710,8 +2027,10 @@
     <!-- ═══ PAGE 3 — FUEL ═══ -->
     <div class="page" id="page-fuel">
       <div class="page-header">
-        <div class="page-eyebrow">Énergie</div>
-        <div class="page-title">Fuel</div>
+        <div>
+          <div class="page-eyebrow caps">Énergie</div>
+          <div class="page-title">Fuel</div>
+        </div>
       </div>
 
       <!-- Snacks -->
@@ -1843,13 +2162,13 @@
   <nav class="tabbar">
     <button class="tab-btn active" id="tab-seances" onclick="switchTab('seances')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6.5 6.5h11M6.5 17.5h11M6 12h12M3 8.5l3-2v11l-3-2M21 8.5l-3-2v11l3-2"/>
+        <path d="M4 10.5L12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z"/>
       </svg>
       <span class="tab-label">Séances</span>
     </button>
     <button class="tab-btn" id="tab-progres" onclick="switchTab('progres')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 20h18M6 20V10M11 20V4M16 20v-7M21 20v-3"/>
+        <path d="M3 20h18M6 20v-6M11 20V9M16 20v-9M21 20V5"/>
       </svg>
       <span class="tab-label">Progrès</span>
     </button>
@@ -1873,27 +2192,28 @@
 <!-- ═══ MODALS ═══ -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
 
-<div class="modal" id="modal">
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-handle"></div>
   <button class="modal-close" onclick="closeModal()" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
   <div class="modal-header">
-    <div class="modal-day" id="modalDay"></div>
-    <div class="modal-title" id="modalTitle"></div>
+    <div class="date-badge" id="modalBadge"></div>
+    <div style="min-width:0">
+      <div class="modal-day caps" id="modalDay"></div>
+      <div class="modal-title" id="modalTitle"></div>
+    </div>
   </div>
   <div class="modal-body" id="modalBody"></div>
 </div>
 
 <!-- ═══ WORKOUT PLAYER ═══ -->
-<div class="player" id="player">
+<div class="player" id="player" role="dialog" aria-modal="true" aria-labelledby="playerTitle" inert>
   <div class="player-top">
     <div class="player-top-row">
-      <div style="min-width:0">
-        <div class="player-title" id="playerTitle"></div>
-        <div class="player-meta" id="playerMeta"></div>
-      </div>
+      <div class="player-meta caps" id="playerMeta"></div>
       <button class="player-quit" onclick="quitWorkout()" aria-label="Quitter la séance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
     </div>
-    <div class="player-bar-track"><div class="player-bar-fill" id="playerBar" style="width:0%"></div></div>
+    <div class="player-title" id="playerTitle"></div>
+    <div class="player-bar-track"><div class="player-bar-fill" id="playerBar"></div></div>
   </div>
   <div class="player-body" id="playerBody"></div>
   <div class="player-actions">
@@ -1905,26 +2225,38 @@
 </div>
 
 <!-- ═══ TIMER PLEIN ÉCRAN ═══ -->
-<div class="timer-panel" id="timerPanel">
-  <div class="timer-label" id="timerLabel">Repos</div>
-  <div class="timer-value" id="timerValue">0:00</div>
+<div class="timer-panel" id="timerPanel" role="dialog" aria-modal="true" aria-labelledby="timerLabel">
+  <div class="timer-label caps" id="timerLabel">Repos</div>
+  <div class="timer-ring" id="timerRing">
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="trk" cx="60" cy="60" r="54"/>
+      <circle class="prg" id="timerProgress" cx="60" cy="60" r="54" stroke-dasharray="339.29" stroke-dashoffset="0"/>
+    </svg>
+    <div class="timer-value" id="timerValue">0:00</div>
+  </div>
   <div class="timer-sub" id="timerSub"></div>
   <div class="timer-btns">
-    <button class="timer-btn" onclick="addTimer(15)">+15 s</button>
-    <button class="timer-btn primary" onclick="dismissTimer()">Passer</button>
+    <button class="timer-btn" id="timerAddBtn" onclick="addTimer(15)">+15 s</button>
+    <button class="timer-btn primary" id="timerMainBtn" onclick="dismissTimer()">Passer</button>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
   // ── TAB NAVIGATION ──
   function switchTab(name) {
+    const page = document.getElementById('page-' + name);
+    // Retaper l'onglet actif remonte en haut, comme sur iOS.
+    if (page.classList.contains('active')) { page.scrollTo({ top: 0, behavior: 'smooth' }); return; }
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    document.getElementById('tab-' + name).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.removeAttribute('aria-current'); });
+    page.classList.add('active');
+    const tab = document.getElementById('tab-' + name);
+    tab.classList.add('active');
+    tab.setAttribute('aria-current', 'page');
     if (name === 'progres') renderProgress();
+    if (name === 'seances') renderDashboard();
   }
 
   /* Jeu d'icônes — tracé unique, dans l'esprit SF Symbols. Aucune émoticône
@@ -1940,7 +2272,119 @@
     timer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 2M9 2h6"/></svg>',
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-12"/></svg>',
     flag:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 3.5L16 11H5"/></svg>',
+    chev:  '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>',
+    list:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
+    history:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3 4v4h4M12 8v4l3 2"/></svg>',
+    layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>',
   };
+
+  const DAY_NAMES   = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  const DAY_SHORT   = ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'];
+  const MONTH_SHORT = ['JANV', 'FÉVR', 'MARS', 'AVR', 'MAI', 'JUIN', 'JUIL', 'AOÛT', 'SEPT', 'OCT', 'NOV', 'DÉC'];
+
+  function dateBadge(d, cls = '') {
+    return `<div class="date-badge ${cls}"><b>${d.getDate()}</b><span>${MONTH_SHORT[d.getMonth()]}</span></div>`;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     SILHOUETTES MUSCULAIRES
+     Une moitié de corps (côté gauche, axe x = 50) est décrite une
+     seule fois ; l'autre moitié est son miroir. Chaque zone porte
+     le nom d'un groupe musculaire, allumé selon la séance.
+     ══════════════════════════════════════════════════════ */
+  const BODY = {
+    front: [
+      ['traps',     'M45 29 C42 33 37 35 33 36 L40 38 L45 36 Z'],
+      ['delts',     'M33 35.5 C25 36 21 42 21 50 C24 52.5 27.5 52.5 29.5 50.5 C30.5 44.5 33.5 40.5 38.5 38.2 Z'],
+      ['chest',     'M39 38 C44 36.5 48.5 37 50 38 L50 55.5 C44.5 58 36.5 57 31 52 C30.5 45 33.5 40.5 39 38 Z'],
+      ['biceps',    'M21 51.5 C19 58 19 65 21.5 70.5 C25 71 28 69 29.3 65.5 C30.3 60 29.8 55 29.5 51.5 C26.5 53.5 23.5 53.5 21 51.5 Z'],
+      ['forearms',  'M21.5 72.5 C18.5 80 17 89 16.5 97.5 L21.5 98.5 C24.5 90.5 27.5 81.5 29.3 67.5 C27.5 71 24.5 72.5 21.5 72.5 Z'],
+      ['serratus',  'M31 53 C31.5 57 32.5 60 34 62.5 L38.5 58.5 C35.5 57.5 33 55.5 31 53 Z'],
+      ['obliques',  'M34 63 C35.5 72 37 83 39 92.5 C40 94 41 93.5 41.2 89 L42 59 C39 58.8 36.5 60 34 63 Z'],
+      ['abs',       'M42.5 58.5 L50 58.5 L50 96 C45.5 96 42.5 93 41.8 88 Z'],
+      ['quads',     'M38.5 99 C34 111 33.5 129 36.5 146 C40 150.5 45 150.5 47.2 146 C49.3 132 49.3 118 48.5 110.5 C44.5 108.5 40.5 104.5 38.5 99 Z'],
+      ['calves',    'M37 156 C35 168 36 182 39 192 L44 192 C46 182 47 168 46 156 C43 158 40 158 37 156 Z'],
+    ],
+    back: [
+      ['traps',     'M45 27 C43 32 37.5 35 32.5 36.5 L39 41 L50 57 L50 27 Z'],
+      ['delts',     'M33 35.5 C25 36 21 42 21 50 C24 52.5 27.5 52.5 29.5 50.5 C30.5 44.5 33.5 40.5 38.5 38.2 Z'],
+      ['triceps',   'M21 51.5 C19 58 19 65 21.5 70.5 C25 71 28 69 29.3 65.5 C30.3 60 29.8 55 29.5 51.5 C26.5 53.5 23.5 53.5 21 51.5 Z'],
+      ['forearms',  'M21.5 72.5 C18.5 80 17 89 16.5 97.5 L21.5 98.5 C24.5 90.5 27.5 81.5 29.3 67.5 C27.5 71 24.5 72.5 21.5 72.5 Z'],
+      ['rhomboids', 'M39.5 41.5 L50 57 L50 65 C45 61.5 41 55.5 39 47 Z'],
+      ['lats',      'M32 43 C30.5 54 33 67 38 79 C42 76.5 46 73 50 70.5 L50 65.5 C45 62 40.5 55.5 38.6 46 L36 40 C34 40.3 32.8 41.3 32 43 Z'],
+      ['lowerback', 'M38.5 80.5 C39.5 86 41 91.5 42 95 L50 95 L50 72 C46 74.5 42 77.5 38.5 80.5 Z'],
+      ['glutes',    'M39.5 96 C35 102 36 112 41 116 C45 118 49 116.5 50 113 L50 96 Z'],
+      ['hamstrings','M37.2 118.5 C35 128 36 140 38 148 C41 151 45 151 47 148 C49 138 49 126 48.5 118 C45 120 40.5 120.5 37.2 118.5 Z'],
+      ['calves',    'M37 156 C34 164 35 174 38 182 C41 184 44 183 45.5 180 C47 172 47 162 46 156 C43 158 40 158 37 156 Z'],
+    ],
+  };
+
+  // Contour neutre : tête, cou, mains, bassin, genoux, pieds.
+  const BODY_BASE = {
+    front: 'M39.5 93.5 C38.5 100 40.5 106 44.5 109.5 L50 111.5 L50 96.5 C45.5 96.5 41.5 96 39.5 93.5 Z',
+    back:  'M38 183 L44.5 183 L44.5 192 L38.5 192 Z',
+    common: '<ellipse class="bd" cx="50" cy="14" rx="8.5" ry="10.5"/><rect class="bd" x="45" y="23" width="10" height="7" rx="2"/>',
+    half: '<ellipse class="bd" cx="18.8" cy="103.5" rx="3.6" ry="5.2"/><ellipse class="bd" cx="42" cy="152" rx="4.8" ry="4"/><path class="bd" d="M38.5 193 L45 193 L46.5 199.5 L35.5 199.5 Z"/>',
+  };
+
+  const MUSCLE_MAP = {
+    'Épaules': ['delts'], 'Deltoïdes': ['delts'], 'Deltoïde post.': ['delts'],
+    'Triceps': ['triceps'], 'Pectoraux': ['chest'], 'Serratus': ['serratus'],
+    'Core': ['abs', 'obliques', 'lowerback'],
+    'Grand dorsal': ['lats'], 'Rhomboïdes': ['rhomboids'],
+    'Trapèze moyen': ['traps', 'rhomboids'], 'Trapèze inf.': ['rhomboids', 'traps'],
+    'Biceps': ['biceps'], 'Avant-bras': ['forearms'], 'Poignets': ['forearms'],
+    'Quadriceps': ['quads'], 'Ischio-jambiers': ['hamstrings'],
+    'Fessiers': ['glutes'], 'Mollets': ['calves'],
+  };
+
+  // Les deux premiers muscles listés sont les moteurs principaux (bleu plein),
+  // les suivants sont secondaires (bleu clair).
+  function muscleLevels(muscles) {
+    const lv = {};
+    muscles.forEach((m, i) => {
+      (MUSCLE_MAP[m] || []).forEach(z => {
+        const v = i < 2 ? 1 : 2;
+        if (!lv[z] || v < lv[z]) lv[z] = v;
+      });
+    });
+    return lv;
+  }
+
+  function bodySvg(view, lv) {
+    const half = BODY[view].map(([z, d]) =>
+      `<path class="m ${lv[z] ? 'on' + lv[z] : ''}" d="${d}"/>`).join('')
+      + `<path class="bd" d="${BODY_BASE[view]}"/>` + BODY_BASE.half
+      + (view === 'front' ? '<path class="ln" d="M42.3 68.5 H50 M42 78.5 H50 M42 87.5 H50"/>' : '');
+    return `<svg class="fig" viewBox="12 0 76 202" aria-hidden="true">${BODY_BASE.common}
+      <g>${half}</g><g transform="matrix(-1 0 0 1 100 0)">${half}</g></svg>`;
+  }
+
+  function bodyPair(muscles) {
+    const lv = muscleLevels(muscles);
+    return { front: bodySvg('front', lv), back: bodySvg('back', lv) };
+  }
+
+  /* Graphique en marches (séries par exercice), façon maquette :
+     barres pleines + « ombre » plus claire décalée. */
+  function stepChart(values, opts = {}) {
+    const w = 300, h = opts.h || 110, pad = 4;
+    const max = Math.max(...values, 1);
+    const n = values.length;
+    const bw = (w - pad * 2) / n;
+    let back = '', front = '', grid = '';
+    [0.33, 0.66, 1].forEach(t => {
+      const y = h - (h - 8) * t;
+      grid += `<line x1="0" x2="${w}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
+    });
+    values.forEach((v, i) => {
+      const bh = Math.max(6, (h - 8) * (v / max));
+      const x = pad + i * bw;
+      back  += `<rect x="${x + bw * 0.28}" y="${h - bh - 7}" width="${bw}" height="${bh + 7}" fill="rgba(255,255,255,0.10)"/>`;
+      front += `<rect x="${x}" y="${h - bh}" width="${bw + 0.5}" height="${bh}" fill="${opts.hi === i ? '#fff' : (i % 2 ? '#5566f2' : '#4a5cf0')}"/>`;
+    });
+    return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">${grid}${back}${front}</svg>`;
+  }
 
   // ── MODAL DATA ──
   const sessions = {
@@ -2037,67 +2481,234 @@
     }
   };
 
+  // Place de chaque séance dans la semaine (0 = dimanche) et infos de carte.
+  const SESSION_META = {
+    a:       { dow: 0, tag: 'Push',   short: 'A',  duration: '~75 min' },
+    cardio:  { dow: 1, tag: 'Course', short: 'Q',  duration: '~35 min', blocks: true },
+    b:       { dow: 2, tag: 'Pull',   short: 'B',  duration: '~75 min' },
+    c:       { dow: 3, tag: 'Push',   short: 'C',  duration: '~70 min' },
+    cardio2: { dow: 4, tag: 'Course', short: 'Z2', duration: '~40 min', blocks: true },
+    d:       { dow: 5, tag: 'Jambes', short: 'D',  duration: '~60 min' },
+  };
+  const SESSION_ORDER = Object.keys(SESSION_META).sort((x, y) => SESSION_META[x].dow - SESSION_META[y].dow);
+
+  function sessionForDay(dow) {
+    return SESSION_ORDER.find(k => SESSION_META[k].dow === dow) || null;
+  }
+
+  // "Dimanche · Push Force" devient "Aujourd'hui · Push Force" le jour J.
+  function dayLabel(key) {
+    const s = sessions[key];
+    const today = DAY_NAMES[new Date().getDay()];
+    return s.day.replace(today, "Aujourd'hui");
+  }
+
+  function setCounts(key) {
+    return sessions[key].exercises.map(ex => parseSets(ex.sets, ex.note).count);
+  }
+
+  function countLabel(key) {
+    const n = sessions[key].exercises.length;
+    return `${n} ${SESSION_META[key].blocks ? 'blocs' : 'exercices'} · ${SESSION_META[key].duration}`;
+  }
+
   // ── MODAL OPEN/CLOSE ──
   function openModal(id) {
     const s = sessions[id];
     if (!s) return;
+    const meta = SESSION_META[id];
 
-    document.getElementById('modalDay').textContent = s.day;
+    document.getElementById('modalBadge').innerHTML =
+      `<b>${meta.short}</b><span>${DAY_SHORT[meta.dow]}</span>`;
+    document.getElementById('modalDay').textContent = dayLabel(id);
     document.getElementById('modalTitle').textContent = s.title;
 
-    let html = '<div class="modal-section-title">Exercices</div>';
+    const fig = bodyPair(s.muscles);
+    const totalSets = setCounts(id).reduce((a, b) => a + b, 0);
+
+    let html = `<div class="body-map">
+        <figure>${fig.front}<figcaption class="caps">Face</figcaption></figure>
+        <figure>${fig.back}<figcaption class="caps">Dos</figcaption></figure>
+      </div>`;
+
+    html += '<div class="modal-section-title caps">Muscles ciblés</div>';
+    html += '<div class="muscle-chips">' + s.muscles.map((m, i) =>
+      `<span class="muscle-chip ${i < 2 ? '' : 'sec'}">${m}</span>`).join('') + '</div>';
+
+    html += `<div class="modal-section-title caps">À propos</div>
+      <div class="about-row">
+        <div class="about">${ICONS.list}<div><b class="num">${s.exercises.length}</b><span>${meta.blocks ? 'blocs' : 'exercices'}</span></div></div>
+        <div class="about">${ICONS.layers}<div><b class="num">${totalSets}</b><span>séries</span></div></div>
+        <div class="about">${ICONS.timer}<div><b class="num">${meta.duration.replace(/[^\d]/g, '')}</b><span>min environ</span></div></div>
+      </div>`;
+
+    html += '<div class="modal-section-title caps">Exercices</div>';
     html += '<div class="exercise-list">';
-    s.exercises.forEach(ex => {
+    s.exercises.forEach((ex, i) => {
       html += `<div class="exercise-item">
-        <div class="exercise-dot"></div>
-        <div class="exercise-name">${ex.name}<br><span class="exercise-note">${ex.note}</span></div>
+        <div class="exercise-idx">${i + 1}</div>
+        <div class="exercise-name">${ex.name}<span class="exercise-note">${ex.note}</span></div>
         <div class="exercise-sets">${ex.sets}</div>
       </div>`;
     });
     html += '</div>';
 
-    html += '<div class="modal-section-title" style="margin-top:20px">Muscles ciblés</div>';
-    html += '<div class="modal-muscles-wrap">';
-    s.muscles.forEach(m => {
-      html += `<span class="modal-muscle-tag">${m}</span>`;
-    });
-    html += '</div>';
-
     html += `<div class="modal-tip">
-      <div class="modal-tip-label">Tip d'optimisation</div>
+      <div class="modal-tip-label caps">Tip d'optimisation</div>
       <p>${s.tip}</p>
     </div>`;
 
-    html += `<button class="btn-start" style="margin-top:18px" onclick="startWorkout('${id}')">${ICONS.play}Démarrer cette séance</button>`;
+    html += `<button class="btn-start" style="margin-top:20px" onclick="startWorkout('${id}')">${ICONS.play}Démarrer la séance</button>`;
 
-    document.getElementById('modalBody').innerHTML = html;
+    const body = document.getElementById('modalBody');
+    body.innerHTML = html;
+    body.scrollTop = 0;
 
-    document.getElementById('modal').classList.add('open');
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    const modal = document.getElementById('modal');
+    if (!modal.classList.contains('open')) {
+      lastFocus = document.activeElement;
+      modal.classList.add('open');
+      document.getElementById('modalOverlay').classList.add('open');
+      pushLayer('modal');
+      syncInert();
+      modal.querySelector('.modal-close').focus({ preventScroll: true });
+    }
   }
 
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
+  // `fromHistory` : la fermeture vient du bouton retour (l'entrée
+  // d'historique est déjà consommée, on ne rappelle pas history.back()).
+  function closeModal(fromHistory = false) {
+    const modal = document.getElementById('modal');
+    if (!modal.classList.contains('open')) return;
+    modal.classList.remove('open');
+    modal.style.transform = '';
     document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
+    if (!fromHistory) popLayer('modal');
+    syncInert();
+    if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
   }
 
-  // swipe down to close modal
-  let touchStartY = 0;
-  document.getElementById('modal').addEventListener('touchstart', e => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-  document.getElementById('modal').addEventListener('touchmove', e => {
-    const dy = e.touches[0].clientY - touchStartY;
-    if (dy > 60) closeModal();
-  }, { passive: true });
+  /* ══════════════════════════════════════════════════════
+     COUCHES (fiche séance, player) ET BOUTON RETOUR
+     Chaque couche ouverte ajoute une entrée d'historique : le
+     retour Android / le geste retour ferment la couche au lieu
+     de quitter l'app. Le reste de la page devient `inert` pour
+     que le focus clavier et les lecteurs d'écran restent dedans.
+     ══════════════════════════════════════════════════════ */
+  const layers = [];
+  let ignorePop = 0;
+  let lastFocus = null;
+
+  function pushLayer(name) {
+    layers.push(name);
+    try { history.pushState({ layer: name }, ''); } catch (e) { /* file:// ou iframe */ }
+  }
+
+  function popLayer(name) {
+    const i = layers.lastIndexOf(name);
+    if (i < 0) return;
+    layers.splice(i, 1);
+    if (history.state && history.state.layer === name) {
+      ignorePop++;
+      history.back();
+    }
+  }
+
+  // La fiche se ferme pour laisser place au player : on réutilise son
+  // entrée d'historique plutôt que d'enchaîner back() puis pushState().
+  function swapLayer(from, to) {
+    const i = layers.lastIndexOf(from);
+    if (i < 0) { pushLayer(to); return; }
+    layers[i] = to;
+    try { history.replaceState({ layer: to }, ''); } catch (e) {}
+  }
+
+  window.addEventListener('popstate', () => {
+    if (ignorePop) { ignorePop--; return; }
+    const top = layers[layers.length - 1];
+    if (!top) return;
+    if (top === 'modal') {
+      layers.pop();
+      closeModal(true);
+    } else if (top === 'player') {
+      // Retour pendant la séance : ferme d'abord le chrono, sinon
+      // demande confirmation. Dans les deux cas où l'on reste dans le
+      // player, on remet l'entrée d'historique consommée.
+      if (timerOpen()) { dismissTimer(); history.pushState({ layer: 'player' }, ''); return; }
+      if (!confirmQuit()) { history.pushState({ layer: 'player' }, ''); return; }
+      layers.pop();
+      closePlayer(true);
+    }
+  });
+
+  function syncInert() {
+    const modalOpen = document.getElementById('modal').classList.contains('open');
+    const playerOpen = document.getElementById('player').classList.contains('open');
+    document.getElementById('app').inert = modalOpen || playerOpen;
+    document.getElementById('player').inert = !playerOpen || timerOpen();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (timerOpen()) dismissTimer();
+    else if (document.getElementById('modal').classList.contains('open')) closeModal();
+  });
+
+  /* Glisser vers le bas pour fermer la fiche : la feuille suit le doigt,
+     et ne se ferme que si le geste est assez long ou rapide. Depuis le
+     contenu, le geste ne compte que si la liste est déjà en haut — sinon
+     remonter dans la liste fermait la fiche par erreur. */
+  (() => {
+    const modal = document.getElementById('modal');
+    const body = document.getElementById('modalBody');
+    let startY = 0, startT = 0, dy = 0, dragging = false, armed = false;
+
+    modal.addEventListener('touchstart', e => {
+      startY = e.touches[0].clientY;
+      startT = Date.now();
+      dy = 0;
+      dragging = false;
+      armed = !body.contains(e.target) || body.scrollTop <= 0;
+    }, { passive: true });
+
+    modal.addEventListener('touchmove', e => {
+      if (!armed) return;
+      dy = e.touches[0].clientY - startY;
+      if (!dragging) {
+        if (dy < 8) { if (dy < -4) armed = false; return; }
+        dragging = true;
+        modal.style.transition = 'none';
+      }
+      if (e.cancelable) e.preventDefault();
+      modal.style.transform = `translateY(${Math.max(0, dy)}px)`;
+    }, { passive: false });
+
+    modal.addEventListener('touchend', () => {
+      if (!dragging) return;
+      dragging = false;
+      modal.style.transition = '';
+      const velocity = dy / Math.max(1, Date.now() - startT);
+      if (dy > 120 || velocity > 0.6) closeModal();
+      else modal.style.transform = '';
+    });
+  })();
 
   // ── NUTRITION CALCULATOR ──
+  const NUTRI_KEY = 'planche_os_nutri';
   let currentGoal = 'masse';
 
+  // "67,5" (clavier français) comme "67.5" ; hors bornes plausibles → valeur par défaut.
+  function readWeight() {
+    const w = parseFloat(String(document.getElementById('weightInput').value).replace(',', '.'));
+    return w >= 30 && w <= 250 ? w : 67;
+  }
+
+  function saveNutri() {
+    try { localStorage.setItem(NUTRI_KEY, JSON.stringify({ weight: document.getElementById('weightInput').value, goal: currentGoal })); } catch (e) {}
+  }
+
   function calcMacros() {
-    const weight = parseFloat(document.getElementById('weightInput').value) || 65;
+    const weight = readWeight();
     const mb = (10 * weight) + (6.25 * 169) - (5 * 23) + 5;
     const tdee = mb * 1.55;
 
@@ -2118,62 +2729,168 @@
 
     // bar widths (relative to max plausible)
     const maxKcal = 3500;
-    document.getElementById('kcalBar').style.width = Math.min(100, (kcal / maxKcal) * 100) + '%';
-    document.getElementById('protBar').style.width = Math.min(100, (prot / 200) * 100) + '%';
-    document.getElementById('glucBar').style.width = Math.min(100, (gluc / 450) * 100) + '%';
-    document.getElementById('lipBar').style.width  = Math.min(100, (lip  / 120) * 100) + '%';
+    const bar = (id, ratio) => {
+      document.getElementById(id).style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+    };
+    bar('kcalBar', kcal / maxKcal);
+    bar('protBar', prot / 200);
+    bar('glucBar', gluc / 450);
+    bar('lipBar',  lip / 120);
   }
 
   function setGoal(goal) {
     currentGoal = goal;
     document.querySelectorAll('.goal-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.goal === goal);
+      const on = b.dataset.goal === goal;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on);
     });
     calcMacros();
+    saveNutri();
   }
 
-  document.getElementById('weightInput').addEventListener('input', calcMacros);
+  document.getElementById('weightInput').addEventListener('input', () => { calcMacros(); saveNutri(); });
 
-  // init
-  calcMacros();
+  // init : on retrouve le poids et l'objectif de la dernière visite
+  try {
+    const n = JSON.parse(localStorage.getItem(NUTRI_KEY) || 'null');
+    if (n && n.weight) document.getElementById('weightInput').value = n.weight;
+    setGoal(n && ['maintien', 'masse', 'seche'].includes(n.goal) ? n.goal : 'masse');
+  } catch (e) { setGoal('masse'); }
 
-  // ── MISE À JOUR AUTOMATIQUE DE LA DATE ──
-  function updateCurrentDay() {
-    const today = new Date().getDay(); // 0: Dimanche, 1: Lundi, etc.
-    const dayNames = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-    const todayName = dayNames[today];
+  /* ══════════════════════════════════════════════════════
+     TABLEAU DE BORD (onglet Séances)
+     Tout est généré depuis `sessions` : planning, séance du jour,
+     liste — une seule source de vérité.
+     ══════════════════════════════════════════════════════ */
+  function renderDashboard() {
+    const now = new Date();
+    const today = now.getDay();
+    const weekStart = startOfWeek(now);
 
-    // 1. Mettre à jour la barre de planning (bulles)
-    const scheduleDays = document.querySelectorAll('.schedule-day');
-    if (scheduleDays[today]) {
-      scheduleDays.forEach(d => d.classList.remove('active'));
-      scheduleDays[today].classList.add('active');
+    document.getElementById('todayBadge').innerHTML =
+      `<b>${now.getDate()}</b><span>${MONTH_SHORT[now.getMonth()]}</span>`;
+
+    // Séance interrompue
+    const pending = session ? null : loadActive();
+    document.getElementById('resumeWrap').innerHTML = pending ? (() => {
+      const done = pending.exercises.reduce((n, e) => n + e.entries.filter(s => s.done).length, 0);
+      const total = pending.exercises.reduce((n, e) => n + e.entries.length, 0);
+      return `<div class="resume-card">
+          <div class="resume-main">
+            <div class="resume-eyebrow caps">Séance en cours</div>
+            <div class="resume-title">${pending.title}</div>
+            <div class="resume-sub">Exercice ${pending.idx + 1}/${pending.exercises.length} · ${done}/${total} séries</div>
+          </div>
+          <button class="resume-x" onclick="discardWorkout()" aria-label="Abandonner la séance">${ICONS.close}</button>
+          <button class="hero-btn" onclick="resumeWorkout()">${ICONS.play}Reprendre</button>
+        </div>`;
+    })() : '';
+
+    // Chiffres clés
+    const thisWeek = store.history.filter(h => new Date(h.date) >= weekStart);
+    document.getElementById('kpiTotal').textContent = store.history.length;
+    document.getElementById('kpiSets').textContent = compact(store.history.reduce((n, h) => n + (h.setsDone || 0), 0));
+    document.getElementById('kpiWeek').textContent = thisWeek.length;
+    const nTotal = store.history.length;
+    const nSets = store.history.reduce((n, h) => n + (h.setsDone || 0), 0);
+    document.getElementById('kpiTotalLabel').textContent = nTotal > 1 ? 'séances réalisées' : 'séance réalisée';
+    document.getElementById('kpiSetsLabel').textContent = nSets > 1 ? 'séries validées' : 'série validée';
+
+    // Dernière séance
+    const last = store.history[0];
+    document.getElementById('lastWrap').innerHTML = last ? `
+      <button class="last-row" onclick="switchTab('progres')">
+        ${dateBadge(new Date(last.date), 'sm')}
+        <div class="last-main">
+          <div class="last-eyebrow">Dernière séance</div>
+          <div class="last-title">${last.title}</div>
+          <div class="last-sub">${last.setsDone}/${last.totalSets} séries · ${last.durationMin} min</div>
+        </div>
+        ${ICONS.chev}
+      </button>` : '';
+
+    // Semaine : jour, date, séance ; un point si une séance a été enregistrée.
+    document.getElementById('weekStrip').innerHTML = DAY_SHORT.map((name, i) => {
+      const d = new Date(weekStart);
+      d.setDate(d.getDate() + i);
+      const key = sessionForDay(i);
+      const done = store.history.some(h => new Date(h.date).toDateString() === d.toDateString());
+      const tag = key
+        ? `${SESSION_META[key].tag}<em>${SESSION_META[key].short}</em>`
+        : 'Shabbat<em>off</em>';
+      const tagName = key ? 'button' : 'div';
+      const label = `${DAY_NAMES[i]} ${d.getDate()} : ${key ? sessions[key].title : 'Shabbat, repos'}${done ? ', séance faite' : ''}`;
+      return `<${tagName} class="wk-day ${key ? '' : 'rest'} ${i === today ? 'active' : ''} ${done ? 'done' : ''}"
+                ${key ? `onclick="openModal('${key}')"` : ''} aria-label="${label}" ${i === today ? 'aria-current="date"' : ''}>
+          <span class="wk-name">${name}</span>
+          <span class="wk-num">${d.getDate()}</span>
+          <span class="wk-tag">${tag}</span>
+        </${tagName}>`;
+    }).join('');
+
+    // Séance du jour
+    const todayKey = sessionForDay(today);
+    const hero = document.getElementById('heroWrap');
+    if (todayKey) {
+      const s = sessions[todayKey];
+      const times = store.history.filter(h => h.key === todayKey).length;
+      const doneToday = store.history.some(h => h.key === todayKey && new Date(h.date).toDateString() === now.toDateString());
+      hero.innerHTML = `
+        <div class="hero">
+          <div class="hero-eyebrow caps">${doneToday ? 'Terminée aujourd\'hui' : (s.day.split(' · ')[1] || '')}</div>
+          <div class="hero-title">${s.title}</div>
+          <div class="hero-sub">${DAY_NAMES[today]} ${now.getDate()} ${MONTH_SHORT[now.getMonth()].toLowerCase()} · ${countLabel(todayKey)}</div>
+          <div class="hero-chart">${stepChart(setCounts(todayKey))}</div>
+          <div class="hero-chart-label">Séries par exercice</div>
+          <div class="hero-bottom">
+            <div class="hero-stat"><b class="num">${times}</b><span>fois réalisée</span></div>
+            <div class="hero-actions">
+              <button class="hero-btn ghost" onclick="openModal('${todayKey}')" aria-label="Voir le détail">${ICONS.list}</button>
+              <button class="hero-btn" onclick="startWorkout('${todayKey}')">${ICONS.play}Démarrer</button>
+            </div>
+          </div>
+        </div>`;
+    } else {
+      const nextKey = sessionForDay((today + 1) % 7) || SESSION_ORDER[0];
+      hero.innerHTML = `
+        <div class="hero">
+          <div class="hero-eyebrow caps">Repos complet</div>
+          <div class="hero-title">Shabbat Shalom</div>
+          <p class="hero-text">Aucune séance aujourd'hui. C'est ce jour off qui rend les 6 autres soutenables — et qui prépare la séance la plus lourde de la semaine.</p>
+          <div class="hero-bottom">
+            <div class="hero-stat"><span>Demain</span><div style="font-size:17px;font-weight:600;margin-top:2px">${sessions[nextKey].title}</div></div>
+            <button class="hero-btn ghost" onclick="openModal('${nextKey}')">Aperçu</button>
+          </div>
+        </div>`;
     }
 
-    // 2. Mettre à jour les cartes de séances
-    const seanceCards = document.querySelectorAll('.seance-card');
-    seanceCards.forEach(card => {
-      const dayEl = card.querySelector('.seance-day');
-      if (dayEl && dayEl.textContent.includes(todayName)) {
-        // Remplacer le nom du jour par "Aujourd'hui"
-        dayEl.innerHTML = dayEl.innerHTML.replace(todayName, "Aujourd'hui");
-        // Mettre en évidence la carte
-        card.style.borderColor = "var(--accent)";
-        card.style.boxShadow = "var(--shadow)";
-        // Remonter la séance du jour tout en haut de la liste
-        card.parentNode.prepend(card);
-      }
-    });
-
-    // 3. Mettre à jour les données de la modale
-    for (const key in sessions) {
-      if (sessions[key].day.includes(todayName)) {
-        sessions[key].day = sessions[key].day.replace(todayName, "Aujourd'hui");
-      }
-    }
+    // Liste des séances, dans l'ordre de la semaine
+    document.getElementById('seanceList').innerHTML = SESSION_ORDER.map(key => {
+      const s = sessions[key];
+      const meta = SESSION_META[key];
+      const isToday = meta.dow === today;
+      const fig = bodyPair(s.muscles);
+      return `<div class="w-card ${isToday ? 'today' : ''}" role="button" tabindex="0" aria-label="${s.title}, ${dayLabel(key)}"
+          onclick="openModal('${key}')" onkeydown="if (event.target === this && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openModal('${key}'); }">
+          <div class="w-fig">${meta.blocks ? fig.back : (key === 'b' ? fig.back : fig.front)}</div>
+          <div class="w-main">
+            <div class="w-day caps">${dayLabel(key)}</div>
+            <div class="w-title">${s.title}</div>
+            <div class="w-chips">${s.muscles.slice(0, 3).map(m => `<span class="w-chip">${m}</span>`).join('')}</div>
+            <div class="w-meta">${countLabel(key)}</div>
+          </div>
+          <button class="w-play" onclick="event.stopPropagation(); startWorkout('${key}')" aria-label="Démarrer ${s.title}">${ICONS.play}</button>
+        </div>`;
+    }).join('');
   }
 
-  updateCurrentDay();
+  // 1234 → "1,2k" pour tenir dans les tuiles de chiffres clés.
+  function compact(n) {
+    return n >= 10000 ? Math.round(n / 1000) + 'k'
+         : n >= 1000 ? (n / 1000).toFixed(1).replace('.', ',') + 'k'
+         : String(n);
+  }
 
   // ── PHASES TOGGLE ──
   function togglePhases() {
@@ -2181,7 +2898,9 @@
     const chevron = document.getElementById('phasesChevron');
     const isOpen = content.classList.contains('open');
     content.classList.toggle('open', !isOpen);
+    content.inert = isOpen;
     chevron.classList.toggle('open', !isOpen);
+    document.querySelector('.phases-toggle').setAttribute('aria-expanded', !isOpen);
   }
 
   /* ══════════════════════════════════════════════════════
@@ -2302,14 +3021,54 @@
 
   /* ══════════════════════════════════════════════════════
      WORKOUT PLAYER
+     La séance en cours est sauvegardée à chaque action : si iOS
+     tue l'app en arrière-plan ou si l'onglet recharge, rien n'est
+     perdu et la séance peut être reprise depuis l'accueil.
      ══════════════════════════════════════════════════════ */
+  const ACTIVE_KEY = 'planche_os_active';
+  const ACTIVE_MAX_AGE = 12 * 3600 * 1000; // au-delà, la séance est considérée abandonnée
   let session = null;   // séance en cours
   let wakeLock = null;
 
-  async function startWorkout(key) {
+  function saveActive() {
+    if (!session) return;
+    try { localStorage.setItem(ACTIVE_KEY, JSON.stringify({ ...session, savedAt: Date.now() })); } catch (e) {}
+  }
+
+  function clearActive() {
+    try { localStorage.removeItem(ACTIVE_KEY); } catch (e) {}
+  }
+
+  function loadActive() {
+    try {
+      const a = JSON.parse(localStorage.getItem(ACTIVE_KEY) || 'null');
+      if (!a || !sessions[a.key] || !Array.isArray(a.exercises)) return null;
+      if (Date.now() - (a.savedAt || 0) > ACTIVE_MAX_AGE) { clearActive(); return null; }
+      return a;
+    } catch (e) { return null; }
+  }
+
+  // Valeurs notées la dernière fois sur cet exercice (même séance).
+  function previousValues(key, name) {
+    for (const h of store.history) {
+      if (h.key !== key) continue;
+      const e = (h.exercises || []).find(x => x.name === name && x.values && x.values.length);
+      if (e) return e.values;
+    }
+    return [];
+  }
+
+  // "6 × 400 m", "5 km" : effort mesuré au temps, où plus court = mieux.
+  function isDistance(sets) {
+    return /\d\s*k?m\b/i.test(sets || '');
+  }
+
+  function startWorkout(key) {
     const s = sessions[key];
     if (!s) return;
-    closeModal();
+    if (session) { openPlayer(); return; }
+    const pending = loadActive();
+    if (pending && !confirm(`Une séance « ${pending.title} » est en cours. La remplacer ?`)) return;
 
     session = {
       key,
@@ -2325,14 +3084,42 @@
           note: ex.note,
           type: meta.type,
           rest: meta.rest,
+          dist: isDistance(ex.sets),
+          prev: previousValues(key, ex.name),
           entries: Array.from({ length: meta.count }, () => ({ done: false, value: '' })),
         };
       }),
     };
+    saveActive();
+    openPlayer();
+  }
 
-    document.getElementById('playerTitle').textContent = s.title;
+  function resumeWorkout() {
+    const a = loadActive();
+    if (!a) { renderDashboard(); return; }
+    session = a;
+    openPlayer();
+  }
+
+  function discardWorkout() {
+    if (!confirm('Abandonner la séance en cours ? Les séries notées seront perdues.')) return;
+    clearActive();
+    renderDashboard();
+  }
+
+  function openPlayer() {
+    const modalOpen = document.getElementById('modal').classList.contains('open');
+    if (modalOpen) {
+      // Ferme la fiche sans animation d'historique : le player prend sa place.
+      document.getElementById('modal').classList.remove('open');
+      document.getElementById('modalOverlay').classList.remove('open');
+      swapLayer('modal', 'player');
+    } else if (!layers.includes('player')) {
+      pushLayer('player');
+    }
+    document.getElementById('playerTitle').textContent = session.title;
     document.getElementById('player').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    syncInert();
     renderExercise();
     requestWakeLock();
   }
@@ -2341,9 +3128,10 @@
     if (!session) return;
     const ex = session.exercises[session.idx];
     const total = session.exercises.length;
+    const prev = ex.prev || [];
 
-    document.getElementById('playerMeta').textContent = `Exercice ${session.idx + 1} / ${total}`;
-    document.getElementById('playerBar').style.width = ((session.idx) / total * 100) + '%';
+    document.getElementById('playerMeta').textContent = `${session.day.replace(DAY_NAMES[new Date().getDay()], "Aujourd'hui")} · ${session.idx + 1} / ${total}`;
+    document.getElementById('playerBar').style.transform = `scaleX(${(session.idx + 1) / total})`;
     document.getElementById('playerNextBtn').textContent =
       session.idx === total - 1 ? 'Terminer' : 'Suivant';
 
@@ -2351,31 +3139,61 @@
     const rows = ex.entries.map((entry, i) => `
       <div class="set-row ${entry.done ? 'done' : ''}" id="setRow${i}">
         <span class="set-num">${ex.entries.length > 1 ? 'Série ' + (i + 1) : 'Série'}</span>
-        <input class="set-input" type="number" inputmode="decimal" placeholder="—"
-               value="${entry.value}" oninput="setValue(${i}, this.value)">
+        <input class="set-input" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off"
+               placeholder="${hintFor(ex, i)}" aria-label="${unit}, série ${i + 1}"
+               value="${entry.value}" oninput="setValue(${i}, this.value)"
+               onkeydown="if (event.key === 'Enter') { event.preventDefault(); this.blur(); if (!session.exercises[session.idx].entries[${i}].done) toggleSet(${i}); }">
         <span class="set-unit">${unit}</span>
-        <button class="set-check" onclick="toggleSet(${i})" aria-label="Valider la série">${ICONS.check}</button>
+        <button class="set-check" onclick="toggleSet(${i})" aria-pressed="${entry.done}" aria-label="Valider la série ${i + 1}">${ICONS.check}</button>
       </div>`).join('');
 
-    const holdBtn = ex.type === 'hold'
-      ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">${ICONS.timer}Chrono de hold</button>`
+    const prevHint = prev.length
+      ? `<div class="prev-hint">${ICONS.history}Dernière fois : <b>${prev.join(' · ')}</b> ${unit}</div>`
       : '';
 
-    document.getElementById('playerBody').innerHTML = `
-      <div class="player-ex-index">Exercice ${session.idx + 1} sur ${total}</div>
+    const holdBtn = ex.type === 'hold'
+      ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">${ICONS.timer}${ex.dist ? 'Chrono de la fraction' : 'Chrono de hold'}</button>`
+      : '';
+
+    const nextEx = session.exercises[session.idx + 1];
+    const upNext = nextEx
+      ? `<div class="up-next">
+          <div style="min-width:0"><div class="up-next-label caps">À suivre</div><div class="up-next-name">${nextEx.name}</div></div>
+          <div class="up-next-sets">${nextEx.sets}</div>
+        </div>`
+      : '';
+
+    const body = document.getElementById('playerBody');
+    body.innerHTML = `
+      <div class="player-ex-index caps">Exercice ${session.idx + 1} sur ${total}</div>
       <div class="player-ex-name">${ex.name}</div>
       <div class="player-ex-target">${ex.sets}</div>
       <div class="player-ex-note">${ex.note}</div>
-      <div class="player-sets-label">Séries — note tes ${unit}</div>
+      <div class="player-sets-label caps">Séries — note tes ${unit}</div>
+      ${prevHint}
       ${rows}
       ${holdBtn}
+      ${upNext}
     `;
-    document.getElementById('playerBody').scrollTop = 0;
+    body.scrollTop = 0;
+    // Petite entrée en fondu à chaque exercice : repère visuel du changement.
+    body.classList.remove('enter');
+    void body.offsetWidth;
+    body.classList.add('enter');
+  }
+
+  // Valeur suggérée : la même série la dernière fois, sinon la série
+  // précédente d'aujourd'hui. Valider une série vide reprend cette valeur.
+  function hintFor(ex, i) {
+    const prev = ex.prev || [];
+    const v = prev[i] ?? prev[prev.length - 1] ?? (i > 0 ? ex.entries[i - 1].value : '');
+    return v === undefined || v === '' ? '—' : String(v);
   }
 
   function setValue(i, val) {
     if (!session) return;
     session.exercises[session.idx].entries[i].value = val;
+    saveActive();
   }
 
   function toggleSet(i) {
@@ -2383,7 +3201,21 @@
     const ex = session.exercises[session.idx];
     const entry = ex.entries[i];
     entry.done = !entry.done;
-    document.getElementById('setRow' + i).classList.toggle('done', entry.done);
+    const row = document.getElementById('setRow' + i);
+
+    if (entry.done && entry.value === '') {
+      const hint = hintFor(ex, i);
+      if (hint !== '—') {
+        entry.value = hint;
+        row.querySelector('.set-input').value = hint;
+      }
+    }
+    row.classList.toggle('done', entry.done);
+    row.querySelector('.set-check').setAttribute('aria-pressed', entry.done);
+    // La suggestion de la série suivante peut dépendre de celle-ci.
+    const nextInput = document.querySelector(`#setRow${i + 1} .set-input`);
+    if (nextInput) nextInput.placeholder = hintFor(ex, i + 1);
+    saveActive();
 
     if (entry.done) {
       vibrate(30);
@@ -2400,34 +3232,45 @@
       return;
     }
     session.idx++;
+    saveActive();
     renderExercise();
   }
 
   function prevExercise() {
     if (!session || session.idx === 0) return;
     session.idx--;
+    saveActive();
     renderExercise();
   }
 
-  function quitWorkout() {
-    if (!session) return;
+  function confirmQuit() {
+    if (!session) return true;
     const anyDone = session.exercises.some(e => e.entries.some(s => s.done));
-    if (anyDone && !confirm('Quitter la séance ? La progression non enregistrée sera perdue.')) return;
+    return !anyDone || confirm('Quitter la séance ? La progression non enregistrée sera perdue.');
+  }
+
+  function quitWorkout() {
+    if (!session || !confirmQuit()) return;
+    clearActive();
     closePlayer();
   }
 
-  function closePlayer() {
+  function closePlayer(fromHistory = false) {
     stopTimer();
     releaseWakeLock();
+    if (fromHistory) clearActive();
     session = null;
     document.getElementById('player').classList.remove('open');
-    document.body.style.overflow = '';
+    if (!fromHistory) popLayer('player');
+    syncInert();
+    renderDashboard();
   }
 
   function finishWorkout() {
     if (!session) return;
     const setsDone = session.exercises.reduce((n, e) => n + e.entries.filter(s => s.done).length, 0);
     const totalSets = session.exercises.reduce((n, e) => n + e.entries.length, 0);
+    if (setsDone === 0 && !confirm('Aucune série validée. Enregistrer quand même la séance ?')) return;
     const durationMin = Math.max(1, Math.round((Date.now() - session.startedAt) / 60000));
 
     store.history.unshift({
@@ -2448,6 +3291,7 @@
     });
     if (store.history.length > 300) store.history.length = 300;
     saveStore();
+    clearActive();
 
     closePlayer();
     renderProgress();
@@ -2457,70 +3301,120 @@
 
   /* ══════════════════════════════════════════════════════
      TIMERS (repos + hold)
+     Les chronos se basent sur l'horloge (Date.now) et non sur un
+     compteur décrémenté : setInterval est ralenti ou suspendu quand
+     l'écran se verrouille, le temps affiché reste pourtant juste.
      ══════════════════════════════════════════════════════ */
   let timerId = null;
-  let timerRemaining = 0;
   let timerMode = 'rest';
-  let holdElapsed = 0;
+  let timerEnd = 0;       // repos : instant de fin
+  let timerTotal = 0;     // repos : durée totale (pour l'anneau)
+  let holdStart = 0;      // hold : instant de départ
+  let lastShown = -1;
+  const RING_LEN = 339.29; // 2π × 54, rayon du cercle SVG
 
-  function startRestTimer(seconds) {
-    timerMode = 'rest';
-    timerRemaining = seconds;
-    document.getElementById('timerLabel').textContent = 'Repos';
-    document.getElementById('timerSub').textContent = 'Le chrono démarre tout seul après chaque série';
-    document.getElementById('timerPanel').classList.add('open');
-    tickRest();
-    clearInterval(timerId);
-    timerId = setInterval(tickRest, 1000);
+  function timerOpen() {
+    return document.getElementById('timerPanel').classList.contains('open');
   }
 
-  function tickRest() {
-    const el = document.getElementById('timerValue');
-    el.textContent = fmtTime(timerRemaining);
-    el.classList.toggle('warn', timerRemaining <= 10);
-    if (timerRemaining <= 0) {
-      beep();
-      vibrate([120, 80, 120]);
-      stopTimer();
-      toast('Repos terminé — série suivante');
-      return;
-    }
-    timerRemaining--;
+  function setRing(fraction) {
+    document.getElementById('timerProgress').style.strokeDashoffset =
+      String(RING_LEN * (1 - Math.max(0, Math.min(1, fraction))));
+  }
+
+  function openTimerPanel(label, sub, canAdd) {
+    document.getElementById('timerLabel').textContent = label;
+    document.getElementById('timerSub').textContent = sub;
+    document.getElementById('timerAddBtn').hidden = !canAdd;
+    // Repos : on peut le passer ; hold/chrono : on l'arrête pour noter le temps.
+    const main = document.getElementById('timerMainBtn');
+    main.textContent = canAdd ? 'Passer' : 'Arrêter';
+    document.getElementById('timerPanel').classList.add('open');
+    syncInert();
+    main.focus({ preventScroll: true });
+    lastShown = -1;
+    clearInterval(timerId);
+    // 4 ticks/s : l'affichage change pile à la seconde sans dériver.
+    timerId = setInterval(tickTimer, 250);
+    tickTimer();
+  }
+
+  function startRestTimer(seconds) {
+    unlockAudio();
+    timerMode = 'rest';
+    timerTotal = seconds;
+    timerEnd = Date.now() + seconds * 1000;
+    openTimerPanel('Repos', 'Le chrono démarre tout seul après chaque série', true);
   }
 
   function startHoldTimer() {
+    unlockAudio();
     timerMode = 'hold';
-    holdElapsed = 0;
-    document.getElementById('timerLabel').textContent = 'Hold';
-    document.getElementById('timerSub').textContent = 'Arrête dès que la forme casse';
-    document.getElementById('timerPanel').classList.add('open');
-    document.getElementById('timerValue').textContent = '0:00';
-    clearInterval(timerId);
-    timerId = setInterval(() => {
-      holdElapsed++;
-      document.getElementById('timerValue').textContent = fmtTime(holdElapsed);
-    }, 1000);
+    holdStart = Date.now();
+    const dist = session && session.exercises[session.idx].dist;
+    openTimerPanel(dist ? 'Chrono' : 'Hold',
+      dist ? 'Arrête à la fin de la fraction — le temps est reporté sur la série' : 'Arrête dès que la forme casse', false);
+  }
+
+  function restRemaining() {
+    return Math.max(0, Math.ceil((timerEnd - Date.now()) / 1000));
+  }
+
+  function holdElapsed() {
+    return Math.floor((Date.now() - holdStart) / 1000);
+  }
+
+  function tickTimer() {
+    const valueEl = document.getElementById('timerValue');
+    if (timerMode === 'rest') {
+      const r = restRemaining();
+      if (r !== lastShown) {
+        lastShown = r;
+        valueEl.textContent = fmtTime(r);
+        const warn = r <= 10;
+        valueEl.classList.toggle('warn', warn);
+        document.getElementById('timerRing').classList.toggle('warn', warn);
+        setRing(timerTotal ? r / timerTotal : 0);
+      }
+      if (r <= 0) {
+        beep();
+        vibrate([120, 80, 120]);
+        stopTimer();
+        toast('Repos terminé — série suivante');
+      }
+    } else {
+      const e = holdElapsed();
+      if (e !== lastShown) {
+        lastShown = e;
+        valueEl.textContent = fmtTime(e);
+        // L'anneau fait un tour par minute tenue.
+        setRing(e === 0 ? 0 : (e % 60 || 60) / 60);
+      }
+    }
   }
 
   function addTimer(sec) {
-    if (timerMode === 'rest') {
-      timerRemaining += sec;
-      document.getElementById('timerValue').textContent = fmtTime(timerRemaining);
-    }
+    if (timerMode !== 'rest') return;
+    timerEnd += sec * 1000;
+    timerTotal = Math.max(timerTotal, restRemaining());
+    lastShown = -1;
+    tickTimer();
   }
 
   // "Passer" : sur un hold, on récupère le temps tenu dans la 1re série vide.
   function dismissTimer() {
-    if (timerMode === 'hold' && holdElapsed > 0 && session) {
+    const held = timerMode === 'hold' ? holdElapsed() : 0;
+    stopTimer();
+    if (held > 0 && session) {
       const ex = session.exercises[session.idx];
       const target = ex.entries.find(e => !e.done && !e.value);
       if (target) {
-        target.value = String(holdElapsed);
+        target.value = String(held);
+        saveActive();
         renderExercise();
-        toast(`${holdElapsed} s reportées sur la série`);
+        toast(`${held} s reportées sur la série`);
       }
     }
-    stopTimer();
   }
 
   function stopTimer() {
@@ -2528,6 +3422,8 @@
     timerId = null;
     document.getElementById('timerPanel').classList.remove('open');
     document.getElementById('timerValue').classList.remove('warn');
+    document.getElementById('timerRing').classList.remove('warn');
+    syncInert();
   }
 
   function fmtTime(s) {
@@ -2540,22 +3436,37 @@
     if (navigator.vibrate) navigator.vibrate(pattern);
   }
 
-  // Bip synthétisé — évite d'embarquer un fichier son dans le cache offline.
-  function beep() {
+  /* Bip synthétisé — évite d'embarquer un fichier son dans le cache offline.
+     iOS n'autorise le son qu'après un geste : on crée le contexte audio une
+     fois, au premier tap, et on le réutilise pour tous les bips. */
+  let audioCtx = null;
+
+  function unlockAudio() {
     try {
       const Ctx = window.AudioContext || window.webkitAudioContext;
       if (!Ctx) return;
-      const ctx = new Ctx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.frequency.value = 880;
-      gain.gain.setValueAtTime(0.25, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.5);
-      setTimeout(() => ctx.close(), 800);
+      if (!audioCtx) audioCtx = new Ctx();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    } catch (e) { /* audio indisponible : la vibration suffit */ }
+  }
+  document.addEventListener('pointerdown', unlockAudio, { once: true, passive: true });
+
+  function beep() {
+    try {
+      unlockAudio();
+      if (!audioCtx) return;
+      const t = audioCtx.currentTime;
+      [0, 0.22].forEach(offset => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.value = 880;
+        gain.gain.setValueAtTime(0.25, t + offset);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.18);
+        osc.start(t + offset);
+        osc.stop(t + offset + 0.2);
+      });
     } catch (e) { /* audio bloqué : la vibration suffit */ }
   }
 
@@ -2569,9 +3480,13 @@
     if (wakeLock) { wakeLock.release().catch(() => {}); wakeLock = null; }
   }
 
-  // L'écran se rendort si l'app passe en arrière-plan : on redemande au retour.
+  // Au retour dans l'app : l'écran s'était peut-être verrouillé (wake lock
+  // perdu, chrono gelé) ou la date a changé (planning du jour à rafraîchir).
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && session) requestWakeLock();
+    if (document.visibilityState !== 'visible') return;
+    if (session) requestWakeLock();
+    if (timerId) tickTimer();
+    if (!session) renderDashboard();
   });
 
   /* ══════════════════════════════════════════════════════
@@ -2587,26 +3502,101 @@
   function renderProgress() {
     const now = new Date();
     const weekStart = startOfWeek(now);
+    const H = store.history;
 
-    const thisWeek = store.history.filter(h => new Date(h.date) >= weekStart);
+    const thisWeek = H.filter(h => new Date(h.date) >= weekStart);
     document.getElementById('statWeek').textContent = thisWeek.length;
-    document.getElementById('statTotal').textContent = store.history.length;
+    document.getElementById('statTotal').textContent = H.length;
     document.getElementById('statStreak').textContent = computeStreak();
+    const nSets = H.reduce((n, h) => n + (h.setsDone || 0), 0);
+    document.getElementById('statSets').textContent = compact(nSets);
+    document.getElementById('statSetsLabel').textContent = nSets > 1 ? 'séries validées' : 'série validée';
+    document.getElementById('statTotalLabel').textContent = H.length > 1 ? 'séances au total' : 'séance au total';
+    document.getElementById('statAvg').textContent = H.length
+      ? Math.round(H.reduce((n, h) => n + (h.durationMin || 0), 0) / H.length)
+      : 0;
 
-    // 7 points = les 7 jours de la semaine en cours
-    const days = Array.from({ length: 7 }, (_, i) => {
+    // Séances par semaine sur les 8 dernières semaines (la plus récente à droite).
+    const weeks = Array.from({ length: 8 }, (_, i) => {
+      const start = new Date(weekStart);
+      start.setDate(start.getDate() - (7 - i) * 7);
+      const end = new Date(start);
+      end.setDate(end.getDate() + 7);
+      return { start, count: H.filter(h => { const d = new Date(h.date); return d >= start && d < end; }).length };
+    });
+    const total8 = weeks.reduce((n, w) => n + w.count, 0);
+    document.getElementById('chartTotal').innerHTML = `${total8}<small>séances</small>`;
+    document.getElementById('chartAvg').textContent = `${(total8 / 8).toFixed(1).replace('.', ',')} / sem. en moyenne`;
+    document.getElementById('weeksChart').innerHTML = weekBars(weeks);
+
+    // 7 pastilles = les 7 jours de la semaine en cours
+    document.getElementById('weekDots').innerHTML = DAY_SHORT.map((name, i) => {
       const d = new Date(weekStart);
       d.setDate(d.getDate() + i);
-      return store.history.some(h => {
-        const hd = new Date(h.date);
-        return hd.toDateString() === d.toDateString();
-      });
-    });
-    document.getElementById('weekDots').innerHTML =
-      days.map(on => `<div class="week-dot ${on ? 'on' : ''}"></div>`).join('');
+      const on = H.some(h => new Date(h.date).toDateString() === d.toDateString());
+      return `<div class="week-dot ${on ? 'on' : ''} ${i === now.getDay() ? 'today' : ''}"><i></i><span>${name.charAt(0)}</span></div>`;
+    }).join('');
 
+    renderRecords();
     renderSkills();
     renderHistory();
+  }
+
+  // Histogramme hebdo : axe discret, barre de la semaine en cours en blanc.
+  function weekBars(weeks) {
+    const w = 300, h = 130, top = 10, bottom = 22;
+    const max = Math.max(6, ...weeks.map(x => x.count));
+    const slot = w / weeks.length;
+    const bw = slot * 0.62;
+    let out = '';
+    [0, 0.5, 1].forEach(t => {
+      const y = top + (h - top - bottom) * (1 - t);
+      out += `<line x1="0" x2="${w}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,0.09)"/>`;
+    });
+    weeks.forEach((wk, i) => {
+      const x = i * slot + (slot - bw) / 2;
+      const full = h - top - bottom;
+      const bh = wk.count ? Math.max(4, full * wk.count / max) : 2;
+      const y = top + full - bh;
+      const last = i === weeks.length - 1;
+      out += `<rect x="${x + bw * 0.3}" y="${y - 5}" width="${bw}" height="${bh + 5}" fill="rgba(255,255,255,0.08)"/>`;
+      out += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="2" fill="${last ? '#ffffff' : '#4f61f0'}"/>`;
+      if (wk.count) out += `<text x="${x + bw / 2}" y="${y - 8}" text-anchor="middle" font-size="10" font-weight="600" fill="rgba(255,255,255,${last ? 0.95 : 0.6})">${wk.count}</text>`;
+      out += `<text x="${x + bw / 2}" y="${h - 6}" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.45)">${wk.start.getDate()}/${wk.start.getMonth() + 1}</text>`;
+    });
+    return `<svg viewBox="0 0 ${w} ${h}" aria-label="Séances par semaine">${out}</svg>`;
+  }
+
+  // Meilleure valeur enregistrée par exercice (reps, secondes tenues…).
+  // Retrouve la prescription d'un exercice par son nom (pour savoir si c'est une distance).
+  const EX_SETS = {};
+  Object.values(sessions).forEach(s => s.exercises.forEach(ex => { EX_SETS[ex.name] = ex.sets; }));
+
+  function renderRecords() {
+    const best = {};
+    store.history.forEach(h => (h.exercises || []).forEach(e => {
+      const lower = isDistance(EX_SETS[e.name]);
+      // Durées d'échauffement / mobilité / skill : pas des performances.
+      if (e.type === 'time' && !lower) return;
+      const vals = (e.values || []).map(x => parseFloat(String(x).replace(',', '.'))).filter(x => Number.isFinite(x) && x > 0);
+      if (!vals.length) return;
+      // Sur une distance, le meilleur temps est le plus court.
+      const v = lower ? Math.min(...vals) : Math.max(...vals);
+      const cur = best[e.name];
+      if (!cur || (lower ? v < cur.v : v > cur.v)) best[e.name] = { v, type: e.type, date: h.date };
+    }));
+    const list = Object.entries(best)
+      .sort((a, b) => new Date(b[1].date) - new Date(a[1].date))
+      .slice(0, 10);
+    document.getElementById('recordsSection').hidden = !list.length;
+    document.getElementById('recordsWrap').innerHTML = list.map(([name, r]) => {
+      const d = new Date(r.date);
+      return `<div class="record">
+          <div class="record-name">${name}</div>
+          <div class="record-val num">${String(r.v).replace('.', ',')}<small>${unitFor(r.type)}</small></div>
+          <div class="record-date">${d.getDate()} ${MONTH_SHORT[d.getMonth()].toLowerCase()} ${d.getFullYear()}</div>
+        </div>`;
+    }).join('');
   }
 
   // Nombre de semaines consécutives (en remontant) avec au moins 3 séances.
@@ -2632,8 +3622,9 @@
   function renderSkills() {
     document.getElementById('skillsWrap').innerHTML = Object.entries(SKILL_LADDERS).map(([key, ladder]) => {
       const lvl = Math.min(store.skills[key] ?? 0, ladder.steps.length - 1);
+      // Marches montantes : chaque palier est un peu plus haut que le précédent.
       const nodes = ladder.steps.map((_, i) =>
-        `<div class="skill-node ${i <= lvl ? 'done' : ''}"></div>`).join('');
+        `<div class="skill-node ${i < lvl ? 'done' : i === lvl ? 'cur' : ''}" style="height:${6 + i * 3}px"></div>`).join('');
       const next = lvl < ladder.steps.length - 1
         ? `Prochain : ${ladder.steps[lvl + 1]}`
         : 'Palier final atteint';
@@ -2675,10 +3666,9 @@
     }
     wrap.innerHTML = store.history.slice(0, 30).map(h => {
       const d = new Date(h.date);
-      const day = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
       return `
         <div class="history-item">
-          <span class="history-date">${day}</span>
+          ${dateBadge(d, 'sm')}
           <div class="history-main">
             <div class="history-title">${h.title}</div>
             <div class="history-sub">${h.setsDone}/${h.totalSets} séries · ${h.durationMin} min</div>
@@ -2730,6 +3720,7 @@
      ══════════════════════════════════════════════════════ */
   loadStore();
   renderProgress();
+  renderDashboard();
 
   const tabParam = new URLSearchParams(location.search).get('tab');
   if (tabParam && document.getElementById('page-' + tabParam)) switchTab(tabParam);

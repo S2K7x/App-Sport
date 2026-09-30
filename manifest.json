@@ -33,6 +33,12 @@
       "url": "./index.html?tab=seances"
     },
     {
+      "name": "Jeûne",
+      "short_name": "Fast",
+      "description": "Minuteur et suivi du jeûne intermittent",
+      "url": "./index.html?tab=fast"
+    },
+    {
       "name": "Réglages",
       "short_name": "Réglages",
       "description": "Profil, zones cardio, thème et synchronisation Apple Santé",

@@ -1654,32 +1654,6 @@
     .macro-bar-fill.gluc { background: #9aa5fb; }
     .macro-bar-fill.lip  { background: #6272f5; }
 
-    .meal-card {
-      display: flex;
-      gap: 13px;
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      padding: 16px;
-      margin-bottom: 10px;
-      box-shadow: var(--shadow);
-    }
-    .meal-num {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .meal-name { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 4px; }
-    .meal-desc { font-size: 14px; line-height: 1.5; color: var(--label-2); margin-bottom: 9px; }
-    .meal-macro { font-size: 12.5px; font-weight: 600; color: var(--accent); }
-
     /* Liste d'informations (suppléments, récupération) */
     .info-list { display: flex; flex-direction: column; }
     .info-item {
@@ -1713,29 +1687,7 @@
     }
     .calc-note b { color: var(--accent); font-weight: 700; }
 
-    /* ── FUEL ── */
-    .fuel-section-header {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      margin: 8px 0 12px;
-    }
-    .fuel-section-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--r-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 6px 14px rgba(63, 81, 232, 0.3);
-    }
-    .fuel-section-icon svg { width: 18px; height: 18px; }
-    .fuel-section-icon.drink { background: var(--navy); box-shadow: 0 6px 14px rgba(28, 36, 116, 0.3); }
-    .fuel-section-label { font-size: 22px; font-weight: 700; letter-spacing: -0.022em; }
-
+    /* ── RECETTES (cartes) ── */
     .fuel-card {
       background: var(--surface);
       border-radius: var(--r-lg);
@@ -1773,7 +1725,242 @@
       border-top: 1px solid var(--separator);
     }
 
-    .fuel-divider { height: 1px; background: var(--separator); margin: 26px 0 22px; }
+    /* ── NUTRITION : journal et recettes ── */
+    .nutri-tabs { margin-bottom: 16px; }
+    .day-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    .day-nav-label { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+    .day-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      color: var(--label);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .day-nav-btn svg { width: 18px; height: 18px; }
+    .day-nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+    .food-kcal { font-size: 46px; line-height: 1; }
+    .food-kcal small { font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--on-navy-2); margin-left: 6px; }
+    .macro-value small { font-size: 13px; color: var(--on-navy-2); margin-left: 3px; }
+    .food-foot { font-size: 13px; color: var(--on-navy-2); margin-top: 18px; line-height: 1.45; }
+    .food-foot b { color: var(--on-navy); font-weight: 700; }
+
+    .quick-chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin: 0 calc(-1 * var(--gutter)) 10px;
+      padding: 2px var(--gutter) 6px;
+      scrollbar-width: none;
+    }
+    .quick-chips::-webkit-scrollbar { display: none; }
+    .quick-chips:empty { display: none; }
+    .chip {
+      flex-shrink: 0;
+      min-height: 38px;
+      border: none;
+      border-radius: 999px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      color: var(--label);
+      font: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 8px 14px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .chip b { color: var(--accent); margin-right: 4px; font-weight: 700; }
+    .chip.on { background: var(--accent); color: #fff; }
+    .chip:active { transform: scale(0.97); }
+
+    .meal-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border-radius: var(--r-md);
+      padding: 10px 6px 10px 12px;
+      margin-bottom: 8px;
+      box-shadow: var(--shadow);
+    }
+    .meal-time {
+      flex-shrink: 0;
+      min-width: 52px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 8px;
+      padding: 6px 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .meal-main { flex: 1; min-width: 0; }
+    .meal-main[onclick] { cursor: pointer; }
+    .meal-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .meal-sub { font-size: 12.5px; color: var(--label-2); margin-top: 1px; }
+    .meal-note { font-size: 12.5px; color: var(--label-3); margin-top: 2px; font-style: italic; }
+    .meal-flag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #c2410c;
+      background: rgba(234, 88, 12, 0.12);
+      border-radius: 5px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: 2px;
+    }
+    .meal-flag.plain { color: var(--label-2); background: var(--fill); }
+
+    .meal-form {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .mf-title { font-size: 16px; font-weight: 600; letter-spacing: -0.012em; }
+    .meal-form input:not([type="checkbox"]) {
+      width: 100%;
+      min-width: 0;
+      border: none;
+      border-radius: 9px;
+      background: var(--fill);
+      color: var(--label);
+      font: inherit;
+      font-size: 16px; /* pas de zoom iOS */
+      padding: 10px 11px;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .mf-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .mf-grid label, .mf-field { display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; font-weight: 600; color: var(--label-3); }
+    .mf-grid .span2 { grid-column: span 2; }
+    .mf-grid input { text-align: center; }
+    .mf-hint { font-size: 12px; color: var(--label-3); line-height: 1.4; }
+    .mf-actions { display: flex; gap: 8px; }
+    .mf-actions .sync-btn { flex: 1; min-height: 46px; }
+    .sync-btn.danger { color: #e5484d; }
+
+    .water-head { display: flex; align-items: center; gap: 10px; }
+    .stepper { display: flex; gap: 6px; flex-shrink: 0; }
+    .stepper button {
+      min-width: 38px;
+      height: 36px;
+      padding: 0 9px;
+      border: none;
+      border-radius: 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .stepper button:active { transform: scale(0.95); }
+    .water-bar { height: 6px; border-radius: 3px; background: var(--fill); overflow: hidden; }
+    .water-bar i {
+      display: block;
+      height: 100%;
+      border-radius: 3px;
+      background: var(--accent);
+      transform-origin: left center;
+      transition: transform 0.3s ease;
+    }
+
+    .recipe-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .recipe-actions .sync-btn { flex: 1; min-height: 42px; font-size: 14px; }
+    .fav-btn {
+      flex: 0 0 44px;
+      min-height: 42px;
+      border: none;
+      border-radius: var(--r-md);
+      background: var(--fill);
+      color: var(--label-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .fav-btn svg { width: 19px; height: 19px; }
+    .fav-btn.on { color: #f59e0b; }
+
+    /* ── FAST : jeûne intermittent ── */
+    .fast-hero { text-align: center; }
+    .fast-ring { position: relative; width: 206px; height: 206px; margin: 10px auto 2px; }
+    .fast-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); display: block; }
+    .fast-ring svg circle { transition: stroke-dashoffset 0.5s ease; }
+    .fast-ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .fast-time { font-size: 48px; font-weight: 300; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+    .fast-time-label { font-size: 12.5px; color: var(--on-navy-2); margin-top: 7px; max-width: 150px; line-height: 1.3; }
+    .fast-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+    .fast-meta span { display: block; font-size: 11.5px; color: var(--on-navy-2); }
+    .fast-meta b { display: block; font-size: 17px; font-weight: 600; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .fast-actions { display: flex; gap: 8px; margin-top: 18px; }
+    .fast-actions .hero-btn { flex: 1 1 auto; min-width: 0; justify-content: center; white-space: nowrap; padding-left: 12px; padding-right: 12px; letter-spacing: 0.03em; }
+    .fast-actions .hero-btn.ghost { flex: 0 0 auto; }
+    #addMealBtn { width: 100%; }
+    .fast-feel { margin-top: 16px; font-size: 13px; color: var(--on-navy-2); }
+    .feel { display: flex; gap: 8px; justify-content: center; margin-top: 8px; }
+    .feel button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .feel.light { justify-content: flex-start; margin-top: 0; }
+    .feel.light button { background: var(--fill); color: var(--label); }
+    .feel button.on { background: var(--accent); color: #fff; }
+    .feel-scale { display: flex; justify-content: space-between; max-width: 232px; margin: 4px auto 0; font-size: 11px; color: var(--on-navy-3); }
+
+    .fast-week svg { width: 100%; height: auto; display: block; }
+    .fast-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--separator); }
+    .fast-stats b { display: block; font-size: 22px; font-weight: 300; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .fast-stats span { font-size: 12px; color: var(--label-2); line-height: 1.3; }
+
+    .row-actions { display: flex; gap: 6px; flex-shrink: 0; padding-right: 6px; }
+    .mini-btn {
+      min-height: 34px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 10px;
+      cursor: pointer;
+    }
+    .mini-btn.plain { background: var(--fill); color: var(--label-2); }
+
+    .sched-row { gap: 8px; }
+    .pref-input.time { width: 96px; text-align: center; padding: 8px 4px; font-size: 15px; }
+    .sched-sep { color: var(--label-3); }
 
     /* ── TOAST ── */
     .toast {
@@ -1914,7 +2101,7 @@
       </div>
     </div>
 
-    <!-- ═══ PAGE 2 — NUTRITION ═══ -->
+    <!-- ═══ PAGE — NUTRITION (journal, recettes, objectifs) ═══ -->
     <div class="page" id="page-nutrition">
       <div class="page-header">
         <div>
@@ -1923,290 +2110,266 @@
         </div>
       </div>
 
-      <!-- Calculatrice -->
-      <div class="calc-card">
-        <div class="calc-label caps">Poids actuel</div>
-        <div class="calc-input-wrap">
-          <input class="calc-input" type="text" id="weightInput" value="67" inputmode="decimal" autocomplete="off" aria-label="Poids en kg">
-          <span class="calc-input-unit">kg</span>
-        </div>
-        <div class="calc-label caps">Objectif</div>
-        <div class="goal-toggle">
-          <button class="goal-btn" data-goal="maintien" onclick="setGoal('maintien')">Maintien</button>
-          <button class="goal-btn active" data-goal="masse" onclick="setGoal('masse')">Prise masse</button>
-          <button class="goal-btn" data-goal="seche" onclick="setGoal('seche')">Sèche</button>
-        </div>
-        <p class="calc-note">
-          <b>Note :</b> Maintien 65–67 kg optimal pour la planche (rapport force/poids). Ne pas couper agressivement — la force absolue en dépend.
-        </p>
+      <div class="seg nutri-tabs" role="tablist" aria-label="Sections de la nutrition">
+        <button role="tab" data-view="journal">Journal</button>
+        <button role="tab" data-view="recettes">Recettes</button>
+        <button role="tab" data-view="objectifs">Objectifs</button>
       </div>
 
-      <!-- Macros -->
-      <div class="hero macro-hero">
-        <div class="hero-eyebrow caps">Calories par jour</div>
-        <div class="macro-kcal num"><span id="kcalVal">2784</span><small>kcal</small></div>
-        <div class="macro-bar-track" style="margin-top:14px">
-          <div class="macro-bar-fill kcal" id="kcalBar"></div>
+      <!-- ── JOURNAL ── -->
+      <section class="nutri-view" data-view="journal">
+        <div class="day-nav">
+          <button class="day-nav-btn" onclick="shiftFoodDay(-1)" aria-label="Jour précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <div class="day-nav-label" id="foodDayLabel"></div>
+          <button class="day-nav-btn" id="foodNextBtn" onclick="shiftFoodDay(1)" aria-label="Jour suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
-        <div class="macro-rows">
-          <div>
-            <div class="macro-row-head">
-              <span class="macro-label">Protéines</span>
-              <span><span class="macro-value" id="protVal">130</span><span class="macro-unit">g</span></span>
-            </div>
-            <div class="macro-bar-track"><div class="macro-bar-fill prot" id="protBar"></div></div>
+
+        <div id="foodHero"></div>
+
+        <div class="section-head"><span class="section-title caps">Repas</span></div>
+        <div class="quick-chips" id="foodQuick"></div>
+        <div id="mealList"></div>
+
+        <form class="meal-form" id="mealForm" hidden onsubmit="submitMeal(event)" autocomplete="off">
+          <div class="mf-title" id="mealFormTitle">Ajouter un repas</div>
+          <input name="food" list="foodSuggest" placeholder="Qu'as-tu mangé ?" required maxlength="60" enterkeyhint="next">
+          <datalist id="foodSuggest"></datalist>
+          <div class="mf-grid">
+            <label class="span2">Heure<input name="time" type="time"></label>
+            <label>kcal<input name="kcal" inputmode="numeric" placeholder="—"></label>
+            <label>Protéines (g)<input name="p" inputmode="decimal" placeholder="—"></label>
+            <label>Glucides (g)<input name="g" inputmode="decimal" placeholder="—"></label>
+            <label>Lipides (g)<input name="l" inputmode="decimal" placeholder="—"></label>
           </div>
-          <div>
-            <div class="macro-row-head">
-              <span class="macro-label">Glucides</span>
-              <span><span class="macro-value" id="glucVal">313</span><span class="macro-unit">g</span></span>
-            </div>
-            <div class="macro-bar-track"><div class="macro-bar-fill gluc" id="glucBar"></div></div>
+          <input name="note" placeholder="Note (optionnel) : faim, contexte, sensations…" maxlength="120">
+          <p class="mf-hint">Les valeurs sont optionnelles. Sans kcal, elles sont calculées depuis les macros.</p>
+          <div class="mf-actions">
+            <button type="button" class="sync-btn secondary" onclick="toggleMealForm(false)">Annuler</button>
+            <button type="submit" class="sync-btn" id="mealSubmit">Ajouter</button>
           </div>
-          <div>
-            <div class="macro-row-head">
-              <span class="macro-label">Lipides</span>
-              <span><span class="macro-value" id="lipVal">77</span><span class="macro-unit">g</span></span>
+        </form>
+        <button class="sync-btn secondary" id="addMealBtn" onclick="toggleMealForm(true)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Ajouter un repas
+        </button>
+
+        <div class="section-head"><span class="section-title caps">Hydratation et suppléments</span></div>
+        <div class="pref-group">
+          <div class="pref-row stack">
+            <div class="water-head">
+              <span class="pref-label">Eau<small id="waterText"></small></span>
+              <div class="stepper">
+                <button onclick="addWater(-250)" aria-label="Retirer 250 ml">−</button>
+                <button onclick="addWater(250)">+250 ml</button>
+                <button onclick="addWater(500)">+500 ml</button>
+              </div>
             </div>
-            <div class="macro-bar-track"><div class="macro-bar-fill lip" id="lipBar"></div></div>
+            <div class="water-bar"><i id="waterBar"></i></div>
+          </div>
+          <label class="pref-row"><span class="pref-label">Créatine<small>5 g, tous les jours, même au repos</small></span>
+            <input class="switch" type="checkbox" data-supp="creatine"></label>
+          <label class="pref-row"><span class="pref-label">Oméga-3<small>2-3 g d'EPA + DHA</small></span>
+            <input class="switch" type="checkbox" data-supp="omega3"></label>
+        </div>
+      </section>
+
+      <!-- ── RECETTES ── -->
+      <section class="nutri-view" data-view="recettes" hidden>
+        <div class="quick-chips" id="recipeFilters"></div>
+        <div id="recipeList"></div>
+      </section>
+
+      <!-- ── OBJECTIFS ── -->
+      <section class="nutri-view" data-view="objectifs" hidden>
+        <!-- Calculatrice -->
+        <div class="calc-card">
+          <div class="calc-label caps">Poids actuel</div>
+          <div class="calc-input-wrap">
+            <input class="calc-input" type="text" id="weightInput" value="67" inputmode="decimal" autocomplete="off" aria-label="Poids en kg">
+            <span class="calc-input-unit">kg</span>
+          </div>
+          <div class="calc-label caps">Objectif</div>
+          <div class="goal-toggle">
+            <button class="goal-btn" data-goal="maintien" onclick="setGoal('maintien')">Maintien</button>
+            <button class="goal-btn active" data-goal="masse" onclick="setGoal('masse')">Prise masse</button>
+            <button class="goal-btn" data-goal="seche" onclick="setGoal('seche')">Sèche</button>
+          </div>
+          <p class="calc-note">
+            <b>Note :</b> Maintien 65–67 kg optimal pour la planche (rapport force/poids). Ne pas couper agressivement — la force absolue en dépend.
+          </p>
+        </div>
+
+        <!-- Macros -->
+        <div class="hero macro-hero">
+          <div class="hero-eyebrow caps">Calories par jour</div>
+          <div class="macro-kcal num"><span id="kcalVal">2784</span><small>kcal</small></div>
+          <div class="macro-bar-track" style="margin-top:14px">
+            <div class="macro-bar-fill kcal" id="kcalBar"></div>
+          </div>
+          <div class="macro-rows">
+            <div>
+              <div class="macro-row-head">
+                <span class="macro-label">Protéines</span>
+                <span><span class="macro-value" id="protVal">130</span><span class="macro-unit">g</span></span>
+              </div>
+              <div class="macro-bar-track"><div class="macro-bar-fill prot" id="protBar"></div></div>
+            </div>
+            <div>
+              <div class="macro-row-head">
+                <span class="macro-label">Glucides</span>
+                <span><span class="macro-value" id="glucVal">313</span><span class="macro-unit">g</span></span>
+              </div>
+              <div class="macro-bar-track"><div class="macro-bar-fill gluc" id="glucBar"></div></div>
+            </div>
+            <div>
+              <div class="macro-row-head">
+                <span class="macro-label">Lipides</span>
+                <span><span class="macro-value" id="lipVal">77</span><span class="macro-unit">g</span></span>
+              </div>
+              <div class="macro-bar-track"><div class="macro-bar-fill lip" id="lipBar"></div></div>
+            </div>
           </div>
         </div>
-      </div>
+        <div class="section-head"><span class="section-title caps">Protéines par repas</span></div>
+        <div class="calc-card" id="protMealCard"></div>
 
-      <!-- Suppléments -->
-      <div class="section-head"><span class="section-title caps">Suppléments</span></div>
-      <div class="calc-card">
-        <div class="info-list">
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Créatine monohydrate — 5 g/j</div>
-              <div class="info-desc">Améliore la force maximale et la récupération. En maintien continu.</div>
+        <!-- Suppléments -->
+        <div class="section-head"><span class="section-title caps">Suppléments</span></div>
+        <div class="calc-card">
+          <div class="info-list">
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Créatine monohydrate — 5 g/j</div>
+                <div class="info-desc">Améliore la force maximale et la récupération. En maintien continu.</div>
+              </div>
             </div>
-          </div>
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Oméga-3 — 2-3 g EPA+DHA/j</div>
-              <div class="info-desc">Anti-inflammatoire, récupération articulaire et tendineuse. Essentiel en planche-training.</div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Oméga-3 — 2-3 g EPA+DHA/j</div>
+                <div class="info-desc">Anti-inflammatoire, récupération articulaire et tendineuse. Essentiel en planche-training.</div>
+              </div>
             </div>
-          </div>
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Hydratation — 35-40 ml/kg/j</div>
-              <div class="info-desc">Prioritaire pour la force et la résistance des tendons. ~2,3–2,7 L/j à 67 kg.</div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Hydratation — 35-40 ml/kg/j</div>
+                <div class="info-desc">Prioritaire pour la force et la résistance des tendons. ~2,3–2,7 L/j à 67 kg.</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Récupération -->
-      <div class="section-head"><span class="section-title caps">Récupération</span></div>
-      <div class="calc-card">
-        <div class="info-list">
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Sommeil — 7-9 h/nuit</div>
-              <div class="info-desc">Le levier de récup n°1. La fatigue périphérique et nerveuse générée par les isométries (planche, HSPU) se résorbe surtout pendant le sommeil profond.</div>
+        <!-- Récupération -->
+        <div class="section-head"><span class="section-title caps">Récupération</span></div>
+        <div class="calc-card">
+          <div class="info-list">
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Sommeil — 7-9 h/nuit</div>
+                <div class="info-desc">Le levier de récup n°1. La fatigue périphérique et nerveuse générée par les isométries (planche, HSPU) se résorbe surtout pendant le sommeil profond.</div>
+              </div>
             </div>
-          </div>
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Shabbat — repos complet</div>
-              <div class="info-desc">Le seul jour sans entraînement, placé pile avant la séance la plus lourde (dimanche). Pas de rattrapage ni de "petite séance" : c'est ce repos qui rend 6 jours d'entraînement soutenables.</div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Shabbat — repos complet</div>
+                <div class="info-desc">Le seul jour sans entraînement, placé pile avant la séance la plus lourde (dimanche). Pas de rattrapage ni de "petite séance" : c'est ce repos qui rend 6 jours d'entraînement soutenables.</div>
+              </div>
             </div>
-          </div>
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Course et calisthénie — jamais collées</div>
-              <div class="info-desc">Si tu dois faire les deux le même jour, laisse au moins 6 h d'écart : l'interférence est plus forte quand les deux sont dans la même séance.</div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Course et calisthénie — jamais collées</div>
+                <div class="info-desc">Si tu dois faire les deux le même jour, laisse au moins 6 h d'écart : l'interférence est plus forte quand les deux sont dans la même séance.</div>
+              </div>
             </div>
-          </div>
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Protéine avant coucher — 30-40 g</div>
-              <div class="info-desc">Caséine/whey ou skyr avant dodo, favorise la synthèse protéique nocturne. La quantité totale/jour reste plus importante que le timing exact.</div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Protéine avant coucher — 30-40 g</div>
+                <div class="info-desc">Caséine/whey ou skyr avant dodo, favorise la synthèse protéique nocturne. La quantité totale/jour reste plus importante que le timing exact.</div>
+              </div>
             </div>
-          </div>
-          <div class="info-item">
-            <div class="info-dot"></div>
-            <div>
-              <div class="info-title">Deload — 1 semaine toutes les 5-6 semaines</div>
-              <div class="info-desc">Réduire le volume d'environ 40-50 % (moins de séries, pas de lest ajouté, holds à 60-70 % du max). Ne saute pas le geste, allège-le — ça évite le plateau et protège tendons/poignets.</div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Deload — 1 semaine toutes les 5-6 semaines</div>
+                <div class="info-desc">Réduire le volume d'environ 40-50 % (moins de séries, pas de lest ajouté, holds à 60-70 % du max). Ne saute pas le geste, allège-le — ça évite le plateau et protège tendons/poignets.</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Plats recommandés -->
-      <div class="section-head"><span class="section-title caps">Plats recommandés</span></div>
-
-      <div class="meal-card">
-        <div class="meal-num">1</div>
-        <div>
-          <div class="meal-name">Riz + Œufs + Légumes sautés</div>
-          <div class="meal-desc">Rapide, économique, glucides complexes et protéines complètes. Idéal post-workout ou repas principal.</div>
-          <div class="meal-macro">~35g protéines · ~60g glucides · ~10g lipides</div>
-        </div>
-      </div>
-
-      <div class="meal-card">
-        <div class="meal-num">2</div>
-        <div>
-          <div class="meal-name">Avoine + Banane + Beurre de cacahuète</div>
-          <div class="meal-desc">Petit-déj ou collation pré/post-workout. Énergie longue durée, digestion progressive.</div>
-          <div class="meal-macro">~18g protéines · ~70g glucides · ~18g lipides</div>
-        </div>
-      </div>
-
-      <div class="meal-card">
-        <div class="meal-num">3</div>
-        <div>
-          <div class="meal-name">Galettes d'avoine + Yaourt grec</div>
-          <div class="meal-desc">Simple, high protein, peu de sucres ajoutés. Peut se préparer en batch pour la semaine.</div>
-          <div class="meal-macro">~22g protéines · ~40g glucides · ~8g lipides</div>
-        </div>
-      </div>
-
+      </section>
     </div>
 
-    <!-- ═══ PAGE 3 — FUEL ═══ -->
-    <div class="page" id="page-fuel">
+    <!-- ═══ PAGE — FAST (jeûne intermittent) ═══ -->
+    <div class="page" id="page-fast">
       <div class="page-header">
         <div>
-          <div class="page-eyebrow caps">Énergie</div>
-          <div class="page-title">Fuel</div>
+          <div class="page-eyebrow caps">Jeûne intermittent</div>
+          <div class="page-title">Fast</div>
         </div>
       </div>
 
-      <!-- Snacks -->
-      <div class="fuel-section-header">
-        <div class="fuel-section-icon snack">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <div class="fuel-section-label">Snacks</div>
-      </div>
+      <div id="fastHero"></div>
 
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Energy Balls</div>
-          <div class="fuel-badges">
-            <span class="badge badge-green">Facile</span>
-            <span class="badge badge-yellow">Économique</span>
+      <div class="section-head"><span class="section-title caps">Cette semaine</span></div>
+      <div class="calc-card" id="fastWeek"></div>
+
+      <div class="section-head"><span class="section-title caps">Suivi</span></div>
+      <div id="fastEditor"></div>
+      <div id="fastLog"></div>
+      <p class="pref-foot">Touche un jeûne pour corriger ses heures, noter ton ressenti ou ajouter une note.</p>
+
+      <div class="section-head"><span class="section-title caps">Mes horaires</span></div>
+      <div class="pref-group" id="fastSchedule"></div>
+      <p class="pref-foot">Heure d'ouverture et de fermeture de ta fenêtre alimentaire, jour par jour. Le jeûne va de la fermeture de la veille à l'ouverture du jour.</p>
+
+      <div class="section-head"><span class="section-title caps">Repères</span></div>
+      <div class="calc-card">
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Pendant le jeûne</div>
+              <div class="info-desc">Eau, eau gazeuse, café noir, thé sans sucre. Une pincée de sel dans l'eau si coup de fatigue. Le lait et le miel rompent le jeûne.</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Jeûne et entraînement de force</div>
+              <div class="info-desc">Chez des pratiquants de musculation, le 16:8 fait perdre du gras sans perte de muscle ni de force, à condition de garder assez de protéines (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11434652/" target="_blank" rel="noopener">méta-analyse 2024</a>).</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Trois vrais repas dans la fenêtre</div>
+              <div class="info-desc" id="fastProtTip"></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Jours de bureau</div>
+              <div class="info-desc">Le lundi et le jeudi, tu manges le matin : c'est prévu dans tes horaires, pas un écart. Le lundi, ce petit-déjeuner nourrit ta course de qualité.</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Shabbat</div>
+              <div class="info-desc">Si les repas du vendredi soir ou du samedi sont décalés, ajuste ces deux jours dans « Mes horaires ».</div>
+            </div>
           </div>
         </div>
-        <div class="fuel-ingredients">Flocons d'avoine · miel · beurre de cacahuète · cacao en poudre</div>
-        <div class="fuel-steps">Mélanger tous les ingrédients. Former des boules de la taille d'une noix. 20 min au frigo. Se conserve 5 jours.</div>
-        <div class="fuel-macros">~180 kcal · 6g protéines · 22g glucides · 8g lipides (par boule)</div>
       </div>
-
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Toast Avocat + Œuf Poché</div>
-          <div class="fuel-badges">
-            <span class="badge badge-blue">5 min</span>
-            <span class="badge badge-green">Facile</span>
-          </div>
-        </div>
-        <div class="fuel-ingredients">Pain complet · avocat · 1 œuf · sel · piment de Cayenne</div>
-        <div class="fuel-steps">Toaster le pain. Écraser l'avocat avec sel et piment. Pocher l'œuf 3 min. Assembler.</div>
-        <div class="fuel-macros">~320 kcal · 18g protéines · 28g glucides · 16g lipides</div>
-      </div>
-
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Banana Protein Mash</div>
-          <div class="fuel-badges">
-            <span class="badge badge-blue">2 min</span>
-            <span class="badge badge-yellow">Économique</span>
-          </div>
-        </div>
-        <div class="fuel-ingredients">1 banane · 2 c.s. beurre de cacahuète · 1 c.s. graines de chia</div>
-        <div class="fuel-steps">Écraser la banane à la fourchette. Incorporer le beurre de cacahuète et les graines. Manger directement.</div>
-        <div class="fuel-macros">~280 kcal · 9g protéines · 35g glucides · 12g lipides</div>
-      </div>
-
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Galette Riz + Thon + Citron</div>
-          <div class="fuel-badges">
-            <span class="badge badge-blue">2 min</span>
-            <span class="badge badge-yellow">Économique</span>
-          </div>
-        </div>
-        <div class="fuel-ingredients">Galette de riz soufflé · 1 boîte de thon · jus de citron · poivre</div>
-        <div class="fuel-steps">Égoutter le thon. Poser sur la galette. Presser le citron, poivrer. Prêt.</div>
-        <div class="fuel-macros">~200 kcal · 22g protéines · 15g glucides · 4g lipides</div>
-      </div>
-
-      <div class="fuel-divider"></div>
-
-      <!-- Boissons -->
-      <div class="fuel-section-header">
-        <div class="fuel-section-icon drink">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a2 2 0 1 0 0-4h14a2 2 0 1 0 0 4M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12v4M14 12v4"/></svg>
-        </div>
-        <div class="fuel-section-label">Boissons</div>
-      </div>
-
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Électrolyte Maison</div>
-          <div class="fuel-badges">
-            <span class="badge badge-blue">5 min</span>
-            <span class="badge badge-yellow">Économique</span>
-          </div>
-        </div>
-        <div class="fuel-ingredients">500 ml eau · jus de ½ citron · 1 pincée de sel · 1 c.c. miel</div>
-        <div class="fuel-steps">Mélanger dans une gourde. Boire pendant ou juste après l'entraînement. Remplace les électrolytes perdus.</div>
-        <div class="fuel-macros">~20 kcal · 0g protéines · 5g glucides · 0g lipides</div>
-      </div>
-
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Smoothie Récupération</div>
-          <div class="fuel-badges">
-            <span class="badge badge-green">Facile</span>
-            <span class="badge badge-blue">5 min</span>
-          </div>
-        </div>
-        <div class="fuel-ingredients">1 banane · 250 ml lait · 2 c.s. flocons d'avoine · 1 c.s. beurre de cacahuète</div>
-        <div class="fuel-steps">Tout dans le blender. 30 secondes. Boire dans les 30 min post-entraînement pour la fenêtre anabolique.</div>
-        <div class="fuel-macros">~350 kcal · 14g protéines · 52g glucides · 10g lipides</div>
-      </div>
-
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Eau Infusée Menthe-Concombre</div>
-          <div class="fuel-badges">
-            <span class="badge badge-green">Facile</span>
-            <span class="badge badge-yellow">Économique</span>
-          </div>
-        </div>
-        <div class="fuel-ingredients">Eau froide · ½ concombre en tranches · feuilles de menthe fraîche</div>
-        <div class="fuel-steps">Mettre les tranches et la menthe dans une carafe. Laisser infuser 30 min au frigo. Anti-inflammatoire naturel.</div>
-        <div class="fuel-macros">~5 kcal · 0g protéines · 1g glucides · 0g lipides</div>
-      </div>
-
-      <div class="fuel-card">
-        <div class="fuel-card-header">
-          <div class="fuel-name">Café Glacé Maison</div>
-          <div class="fuel-badges">
-            <span class="badge badge-blue">5 min</span>
-            <span class="badge badge-yellow">Économique</span>
-          </div>
-        </div>
-        <div class="fuel-ingredients">Café fort refroidi · glaçons · trait de lait (optionnel)</div>
-        <div class="fuel-steps">Préparer un café serré. Laisser refroidir 10 min. Verser sur glaçons. Pre-workout naturel, 0 sucre ajouté.</div>
-        <div class="fuel-macros">~10 kcal · 0g protéines · 1g glucides · 0g lipides</div>
-      </div>
-
     </div>
+
     <!-- ═══ PAGE — RÉGLAGES ═══ -->
     <div class="page" id="page-reglages">
       <div class="page-header">
@@ -2412,11 +2575,13 @@
       </svg>
       <span class="tab-label">Nutrition</span>
     </button>
-    <button class="tab-btn" id="tab-fuel" onclick="switchTab('fuel')">
+    <button class="tab-btn" id="tab-fast" onclick="switchTab('fast')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        <path d="M6.5 3h11M6.5 21h11"/>
+        <path d="M8 3v3.2a4 4 0 0 0 1.8 3.3L12 11l2.2-1.5A4 4 0 0 0 16 6.2V3"/>
+        <path d="M8 21v-3.2a4 4 0 0 1 1.8-3.3L12 13l2.2 1.5a4 4 0 0 1 1.8 3.3V21"/>
       </svg>
-      <span class="tab-label">Fuel</span>
+      <span class="tab-label">Fast</span>
     </button>
     <button class="tab-btn" id="tab-reglages" onclick="switchTab('reglages')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -2643,6 +2808,8 @@
     tab.classList.add('active');
     tab.setAttribute('aria-current', 'page');
     if (name === 'reglages') { renderSettings(); renderSync(); }
+    if (name === 'nutrition') renderFood();
+    if (name === 'fast') renderFast();
     if (name === 'seances') renderDashboard();
   }
 
@@ -3092,6 +3259,876 @@
     });
   })();
 
+  /* ══════════════════════════════════════════════════════
+     FAST — jeûne intermittent
+     Horaires par jour (fenêtre alimentaire), minuteur du jeûne en
+     cours et suivi : chaque jeûne noté avec son début, sa fin, un
+     ressenti de 1 à 5 et une note. Le jeûne « du jour J » va de la
+     fermeture de la veille à l'ouverture de J.
+     ══════════════════════════════════════════════════════ */
+  const FAST_KEY = 'planche_os_fast_v1';
+  const OFFICE_DAYS = [1, 4]; // lundi et jeudi : bureau, petit-déjeuner le matin
+  const DEFAULT_SCHEDULE = [0, 1, 2, 3, 4, 5, 6].map(d =>
+    OFFICE_DAYS.includes(d) ? { start: '07:30', end: '20:30' } : { start: '13:00', end: '21:00' });
+
+  let fast = { schedule: DEFAULT_SCHEDULE.map(s => ({ ...s })), log: [] };
+  let fastEditing = null; // { id } pour modifier, { day } pour noter un jour sans suivi
+  try {
+    const f = JSON.parse(localStorage.getItem(FAST_KEY) || 'null');
+    if (f) {
+      fast = {
+        schedule: Array.isArray(f.schedule) && f.schedule.length === 7 ? f.schedule : fast.schedule,
+        log: Array.isArray(f.log) ? f.log : [],
+      };
+    }
+  } catch (e) { /* suivi illisible : on repart de zéro */ }
+
+  function saveFast() {
+    fast.log.sort((a, b) => new Date(b.start) - new Date(a.start));
+    if (fast.log.length > 400) fast.log.length = 400;
+    try {
+      localStorage.setItem(FAST_KEY, JSON.stringify(fast));
+    } catch (e) {
+      toast('Sauvegarde impossible (stockage plein)');
+    }
+  }
+
+  const HOUR = 3600000;
+
+  function atTime(date, hhmm) {
+    const [h, m] = String(hhmm || '00:00').split(':').map(Number);
+    const d = new Date(date);
+    d.setHours(h || 0, m || 0, 0, 0);
+    return d;
+  }
+
+  function addDays(date, n) {
+    const d = new Date(date);
+    d.setDate(d.getDate() + n);
+    return d;
+  }
+
+  function hm(d) {
+    return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+  }
+
+  // 16 h 05, 45 min
+  function fmtH(ms) {
+    const min = Math.max(0, Math.round(ms / 60000));
+    const h = Math.floor(min / 60), m = min % 60;
+    return h ? `${h} h${m ? ' ' + String(m).padStart(2, '0') : ''}` : `${m} min`;
+  }
+
+  // 15:42 (heures:minutes)
+  function clock(ms) {
+    const min = Math.max(0, Math.floor(ms / 60000));
+    return `${Math.floor(min / 60)}:${String(min % 60).padStart(2, '0')}`;
+  }
+
+  // Fenêtre alimentaire du jour ; une fermeture après minuit passe au lendemain.
+  function windowOf(date) {
+    const s = fast.schedule[date.getDay()];
+    const open = atTime(date, s.start);
+    let close = atTime(date, s.end);
+    if (close <= open) close = addDays(close, 1);
+    return { open, close };
+  }
+
+  function plannedFast(date) {
+    return { start: windowOf(addDays(date, -1)).close, end: windowOf(date).open };
+  }
+
+  // Ouverture de fenêtre qui met fin à un jeûne commencé à `t`.
+  function nextOpening(t) {
+    for (let i = 0; i < 3; i++) {
+      const o = windowOf(addDays(t, i)).open;
+      if (o - t > 30 * 60000) return o;
+    }
+    return new Date(t.getTime() + 16 * HOUR);
+  }
+
+  function openFast() {
+    return fast.log.find(e => !e.end) || null;
+  }
+
+  function lastFast() {
+    return fast.log.filter(e => e.end).sort((a, b) => new Date(b.end) - new Date(a.end))[0] || null;
+  }
+
+  // Jeûne rattaché à un jour : celui qui se termine ce jour-là (le plus long).
+  function fastForDay(k) {
+    return fast.log
+      .filter(e => e.end && dayKey(new Date(e.end)) === k)
+      .sort((a, b) => (new Date(b.end) - new Date(b.start)) - (new Date(a.end) - new Date(a.start)))[0] || null;
+  }
+
+  function fastDur(e) {
+    return new Date(e.end || Date.now()) - new Date(e.start);
+  }
+
+  function newFastId() {
+    return 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  }
+
+  function startFast(iso) {
+    if (openFast()) return;
+    const start = iso ? new Date(iso) : new Date();
+    fast.log.push({ id: newFastId(), start: start.toISOString(), end: null, feel: null, note: '' });
+    saveFast();
+    renderFast();
+    vibrate(30);
+    toast(`Jeûne commencé à ${hm(start)}`);
+  }
+
+  function endFast() {
+    const o = openFast();
+    if (!o) return;
+    o.end = new Date().toISOString();
+    saveFast();
+    renderFast();
+    vibrate([40, 60, 40]);
+    toast(`Jeûne terminé : ${fmtH(fastDur(o))}`);
+  }
+
+  // Un repas noté pendant un jeûne en cours le termine à l'heure du repas.
+  function closeFastWithMeal(k, t) {
+    const o = openFast();
+    if (!o || k !== dayKey(new Date())) return;
+    const at = atTime(new Date(), t);
+    if (at <= new Date(o.start) || at > new Date(Date.now() + 60000)) return;
+    o.end = at.toISOString();
+    saveFast();
+    toast(`Jeûne rompu à ${t} : ${fmtH(fastDur(o))}`);
+  }
+
+  function rateFast(id, n) {
+    const e = fast.log.find(x => x.id === id);
+    if (!e) return;
+    e.feel = n;
+    saveFast();
+    renderFast();
+  }
+
+  function validatePlanned(k) {
+    const p = plannedFast(keyToDate(k));
+    fast.log.push({ id: newFastId(), start: p.start.toISOString(), end: p.end.toISOString(), feel: null, note: '' });
+    saveFast();
+    renderFast();
+    toast(`Jeûne de ${fmtH(p.end - p.start)} noté`);
+  }
+
+  function editFast(id, day) {
+    fastEditing = id ? { id } : { day };
+    renderFastLog();
+    const ed = document.getElementById('fastEditor');
+    if (ed.firstElementChild) ed.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function cancelFastEdit() {
+    fastEditing = null;
+    renderFastLog();
+  }
+
+  function deleteFast(id) {
+    if (!confirm('Supprimer ce jeûne du suivi ?')) return;
+    fast.log = fast.log.filter(e => e.id !== id);
+    fastEditing = null;
+    saveFast();
+    renderFast();
+  }
+
+  // "2026-09-30T07:30" pour les champs datetime-local, en heure locale.
+  function toLocalInput(d) {
+    return `${dayKey(d)}T${hm(d)}`;
+  }
+
+  function saveFastEdit(ev) {
+    ev.preventDefault();
+    const form = ev.target;
+    const start = new Date(form.start.value);
+    const end = form.end.value ? new Date(form.end.value) : null;
+    if (isNaN(start)) { toast('Heure de début invalide'); return; }
+    if (end && end <= start) { toast('La fin doit être après le début'); return; }
+    if (end && end - start > 72 * HOUR) { toast('Un jeûne de plus de 72 h ? Vérifie les dates'); return; }
+    if (!end && start > new Date()) { toast('Le début est dans le futur'); return; }
+    const other = openFast();
+    const current = fastEditing.id ? fast.log.find(e => e.id === fastEditing.id) : null;
+    if (!end && other && other !== current) { toast('Un jeûne est déjà en cours'); return; }
+    const on = form.querySelector('.feel button.on');
+    const data = {
+      start: start.toISOString(),
+      end: end ? end.toISOString() : null,
+      feel: on ? Number(on.dataset.feel) : null,
+      note: form.note.value.trim().slice(0, 140),
+    };
+    if (current) Object.assign(current, data);
+    else fast.log.push({ id: newFastId(), ...data });
+    fastEditing = null;
+    saveFast();
+    renderFast();
+    toast('Jeûne enregistré');
+  }
+
+  function fastRing(frac) {
+    const R = 90, C = 2 * Math.PI * R;
+    const f = Math.max(0, Math.min(1, frac || 0));
+    return `<svg viewBox="0 0 206 206" aria-hidden="true">
+        <circle cx="103" cy="103" r="${R}" fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="12"/>
+        <circle cx="103" cy="103" r="${R}" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"
+          stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - f)).toFixed(1)}"/>
+      </svg>`;
+  }
+
+  function dayHint(d) {
+    const k = dayKey(d);
+    if (k === dayKey(new Date())) return '';
+    return k === dayKey(addDays(new Date(), -1)) ? ' hier' : ` ${d.getDate()}/${d.getMonth() + 1}`;
+  }
+
+  function renderFastHero() {
+    const now = new Date();
+    const o = openFast();
+    const w = windowOf(now);
+    const last = lastFast();
+    const beforeOpen = now < w.open;
+    const prevClose = beforeOpen ? windowOf(addDays(now, -1)).close : w.close;
+    // Mange déjà : dans la fenêtre, ou jeûne rompu plus tôt que prévu ce matin.
+    const eating = !o && now < w.close && (!beforeOpen || (last && new Date(last.end) > prevClose));
+    const office = OFFICE_DAYS.includes(now.getDay());
+
+    let eyebrow, big, label, frac, meta, actions;
+    if (o) {
+      const start = new Date(o.start), target = nextOpening(start);
+      const total = target - start, el = now - start;
+      eyebrow = 'Jeûne en cours';
+      big = clock(el);
+      label = el >= total ? `objectif atteint, +${fmtH(el - total)}` : `encore ${fmtH(total - el)}`;
+      frac = el / total;
+      meta = [['Début', hm(start) + dayHint(start)], ['Objectif', fmtH(total)], ['Fenêtre', hm(target)]];
+      actions = `<button class="hero-btn ghost" onclick="editFast('${o.id}')">Modifier</button>
+        <button class="hero-btn" onclick="endFast()">Rompre le jeûne</button>`;
+    } else if (eating) {
+      eyebrow = office ? 'Fenêtre ouverte · jour bureau' : 'Fenêtre ouverte';
+      big = clock(w.close - now);
+      label = `avant la fermeture à ${hm(w.close)}`;
+      frac = Math.max(0, now - w.open) / (w.close - w.open);
+      meta = [['Ouverture', hm(w.open)], ['Fermeture', hm(w.close)], ['Dernier jeûne', last ? fmtH(fastDur(last)) : '—']];
+      actions = `<button class="hero-btn" onclick="startFast()">Commencer le jeûne</button>`;
+    } else {
+      // Aucun jeûne en cours hors de la fenêtre : bouton probablement oublié.
+      const next = beforeOpen ? w.open : windowOf(addDays(now, 1)).open;
+      eyebrow = beforeOpen ? 'Avant l\'ouverture' : 'Fenêtre fermée';
+      big = clock(now - prevClose);
+      label = `depuis ${hm(prevClose)}, fenêtre à ${hm(next)}`;
+      frac = (now - prevClose) / (next - prevClose);
+      meta = [['Fermeture', hm(prevClose)], ['Ouverture', hm(next)], ['Prévu', fmtH(next - prevClose)]];
+      actions = `<button class="hero-btn ghost" onclick="startFast()">Maintenant</button>
+        <button class="hero-btn" onclick="startFast('${prevClose.toISOString()}')">Depuis ${hm(prevClose)}</button>`;
+    }
+
+    // Ressenti du jeûne qui vient de se terminer, en un tap.
+    let feel = '';
+    if (!o && last && !last.feel && now - new Date(last.end) < 12 * HOUR) {
+      feel = `<div class="fast-feel">Comment s'est passé ce jeûne de ${fmtH(fastDur(last))} ?
+          <div class="feel">${[1, 2, 3, 4, 5].map(n => `<button onclick="rateFast('${last.id}', ${n})" aria-label="Ressenti ${n} sur 5">${n}</button>`).join('')}</div>
+          <div class="feel-scale"><span>Très dur</span><span>Facile</span></div>
+        </div>`;
+    }
+
+    document.getElementById('fastHero').innerHTML = `
+      <div class="hero fast-hero">
+        <div class="hero-eyebrow caps">${eyebrow}</div>
+        <div class="fast-ring">${fastRing(frac)}
+          <div class="fast-ring-center"><div class="fast-time">${big}</div><div class="fast-time-label">${label}</div></div>
+        </div>
+        <div class="fast-meta">${meta.map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>
+        <div class="fast-actions">${actions}</div>
+        ${feel}
+      </div>`;
+  }
+
+  function renderFastWeek() {
+    const now = new Date();
+    const weekStart = startOfWeek(now);
+    const days = DAY_SHORT.map((name, i) => {
+      const d = addDays(weekStart, i);
+      const e = fastForDay(dayKey(d));
+      const p = plannedFast(d);
+      return { name, d, e, planned: p.end - p.start, dur: e ? fastDur(e) : 0, past: p.end <= now };
+    });
+    const W = 300, H = 132, top = 18, bottom = 20, max = Math.max(18 * HOUR, ...days.map(x => Math.max(x.dur, x.planned)));
+    const slot = W / 7, bw = slot * 0.56;
+    let svg = '';
+    days.forEach((x, i) => {
+      const cx = i * slot + slot / 2;
+      const ph = (H - top - bottom) * x.planned / max;
+      const ah = (H - top - bottom) * x.dur / max;
+      const base = H - bottom;
+      svg += `<rect x="${cx - bw / 2}" y="${base - ph}" width="${bw}" height="${ph}" rx="4" style="fill:var(--fill)"/>`;
+      if (x.dur) {
+        const ok = x.dur >= x.planned - 15 * 60000;
+        svg += `<rect x="${cx - bw / 2}" y="${base - ah}" width="${bw}" height="${ah}" rx="4" style="fill:var(--accent)" ${ok ? '' : 'fill-opacity="0.55"'}/>`;
+        svg += `<text x="${cx}" y="${base - Math.max(ah, ph) - 5}" text-anchor="middle" font-size="10" font-weight="700" style="fill:var(--label-2)">${Math.round(x.dur / HOUR)}h</text>`;
+      }
+      svg += `<text x="${cx}" y="${H - 5}" text-anchor="middle" font-size="9.5" font-weight="600" style="fill:${i === now.getDay() ? 'var(--accent)' : 'var(--label-3)'}">${x.name}</text>`;
+    });
+    const done = days.filter(x => x.e);
+    const avg = done.length ? done.reduce((n, x) => n + x.dur, 0) / done.length : 0;
+    const hit = done.filter(x => x.dur >= x.planned - 15 * 60000).length;
+    const pastCount = days.filter(x => x.past).length;
+    document.getElementById('fastWeek').innerHTML = `
+      <div class="fast-week"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Durée des jeûnes de la semaine">${svg}</svg></div>
+      <div class="fast-stats">
+        <div><b>${done.length}<small style="font-size:13px;color:var(--label-3)">/${pastCount}</small></b><span>jeûnes notés</span></div>
+        <div><b>${avg ? fmtH(avg) : '—'}</b><span>durée moyenne</span></div>
+        <div><b>${hit}</b><span>objectif${hit > 1 ? 's' : ''} atteint${hit > 1 ? 's' : ''}</span></div>
+      </div>`;
+  }
+
+  function fastEditorHtml() {
+    if (!fastEditing) return '';
+    const e = fastEditing.id ? fast.log.find(x => x.id === fastEditing.id) : null;
+    const p = !e && fastEditing.day ? plannedFast(keyToDate(fastEditing.day)) : null;
+    if (!e && !p) return '';
+    const start = e ? new Date(e.start) : p.start;
+    const end = e ? (e.end ? new Date(e.end) : null) : p.end;
+    return `<form class="meal-form" onsubmit="saveFastEdit(event)">
+        <div class="mf-title">${e ? 'Modifier le jeûne' : 'Noter le jeûne'}</div>
+        <div class="mf-grid" style="grid-template-columns:1fr">
+          <label>Début<input type="datetime-local" name="start" value="${toLocalInput(start)}" required></label>
+          <label>Fin (vide = en cours)<input type="datetime-local" name="end" value="${end ? toLocalInput(end) : ''}"></label>
+        </div>
+        <div class="mf-field">Ressenti (1 = très dur, 5 = facile)
+          <div class="feel light">${[1, 2, 3, 4, 5].map(n =>
+            `<button type="button" data-feel="${n}" class="${e && e.feel === n ? 'on' : ''}"
+              onclick="this.parentNode.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === this && !this.classList.contains('on')))">${n}</button>`).join('')}</div>
+        </div>
+        <input name="note" placeholder="Note : faim, énergie, sommeil…" maxlength="140" value="${e ? escHtml(e.note || '') : ''}">
+        <div class="mf-actions">
+          ${e ? `<button type="button" class="sync-btn secondary danger" onclick="deleteFast('${e.id}')">Supprimer</button>` : ''}
+          <button type="button" class="sync-btn secondary" onclick="cancelFastEdit()">Annuler</button>
+          <button type="submit" class="sync-btn">Enregistrer</button>
+        </div>
+      </form>`;
+  }
+
+  function renderFastLog() {
+    document.getElementById('fastEditor').innerHTML = fastEditorHtml();
+    const now = new Date();
+    const rows = [];
+    for (let i = 0; i < 10; i++) {
+      const d = addDays(now, -i);
+      const k = dayKey(d);
+      const e = fastForDay(k);
+      const p = plannedFast(d);
+      if (!e && p.end > now) continue; // jeûne du jour pas encore terminé
+      const office = OFFICE_DAYS.includes(d.getDay()) ? '<span class="meal-flag plain">bureau</span>' : '';
+      if (e) {
+        const s = new Date(e.start), en = new Date(e.end);
+        const ok = fastDur(e) >= (p.end - p.start) - 15 * 60000;
+        rows.push(`<div class="meal-item">
+            ${dateBadge(d, 'sm')}
+            <div class="meal-main" onclick="editFast('${e.id}')" role="button" tabindex="0" aria-label="Modifier ce jeûne">
+              <div class="meal-title">Jeûne de ${fmtH(fastDur(e))}${office}${ok ? '' : '<span class="meal-flag">court</span>'}</div>
+              <div class="meal-sub">${hm(s)} → ${hm(en)} · prévu ${fmtH(p.end - p.start)}${e.feel ? ` · ressenti ${e.feel}/5` : ''}</div>
+              ${e.note ? `<div class="meal-note">${escHtml(e.note)}</div>` : ''}
+            </div>
+          </div>`);
+      } else {
+        rows.push(`<div class="meal-item">
+            ${dateBadge(d, 'sm')}
+            <div class="meal-main" onclick="editFast(null, '${k}')" role="button" tabindex="0" aria-label="Ajuster les horaires de ce jeûne">
+              <div class="meal-title">Non noté${office}</div>
+              <div class="meal-sub">Prévu ${hm(p.start)} → ${hm(p.end)} · ${fmtH(p.end - p.start)}</div>
+            </div>
+            <div class="row-actions">
+              <button class="mini-btn" onclick="validatePlanned('${k}')" aria-label="Valider le jeûne prévu">Valider</button>
+            </div>
+          </div>`);
+      }
+    }
+    document.getElementById('fastLog').innerHTML = rows.join('')
+      || '<div class="empty-note">Ton premier jeûne apparaîtra ici.</div>';
+  }
+
+  function renderFastSchedule() {
+    const ref = startOfWeek(new Date());
+    document.getElementById('fastSchedule').innerHTML = fast.schedule.map((s, i) => {
+      const d = addDays(ref, i);
+      const p = plannedFast(d);
+      return `<div class="pref-row sched-row">
+          <span class="pref-label">${DAY_NAMES[i]}<small>${OFFICE_DAYS.includes(i) ? 'Bureau · ' : ''}jeûne ${fmtH(p.end - p.start)}</small></span>
+          <input type="time" class="pref-input time" data-day="${i}" data-k="start" value="${s.start}" aria-label="${DAY_NAMES[i]}, ouverture">
+          <span class="sched-sep">–</span>
+          <input type="time" class="pref-input time" data-day="${i}" data-k="end" value="${s.end}" aria-label="${DAY_NAMES[i]}, fermeture">
+        </div>`;
+    }).join('') + '<button class="pref-row pref-btn" onclick="resetSchedule()">Revenir aux horaires par défaut<small>13:00 – 21:00, et 07:30 – 20:30 les jours de bureau</small></button>';
+  }
+
+  document.getElementById('fastSchedule').addEventListener('change', e => {
+    const el = e.target;
+    if (!el.dataset.day || !/^\d{2}:\d{2}$/.test(el.value)) return;
+    fast.schedule[Number(el.dataset.day)][el.dataset.k] = el.value;
+    saveFast();
+    renderFast();
+    if (typeof renderJournal === 'function') renderJournal();
+  });
+
+  function resetSchedule() {
+    if (!confirm('Revenir aux horaires par défaut ?')) return;
+    fast.schedule = DEFAULT_SCHEDULE.map(s => ({ ...s }));
+    saveFast();
+    renderFast();
+  }
+
+  function renderFast() {
+    renderFastHero();
+    renderFastWeek();
+    renderFastLog();
+    renderFastSchedule();
+    const per = Math.round(0.4 * readWeight());
+    document.getElementById('fastProtTip').textContent =
+      `Avec une fenêtre de 8 h, place 3 repas d'au moins ${per} g de protéines (0,4 g/kg), par exemple à l'ouverture, en milieu de fenêtre et avant la fermeture. Si tu t'es entraîné à jeun, fais du premier repas le plus protéiné.`;
+  }
+
+  // Le minuteur avance tout seul quand l'onglet est affiché.
+  setInterval(() => {
+    if (document.getElementById('page-fast').classList.contains('active') && !fastEditing) renderFastHero();
+  }, 20000);
+
+  /* ══════════════════════════════════════════════════════
+     NUTRITION — journal alimentaire, recettes, objectifs
+     Noter ce qu'on mange n'aide que si c'est rapide : recettes et
+     aliments récents s'ajoutent en un tap, les macros sont optionnelles.
+     ══════════════════════════════════════════════════════ */
+  const FOOD_KEY = 'planche_os_food_v1';
+  let food = { days: {}, favs: [] };
+  let foodDay = null;        // jour affiché dans le journal (null = aujourd'hui)
+  let nutriView = 'journal';
+  let recipeFilter = 'tout';
+  let editingMeal = null;
+  let quickItems = [];
+  try {
+    const f = JSON.parse(localStorage.getItem(FOOD_KEY) || 'null');
+    if (f) food = { days: f.days || {}, favs: Array.isArray(f.favs) ? f.favs : [] };
+  } catch (e) { /* journal illisible : on repart de zéro */ }
+
+  // Macros approximatives, par portion décrite. kcal = 4 × P + 4 × G + 9 × L, arrondi.
+  const RECIPES = [
+    { id: 'shakshuka', cat: 'repas', name: 'Shakshuka + pita', badges: ['Riche en protéines', '20 min'],
+      ing: '3 œufs · 1 boîte de tomates concassées · ½ poivron · ½ oignon · ail · cumin, paprika · 1 c.s. huile d\'olive · 1 pita',
+      steps: 'Faire revenir oignon, poivron et ail 5 min dans l\'huile. Ajouter tomates et épices, laisser réduire 8 min. Creuser 3 puits, y casser les œufs, couvrir 5-6 min. Servir avec la pita.',
+      kcal: 620, p: 29, g: 56, l: 30 },
+    { id: 'bowl', cat: 'repas', name: 'Bowl poulet, riz, houmous', badges: ['Riche en protéines', 'Batch'],
+      ing: '150 g de blanc de poulet cuit · 150 g de riz cuit · 50 g de houmous · crudités (concombre, tomate) · citron',
+      steps: 'Cuire poulet et riz en grande quantité le dimanche : 3-4 bowls prêts pour la semaine. Assembler avec houmous et crudités, citronner.',
+      kcal: 640, p: 55, g: 57, l: 18 },
+    { id: 'riz-oeufs', cat: 'repas', name: 'Riz sauté aux œufs et légumes', badges: ['Facile', 'Économique'],
+      ing: '150 g de riz cuit · 3 œufs · 200 g de légumes (poivron, courgette, oignon) · 1 c.c. huile · sauce soja',
+      steps: 'Faire sauter les légumes 5 min dans l\'huile. Ajouter le riz, puis les œufs battus, remuer jusqu\'à cuisson. Assaisonner à la sauce soja.',
+      kcal: 510, p: 26, g: 53, l: 20 },
+    { id: 'porridge', cat: 'repas', name: 'Porridge banane et beurre de cacahuète', badges: ['Jour bureau', '5 min'],
+      ing: '60 g de flocons d\'avoine · 250 ml de lait · 1 banane · 1 c.s. de beurre de cacahuète',
+      steps: 'Cuire l\'avoine dans le lait 3-4 min. Ajouter la banane écrasée et le beurre de cacahuète. Une dose de whey en plus fait +20 g de protéines.',
+      kcal: 545, p: 21, g: 78, l: 16 },
+    { id: 'galettes', cat: 'repas', name: 'Galettes d\'avoine et yaourt grec', badges: ['Facile', 'Batch'],
+      ing: '50 g de flocons d\'avoine · 1 œuf · 150 g de yaourt grec 0 % · cannelle',
+      steps: 'Mixer l\'avoine, l\'œuf et un peu d\'eau. Cuire 2-3 galettes à la poêle antiadhésive. Servir avec le yaourt grec.',
+      kcal: 350, p: 28, g: 35, l: 9 },
+    { id: 'skyr', cat: 'snack', name: 'Skyr, fruits rouges et granola', badges: ['Riche en protéines', '2 min'],
+      ing: '250 g de skyr · 100 g de fruits rouges · 30 g de granola',
+      steps: 'Tout dans un bol. Idéal en dernier repas avant la fermeture de la fenêtre.',
+      kcal: 330, p: 30, g: 40, l: 5 },
+    { id: 'thon', cat: 'snack', name: 'Galettes de riz, thon et citron', badges: ['2 min', 'Économique'],
+      ing: '2 galettes de riz soufflé · 1 boîte de thon au naturel · jus de citron · poivre',
+      steps: 'Égoutter le thon, le poser sur les galettes, presser le citron, poivrer.',
+      kcal: 200, p: 22, g: 15, l: 4 },
+    { id: 'toast', cat: 'snack', name: 'Toast avocat et œuf poché', badges: ['5 min', 'Facile'],
+      ing: 'Pain complet · ½ avocat · 1 œuf · sel · piment de Cayenne',
+      steps: 'Toaster le pain. Écraser l\'avocat avec sel et piment. Pocher l\'œuf 3 min. Assembler.',
+      kcal: 320, p: 18, g: 28, l: 16 },
+    { id: 'banana', cat: 'snack', name: 'Banane, beurre de cacahuète et chia', badges: ['2 min', 'Économique'],
+      ing: '1 banane · 2 c.s. de beurre de cacahuète · 1 c.s. de graines de chia',
+      steps: 'Écraser la banane à la fourchette, incorporer le beurre de cacahuète et les graines.',
+      kcal: 280, p: 9, g: 35, l: 12 },
+    { id: 'balls', cat: 'snack', name: 'Energy balls (1 boule)', badges: ['Batch', 'Économique'],
+      ing: 'Flocons d\'avoine · miel · beurre de cacahuète · cacao en poudre',
+      steps: 'Mélanger, former des boules de la taille d\'une noix, 20 min au frigo. Se conservent 5 jours.',
+      kcal: 180, p: 6, g: 22, l: 8 },
+    { id: 'smoothie', cat: 'boisson', name: 'Smoothie récupération', badges: ['5 min', 'Facile'],
+      ing: '1 banane · 250 ml de lait · 2 c.s. de flocons d\'avoine · 1 c.s. de beurre de cacahuète',
+      steps: 'Tout au blender, 30 secondes. Pratique après la séance, mais inutile de se presser : les protéines de la journée comptent plus que le timing exact.',
+      kcal: 350, p: 14, g: 52, l: 10 },
+    { id: 'electrolyte', cat: 'boisson', name: 'Électrolyte maison', badges: ['5 min', 'Économique'],
+      ing: '500 ml d\'eau · jus de ½ citron · 1 pincée de sel · 1 c.c. de miel',
+      steps: 'Mélanger dans une gourde. Utile pendant les longues séances ou par forte chaleur. Sans le miel, il passe pendant le jeûne.',
+      kcal: 20, p: 0, g: 5, l: 0 },
+    { id: 'cafe', cat: 'boisson', name: 'Café glacé', badges: ['OK à jeun', '5 min'],
+      ing: 'Café fort refroidi · glaçons',
+      steps: 'Préparer un café serré, laisser refroidir 10 min, verser sur les glaçons. Sans lait ni sucre, il ne rompt pas le jeûne.',
+      kcal: 5, p: 0, g: 0, l: 0 },
+    { id: 'infusee', cat: 'boisson', name: 'Eau infusée menthe-concombre', badges: ['OK à jeun', 'Facile'],
+      ing: 'Eau froide · ½ concombre en tranches · feuilles de menthe fraîche',
+      steps: 'Laisser infuser 30 min au frigo. Aide à boire plus, sans sucre.',
+      kcal: 0, p: 0, g: 0, l: 0 },
+  ];
+  const RECIPE_CATS = [['tout', 'Tout'], ['favoris', 'Favoris'], ['repas', 'Repas'], ['snack', 'Snacks'], ['boisson', 'Boissons']];
+
+  function escHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  function saveFood() {
+    // Les jours vides ne sont pas gardés.
+    Object.keys(food.days).forEach(k => {
+      const d = food.days[k];
+      if (!d.meals.length && !d.water && !Object.values(d.supps || {}).some(Boolean)) delete food.days[k];
+    });
+    try {
+      localStorage.setItem(FOOD_KEY, JSON.stringify(food));
+    } catch (e) {
+      toast('Sauvegarde impossible (stockage plein)');
+    }
+  }
+
+  function curFoodKey() { return foodDay || dayKey(new Date()); }
+
+  function dayFood(k) {
+    if (!food.days[k]) food.days[k] = { meals: [], water: 0, supps: {} };
+    return food.days[k];
+  }
+
+  function keyToDate(k) {
+    const [y, m, d] = k.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+
+  function numOrNull(v) {
+    const n = parseFloat(String(v == null ? '' : v).replace(',', '.'));
+    return Number.isFinite(n) && n >= 0 ? Math.round(n * 10) / 10 : null;
+  }
+
+  function mealKcal(m) {
+    if (m.kcal != null) return m.kcal;
+    if (m.p == null && m.g == null && m.l == null) return null;
+    return Math.round((m.p || 0) * 4 + (m.g || 0) * 4 + (m.l || 0) * 9);
+  }
+
+  function dayTotals(d) {
+    return d.meals.reduce((t, m) => ({
+      kcal: t.kcal + (mealKcal(m) || 0), p: t.p + (m.p || 0), g: t.g + (m.g || 0), l: t.l + (m.l || 0),
+    }), { kcal: 0, p: 0, g: 0, l: 0 });
+  }
+
+  function macroLine(m) {
+    const k = mealKcal(m);
+    const parts = [];
+    if (k != null) parts.push(`${k} kcal`);
+    if (m.p != null) parts.push(`P ${m.p} g`);
+    if (m.g != null) parts.push(`G ${m.g} g`);
+    if (m.l != null) parts.push(`L ${m.l} g`);
+    return parts.join(' · ') || 'Sans détail';
+  }
+
+  const fmtInt = n => Math.round(n).toLocaleString('fr-FR');
+
+  // Aliments déjà notés, du plus fréquent au moins fréquent, avec leurs dernières valeurs.
+  function recentFoods() {
+    const map = new Map();
+    Object.keys(food.days).sort().forEach(k => food.days[k].meals.forEach(m => {
+      const key = m.name.trim().toLowerCase();
+      const cur = map.get(key) || { count: 0 };
+      map.set(key, { name: m.name.trim(), kcal: m.kcal, p: m.p, g: m.g, l: m.l, count: cur.count + 1 });
+    }));
+    return [...map.values()].sort((a, b) => b.count - a.count);
+  }
+
+  function findFood(name) {
+    const key = String(name || '').trim().toLowerCase();
+    return RECIPES.find(r => r.name.toLowerCase() === key) || recentFoods().find(r => r.name.toLowerCase() === key) || null;
+  }
+
+  function nowHM() { return hm(new Date()); }
+
+  // Heure par défaut : maintenant aujourd'hui, l'ouverture de la fenêtre pour un autre jour.
+  function defaultMealTime() {
+    return foodDay ? hm(windowOf(keyToDate(foodDay)).open) : nowHM();
+  }
+
+  function addMeal(k, meal) {
+    const d = dayFood(k);
+    d.meals.push({ id: 'm' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), ...meal });
+    d.meals.sort((a, b) => a.t.localeCompare(b.t));
+    closeFastWithMeal(k, meal.t);
+    saveFood();
+  }
+
+  function quickAdd(i) {
+    const f = quickItems[i];
+    if (!f) return;
+    const t = defaultMealTime();
+    addMeal(curFoodKey(), { t, name: f.name, kcal: f.kcal ?? null, p: f.p ?? null, g: f.g ?? null, l: f.l ?? null, note: '' });
+    vibrate(20);
+    toast(`${f.name} ajouté à ${t}`);
+    renderJournal();
+  }
+
+  function eatRecipe(id) {
+    const r = RECIPES.find(x => x.id === id);
+    if (!r) return;
+    const t = nowHM();
+    addMeal(dayKey(new Date()), { t, name: r.name, kcal: r.kcal, p: r.p, g: r.g, l: r.l, note: '' });
+    vibrate(20);
+    toast(`${r.name} ajouté au journal (${t})`);
+  }
+
+  function toggleFav(id) {
+    food.favs = food.favs.includes(id) ? food.favs.filter(x => x !== id) : [...food.favs, id];
+    saveFood();
+    renderRecipes();
+  }
+
+  function toggleMealForm(show, meal) {
+    const form = document.getElementById('mealForm');
+    editingMeal = show && meal ? meal.id : null;
+    form.hidden = !show;
+    document.getElementById('addMealBtn').hidden = show;
+    if (!show) return;
+    form.reset();
+    document.getElementById('mealFormTitle').textContent = meal ? 'Modifier le repas' : 'Ajouter un repas';
+    document.getElementById('mealSubmit').textContent = meal ? 'Enregistrer' : 'Ajouter';
+    form.time.value = meal ? meal.t : defaultMealTime();
+    if (meal) {
+      form.food.value = meal.name;
+      ['kcal', 'p', 'g', 'l'].forEach(f => { form[f].value = meal[f] == null ? '' : String(meal[f]).replace('.', ','); });
+      form.note.value = meal.note || '';
+    }
+    document.getElementById('foodSuggest').innerHTML =
+      [...new Set([...RECIPES.map(r => r.name), ...recentFoods().map(r => r.name)])]
+        .map(n => `<option value="${escHtml(n)}"></option>`).join('');
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (!meal) setTimeout(() => form.food.focus({ preventScroll: true }), 250);
+  }
+
+  // Un nom connu (recette ou aliment déjà noté) remplit les macros vides.
+  document.getElementById('mealForm').food.addEventListener('change', e => {
+    const f = findFood(e.target.value);
+    const form = e.target.form;
+    if (!f) return;
+    ['kcal', 'p', 'g', 'l'].forEach(k => { if (!form[k].value && f[k] != null) form[k].value = String(f[k]).replace('.', ','); });
+  });
+
+  function submitMeal(ev) {
+    ev.preventDefault();
+    const form = ev.target;
+    const name = form.food.value.trim();
+    if (!name) return;
+    const meal = {
+      t: /^\d{2}:\d{2}$/.test(form.time.value) ? form.time.value : defaultMealTime(),
+      name: name.slice(0, 60),
+      kcal: numOrNull(form.kcal.value),
+      p: numOrNull(form.p.value),
+      g: numOrNull(form.g.value),
+      l: numOrNull(form.l.value),
+      note: form.note.value.trim().slice(0, 120),
+    };
+    if (meal.kcal != null) meal.kcal = Math.round(meal.kcal);
+    const k = curFoodKey();
+    if (editingMeal) {
+      const d = dayFood(k);
+      const m = d.meals.find(x => x.id === editingMeal);
+      if (m) Object.assign(m, meal);
+      d.meals.sort((a, b) => a.t.localeCompare(b.t));
+      saveFood();
+    } else {
+      addMeal(k, meal);
+    }
+    toggleMealForm(false);
+    renderJournal();
+    vibrate(20);
+  }
+
+  function editMeal(id) {
+    const m = dayFood(curFoodKey()).meals.find(x => x.id === id);
+    if (m) toggleMealForm(true, m);
+  }
+
+  function deleteMeal(id) {
+    if (!confirm('Supprimer ce repas du journal ?')) return;
+    const d = dayFood(curFoodKey());
+    d.meals = d.meals.filter(m => m.id !== id);
+    saveFood();
+    renderJournal();
+  }
+
+  function shiftFoodDay(n) {
+    const d = addDays(keyToDate(curFoodKey()), n);
+    const today = dayKey(new Date());
+    const k = dayKey(d);
+    if (k > today) return;
+    foodDay = k === today ? null : k;
+    toggleMealForm(false);
+    renderJournal();
+  }
+
+  function waterGoal() {
+    return Math.round(readWeight() * 35 / 250) * 250; // 35 ml/kg, arrondi au verre
+  }
+
+  function addWater(ml) {
+    const d = dayFood(curFoodKey());
+    d.water = Math.max(0, Math.min(8000, (d.water || 0) + ml));
+    saveFood();
+    renderJournal();
+  }
+
+  document.querySelectorAll('[data-supp]').forEach(el => el.addEventListener('change', () => {
+    const d = dayFood(curFoodKey());
+    d.supps = { ...(d.supps || {}), [el.dataset.supp]: el.checked };
+    saveFood();
+  }));
+
+  function macroRow(label, val, goal) {
+    return `<div>
+        <div class="macro-row-head">
+          <span class="macro-label">${label}</span>
+          <span class="macro-value">${fmtInt(val)}<small>/ ${goal} g</small></span>
+        </div>
+        <div class="macro-bar-track"><div class="macro-bar-fill ${label === 'Protéines' ? 'prot' : label === 'Glucides' ? 'gluc' : 'lip'}" style="transform:scaleX(${Math.min(1, goal ? val / goal : 0)})"></div></div>
+      </div>`;
+  }
+
+  function renderJournal() {
+    const k = curFoodKey();
+    const date = keyToDate(k);
+    const today = dayKey(new Date());
+    const d = food.days[k] || { meals: [], water: 0, supps: {} };
+    const yesterday = dayKey(addDays(new Date(), -1));
+    document.getElementById('foodDayLabel').textContent = k === today ? 'Aujourd\'hui'
+      : k === yesterday ? 'Hier' : `${DAY_NAMES[date.getDay()]} ${date.getDate()} ${MONTH_SHORT[date.getMonth()].toLowerCase()}`;
+    document.getElementById('foodNextBtn').disabled = k === today;
+
+    const t = dayTotals(d);
+    const goal = macroTargets();
+    const w = windowOf(date);
+    const perMeal = Math.round(0.4 * readWeight());
+    const protMeals = d.meals.filter(m => (m.p || 0) >= perMeal).length;
+    const office = OFFICE_DAYS.includes(date.getDay());
+    document.getElementById('foodHero').innerHTML = `
+      <div class="hero">
+        <div class="hero-eyebrow caps">Fenêtre ${hm(w.open)} – ${hm(w.close)}${office ? ' · jour bureau' : ''}</div>
+        <div class="food-kcal num">${fmtInt(t.kcal)}<small>/ ${fmtInt(goal.kcal)} kcal</small></div>
+        <div class="macro-bar-track" style="margin-top:14px"><div class="macro-bar-fill kcal" style="transform:scaleX(${Math.min(1, t.kcal / goal.kcal)})"></div></div>
+        <div class="macro-rows">
+          ${macroRow('Protéines', t.p, goal.p)}
+          ${macroRow('Glucides', t.g, goal.g)}
+          ${macroRow('Lipides', t.l, goal.l)}
+        </div>
+        <div class="food-foot">Repas protéinés : <b>${protMeals} / 3</b> (au moins ${perMeal} g chacun)</div>
+      </div>`;
+
+    // Raccourcis : recettes favorites puis aliments les plus notés.
+    const favs = RECIPES.filter(r => food.favs.includes(r.id));
+    const names = new Set(favs.map(r => r.name.toLowerCase()));
+    quickItems = [...favs, ...recentFoods().filter(r => !names.has(r.name.toLowerCase()))].slice(0, 10);
+    document.getElementById('foodQuick').innerHTML = quickItems
+      .map((f, i) => `<button class="chip" onclick="quickAdd(${i})"><b>+</b>${escHtml(f.name)}</button>`).join('');
+
+    document.getElementById('mealList').innerHTML = d.meals.length ? d.meals.map(m => {
+      const at = atTime(date, m.t);
+      const outside = at < w.open || at > w.close;
+      return `<div class="meal-item">
+          <span class="meal-time">${m.t}</span>
+          <div class="meal-main" onclick="editMeal('${m.id}')" role="button" tabindex="0" aria-label="Modifier ${escHtml(m.name)}">
+            <div class="meal-title">${escHtml(m.name)}${outside ? '<span class="meal-flag">hors fenêtre</span>' : ''}</div>
+            <div class="meal-sub">${macroLine(m)}</div>
+            ${m.note ? `<div class="meal-note">${escHtml(m.note)}</div>` : ''}
+          </div>
+          <button class="hist-del" onclick="deleteMeal('${m.id}')" aria-label="Supprimer ${escHtml(m.name)}">${ICONS.trash}</button>
+        </div>`;
+    }).join('') : `<div class="empty-note">Rien de noté ${k === today ? 'aujourd\'hui' : 'ce jour-là'}.<br>
+        Touche un raccourci ci-dessus, une recette, ou <strong>Ajouter un repas</strong>.</div>`;
+
+    const wg = waterGoal();
+    document.getElementById('waterText').textContent =
+      `${String((d.water || 0) / 1000).replace('.', ',')} / ${String(wg / 1000).replace('.', ',')} L`;
+    document.getElementById('waterBar').style.transform = `scaleX(${Math.min(1, (d.water || 0) / wg)})`;
+    document.querySelectorAll('[data-supp]').forEach(el => { el.checked = !!(d.supps || {})[el.dataset.supp]; });
+  }
+
+  const STAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z"/></svg>';
+  const BADGE_CLASS = { 'Riche en protéines': 'badge-green', 'OK à jeun': 'badge-green', 'Jour bureau': 'badge-green', 'Facile': 'badge-green', 'Économique': 'badge-yellow', 'Batch': 'badge-yellow' };
+
+  function renderRecipes() {
+    document.getElementById('recipeFilters').innerHTML = RECIPE_CATS.map(([k, label]) =>
+      `<button class="chip ${recipeFilter === k ? 'on' : ''}" onclick="recipeFilter = '${k}'; renderRecipes()">${label}</button>`).join('');
+    const list = RECIPES.filter(r => recipeFilter === 'tout' || (recipeFilter === 'favoris' ? food.favs.includes(r.id) : r.cat === recipeFilter));
+    document.getElementById('recipeList').innerHTML = list.length ? list.map(r => {
+      const fav = food.favs.includes(r.id);
+      return `<div class="fuel-card">
+          <div class="fuel-card-header">
+            <div class="fuel-name">${r.name}</div>
+            <div class="fuel-badges">${r.badges.map(b => `<span class="badge ${BADGE_CLASS[b] || 'badge-blue'}">${b}</span>`).join('')}</div>
+          </div>
+          <div class="fuel-ingredients">${r.ing}</div>
+          <div class="fuel-steps">${r.steps}</div>
+          <div class="fuel-macros">~${r.kcal} kcal · ${r.p} g protéines · ${r.g} g glucides · ${r.l} g lipides</div>
+          <div class="recipe-actions">
+            <button class="sync-btn secondary" onclick="eatRecipe('${r.id}')">J'ai mangé ça</button>
+            <button class="fav-btn ${fav ? 'on' : ''}" onclick="toggleFav('${r.id}')" aria-pressed="${fav}" aria-label="${fav ? 'Retirer des favoris' : 'Ajouter aux favoris'}">${STAR}</button>
+          </div>
+        </div>`;
+    }).join('') : '<div class="empty-note">Aucune recette en favori.<br>Touche l\'étoile d\'une recette : elle apparaîtra aussi en raccourci dans le journal.</div>';
+  }
+
+  function renderGoals() {
+    const wkg = readWeight();
+    const lo = Math.round(0.4 * wkg), hi = Math.round(0.55 * wkg);
+    const w = windowOf(new Date());
+    const mid = new Date((w.open.getTime() + w.close.getTime()) / 2);
+    document.getElementById('protMealCard').innerHTML = `
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-dot"></div>
+          <div>
+            <div class="info-title">${lo} à ${hi} g par repas, 3 repas</div>
+            <div class="info-desc">0,4 à 0,55 g/kg par repas, sur au moins 3-4 repas, maximise la construction musculaire (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5828430/" target="_blank" rel="noopener">Schoenfeld & Aragon 2018</a>). Dans ta fenêtre d'aujourd'hui : vers ${hm(w.open)}, ${hm(mid)} et ${hm(new Date(w.close.getTime() - 45 * 60000))}.</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-dot"></div>
+          <div>
+            <div class="info-title">Le total compte plus que le timing</div>
+            <div class="info-desc">Pas de « fenêtre anabolique » de 30 min : avant ou après la séance, l'effet est le même (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3577439/" target="_blank" rel="noopener">Aragon & Schoenfeld 2013</a>). Vise d'abord ton total de protéines de la journée.</div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function setNutriView(v) {
+    nutriView = v;
+    toggleMealForm(false);
+    renderFood();
+    document.getElementById('page-nutrition').scrollTo({ top: 0 });
+  }
+
+  document.querySelector('.nutri-tabs').addEventListener('click', e => {
+    const b = e.target.closest('button[data-view]');
+    if (b) setNutriView(b.dataset.view);
+  });
+
+  function renderFood() {
+    document.querySelectorAll('.nutri-tabs button').forEach(b => {
+      const on = b.dataset.view === nutriView;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', on);
+    });
+    document.querySelectorAll('.nutri-view').forEach(v => { v.hidden = v.dataset.view !== nutriView; });
+    if (nutriView === 'journal') renderJournal();
+    else if (nutriView === 'recettes') renderRecipes();
+    else renderGoals();
+  }
+
   // ── NUTRITION CALCULATOR ──
   const NUTRI_KEY = 'planche_os_nutri';
   let currentGoal = 'masse';
@@ -3106,21 +4143,21 @@
     try { localStorage.setItem(NUTRI_KEY, JSON.stringify({ weight: document.getElementById('weightInput').value, goal: currentGoal })); } catch (e) {}
   }
 
-  function calcMacros() {
+  // Cibles du jour : Mifflin-St Jeor (profil des Réglages) × activité, selon l'objectif.
+  function macroTargets() {
     const weight = readWeight();
-    // Mifflin-St Jeor, avec la taille, l'âge et le sexe des Réglages.
     const mb = (10 * weight) + (6.25 * settings.height) - (5 * settings.age) + (settings.sex === 'f' ? -161 : 5);
     const tdee = mb * 1.55;
-
     let kcal;
     if (currentGoal === 'maintien') kcal = tdee + 150;
     else if (currentGoal === 'masse') kcal = tdee + 300;
     else kcal = tdee - 400;
-
     kcal = Math.round(kcal);
-    const prot = Math.round(1.8 * weight);
-    const gluc = Math.round((kcal * 0.45) / 4);
-    const lip  = Math.round((kcal * 0.25) / 9);
+    return { kcal, p: Math.round(1.8 * weight), g: Math.round((kcal * 0.45) / 4), l: Math.round((kcal * 0.25) / 9) };
+  }
+
+  function calcMacros() {
+    const { kcal, p: prot, g: gluc, l: lip } = macroTargets();
 
     document.getElementById('kcalVal').textContent = kcal;
     document.getElementById('protVal').textContent = prot;
@@ -3136,6 +4173,7 @@
     bar('protBar', prot / 200);
     bar('glucBar', gluc / 450);
     bar('lipBar',  lip / 120);
+    renderFood();
   }
 
   function setGoal(goal) {
@@ -4627,7 +5665,7 @@
     renderStorage();
   }
 
-  const BACKUP_KEYS = { store: STORE_KEY, sync: SYNC_KEY, settings: SETTINGS_KEY, nutri: NUTRI_KEY };
+  const BACKUP_KEYS = { store: STORE_KEY, sync: SYNC_KEY, settings: SETTINGS_KEY, nutri: NUTRI_KEY, food: FOOD_KEY, fast: FAST_KEY };
 
   async function exportBackup() {
     const data = { app: 'PLANCHE OS', version: 1, date: new Date().toISOString() };
@@ -4730,8 +5768,8 @@
   renderDashboard();
 
   const tabParam = new URLSearchParams(location.search).get('tab');
-  // Ancien raccourci d'app « Synchro » : la synchro vit maintenant dans les Réglages.
-  const tabName = tabParam === 'sync' ? 'reglages' : tabParam;
+  // Anciens raccourcis : la synchro vit dans les Réglages, Fuel dans Nutrition.
+  const tabName = { sync: 'reglages', fuel: 'nutrition' }[tabParam] || tabParam;
   if (tabName && document.getElementById('page-' + tabName)) switchTab(tabName);
 </script>
 </body>

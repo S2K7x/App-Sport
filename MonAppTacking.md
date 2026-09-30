@@ -237,6 +237,49 @@ d'entraînement sont stockées localement sur le téléphone.
   automatiquement dans la série
 - L'écran reste allumé pendant toute la séance
 
+### Nutrition
+Onglet tout-en-un (Nutrition et l'ancien Fuel fusionnés), en trois vues :
+- **Journal** : ce que tu as mangé, jour par jour (flèches pour revenir en
+  arrière). Totaux kcal / protéines / glucides / lipides face à tes cibles,
+  compteur de repas protéinés (≥ 0,4 g/kg, 3 par jour), eau (objectif
+  35 ml/kg), créatine et oméga-3 cochés. Ajout en un tap depuis les
+  recettes favorites et les aliments déjà notés ; un nom connu remplit les
+  macros tout seul. Les macros restent optionnelles. Un repas hors de ta
+  fenêtre de jeûne est signalé.
+- **Recettes** : les plats, snacks et boissons, filtrables, avec favoris et
+  bouton « J'ai mangé ça ». Macros recalculées (kcal = 4 × P + 4 × G + 9 × L),
+  trois recettes riches en protéines ajoutées (shakshuka, bowl poulet-riz,
+  skyr), et deux affirmations fausses corrigées (« fenêtre anabolique » de
+  30 min, eau « anti-inflammatoire »).
+- **Objectifs** : poids, objectif, macros du jour, protéines par repas.
+
+Pourquoi : noter ce qu'on mange est associé à de meilleurs résultats
+([Burke 2011](https://pubmed.ncbi.nlm.nih.gov/16007557/)) à condition que ce
+soit rapide, d'où les favoris et récents
+([MacroFactor](https://macrofactor.com/favorite-foods/)). 0,4 à 0,55 g/kg de
+protéines par repas sur 3-4 repas
+([Schoenfeld & Aragon 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC5828430/)) ;
+le timing autour de la séance compte peu
+([Aragon & Schoenfeld 2013](https://pmc.ncbi.nlm.nih.gov/articles/PMC3577439/)).
+
+### Fast (jeûne intermittent)
+- **Minuteur** : temps de jeûne écoulé, objectif jusqu'à l'ouverture de la
+  fenêtre, boutons Commencer / Rompre. Si tu as oublié le bouton, « Depuis
+  21:00 » démarre le jeûne à l'heure prévue. Noter un repas pendant un jeûne
+  le termine à l'heure du repas.
+- **Ressenti** de 1 à 5 en un tap après chaque jeûne, et une note libre.
+- **Semaine** : durée de chaque jeûne face à la durée prévue, moyenne,
+  objectifs atteints.
+- **Suivi** : 10 derniers jours ; un jour non noté se valide en un tap avec
+  les heures prévues, ou s'ajuste.
+- **Mes horaires** : ouverture et fermeture de la fenêtre pour chaque jour.
+  Par défaut 13:00 – 21:00, et 07:30 – 20:30 les jours de bureau (lundi,
+  jeudi) où tu manges le matin.
+
+Le 16:8 combiné à la musculation fait perdre du gras sans perte de muscle
+ni de force ([méta-analyse 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11434652/),
+[Moro 2016](https://link.springer.com/article/10.1186/s12967-016-1044-0)).
+
 ### Réglages
 Dernier onglet, organisé comme les Réglages d'iOS. Chaque option agit
 réellement sur l'app :

@@ -237,8 +237,40 @@ d'entraînement sont stockées localement sur le téléphone.
   automatiquement dans la série
 - L'écran reste allumé pendant toute la séance
 
+### Réglages
+Dernier onglet, organisé comme les Réglages d'iOS. Chaque option agit
+réellement sur l'app :
+
+| Section | Réglages | Effet |
+|---|---|---|
+| Profil | Prénom, âge, taille, poids, sexe | « Salut {prénom} » sur l'accueil ; calcul Nutrition (Mifflin-St Jeor) |
+| Zones cardio | FC max, FC de repos, méthode % FC max ou % FC de réserve (Karvonen) | 5 zones en bpm ; zone 2 et zone 4-5 affichées dans la fiche des deux courses |
+| Pendant la séance | Repos automatique, durée des repos (−15 s à +30 s), bip, décompte 3-2-1, annonces vocales, vibrations, écran allumé | Pilotent le player et le chrono de repos |
+| Programme | Semaine de décharge | ~40 % de séries en moins jusqu'à samedi ; rappel toutes les 5-6 semaines |
+| Apparence | Thème auto / clair / sombre, 5 couleurs d'accent | Appliqués avant le premier affichage, sans flash |
+| Synchronisation | Voir ci-dessous | |
+| Données | Sauvegarde, restauration, protection du stockage, historique (suppression), réinitialisation | Sauvegarde en .json via la feuille de partage iOS |
+
+Choix guidés par les réglages des apps de référence : repos par défaut, sons
+et écran allumé ([Hevy](https://help.hevyapp.com/hc/en-us/articles/33882110558743),
+[Hevy — minuteur](https://help.hevyapp.com/hc/en-us/articles/35385404949143)),
+FC max, FC de repos et zones en % FC max ou % FC de réserve
+([Garmin](https://www8.garmin.com/manuals/webhelp/GUID-676967A0-1B23-4384-9BC9-76F3D643F1C8/EN-US/GUID-30C91919-943C-44E9-8048-901AC0881AEA.html)).
+FC max estimée par Tanaka, 208 − 0,7 × âge ([comparaison des formules](https://pmc.ncbi.nlm.nih.gov/articles/PMC7523886/)).
+
+Limites de l'iPhone prises en compte :
+- **Vibrations** : l'API n'existe pas dans Safari iOS
+  ([caniuse](https://caniuse.com/vibration)), le réglage n'est affiché que
+  sur les appareils compatibles.
+- **Annonces vocales** : elles utilisent la synthèse vocale du système
+  ([caniuse](https://caniuse.com/speech-synthesis)).
+- **Écran allumé** : fonctionne dans l'app installée depuis iOS 18.4
+  ([WebKit](https://webkit.org/blog/16574/webkit-features-in-safari-18-4/)).
+- **Rappels d'entraînement** : écartés. Sur iPhone, une web app ne peut
+  recevoir de notifications que par Web Push, ce qui exige un serveur.
+
 ### Synchroniser Apple Santé, Garmin et adidas Running
-Onglet **Synchro** : importe les activités enregistrées ailleurs, affiche les
+Réglages → **Synchronisation** : importe les activités enregistrées ailleurs, affiche les
 7 derniers jours (km courus, activités, FC de repos) et valide automatiquement
 les séances du programme. Une course importée un lundi ou un jeudi coche la
 course prévue ; un entraînement de force coche la séance du jour.
@@ -262,7 +294,7 @@ un lien ouvert par un Raccourci arriverait dans Safari, pas dans l'app.
    ([API Clipboard de WebKit](https://webkit.org/blog/10855/async-clipboard-api/)).
    iOS demande une confirmation « Coller » : c'est normal.
 
-Les étapes détaillées sont dans l'onglet (section *Configurer*).
+Les étapes détaillées sont dans Réglages → Synchronisation (section *Configurer*).
 
 **Imports ponctuels** (bouton *Importer un fichier*) :
 - `export.xml` de Santé (*Exporter toutes les données de santé*) : les

@@ -10,6 +10,13 @@
   <meta name="theme-color" content="#0a0d24" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-title" content="PLANCHE OS">
   <title>PLANCHE OS</title>
+  <script>
+    try {
+      var p = JSON.parse(localStorage.getItem('planche_os_settings_v1') || '{}');
+      if (p.theme && p.theme !== 'auto') document.documentElement.dataset.theme = p.theme;
+      if (p.accent && p.accent !== 'bleu') document.documentElement.dataset.accent = p.accent;
+    } catch (e) {}
+  </script>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="icon" href="icon.png" type="image/png">
@@ -68,7 +75,7 @@
     }
 
     @media (prefers-color-scheme: dark) {
-      :root {
+      :root:not([data-theme="light"]) {
         color-scheme: dark;
         --bg: #0a0d24;
         --surface: #141a3d;
@@ -98,6 +105,43 @@
         --shadow-lift: 0 18px 50px rgba(0, 0, 0, 0.6);
       }
     }
+
+    /* Thème choisi dans les Réglages : prioritaire sur celui du téléphone. */
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0a0d24;
+      --surface: #141a3d;
+      --surface-2: #1a2149;
+      --fill: rgba(140, 150, 230, 0.12);
+      --separator: rgba(140, 150, 230, 0.16);
+      --label: #f3f4ff;
+      --label-2: rgba(222, 226, 255, 0.66);
+      --label-3: rgba(222, 226, 255, 0.36);
+
+      --accent: #6a7bff;
+      --accent-2: #8e9bff;
+      --accent-soft: rgba(106, 123, 255, 0.16);
+      --accent-line: rgba(106, 123, 255, 0.45);
+
+      --navy: #26309a;
+      --navy-2: #3440c0;
+
+      --body-fill: #1c2352;
+      --body-line: #8f9ae6;
+      --muscle-1: #6a7bff;
+      --muscle-2: #3d4aa8;
+
+      --tabbar-bg: rgba(16, 20, 48, 0.9);
+      --shadow: none;
+      --shadow-hero: 0 18px 40px rgba(0, 0, 0, 0.45);
+      --shadow-lift: 0 18px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Couleurs d'accent (Réglages → Apparence) ; le bleu est la couleur par défaut. */
+    :root[data-accent="violet"] { --accent: #8b5cf6; --accent-2: #a78bfa; --accent-soft: rgba(139, 92, 246, 0.13); --accent-line: rgba(139, 92, 246, 0.4); --muscle-1: #8b5cf6; }
+    :root[data-accent="vert"]   { --accent: #16a34a; --accent-2: #4ade80; --accent-soft: rgba(22, 163, 74, 0.13); --accent-line: rgba(22, 163, 74, 0.4); --muscle-1: #16a34a; }
+    :root[data-accent="orange"] { --accent: #f97316; --accent-2: #fb923c; --accent-soft: rgba(249, 115, 22, 0.13); --accent-line: rgba(249, 115, 22, 0.4); --muscle-1: #f97316; }
+    :root[data-accent="rose"]   { --accent: #e11d74; --accent-2: #f472b6; --accent-soft: rgba(225, 29, 116, 0.13); --accent-line: rgba(225, 29, 116, 0.4); --muscle-1: #e11d74; }
 
     * {
       margin: 0;
@@ -1320,6 +1364,165 @@
       padding: 10px;
     }
 
+    /* ── PAGE RÉGLAGES — listes groupées façon Réglages iOS ── */
+    .profile-hero { display: flex; align-items: center; gap: 16px; }
+    .profile-main { min-width: 0; }
+    .profile-main .hero-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .avatar svg { width: 28px; height: 28px; opacity: 0.8; }
+
+    .pref-group {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .pref-group + .pref-group { margin-top: 10px; }
+    .pref-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 10px 16px;
+      border-bottom: 0.5px solid var(--separator);
+    }
+    .pref-row:last-child { border-bottom: none; }
+    .pref-row.stack { flex-direction: column; align-items: stretch; gap: 9px; padding-top: 12px; padding-bottom: 12px; }
+    .pref-label { flex: 1; min-width: 0; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
+    .pref-label small, .pref-btn small {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 400;
+      color: var(--label-3);
+      margin-top: 1px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+    .pref-input {
+      width: 74px;
+      border: none;
+      border-radius: 9px;
+      background: var(--fill);
+      color: var(--label);
+      font: inherit;
+      font-size: 16px; /* 16 px : iOS ne zoome pas sur le champ */
+      text-align: right;
+      padding: 8px 10px;
+      font-variant-numeric: tabular-nums;
+    }
+    .pref-input.wide { width: 150px; }
+    .pref-input::placeholder { color: var(--label-3); }
+    .pref-unit { font-size: 14px; color: var(--label-3); width: 28px; }
+    .pref-foot { font-size: 12.5px; line-height: 1.45; color: var(--label-3); padding: 8px 16px 0; }
+    .pref-foot.about { text-align: center; padding: 22px 16px 8px; }
+
+    .pref-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 0.5px solid var(--separator);
+      text-align: left;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+    }
+    .pref-btn:active { background: var(--fill); }
+    .pref-btn.danger { color: #e5484d; }
+
+    /* Interrupteur iOS */
+    .switch {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 51px;
+      height: 31px;
+      border-radius: 16px;
+      background: rgba(120, 120, 128, 0.24);
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+    .switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s ease;
+    }
+    .switch:checked { background: var(--accent); }
+    .switch:checked::after { transform: translateX(20px); }
+    .switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Contrôle segmenté */
+    .seg { display: flex; background: rgba(120, 120, 128, 0.14); border-radius: 9px; padding: 2px; gap: 2px; }
+    .seg button {
+      flex: 1;
+      min-height: 32px;
+      border: none;
+      border-radius: 7px;
+      background: none;
+      color: var(--label-2);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 8px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .seg button.on { background: var(--surface); color: var(--label); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14); }
+
+    .swatches { display: flex; gap: 10px; }
+    .swatch { width: 28px; height: 28px; border-radius: 50%; border: none; cursor: pointer; padding: 0; }
+    .swatch.on { outline: 2px solid var(--label); outline-offset: 3px; }
+
+    .zones { display: flex; flex-direction: column; gap: 7px; }
+    .zone { display: flex; align-items: center; gap: 10px; font-size: 14px; white-space: nowrap; }
+    .zone i { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .zone span { color: var(--label-2); min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .zone b { margin-left: auto; padding-left: 8px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .zone.hot b { color: var(--accent); }
+
+    .hist-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--separator); }
+    .hist-row:last-child { border-bottom: none; }
+    .hist-row div { flex: 1; min-width: 0; }
+    .hist-row b { display: block; color: var(--label); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hist-del {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: none;
+      color: var(--label-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .hist-del svg { width: 16px; height: 16px; }
+    .hist-del:active { color: #e5484d; }
+
     .empty-note {
       text-align: center;
       padding: 30px 24px;
@@ -1616,7 +1819,7 @@
     <div class="page active" id="page-seances">
       <div class="page-header">
         <div>
-          <div class="page-eyebrow caps">Programme</div>
+          <div class="page-eyebrow caps" id="dashEyebrow">Programme</div>
           <div class="page-title">Séances</div>
         </div>
         <div class="date-badge" id="todayBadge"></div>
@@ -1709,85 +1912,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- ═══ PAGE — SYNCHRO (Apple Santé, Garmin, adidas Running) ═══ -->
-    <div class="page" id="page-sync">
-      <div class="page-header">
-        <div>
-          <div class="page-eyebrow caps">Apple Santé · Garmin · adidas</div>
-          <div class="page-title">Synchro</div>
-        </div>
-      </div>
-
-      <div id="syncHero"></div>
-
-      <div class="sync-actions">
-        <button class="sync-btn" onclick="pasteSync()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1M9.5 12.5l2 2 3.5-4"/></svg>
-          Coller depuis Raccourcis
-        </button>
-        <button class="sync-btn secondary" onclick="document.getElementById('syncFile').click()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5L12 11l2.5 2.5"/></svg>
-          Importer un fichier
-        </button>
-        <!-- Pas d'attribut accept : sur iOS, une extension inconnue (.gpx) grise le fichier dans le sélecteur. -->
-        <input type="file" id="syncFile" multiple hidden onchange="importFiles([...this.files]); this.value = ''">
-      </div>
-      <div class="sync-status" id="syncStatus" role="status" aria-live="polite"></div>
-
-      <div class="section-head"><span class="section-title caps">Activités importées</span></div>
-      <div id="syncList"></div>
-
-      <div class="section-head"><span class="section-title caps">Configurer</span></div>
-
-      <details class="guide">
-        <summary><span>Pourquoi pas de synchro automatique ?<small>Ce qu'une web app peut faire sur iPhone</small></span></summary>
-        <div class="guide-body">
-          <p><b>Apple Santé n'est pas accessible depuis une web app.</b> HealthKit est réservé aux apps natives de l'App Store : il n'existe aucune API web, même pour une app installée sur l'écran d'accueil.</p>
-          <p><b>Garmin et adidas Running n'ouvrent pas leurs données aux particuliers.</b> Les API Garmin sont réservées aux entreprises validées dans son programme développeur, et adidas Running n'a pas d'API publique.</p>
-          <p><b>La solution : Apple Santé comme point central.</b> Garmin Connect et adidas Running y écrivent tes activités. Un Raccourci iOS les relit et les passe à l'app par le presse-papiers. Un lien ne marcherait pas : l'app installée a un stockage séparé de Safari. Rien ne quitte ton téléphone.</p>
-        </div>
-      </details>
-
-      <details class="guide">
-        <summary><span>1. Envoyer Garmin et adidas vers Santé<small>Une fois, dans chaque app</small></span></summary>
-        <div class="guide-body">
-          <ol>
-            <li><b>Garmin Connect</b> : Réglages → Apps connectées → Apple Santé → active le partage. Garmin Connect doit être ouvert de temps en temps pour envoyer les données.</li>
-            <li><b>adidas Running</b> : Profil → roue dentée → Comptes partenaires → Apple Santé.</li>
-          </ol>
-          <p>Si une même course est enregistrée par les deux apps, elle n'apparaît qu'une fois ici : même type et départ à moins de 3 minutes d'écart = même activité.</p>
-        </div>
-      </details>
-
-      <details class="guide">
-        <summary><span>2. Créer le Raccourci<small>~5 min, une seule fois</small></span></summary>
-        <div class="guide-body">
-          <ol>
-            <li>App <b>Raccourcis</b> → <b>+</b> → nomme-le « Synchro Planche OS ».</li>
-            <li>Ajoute <b>Rechercher des échantillons de santé</b> : type <b>Entraînements</b>, filtre <b>Date de début</b> dans les <b>14 derniers jours</b>.</li>
-            <li>Ajoute <b>Répéter avec chaque</b> élément.</li>
-            <li>Dans la boucle, ajoute <b>Dictionnaire</b> avec ces clés, chacune reliée à une propriété de l'<b>Élément répété</b> :
-              <code>type</code> (Type), <code>start</code> (Date de début — touche la variable et choisis le format <b>ISO 8601</b>), <code>duration</code> (Durée), <code>distance</code> (Distance), <code>energy</code> (Énergie), <code>source</code> (Source).</li>
-            <li>Après la boucle : <b>Copier dans le presse-papiers</b> les <b>Résultats de Répéter</b>.</li>
-            <li>Lance-le, ouvre Planche OS → Synchro → <b>Coller depuis Raccourcis</b>.</li>
-          </ol>
-          <p>Les noms de propriétés varient un peu selon la version d'iOS ; l'app accepte les clés en français ou en anglais, et les valeurs avec unités (« 5,02 km », « 32 min »).</p>
-          <p><b>Optionnel — récupération :</b> refais les étapes 2 à 4 avec <b>Fréquence cardiaque au repos</b> (clés <code>type</code> = texte « repos », <code>start</code>, <code>value</code> = Valeur), puis combine les deux listes avec <b>Ajouter à la variable</b> avant de copier. L'app compare ta FC de repos sur 7 jours à celle des semaines précédentes.</p>
-          <p>Astuce : ajoute le Raccourci à l'écran d'accueil, à côté de l'app.</p>
-        </div>
-      </details>
-
-      <details class="guide">
-        <summary><span>Importer tout l'historique<small>Export Santé ou fichiers GPX</small></span></summary>
-        <div class="guide-body">
-          <p><b>Export Apple Santé</b> : Santé → ta photo → <b>Exporter toutes les données de santé</b> → Enregistrer dans Fichiers. Touche le .zip pour le décompresser, puis ici <b>Importer un fichier</b> → <code>apple_health_export/export.xml</code>. L'app garde les entraînements des 400 derniers jours, ta FC de repos et ta VFC. Le fichier peut peser plusieurs centaines de Mo : compte une minute.</p>
-          <p><b>GPX</b> : exporte une activité en .gpx depuis Garmin Connect ou adidas Running, puis <b>Importer un fichier</b> (plusieurs fichiers d'un coup possible). Distance, durée et FC sont recalculées depuis la trace.</p>
-        </div>
-      </details>
-
-      <button class="sync-clear" id="syncClear" onclick="clearSync()">Effacer les données importées</button>
     </div>
 
     <!-- ═══ PAGE 2 — NUTRITION ═══ -->
@@ -2083,6 +2207,193 @@
       </div>
 
     </div>
+    <!-- ═══ PAGE — RÉGLAGES ═══ -->
+    <div class="page" id="page-reglages">
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow caps">Préférences</div>
+          <div class="page-title">Réglages</div>
+        </div>
+      </div>
+
+      <div class="hero profile-hero">
+        <div class="avatar" id="profileAvatar" aria-hidden="true"></div>
+        <div class="profile-main">
+          <div class="hero-title" id="profileName"></div>
+          <div class="hero-sub" id="profileSub"></div>
+        </div>
+      </div>
+
+      <!-- Profil -->
+      <div class="section-head"><span class="section-title caps">Profil</span></div>
+      <div class="pref-group">
+        <label class="pref-row"><span class="pref-label">Prénom</span>
+          <input class="pref-input wide" data-set="name" type="text" autocomplete="given-name" enterkeyhint="done" placeholder="Ton prénom" maxlength="30"></label>
+        <label class="pref-row"><span class="pref-label">Âge</span>
+          <input class="pref-input" data-set="age" data-num="12,90" type="text" inputmode="numeric" enterkeyhint="done"><span class="pref-unit">ans</span></label>
+        <label class="pref-row"><span class="pref-label">Taille</span>
+          <input class="pref-input" data-set="height" data-num="120,230" type="text" inputmode="numeric" enterkeyhint="done"><span class="pref-unit">cm</span></label>
+        <label class="pref-row"><span class="pref-label">Poids</span>
+          <input class="pref-input" id="prefWeight" type="text" inputmode="decimal" enterkeyhint="done"><span class="pref-unit">kg</span></label>
+        <div class="pref-row"><span class="pref-label">Sexe<small>Pour la dépense calorique</small></span>
+          <div class="seg" data-seg="sex" role="group" aria-label="Sexe">
+            <button data-v="h">Homme</button><button data-v="f">Femme</button>
+          </div></div>
+      </div>
+      <p class="pref-foot">Le profil règle le calcul de l'onglet Nutrition et tes zones cardio.</p>
+
+      <!-- Fréquence cardiaque -->
+      <div class="section-head"><span class="section-title caps">Zones cardio</span></div>
+      <div class="pref-group">
+        <label class="pref-row"><span class="pref-label">FC max<small id="hrMaxHint"></small></span>
+          <input class="pref-input" data-set="hrMax" data-num="140,230" data-empty="1" type="text" inputmode="numeric" enterkeyhint="done"><span class="pref-unit">bpm</span></label>
+        <label class="pref-row"><span class="pref-label">FC de repos<small id="hrRestHint"></small></span>
+          <input class="pref-input" data-set="hrRest" data-num="30,100" data-empty="1" type="text" inputmode="numeric" enterkeyhint="done"><span class="pref-unit">bpm</span></label>
+        <div class="pref-row stack"><span class="pref-label">Méthode de calcul</span>
+          <div class="seg" data-seg="zoneMethod" role="group" aria-label="Méthode de calcul des zones">
+            <button data-v="max">% FC max</button><button data-v="hrr">% FC de réserve</button>
+          </div></div>
+        <div class="pref-row stack"><div class="zones" id="zonesList"></div></div>
+      </div>
+      <p class="pref-foot" id="zonesFoot"></p>
+
+      <!-- Séances -->
+      <div class="section-head"><span class="section-title caps">Pendant la séance</span></div>
+      <div class="pref-group">
+        <label class="pref-row"><span class="pref-label">Repos automatique<small>Le chrono démarre après chaque série validée</small></span>
+          <input class="switch" type="checkbox" data-set="autoRest"></label>
+        <div class="pref-row stack"><span class="pref-label">Durée des repos<small>Ajoutée ou retirée à chaque repos du programme</small></span>
+          <div class="seg" data-seg="restAdjust" role="group" aria-label="Ajustement des repos">
+            <button data-v="-15">−15 s</button><button data-v="0">Programme</button><button data-v="15">+15 s</button><button data-v="30">+30 s</button>
+          </div></div>
+        <label class="pref-row"><span class="pref-label">Bip de fin de repos</span>
+          <input class="switch" type="checkbox" data-set="sound"></label>
+        <label class="pref-row"><span class="pref-label">Décompte 3-2-1<small>Trois bips courts avant la fin du repos</small></span>
+          <input class="switch" type="checkbox" data-set="countdown"></label>
+        <label class="pref-row"><span class="pref-label">Annonces vocales<small>Exercice suivant et fin de repos, à voix haute</small></span>
+          <input class="switch" type="checkbox" data-set="voice"></label>
+        <label class="pref-row" id="hapticsRow"><span class="pref-label">Vibrations</span>
+          <input class="switch" type="checkbox" data-set="haptics"></label>
+        <label class="pref-row"><span class="pref-label">Écran toujours allumé<small>Pendant une séance</small></span>
+          <input class="switch" type="checkbox" data-set="keepAwake"></label>
+      </div>
+
+      <!-- Programme -->
+      <div class="section-head"><span class="section-title caps">Programme</span></div>
+      <div class="pref-group">
+        <label class="pref-row"><span class="pref-label">Semaine de décharge<small>Environ 40 % de séries en moins, jusqu'à samedi</small></span>
+          <input class="switch" type="checkbox" id="deloadSwitch"></label>
+      </div>
+      <p class="pref-foot" id="deloadFoot"></p>
+
+      <!-- Apparence -->
+      <div class="section-head"><span class="section-title caps">Apparence</span></div>
+      <div class="pref-group">
+        <div class="pref-row stack"><span class="pref-label">Thème</span>
+          <div class="seg" data-seg="theme" role="group" aria-label="Thème">
+            <button data-v="auto">Automatique</button><button data-v="light">Clair</button><button data-v="dark">Sombre</button>
+          </div></div>
+        <div class="pref-row"><span class="pref-label">Couleur</span>
+          <div class="swatches" data-seg="accent" role="group" aria-label="Couleur d'accent">
+            <button class="swatch" data-v="bleu" style="background:#3f51e8" aria-label="Bleu"></button>
+            <button class="swatch" data-v="violet" style="background:#8b5cf6" aria-label="Violet"></button>
+            <button class="swatch" data-v="vert" style="background:#16a34a" aria-label="Vert"></button>
+            <button class="swatch" data-v="orange" style="background:#f97316" aria-label="Orange"></button>
+            <button class="swatch" data-v="rose" style="background:#e11d74" aria-label="Rose"></button>
+          </div></div>
+      </div>
+
+      <!-- Synchronisation -->
+      <div class="section-head"><span class="section-title caps">Synchronisation · Santé, Garmin, adidas</span></div>
+      <div id="syncHero"></div>
+
+      <div class="sync-actions">
+        <button class="sync-btn" onclick="pasteSync()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1M9.5 12.5l2 2 3.5-4"/></svg>
+          Coller depuis Raccourcis
+        </button>
+        <button class="sync-btn secondary" onclick="document.getElementById('syncFile').click()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5L12 11l2.5 2.5"/></svg>
+          Importer un fichier
+        </button>
+        <!-- Pas d'attribut accept : sur iOS, une extension inconnue (.gpx) grise le fichier dans le sélecteur. -->
+        <input type="file" id="syncFile" multiple hidden onchange="importFiles([...this.files]); this.value = ''">
+      </div>
+      <div class="sync-status" id="syncStatus" role="status" aria-live="polite"></div>
+
+      <div class="section-head"><span class="section-title caps">Activités importées</span></div>
+      <div id="syncList"></div>
+
+      <div class="section-head"><span class="section-title caps">Configurer</span></div>
+
+      <details class="guide">
+        <summary><span>Pourquoi pas de synchro automatique ?<small>Ce qu'une web app peut faire sur iPhone</small></span></summary>
+        <div class="guide-body">
+          <p><b>Apple Santé n'est pas accessible depuis une web app.</b> HealthKit est réservé aux apps natives de l'App Store : il n'existe aucune API web, même pour une app installée sur l'écran d'accueil.</p>
+          <p><b>Garmin et adidas Running n'ouvrent pas leurs données aux particuliers.</b> Les API Garmin sont réservées aux entreprises validées dans son programme développeur, et adidas Running n'a pas d'API publique.</p>
+          <p><b>La solution : Apple Santé comme point central.</b> Garmin Connect et adidas Running y écrivent tes activités. Un Raccourci iOS les relit et les passe à l'app par le presse-papiers. Un lien ne marcherait pas : l'app installée a un stockage séparé de Safari. Rien ne quitte ton téléphone.</p>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary><span>1. Envoyer Garmin et adidas vers Santé<small>Une fois, dans chaque app</small></span></summary>
+        <div class="guide-body">
+          <ol>
+            <li><b>Garmin Connect</b> : Réglages → Apps connectées → Apple Santé → active le partage. Garmin Connect doit être ouvert de temps en temps pour envoyer les données.</li>
+            <li><b>adidas Running</b> : Profil → roue dentée → Comptes partenaires → Apple Santé.</li>
+          </ol>
+          <p>Si une même course est enregistrée par les deux apps, elle n'apparaît qu'une fois ici : même type et départ à moins de 3 minutes d'écart = même activité.</p>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary><span>2. Créer le Raccourci<small>~5 min, une seule fois</small></span></summary>
+        <div class="guide-body">
+          <ol>
+            <li>App <b>Raccourcis</b> → <b>+</b> → nomme-le « Synchro Planche OS ».</li>
+            <li>Ajoute <b>Rechercher des échantillons de santé</b> : type <b>Entraînements</b>, filtre <b>Date de début</b> dans les <b>14 derniers jours</b>.</li>
+            <li>Ajoute <b>Répéter avec chaque</b> élément.</li>
+            <li>Dans la boucle, ajoute <b>Dictionnaire</b> avec ces clés, chacune reliée à une propriété de l'<b>Élément répété</b> :
+              <code>type</code> (Type), <code>start</code> (Date de début — touche la variable et choisis le format <b>ISO 8601</b>), <code>duration</code> (Durée), <code>distance</code> (Distance), <code>energy</code> (Énergie), <code>source</code> (Source).</li>
+            <li>Après la boucle : <b>Copier dans le presse-papiers</b> les <b>Résultats de Répéter</b>.</li>
+            <li>Lance-le, ouvre Planche OS → Réglages → <b>Coller depuis Raccourcis</b>.</li>
+          </ol>
+          <p>Les noms de propriétés varient un peu selon la version d'iOS ; l'app accepte les clés en français ou en anglais, et les valeurs avec unités (« 5,02 km », « 32 min »).</p>
+          <p><b>Optionnel — récupération :</b> refais les étapes 2 à 4 avec <b>Fréquence cardiaque au repos</b> (clés <code>type</code> = texte « repos », <code>start</code>, <code>value</code> = Valeur), puis combine les deux listes avec <b>Ajouter à la variable</b> avant de copier. L'app compare ta FC de repos sur 7 jours à celle des semaines précédentes.</p>
+          <p>Astuce : ajoute le Raccourci à l'écran d'accueil, à côté de l'app.</p>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary><span>Importer tout l'historique<small>Export Santé ou fichiers GPX</small></span></summary>
+        <div class="guide-body">
+          <p><b>Export Apple Santé</b> : Santé → ta photo → <b>Exporter toutes les données de santé</b> → Enregistrer dans Fichiers. Touche le .zip pour le décompresser, puis ici <b>Importer un fichier</b> → <code>apple_health_export/export.xml</code>. L'app garde les entraînements des 400 derniers jours, ta FC de repos et ta VFC. Le fichier peut peser plusieurs centaines de Mo : compte une minute.</p>
+          <p><b>GPX</b> : exporte une activité en .gpx depuis Garmin Connect ou adidas Running, puis <b>Importer un fichier</b> (plusieurs fichiers d'un coup possible). Distance, durée et FC sont recalculées depuis la trace.</p>
+        </div>
+      </details>
+
+      <button class="sync-clear" id="syncClear" onclick="clearSync()">Effacer les données importées</button>
+      <!-- Données -->
+      <div class="section-head"><span class="section-title caps">Données</span></div>
+      <div class="pref-group">
+        <button class="pref-row pref-btn" onclick="exportBackup()">Sauvegarder mes données<small>Fichier à garder dans Fichiers ou iCloud Drive</small></button>
+        <button class="pref-row pref-btn" onclick="document.getElementById('restoreFile').click()">Restaurer une sauvegarde</button>
+        <button class="pref-row pref-btn" onclick="protectStorage()">Protéger le stockage<small id="storageInfo">Évite qu'iOS efface les données de l'app</small></button>
+      </div>
+      <input type="file" id="restoreFile" hidden onchange="restoreBackup(this.files[0]); this.value = ''">
+
+      <details class="guide" style="margin-top:10px">
+        <summary><span>Historique des séances<small id="historyCount"></small></span></summary>
+        <div class="guide-body" id="historyAdmin"></div>
+      </details>
+
+      <div class="pref-group">
+        <button class="pref-row pref-btn danger" onclick="resetAll()">Tout réinitialiser</button>
+      </div>
+
+      <p class="pref-foot about">PLANCHE OS · toutes tes données restent sur ce téléphone, rien n'est envoyé sur Internet.</p>
+    </div>
+
   </div>
 
   <!-- ═══ TAB BAR ═══ -->
@@ -2092,15 +2403,6 @@
         <path d="M4 10.5L12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z"/>
       </svg>
       <span class="tab-label">Séances</span>
-    </button>
-    <button class="tab-btn" id="tab-sync" onclick="switchTab('sync')">
-      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/>
-        <path d="M4 4v4h4"/>
-        <path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/>
-        <path d="M20 20v-4h-4"/>
-      </svg>
-      <span class="tab-label">Synchro</span>
     </button>
     <button class="tab-btn" id="tab-nutrition" onclick="switchTab('nutrition')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -2115,6 +2417,13 @@
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
       </svg>
       <span class="tab-label">Fuel</span>
+    </button>
+    <button class="tab-btn" id="tab-reglages" onclick="switchTab('reglages')">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>
+      </svg>
+      <span class="tab-label">Réglages</span>
     </button>
   </nav>
 </div>
@@ -2174,6 +2483,154 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
+  /* ══════════════════════════════════════════════════════
+     RÉGLAGES — chargés avant tout le reste : thème, profil et options
+     de séance servent dès le premier rendu.
+     ══════════════════════════════════════════════════════ */
+  const SETTINGS_KEY = 'planche_os_settings_v1';
+  const DEFAULT_SETTINGS = {
+    name: '', age: 23, height: 169, sex: 'h',
+    theme: 'auto', accent: 'bleu',
+    autoRest: true, restAdjust: 0, sound: true, countdown: true, voice: false, haptics: true, keepAwake: true,
+    hrMax: null, hrRest: null, zoneMethod: 'max',
+    deloadUntil: null, lastDeload: null,
+  };
+  let settings = { ...DEFAULT_SETTINGS };
+  try {
+    settings = { ...DEFAULT_SETTINGS, ...JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}') };
+  } catch (e) { /* réglages illisibles : valeurs par défaut */ }
+
+  function saveSettings() {
+    try {
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    } catch (e) {
+      toast('Sauvegarde impossible (stockage plein)');
+    }
+  }
+
+  function applyAppearance() {
+    const root = document.documentElement;
+    if (settings.theme === 'auto') root.removeAttribute('data-theme');
+    else root.dataset.theme = settings.theme;
+    if (settings.accent === 'bleu') root.removeAttribute('data-accent');
+    else root.dataset.accent = settings.accent;
+    const dark = settings.theme === 'dark'
+      || (settings.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+    // Les deux balises (clair/sombre) prennent la couleur du thème choisi.
+    document.querySelectorAll('meta[name="theme-color"]').forEach(m =>
+      m.setAttribute('content', dark ? '#0a0d24' : '#f3f4f9'));
+  }
+  applyAppearance();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyAppearance);
+
+  /* ── Décharge : environ 40 % de séries en moins, jusqu'à la fin de la semaine ── */
+  function deloadActive() {
+    return !!settings.deloadUntil && Date.now() < new Date(settings.deloadUntil).getTime();
+  }
+
+  function deloadCount(count) {
+    return deloadActive() && count > 1 ? Math.max(1, Math.round(count * 0.6)) : count;
+  }
+
+  function setDeload(on) {
+    if (on) {
+      const next = startOfWeek(new Date());
+      next.setDate(next.getDate() + 7);
+      settings.deloadUntil = next.toISOString();
+      settings.lastDeload = new Date().toISOString();
+    } else {
+      settings.deloadUntil = null;
+    }
+    saveSettings();
+    renderSettings();
+    renderDashboard();
+    toast(on ? 'Semaine de décharge activée' : 'Décharge désactivée');
+  }
+
+  /* ── Zones cardio ── */
+  const ZONES = [
+    { name: 'Zone 1', desc: 'Récupération', lo: 50, hi: 60, color: '#9aa1b8' },
+    { name: 'Zone 2', desc: 'Endurance', lo: 60, hi: 70, color: '#3b82f6' },
+    { name: 'Zone 3', desc: 'Tempo', lo: 70, hi: 80, color: '#22c55e' },
+    { name: 'Zone 4', desc: 'Seuil', lo: 80, hi: 90, color: '#f59e0b' },
+    { name: 'Zone 5', desc: 'Maximal', lo: 90, hi: 100, color: '#ef4444' },
+  ];
+
+  // FC max estimée par Tanaka (208 − 0,7 × âge) si non renseignée.
+  function hrMaxAuto() { return Math.round(208 - 0.7 * settings.age); }
+  function hrMax() { return settings.hrMax || hrMaxAuto(); }
+  // FC de repos : saisie, sinon moyenne 30 jours importée d'Apple Santé.
+  function hrRest() { return settings.hrRest || avgMetric(sync.rhr, 30) || null; }
+
+  function zoneBpm(z) {
+    const max = hrMax(), rest = hrRest();
+    // Karvonen : % de la FC de réserve (max − repos), plus individuel.
+    if (settings.zoneMethod === 'hrr' && rest) {
+      return [Math.round(rest + (max - rest) * z.lo / 100), Math.round(rest + (max - rest) * z.hi / 100)];
+    }
+    return [Math.round(max * z.lo / 100), Math.round(max * z.hi / 100)];
+  }
+
+  /* ── Voix ── */
+  let voiceReady = false;
+
+  // iOS n'autorise la synthèse vocale qu'après un premier appel pendant un geste.
+  function unlockVoice() {
+    if (voiceReady || !settings.voice || !('speechSynthesis' in window)) return;
+    try {
+      speechSynthesis.speak(new SpeechSynthesisUtterance(''));
+      voiceReady = true;
+    } catch (e) { /* voix indisponible */ }
+  }
+
+  function speak(text) {
+    if (!settings.voice || !('speechSynthesis' in window)) return;
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'fr-FR';
+      u.rate = 1.05;
+      speechSynthesis.speak(u);
+    } catch (e) { /* voix indisponible */ }
+  }
+
+  // "4 × 3-6 reps" → "4 séries de 3 à 6 répétitions", lisible à voix haute.
+  function spokenSets(sets) {
+    return String(sets)
+      .split(/\s*\/\s*/)[0]
+      .replace(/(\d)\s*[×x]\s*/g, '$1 séries de ')
+      .replace(/(\d)\s*-\s*(\d)/g, '$1 à $2')
+      .replace(/\breps?\b/g, 'répétitions')
+      .replace(/(\d)\s*s\b/g, '$1 secondes')
+      .replace(/(\d)\s*min\b/g, '$1 minutes')
+      .replace(/(\d)\s*km\b/g, '$1 kilomètres')
+      .replace(/(\d)\s*m\b/g, '$1 mètres');
+  }
+
+  function announceExercise() {
+    if (!session) return;
+    const ex = session.exercises[session.idx];
+    speak(`${ex.name}. ${spokenSets(ex.sets)}.`);
+  }
+
+  // Bip court du décompte 3-2-1.
+  function blip() {
+    try {
+      unlockAudio();
+      if (!audioCtx) return;
+      const t = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.frequency.value = 660;
+      gain.gain.setValueAtTime(0.18, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+      osc.start(t);
+      osc.stop(t + 0.1);
+    } catch (e) { /* audio bloqué */ }
+  }
+
   // ── TAB NAVIGATION ──
   function switchTab(name) {
     const page = document.getElementById('page-' + name);
@@ -2185,7 +2642,7 @@
     const tab = document.getElementById('tab-' + name);
     tab.classList.add('active');
     tab.setAttribute('aria-current', 'page');
-    if (name === 'sync') renderSync();
+    if (name === 'reglages') { renderSettings(); renderSync(); }
     if (name === 'seances') renderDashboard();
   }
 
@@ -2311,7 +2768,7 @@
       const bh = Math.max(6, (h - 8) * (v / max));
       const x = pad + i * bw;
       back  += `<rect x="${x + bw * 0.28}" y="${h - bh - 7}" width="${bw}" height="${bh + 7}" fill="rgba(255,255,255,0.10)"/>`;
-      front += `<rect x="${x}" y="${h - bh}" width="${bw + 0.5}" height="${bh}" fill="${opts.hi === i ? '#fff' : (i % 2 ? '#5566f2' : '#4a5cf0')}"/>`;
+      front += `<rect x="${x}" y="${h - bh}" width="${bw + 0.5}" height="${bh}" style="fill:${opts.hi === i ? '#fff' : 'var(--accent)'}" ${i % 2 && opts.hi !== i ? 'fill-opacity="0.88"' : ''}/>`;
     });
     return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">${grid}${back}${front}</svg>`;
   }
@@ -2434,7 +2891,7 @@
   }
 
   function setCounts(key) {
-    return sessions[key].exercises.map(ex => parseSets(ex.sets, ex.note).count);
+    return sessions[key].exercises.map(ex => deloadCount(parseSets(ex.sets, ex.note).count));
   }
 
   function countLabel(key) {
@@ -2471,6 +2928,18 @@
         <div class="about">${ICONS.layers}<div><b class="num">${totalSets}</b><span>séries</span></div></div>
         <div class="about">${ICONS.timer}<div><b class="num">${meta.duration.replace(/[^\d]/g, '')}</b><span>min environ</span></div></div>
       </div>`;
+
+    if (RUN_KEYS.includes(id)) {
+      const [z2lo, z2hi] = zoneBpm(ZONES[1]);
+      const [z4lo] = zoneBpm(ZONES[3]);
+      html += `<div class="modal-tip">
+        <div class="modal-tip-label caps">Tes zones cardio</div>
+        <p>${id === 'cardio2'
+          ? `Zone 2 : <b>${z2lo}–${z2hi} bpm</b>. Si ta montre affiche plus, ralentis.`
+          : `Fractions en zone 4-5 : au-dessus de <b>${z4lo} bpm</b>. Pendant la récup en trottinant, laisse redescendre vers ${z2hi} bpm.`}
+          Réglables dans Réglages → Zones cardio.</p>
+      </div>`;
+    }
 
     html += '<div class="modal-section-title caps">Exercices</div>';
     html += '<div class="exercise-list">';
@@ -2639,7 +3108,8 @@
 
   function calcMacros() {
     const weight = readWeight();
-    const mb = (10 * weight) + (6.25 * 169) - (5 * 23) + 5;
+    // Mifflin-St Jeor, avec la taille, l'âge et le sexe des Réglages.
+    const mb = (10 * weight) + (6.25 * settings.height) - (5 * settings.age) + (settings.sex === 'f' ? -161 : 5);
     const tdee = mb * 1.55;
 
     let kcal;
@@ -2698,6 +3168,7 @@
     const today = now.getDay();
     const weekStart = startOfWeek(now);
 
+    document.getElementById('dashEyebrow').textContent = settings.name.trim() ? `Salut ${settings.name.trim()}` : 'Programme';
     document.getElementById('todayBadge').innerHTML =
       `<b>${now.getDate()}</b><span>${MONTH_SHORT[now.getMonth()]}</span>`;
 
@@ -2773,7 +3244,7 @@
       const doneToday = !!imported || store.history.some(h => h.key === todayKey && new Date(h.date).toDateString() === now.toDateString());
       hero.innerHTML = `
         <div class="hero">
-          <div class="hero-eyebrow caps">${doneToday ? 'Terminée aujourd\'hui' : (s.day.split(' · ')[1] || '')}</div>
+          <div class="hero-eyebrow caps">${doneToday ? 'Terminée aujourd\'hui' : (s.day.split(' · ')[1] || '')}${deloadActive() ? ' · Décharge' : ''}</div>
           <div class="hero-title">${s.title}</div>
           <div class="hero-sub">${DAY_NAMES[today]} ${now.getDate()} ${MONTH_SHORT[now.getMonth()].toLowerCase()} · ${countLabel(todayKey)}</div>
           ${imported ? `<div class="hero-sub">${imported.source} : ${workoutLine(imported)}</div>` : ''}
@@ -3011,12 +3482,14 @@
           rest: meta.rest,
           dist: isDistance(ex.sets),
           prev: previousValues(key, ex.name),
-          entries: Array.from({ length: meta.count }, () => ({ done: false, value: '' })),
+          entries: Array.from({ length: deloadCount(meta.count) }, () => ({ done: false, value: '' })),
         };
       }),
     };
     saveActive();
     openPlayer();
+    unlockVoice();
+    announceExercise();
   }
 
   function resumeWorkout() {
@@ -3146,7 +3619,7 @@
       vibrate(30);
       // Repos automatique, sauf sur la dernière série de l'exercice.
       const isLast = i === ex.entries.length - 1;
-      if (ex.rest > 0 && !isLast) startRestTimer(ex.rest);
+      if (settings.autoRest && ex.rest > 0 && !isLast) startRestTimer(Math.max(15, ex.rest + settings.restAdjust));
     }
   }
 
@@ -3159,6 +3632,7 @@
     session.idx++;
     saveActive();
     renderExercise();
+    announceExercise();
   }
 
   function prevExercise() {
@@ -3268,6 +3742,7 @@
     timerMode = 'rest';
     timerTotal = seconds;
     timerEnd = Date.now() + seconds * 1000;
+    unlockVoice();
     openTimerPanel('Repos', 'Le chrono démarre tout seul après chaque série', true);
   }
 
@@ -3295,15 +3770,19 @@
       if (r !== lastShown) {
         lastShown = r;
         valueEl.textContent = fmtTime(r);
+        if (settings.countdown && r > 0 && r <= 3 && timerTotal > 5) blip();
         const warn = r <= 10;
         valueEl.classList.toggle('warn', warn);
         document.getElementById('timerRing').classList.toggle('warn', warn);
         setRing(timerTotal ? r / timerTotal : 0);
       }
       if (r <= 0) {
-        beep();
+        if (settings.sound) beep();
         vibrate([120, 80, 120]);
         stopTimer();
+        const cur = session && session.exercises[session.idx];
+        const n = cur ? cur.entries.findIndex(e => !e.done) + 1 : 0;
+        speak(n > 0 ? `Repos terminé. Série ${n}.` : 'Repos terminé.');
         toast('Repos terminé — série suivante');
       }
     } else {
@@ -3357,7 +3836,7 @@
   }
 
   function vibrate(pattern) {
-    if (navigator.vibrate) navigator.vibrate(pattern);
+    if (settings.haptics && navigator.vibrate) navigator.vibrate(pattern);
   }
 
   /* Bip synthétisé — évite d'embarquer un fichier son dans le cache offline.
@@ -3395,6 +3874,7 @@
   }
 
   async function requestWakeLock() {
+    if (!settings.keepAwake) return;
     try {
       if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
     } catch (e) { /* non critique */ }
@@ -3439,7 +3919,7 @@
   const SYNC_KEY = 'planche_os_sync_v1';
   const DAY_MS = 86400000;
   let sync = { workouts: [], rhr: {}, hrv: {}, lastSync: null };
-  let syncShown = 15;
+  let syncShown = 5;
 
   function loadSync() {
     try {
@@ -4002,6 +4482,215 @@
   }
 
   /* ══════════════════════════════════════════════════════
+     PAGE RÉGLAGES
+     ══════════════════════════════════════════════════════ */
+  const PERSON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.3-3.7 4.1-5.5 7.5-5.5s6.2 1.8 7.5 5.5"/></svg>';
+
+  function renderSettings() {
+    const page = document.getElementById('page-reglages');
+
+    // Profil
+    const name = settings.name.trim();
+    document.getElementById('profileAvatar').innerHTML = name ? '' : PERSON_ICON;
+    if (name) document.getElementById('profileAvatar').textContent = name.charAt(0).toUpperCase();
+    document.getElementById('profileName').textContent = name || 'Ton profil';
+    document.getElementById('profileSub').textContent =
+      `${settings.age} ans · ${settings.height} cm · ${String(readWeight()).replace('.', ',')} kg`;
+
+    // Champs liés à un réglage (on ne réécrit pas celui qu'on est en train de taper).
+    page.querySelectorAll('[data-set]').forEach(el => {
+      const v = settings[el.dataset.set];
+      if (el.type === 'checkbox') el.checked = !!v;
+      else if (el !== document.activeElement) el.value = v == null ? '' : v;
+    });
+    const w = document.getElementById('prefWeight');
+    if (w !== document.activeElement) w.value = String(readWeight()).replace('.', ',');
+    page.querySelectorAll('[data-seg]').forEach(seg => {
+      seg.querySelectorAll('button').forEach(b => {
+        const on = b.dataset.v === String(settings[seg.dataset.seg]);
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', on);
+      });
+    });
+
+    // Vibrations : l'API n'existe pas sur iPhone, inutile d'afficher un réglage sans effet.
+    document.getElementById('hapticsRow').hidden = !('vibrate' in navigator);
+
+    // Zones cardio
+    const rest = hrRest();
+    document.querySelector('[data-set="hrMax"]').placeholder = hrMaxAuto();
+    document.getElementById('hrMaxHint').textContent = settings.hrMax ? 'Saisie manuelle' : 'Estimée : 208 − 0,7 × âge';
+    const autoRest = avgMetric(sync.rhr, 30);
+    document.querySelector('[data-set="hrRest"]').placeholder = autoRest || '—';
+    document.getElementById('hrRestHint').textContent = settings.hrRest ? 'Saisie manuelle'
+      : autoRest ? 'Moyenne 30 j importée de Santé' : 'À saisir, ou importée de Santé';
+    document.getElementById('zonesList').innerHTML = ZONES.map((z, i) => {
+      const [lo, hi] = zoneBpm(z);
+      return `<div class="zone ${i === 1 ? 'hot' : ''}"><i style="background:${z.color}"></i>${z.name}<span>${z.desc}</span><b>${lo}–${hi}</b></div>`;
+    }).join('');
+    document.getElementById('zonesFoot').textContent = settings.zoneMethod === 'hrr' && !rest
+      ? 'La méthode FC de réserve (Karvonen) a besoin de ta FC de repos : zones calculées en % de FC max en attendant.'
+      : 'Ta course du jeudi se court en zone 2, les fractions du lundi en zone 4-5. Une FC max mesurée (test ou course à fond) est plus juste que l\'estimation.';
+
+    // Décharge
+    document.getElementById('deloadSwitch').checked = deloadActive();
+    let foot = '';
+    if (deloadActive()) {
+      foot = 'Active cette semaine : chaque exercice a moins de séries dans le player. Garde les mêmes mouvements et la même qualité, juste moins de volume.';
+    } else if (settings.lastDeload) {
+      const last = new Date(settings.lastDeload);
+      const weeks = Math.floor((Date.now() - last) / (7 * DAY_MS));
+      foot = `Dernière décharge il y a ${weeks} semaine${weeks > 1 ? 's' : ''}. `
+        + (weeks >= 5 ? 'Le programme en prévoit une toutes les 5-6 semaines : c\'est le moment.' : `Prochaine conseillée dans ${5 - weeks} à ${6 - weeks} semaines.`);
+    } else {
+      foot = 'Le programme prévoit une semaine allégée toutes les 5-6 semaines pour protéger poignets et tendons.';
+    }
+    document.getElementById('deloadFoot').textContent = foot;
+
+    renderStorage();
+    renderHistoryAdmin();
+  }
+
+  // Un réglage a changé : on répercute là où il sert.
+  function settingChanged(key) {
+    saveSettings();
+    if (key === 'theme' || key === 'accent') applyAppearance();
+    if (['age', 'height', 'sex'].includes(key)) calcMacros();
+    if (key === 'voice' && settings.voice) { unlockVoice(); speak('Annonces vocales activées'); }
+    if (key === 'keepAwake' && !settings.keepAwake) releaseWakeLock();
+    if (key === 'name') renderDashboard();
+    renderSettings();
+  }
+
+  (function bindSettings() {
+    const page = document.getElementById('page-reglages');
+    page.addEventListener('change', e => {
+      const el = e.target;
+      if (el.id === 'deloadSwitch') { setDeload(el.checked); return; }
+      if (el.id === 'prefWeight') {
+        const v = parseFloat(el.value.replace(',', '.'));
+        if (v >= 30 && v <= 250) {
+          document.getElementById('weightInput').value = String(v).replace('.', ',');
+          calcMacros();
+          saveNutri();
+        }
+        renderSettings();
+        return;
+      }
+      const key = el.dataset.set;
+      if (!key) return;
+      if (el.type === 'checkbox') {
+        settings[key] = el.checked;
+      } else if (el.dataset.num) {
+        const [lo, hi] = el.dataset.num.split(',').map(Number);
+        const v = parseInt(el.value, 10);
+        if (v >= lo && v <= hi) settings[key] = v;
+        else if (el.dataset.empty && el.value.trim() === '') settings[key] = null;
+        else toast(`Valeur attendue entre ${lo} et ${hi}`);
+      } else {
+        settings[key] = el.value.trim().slice(0, 30);
+      }
+      settingChanged(key);
+    });
+    // Entrée ferme le clavier et valide le champ.
+    page.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && e.target.classList.contains('pref-input')) { e.preventDefault(); e.target.blur(); }
+    });
+    page.addEventListener('click', e => {
+      const b = e.target.closest('[data-seg] button');
+      if (!b) return;
+      const key = b.closest('[data-seg]').dataset.seg;
+      settings[key] = key === 'restAdjust' ? Number(b.dataset.v) : b.dataset.v;
+      settingChanged(key);
+    });
+  })();
+
+  /* ── Données ── */
+  async function renderStorage() {
+    const el = document.getElementById('storageInfo');
+    if (!navigator.storage || !navigator.storage.estimate) return;
+    try {
+      const [est, persisted] = await Promise.all([
+        navigator.storage.estimate(),
+        navigator.storage.persisted ? navigator.storage.persisted() : false,
+      ]);
+      const kb = Math.max(1, Math.round((est.usage || 0) / 1024));
+      el.textContent = `${kb >= 1024 ? (kb / 1024).toFixed(1).replace('.', ',') + ' Mo' : kb + ' Ko'} utilisés · `
+        + (persisted ? 'protégé contre l\'effacement automatique' : 'non protégé — touche pour protéger');
+    } catch (e) { /* estimation indisponible */ }
+  }
+
+  async function protectStorage() {
+    if (!navigator.storage || !navigator.storage.persist) { toast('Non disponible sur ce navigateur'); return; }
+    const ok = await navigator.storage.persist();
+    toast(ok ? 'Stockage protégé' : 'Refusé : installe l\'app sur l\'écran d\'accueil');
+    renderStorage();
+  }
+
+  const BACKUP_KEYS = { store: STORE_KEY, sync: SYNC_KEY, settings: SETTINGS_KEY, nutri: NUTRI_KEY };
+
+  async function exportBackup() {
+    const data = { app: 'PLANCHE OS', version: 1, date: new Date().toISOString() };
+    Object.entries(BACKUP_KEYS).forEach(([k, key]) => {
+      try { data[k] = JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { data[k] = null; }
+    });
+    const name = `planche-os-${dayKey(new Date())}.json`;
+    const file = new File([JSON.stringify(data)], name, { type: 'application/json' });
+    // iPhone : feuille de partage → « Enregistrer dans Fichiers ». Ailleurs : téléchargement.
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: 'Sauvegarde PLANCHE OS' }); } catch (e) { /* partage annulé */ }
+      return;
+    }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(file);
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+
+  async function restoreBackup(file) {
+    if (!file) return;
+    let data;
+    try { data = JSON.parse(await file.text()); } catch (e) { data = null; }
+    if (!data || data.app !== 'PLANCHE OS') { toast('Ce fichier n\'est pas une sauvegarde PLANCHE OS'); return; }
+    const d = new Date(data.date);
+    if (!confirm(`Restaurer la sauvegarde du ${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()} ? Les données actuelles seront remplacées.`)) return;
+    Object.entries(BACKUP_KEYS).forEach(([k, key]) => {
+      if (data[k] == null) localStorage.removeItem(key);
+      else localStorage.setItem(key, JSON.stringify(data[k]));
+    });
+    location.reload();
+  }
+
+  function renderHistoryAdmin() {
+    const H = store.history;
+    document.getElementById('historyCount').textContent =
+      H.length ? `${H.length} séance${H.length > 1 ? 's' : ''} enregistrée${H.length > 1 ? 's' : ''} · supprimer une erreur` : 'Aucune séance enregistrée';
+    document.getElementById('historyAdmin').innerHTML = H.length ? H.slice(0, 40).map(h => {
+      const d = new Date(h.date);
+      return `<div class="hist-row">
+          <div><b>${h.title}</b>${d.getDate()} ${MONTH_SHORT[d.getMonth()].toLowerCase()} · ${h.setsDone}/${h.totalSets} séries · ${h.durationMin} min</div>
+          <button class="hist-del" onclick="deleteEntry(${h.id})" aria-label="Supprimer cette séance">${ICONS.trash}</button>
+        </div>`;
+    }).join('') : '<p>Lance une séance depuis l\'onglet Séances, elle apparaîtra ici.</p>';
+  }
+
+  function deleteEntry(id) {
+    if (!confirm('Supprimer cette séance de l\'historique ?')) return;
+    store.history = store.history.filter(h => h.id !== id);
+    saveStore();
+    renderHistoryAdmin();
+    renderDashboard();
+  }
+
+  function resetAll() {
+    if (!confirm('Tout effacer : séances, données importées, réglages et nutrition ?')) return;
+    if (!confirm('Dernière confirmation : cette action est définitive. Pense à sauvegarder avant.')) return;
+    Object.keys(localStorage).filter(k => k.startsWith('planche_os')).forEach(k => localStorage.removeItem(k));
+    location.reload();
+  }
+
+  /* ══════════════════════════════════════════════════════
      PWA — service worker + installation
      ══════════════════════════════════════════════════════ */
   let deferredPrompt = null;
@@ -4037,10 +4726,13 @@
   loadStore();
   loadSync();
   renderSync();
+  renderSettings();
   renderDashboard();
 
   const tabParam = new URLSearchParams(location.search).get('tab');
-  if (tabParam && document.getElementById('page-' + tabParam)) switchTab(tabParam);
+  // Ancien raccourci d'app « Synchro » : la synchro vit maintenant dans les Réglages.
+  const tabName = tabParam === 'sync' ? 'reglages' : tabParam;
+  if (tabName && document.getElementById('page-' + tabName)) switchTab(tabName);
 </script>
 </body>
 </html>

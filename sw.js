@@ -3,7 +3,7 @@
    sous-sol, mode avion). Les données d'entraînement vivent dans localStorage,
    donc une fois le shell en cache l'app est pleinement utilisable hors ligne. */
 
-const VERSION = 'planche-os-v2';
+const VERSION = 'planche-os-v3';
 const SHELL = [
   './',
   './index.html',

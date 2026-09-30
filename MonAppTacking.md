@@ -8,13 +8,58 @@
 - Full Planche + Handstand Push-Up
 
 ## Structure hebdomadaire
-- Dimanche : Séance A — Planche Force Max (+ HSPU)
-- Lundi : Cardio (Course / Corde)
-- Mardi : Séance B — Planche Volume
-- Mercredi : Repos
-- Jeudi : Séance C — Jambes + Muscle-up (+ finisher bras/épaules)
-- Vendredi : Séance D — Handstand Long (+ HSPU)
-- Samedi : Repos
+
+6 jours d'entraînement, Shabbat en repos complet. Lundi et jeudi sont des
+jours de bureau : pas de calisthénie, une course de 5 km.
+
+| Jour | Séance | Contenu |
+|---|---|---|
+| Dimanche | **A — Push Force** | Planche + HSPU lourds, dips lestés |
+| Lundi | **Course qualité** | 5 km fractionné (bureau) |
+| Mardi | **B — Pull + Muscle-up** | Muscle-up, tractions, front lever, rowing |
+| Mercredi | **C — Planche Volume** | Planche + HSPU en volume, deltoïdes, core |
+| Jeudi | **Course facile** | 5 km en zone 2 (bureau) |
+| Vendredi | **D — Jambes + Handstand** | Handstand long, jambes, prévention (séance courte avant Shabbat) |
+| Samedi | Repos — Shabbat | |
+
+### Pourquoi cette organisation
+
+- **Séance la plus lourde le dimanche.** Tu sors de ~36 h de repos complet :
+  c'est le jour où le système nerveux et les tendons sont les plus frais.
+- **72 h entre les deux séances de poussée lourde** (dimanche → mercredi). La
+  synthèse de collagène des tendons culmine vers 24 h après l'effort et revient
+  à la normale vers 72 h ([Miller et al. 2005](https://pubmed.ncbi.nlm.nih.gov/16002437/)).
+  Poignets et coudes sont ce qui limite la planche et le HSPU, pas les muscles.
+- **Chaque groupe musculaire 2×/semaine.** C'est la fréquence minimale
+  recommandée pour la force et l'hypertrophie ([Schoenfeld et al. 2016](https://pubmed.ncbi.nlm.nih.gov/27102172/),
+  [ACSM](https://acsm.org/resistance-training-guidelines-update-2026/)) :
+  poussée dimanche + mercredi, tirage mardi + (face pulls) mercredi + (Y-T-W) vendredi,
+  jambes vendredi + 2 courses.
+- **Course intense le lundi, facile le jeudi.** Lundi les jambes sont
+  fraîches (Shabbat + dimanche 100 % haut du corps). Jeudi la sortie est
+  facile parce que vendredi c'est jambes. Avec 2 sorties, le modèle polarisé
+  — une dure, une facile, presque rien d'intermédiaire — est celui qui
+  marche le mieux, y compris chez des coureurs amateurs
+  ([Muñoz et al. 2014](https://pubmed.ncbi.nlm.nih.gov/23752040/),
+  [revue 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11679080/)).
+- **Jambes le vendredi, 72 h avant la course intense.** Derrière :
+  Shabbat, puis dimanche haut du corps. Split squats et nordics ne mordent
+  donc jamais sur une course, et la course facile de jeudi ne gêne pas la
+  séance jambes.
+- **Course et calisthénie ne se touchent pas.** L'interférence
+  course/muscu est surtout un problème quand les deux sont dans la même
+  séance ; ≥ 6 h d'écart suffit pour la force
+  ([Sports Medicine 2023](https://link.springer.com/article/10.1007/s40279-023-01943-9)).
+  Au global, l'entraînement concurrent ne freine ni la force ni
+  l'hypertrophie ([Schumann et al. 2022](https://link.springer.com/article/10.1007/s40279-021-01587-7)),
+  mais la course (contrairement au vélo) peut freiner un peu l'hypertrophie
+  des fibres des jambes ([Lundberg et al. 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9474354/)) —
+  sans conséquence pour le haut du corps, et limité à 10 km/semaine.
+- **Handstand 6×/semaine** : 4 blocs en séance + 2 micro-doses optionnelles
+  de 5 min le soir des jours de course. La pratique distribuée bat une
+  longue session (Schmidt & Lee 2019).
+- **Vendredi court (~60 min)** pour finir largement avant l'entrée de
+  Shabbat — en hiver, le matin.
 
 ## Phases de progression
 
@@ -36,104 +81,133 @@
 
 ## Séances détaillées
 
-## Séance A — Planche Force Max (Dimanche)
+## Séance A — Push Force (Dimanche)
 
-- Warm-up poignets & scapula — 5-7 min : rotations, compressions, protraction + rotation externe bande 2×12 (coiffe des rotateurs)
-- Handstand skill — 8-10 min : drills mur ou freestanding
-- **HSPU Force — négatif contrôlé — 4 × 3-6 reps** : Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip.
+- Warm-up poignets & scapula — 5-7 min : rotations, compressions, protraction + rotation externe bande 2×12 et band pull-aparts 2×15
+- Handstand skill — 8-10 min : drills mur ou freestanding, esprit frais
+- **HSPU Force — négatif contrôlé — 4 × 3-6 reps** : Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip. Repos 2-3 min
 - Tuck Planche isométrique — 5 × 8-10 s : intent "pousser le sol", repos 2-3 min
-- Pseudo Planche PU sur parallettes — 4 × 5-8 reps : tempo 3-1-1, lean maximal
-- Planche lean → tuck dynamique / négative — 3 × 3-5 : transition contrôlée
-- Ring Dips lestés — 3 × 6-8 reps : amplitude complète, anneau stable
+- Pseudo Planche PU sur parallettes — 4 × 5-8 reps : tempo 3-1-1, lean maximal, repos 2 min
+- Planche lean → tuck dynamique / négative — 3 × 3-5 : transition contrôlée, repos 90 s
+- Ring Dips lestés — 3 × 6-8 reps : amplitude complète, anneau stable, repos 2 min
 - Scapular PU + Élévation 45° haltère — 3 × 10 + 3 × 12 : superset serratus & deltoïde antérieur
 - Cool-down poignets — 3 min : extensions, flexions passives
 
 Muscles ciblés : Épaules, Triceps, Pectoraux, Serratus, Core
 
-Tip : Intent ballistique sur l'isométrie — imaginer pousser le sol vers les pieds. 4×6 Pseudo Planche PU lean maximum, chaque rep doit simuler la position finale de planche. Pour le HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentric — ça protège la nuque et les épaules pendant que la force se construit.
+Tip : la séance la plus lourde de la semaine, juste après Shabbat. Intent
+ballistique sur l'isométrie — imaginer pousser le sol vers les pieds. Pour le
+HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique. Séance
+100 % haut du corps : les jambes restent fraîches pour la course de lundi.
 
-## Séance B — Planche Volume (Mardi)
+## Course qualité — 5 km fractionné (Lundi, bureau)
 
-- Warm-up — 5 min : poignets + mobilisation épaules
-- Handstand skill — 8-10 min : expositions freestanding
+- Échauffement trot — 1 km : très facile (RPE 3/10), puis gammes (montées de genoux, talons-fesses, pas chassés)
+- Accélérations progressives — 3 × 80 m : jusqu'à ~85 %, retour en marchant, repos 45 s
+- **Fractionné — 6 × 400 m** : RPE 8/10, un peu plus vite que l'allure 5 km, récup 200 m en trottinant (~75 s). Note le temps de chaque 400 m
+- Retour au calme — 0,5 km : trot très lent puis marche, étirements doux
+- Handstand micro-dose — 5 min (optionnel, le soir)
+
+Muscles ciblés : Cardiovasculaire, Mollets, Ischio-jambiers, Économie de course
+
+Tip : total ≈ 5 km. Progresse par l'allure, pas par la distance : 4 semaines
+de 6 × 400 m en cherchant à baisser les temps, puis 4 semaines de 3 × 1 km
+(récup 400 m trot), et on alterne.
+
+## Séance B — Pull + Muscle-up (Mardi)
+
+- Warm-up — 5-7 min : poignets, épaules, scap pulls 2 × 8, skin the cat lent 2 × 3
+- Handstand skill — 8-10 min : expositions freestanding courtes
+- False grip ring holds — 4 × 10-15 s : poignet fléchi par-dessus l'anneau, repos 60 s
+- Chest-to-bar explosif — 4 × 3-5 reps : pull ultra-haut, coudes vers hanches, repos 2 min
+- Slow MU négatif / Ring MU strict — 3 × 3-4 : négatif 5-7 s, puis reps qualité, repos 2-3 min
+- **Tractions tempo / Archer — 3 × 5-6 reps** : sans lest, 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; Archer (3-5/côté) une fois 10 tractions strictes acquises
+- Tuck Front Lever — 4 × 6-10 s : dépression scapulaire, palier suivant à 4 × 10 s propres
+- **Rowing anneaux / Australian pull-ups — 4 × 8-12 reps** : pause 1 s poitrine aux anneaux, omoplates serrées
+- Curl biceps haltères — 3 × 10-12 reps : tempo 2-0-2, repos 60 s
+
+Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Avant-bras, Core
+
+Tip : le muscle-up ouvre la séance parce que c'est un skill explosif, il se
+travaille frais. Ordre : explosif → force → bras tendus → volume. Les
+tractions passent à 3 séries car C2B et muscle-up sont déjà du tirage
+vertical (~10 séries au total). Le rowing ne se saute jamais.
+
+## Séance C — Planche Volume (Mercredi)
+
+- Warm-up — 5 min : poignets, épaules, rotation externe bande 2 × 12
+- Handstand skill — 8-10 min : freestanding ; au mur si poignets sensibles après mardi
 - Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine
-- Tuck Front Lever — 4 × 6-10 s : en assistance uniquement, dépression scapulaire
-- **Tractions tempo / Archer — 4 × 5-6 reps** : sans lest, 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; passer aux Archer (3-5/côté) une fois 10 tractions strictes acquises
-- **Rowing anneaux / Australian pull-ups — 4 × 8-12 reps** : pause 1 s poitrine aux anneaux, omoplates serrées, pieds surélevés pour durcir
-- Front Lever Raises — 3 × 6 reps : contrôle excentrique 3 s
-- Dragon Flag / L-sit — 3×6 / 4×20-30s : choisir selon fatigue core
+- **Pike HSPU pieds surélevés / Wall HSPU — 3 × 6-10 reps** : 2 reps en réserve, tempo 3-0-1, repos 2 min
+- Pompes anneaux + Face pulls — 3 × 8-12 + 3 × 15 : superset, repos 90 s
+- Élévations latérales — 3 × 12-15 reps : tempo 2-0-2, léger
+- Dragon Flag / L-sit — 3×6 / 4×20-30s : selon fatigue core
+- Cool-down poignets — 3 min
 
-Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Core, Avant-bras
+Muscles ciblés : Épaules, Pectoraux, Triceps, Deltoïdes, Deltoïde postérieur, Core
 
-Tip : accumuler 60 s total de tuck planche en volume, progresser de 6×10s vers 4×15s sur 4-6 semaines. Le Front Lever reste en assistance — priorité au dos, le FL vient après les tractions. Sans lest, la surcharge passe par le tempo puis par le levier : 3 s d'excentrique et une pause en haut rendent 5 reps bien plus dures que 5 reps rapides lestées, et l'Archer déplace la charge sur un bras — c'est la vraie route vers la traction à un bras. Le rowing est le contrepoids indispensable : planche et HSPU travaillent tous les deux en protraction, sans tirage horizontal les rhomboïdes et le trapèze moyen/inférieur décrochent.
+Tip : 72 h après dimanche, 2ᵉ exposition planche/HSPU de la semaine, en
+volume sous-maximal — la force se construit dimanche, mercredi ajoute du
+volume de qualité. Jamais d'échec sur le HSPU ici.
 
-## Cardio — Course / Corde (Lundi)
+## Course facile — 5 km zone 2 (Jeudi, bureau)
 
-- Échauffement marche — 5 min : cadence progressive
-- HIIT corde à sauter — 10 rounds : 30 s on / 30 s off
-- Course Zone 2 — 20 min : 60-70 % FC max
-- Cool-down marche — 5 min : stretch mollets
+- Course Zone 2 — 5 km : allure conversation, RPE 4-5/10, 60-70 % FC max
+- Lignes droites — 4 × 20 s : accélérations progressives jusqu'à ~90 %, sans sprint, repos 60 s en marchant
+- Mobilité mollets & hanches — 5 min
+- Handstand micro-dose — 5 min (optionnel, le soir)
 
-Muscles ciblés : Cardiovasculaire, Mollets, Coordination
+Muscles ciblés : Cardiovasculaire, Mollets, Récupération active
 
-Tip : Zone 2 = pouvoir tenir une conversation sans s'essouffler. Le HIIT booste l'adaptation aérobie plus vite que le cardio seul.
+Tip : facile doit vraiment vouloir dire facile — demain c'est jambes. Le
+piège avec deux sorties par semaine est de courir les deux "moyennement
+vite" : trop dur pour récupérer, pas assez pour progresser.
 
-## Séance C — Jambes + Muscle-up (Jeudi)
-
-- Handstand skill — 10 min : début de séance, esprit frais
-- Bulgarian Split Squats — 4 × 10 / jambe : descente 3 s, genou dans l'axe
-- Nordic Curls — 3 × 5 reps : excentrique uniquement, 3-4 s
-- Box Jumps — 4 × 8 reps : atterrissage souple, reset complet
-- Calf Raises lestées — 4 × 20 reps : amplitude totale, pause basse
-- False grip ring holds — 5 × 10-15 s : poignet fléchi par-dessus l'anneau
-- Chest-to-bar explosif — 4 × 3-5 reps : pull ultra-haut, coudes vers hanches
-- Slow MU négatif / Ring MU strict — 3 × 3-4 / 3-4 séries : négatif 5-7 s, puis reps qualité
-- **Curl biceps haltères + Élévations latérales — 3 × 12-15 + 3 × 15** : superset esthétique, tempo 2-0-2
-
-Muscles ciblés : Quadriceps, Ischio-jambiers, Fessiers, Mollets, Grand dorsal, Avant-bras, Deltoïdes
-
-Tip : le muscle-up se construit en 3 briques — false grip, pull chest-to-bar ultra-haut, transition coudes vers hanches. Le superset bras/épaules en fin de séance ajoute du volume direct pour l'hypertrophie, utile pour le physique sans nuire aux skills.
-
-## Séance D — Handstand Long (Vendredi)
+## Séance D — Jambes + Handstand (Vendredi)
 
 - Wrist mobility — 5 min : circles, compressions, extensions passives + rotation externe bande 2×15
-- **HSPU Force — Deficit / Wall — 4 × 3-6 reps** : priorité amplitude complète, contrôle 3-5 s en excentrique avant de forcer le concentric
-- Handstand long — 15-20 min : chest-to-wall, freestanding, shapes
-- Shoulder dislocations — 3 × 10 reps : bande élastique, progression ampleur
-- **Face pulls + Y-T-W au sol — 3 × 15 + 3 × 8/lettre** : deltoïde postérieur et trapèze inférieur, léger, coudes hauts, sans à-coups
-- Skin the cat — 3 × 5 reps : contrôle total, pause basse 2 s
-- Planche lean léger — 3-4 séries : sans charge, protraction serratus
-- Jefferson Curls — 3 × 8 reps : lentement, léger, vertèbre par vertèbre
+- Handstand long — 12-15 min : chest-to-wall, freestanding, shapes
+- Bulgarian Split Squats — 3 × 8-10 / jambe : descente 3 s, repos 90 s
+- **Nordic Curls — 3 × 4-6 reps** : excentrique 3-4 s, repos 2 min
+- Box Jumps — 3 × 5 reps : atterrissage souple, reset complet
+- Mollets unilatéraux lestés — 3 × 12-15 / jambe : sur une marche, pause 1 s en bas
+- Y-T-W au sol + Shoulder dislocations — 2 × 8/lettre + 2 × 10
+- Jefferson Curls — 2 × 8 reps : très léger, vertèbre par vertèbre
 
-Muscles ciblés : Poignets, Épaules, Coiffe des rotateurs, Deltoïde postérieur, Trapèze inférieur, Mobilité spinale
+Muscles ciblés : Quadriceps, Ischio-jambiers, Fessiers, Mollets, Poignets, Trapèze inférieur
 
-Tip : 4-5 expositions courtes/semaine battent 1 longue session (pratique distribuée, Schmidt & Lee 2019). Pour le HSPU, progresse par phases concentrique → excentrique → isométrique ; le Deficit HSPU (mains surélevées) est le pont direct vers la version freestanding.
+Tip : les programmes incluant les Nordic curls divisent environ par deux les
+blessures aux ischios ([van Dyk et al. 2019](https://bjsm.bmj.com/content/53/21/1362)) —
+précieux quand tu cours 2×/semaine. Box jumps et mollets unilatéraux
+travaillent la raideur tendineuse, utile pour l'économie de course
+([méta-analyse 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9653533/)).
+Séance ~60 min pour finir bien avant Shabbat.
 
 ## Équilibre push / pull
 
-Le programme est naturellement dominé par la poussée : planche, HSPU, dips et
-pseudo planche push-ups représentent à eux seuls ~35 séries par semaine, et
-**tout ce volume travaille en protraction scapulaire**.
+Le programme reste dominé par la poussée (planche, HSPU), et **tout ce volume
+travaille en protraction scapulaire**. La nouvelle répartition resserre
+l'écart.
 
 Volume hebdomadaire par catégorie :
 
-| Catégorie | Séries / semaine |
-|---|---|
-| Poussée (planche, HSPU, dips, PPPU) | ~35 |
-| Tirage vertical (tractions, C2B, muscle-up) | 11 |
-| Bras tendus (front lever) | 7 |
-| Tirage horizontal + rétraction (rowing, face pulls) | 7 |
+| Catégorie | Avant | Maintenant |
+|---|---|---|
+| Poussée (planche, HSPU, dips, PPPU, pompes anneaux) | ~35 | ~30 |
+| Tirage vertical (tractions, C2B, muscle-up) | 11 | 10 |
+| Bras tendus (front lever) | 7 | 4 |
+| Tirage horizontal + rétraction (rowing, face pulls, Y-T-W) | 7 | 9 |
+| Jambes | 15 | 12 + 2 courses |
 
-Le tirage horizontal n'est pas là pour "faire du dos" — c'est le contrepoids
-mécanique de la protraction. Sans lui, le trapèze supérieur compense pendant que
-le trapèze inférieur et les rhomboïdes décrochent, ce qui est le mécanisme
-classique de l'impingement d'épaule — le risque n°1 en handstand. Ne saute pas
-le rowing en séance B ni les face pulls en séance D, même un jour de fatigue :
-ce sont eux qui te gardent en état de continuer à pousser.
+Le tirage horizontal est le contrepoids mécanique de la protraction. Sans lui,
+le trapèze supérieur compense pendant que le trapèze inférieur et les
+rhomboïdes décrochent — le mécanisme classique de l'impingement d'épaule, le
+risque n°1 en handstand. Ne saute ni le rowing (mardi), ni les face pulls
+(mercredi), ni les Y-T-W (vendredi).
 
 ## Règle de progression
 - Ne passe au niveau suivant que lorsque tu tiens la position cible avec forme parfaite, sur 3 séries stables, sans douleur.
-- Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines pour éviter le plateau et protéger poignets/tendons.
+- Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines pour éviter le plateau et protéger poignets/tendons. Pendant le deload, les deux courses passent en zone 2.
 
 ## Nutrition
 - Maintien 66-68 kg optimal pour le ratio force/poids
@@ -142,7 +216,7 @@ ce sont eux qui te gardent en état de continuer à pousser.
 - Sommeil 7-9 h/nuit — c'est le principal levier de récupération pour les isométries (planche, front lever, HSPU)
 
 ## Suivi recommandé
-- Objectif semaine : 4-5 séances (planche A/B, cardio, skill C, skill D)
+- Objectif semaine : 6 séances (A, B, C, D + 2 courses) — Shabbat en repos complet
 - Log à noter après chaque séance : type de séance, durée, RPE, PR, sensations, douleurs, progression
 
 ## L'app (PWA)
@@ -188,3 +262,7 @@ Les séances restent écrites en texte lisible dans `index.html` (`4 × 3-6 reps
 `5 × 8-10 s`). L'app en déduit toute seule le nombre de séries, l'unité à logger
 et le temps de repos — donc modifier le programme suffit, il n'y a pas de
 structure de données séparée à maintenir en parallèle.
+
+Les séances de course suivent la même règle : une distance en kilomètres
+(`5 km`) se note en minutes, une fraction en mètres (`6 × 400 m`) se note en
+secondes, avec le chrono, une ligne par répétition.

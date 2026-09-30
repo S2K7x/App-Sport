@@ -1328,31 +1328,31 @@
       <div class="schedule-strip">
         <div class="schedule-day">
           <span class="schedule-day-name">Dim</span>
-          <div class="schedule-day-pill">Planche<br>A</div>
+          <div class="schedule-day-pill">Push<br>A</div>
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Lun</span>
-          <div class="schedule-day-pill">Cardio</div>
+          <div class="schedule-day-pill">Course<br>Q</div>
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Mar</span>
-          <div class="schedule-day-pill">Planche<br>B</div>
+          <div class="schedule-day-pill">Pull<br>B</div>
         </div>
-        <div class="schedule-day rest">
+        <div class="schedule-day">
           <span class="schedule-day-name">Mer</span>
-          <div class="schedule-day-pill">—</div>
+          <div class="schedule-day-pill">Push<br>C</div>
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Jeu</span>
-          <div class="schedule-day-pill">Skill<br>C</div>
+          <div class="schedule-day-pill">Course<br>Z2</div>
         </div>
         <div class="schedule-day">
           <span class="schedule-day-name">Ven</span>
-          <div class="schedule-day-pill">Skill<br>D</div>
+          <div class="schedule-day-pill">Jambes<br>D</div>
         </div>
         <div class="schedule-day rest">
           <span class="schedule-day-name">Sam</span>
-          <div class="schedule-day-pill">—</div>
+          <div class="schedule-day-pill">Shab-<br>bat</div>
         </div>
       </div>
 
@@ -1409,7 +1409,7 @@
 
         <!-- Séance A -->
         <div class="seance-card" onclick="openModal('a')">
-          <div class="seance-day">Dimanche · Planche A</div>
+          <div class="seance-day">Dimanche · Push Force</div>
           <div class="seance-name">Planche Force Max</div>
           <div class="seance-muscles">
             <span class="muscle-tag">Épaules</span>
@@ -1419,80 +1419,93 @@
             <span class="muscle-tag">Core</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">9 exercices · ~78 min</span>
+            <span class="seance-count">9 exercices · ~75 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('a')">Voir détails</button>
           </div>
           <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('a')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
-        <!-- Séance B -->
-        <div class="seance-card" onclick="openModal('b')">
-          <div class="seance-day">Mardi · Planche B</div>
-          <div class="seance-name">Planche Volume</div>
-          <div class="seance-muscles">
-            <span class="muscle-tag">Grand dorsal</span>
-            <span class="muscle-tag">Rhomboïdes</span>
-            <span class="muscle-tag">Trapèze moyen</span>
-            <span class="muscle-tag">Biceps</span>
-            <span class="muscle-tag">Core</span>
-            <span class="muscle-tag">Avant-bras</span>
-          </div>
-          <div class="seance-footer">
-            <span class="seance-count">8 exercices · ~72 min</span>
-            <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">Voir détails</button>
-          </div>
-          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('b')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
-        </div>
-
-        <!-- Cardio -->
+        <!-- Course qualité -->
         <div class="seance-card" onclick="openModal('cardio')">
-          <div class="seance-day">Lundi · Cardio</div>
-          <div class="seance-name">Course / Corde</div>
+          <div class="seance-day">Lundi · Course qualité</div>
+          <div class="seance-name">Course 5 km — Fractionné</div>
           <div class="seance-muscles">
             <span class="muscle-tag">Cardiovasculaire</span>
             <span class="muscle-tag">Mollets</span>
-            <span class="muscle-tag">Coordination</span>
+            <span class="muscle-tag">Ischio-jambiers</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">4 phases · ~40 min</span>
+            <span class="seance-count">5 blocs · ~35 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio')">Voir détails</button>
           </div>
           <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('cardio')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
-        <!-- Séance C -->
-        <div class="seance-card" onclick="openModal('c')">
-          <div class="seance-day">Jeudi · Skill C</div>
-          <div class="seance-name">Jambes + Muscle-up</div>
+        <!-- Séance B -->
+        <div class="seance-card" onclick="openModal('b')">
+          <div class="seance-day">Mardi · Pull + Muscle-up</div>
+          <div class="seance-name">Tirage & Muscle-up</div>
           <div class="seance-muscles">
-            <span class="muscle-tag">Quadriceps</span>
-            <span class="muscle-tag">Ischio-jambiers</span>
-            <span class="muscle-tag">Fessiers</span>
-            <span class="muscle-tag">Mollets</span>
             <span class="muscle-tag">Grand dorsal</span>
+            <span class="muscle-tag">Rhomboïdes</span>
+            <span class="muscle-tag">Trapèze moyen</span>
+            <span class="muscle-tag">Biceps</span>
             <span class="muscle-tag">Avant-bras</span>
           </div>
           <div class="seance-footer">
             <span class="seance-count">9 exercices · ~75 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('b')">Voir détails</button>
+          </div>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('b')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
+        </div>
+
+        <!-- Séance C -->
+        <div class="seance-card" onclick="openModal('c')">
+          <div class="seance-day">Mercredi · Planche Volume</div>
+          <div class="seance-name">Planche & HSPU Volume</div>
+          <div class="seance-muscles">
+            <span class="muscle-tag">Épaules</span>
+            <span class="muscle-tag">Pectoraux</span>
+            <span class="muscle-tag">Triceps</span>
+            <span class="muscle-tag">Deltoïdes</span>
+            <span class="muscle-tag">Core</span>
+          </div>
+          <div class="seance-footer">
+            <span class="seance-count">8 exercices · ~70 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('c')">Voir détails</button>
           </div>
           <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('c')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
         </div>
 
-        <!-- Séance D -->
-        <div class="seance-card" onclick="openModal('d')">
-          <div class="seance-day">Vendredi · Skill D</div>
-          <div class="seance-name">Handstand Long</div>
+        <!-- Course facile -->
+        <div class="seance-card" onclick="openModal('cardio2')">
+          <div class="seance-day">Jeudi · Course facile</div>
+          <div class="seance-name">Course 5 km — Zone 2</div>
           <div class="seance-muscles">
-            <span class="muscle-tag">Poignets</span>
-            <span class="muscle-tag">Épaules</span>
-            <span class="muscle-tag">Deltoïde post.</span>
-            <span class="muscle-tag">Trapèze inf.</span>
-            <span class="muscle-tag">Mobilité spinale</span>
-            <span class="muscle-tag">Coiffe</span>
+            <span class="muscle-tag">Cardiovasculaire</span>
+            <span class="muscle-tag">Mollets</span>
+            <span class="muscle-tag">Récupération active</span>
           </div>
           <div class="seance-footer">
-            <span class="seance-count">8 exercices · ~56 min</span>
+            <span class="seance-count">4 blocs · ~40 min</span>
+            <button class="btn-details" onclick="event.stopPropagation(); openModal('cardio2')">Voir détails</button>
+          </div>
+          <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('cardio2')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
+        </div>
+
+        <!-- Séance D -->
+        <div class="seance-card" onclick="openModal('d')">
+          <div class="seance-day">Vendredi · Jambes + Handstand</div>
+          <div class="seance-name">Jambes & Handstand</div>
+          <div class="seance-muscles">
+            <span class="muscle-tag">Quadriceps</span>
+            <span class="muscle-tag">Ischio-jambiers</span>
+            <span class="muscle-tag">Fessiers</span>
+            <span class="muscle-tag">Mollets</span>
+            <span class="muscle-tag">Poignets</span>
+          </div>
+          <div class="seance-footer">
+            <span class="seance-count">8 exercices · ~60 min</span>
             <button class="btn-details" onclick="event.stopPropagation(); openModal('d')">Voir détails</button>
           </div>
           <button class="btn-start" style="margin-top:12px" onclick="event.stopPropagation(); startWorkout('d')"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.54.84l10-6.5a1 1 0 0 0 0-1.68l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>Démarrer</button>
@@ -1519,7 +1532,7 @@
         </div>
         <div class="stat-card full" style="grid-column:1/-1">
           <div class="stat-label">Cette semaine</div>
-          <div><span class="stat-value" id="statWeek">0</span><span class="stat-unit">/ 5 séances</span></div>
+          <div><span class="stat-value" id="statWeek">0</span><span class="stat-unit">/ 6 séances</span></div>
           <div class="week-dots" id="weekDots"></div>
         </div>
       </div>
@@ -1638,6 +1651,20 @@
             <div>
               <div class="info-title">Sommeil — 7-9 h/nuit</div>
               <div class="info-desc">Le levier de récup n°1. La fatigue périphérique et nerveuse générée par les isométries (planche, HSPU) se résorbe surtout pendant le sommeil profond.</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Shabbat — repos complet</div>
+              <div class="info-desc">Le seul jour sans entraînement, placé pile avant la séance la plus lourde (dimanche). Pas de rattrapage ni de "petite séance" : c'est ce repos qui rend 6 jours d'entraînement soutenables.</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Course et calisthénie — jamais collées</div>
+              <div class="info-desc">Si tu dois faire les deux le même jour, laisse au moins 6 h d'écart : l'interférence est plus forte quand les deux sont dans la même séance.</div>
             </div>
           </div>
           <div class="info-item">
@@ -1918,82 +1945,95 @@
   // ── MODAL DATA ──
   const sessions = {
     a: {
-      day: 'Dimanche · Planche A',
+      day: 'Dimanche · Push Force',
       title: 'Planche Force Max',
       exercises: [
-        { name: 'Warm-up poignets & scapula', sets: '5-7 min', note: 'Rotations, compressions, protraction + rotation externe bande 2×12 (coiffe)' },
-        { name: 'Handstand skill', sets: '8-10 min', note: 'Drills mur ou freestanding' },
-        { name: 'HSPU Force — négatif contrôlé', sets: '4 × 3-6 reps', note: 'Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip.' },
-        { name: 'Tuck Planche isométrique', sets: '5 × 8-10 s', note: 'Intent "pousser le sol", repos 2-3 min' },
-        { name: 'Pseudo Planche PU sur parallettes', sets: '4 × 5-8 reps', note: 'Tempo 3-1-1, lean maximal' },
-        { name: 'Planche lean → tuck dynamique / négative', sets: '3 × 3-5', note: 'Transition contrôlée' },
-        { name: 'Ring Dips lestés', sets: '3 × 6-8 reps', note: 'Amplitude complète, anneau stable' },
+        { name: 'Warm-up poignets & scapula', sets: '5-7 min', note: 'Rotations, compressions, protraction + rotation externe bande 2×12 et band pull-aparts 2×15 (coiffe + rétraction)' },
+        { name: 'Handstand skill', sets: '8-10 min', note: 'Drills mur ou freestanding, esprit frais' },
+        { name: 'HSPU Force — négatif contrôlé', sets: '4 × 3-6 reps', note: 'Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip. Repos 2-3 min' },
+        { name: 'Tuck Planche isométrique', sets: '5 × 8-10 s', note: 'Intent "pousser le sol", bras verrouillés, repos 2-3 min' },
+        { name: 'Pseudo Planche PU sur parallettes', sets: '4 × 5-8 reps', note: 'Tempo 3-1-1, lean maximal, repos 2 min' },
+        { name: 'Planche lean → tuck dynamique / négative', sets: '3 × 3-5', note: 'Transition contrôlée, repos 90 s' },
+        { name: 'Ring Dips lestés', sets: '3 × 6-8 reps', note: 'Amplitude complète, anneau stable, repos 2 min' },
         { name: 'Scapular PU + Élévation 45° haltère', sets: '3 × 10 + 3 × 12', note: 'Superset serratus & deltoïde ant.' },
         { name: 'Cool-down poignets', sets: '3 min', note: 'Extensions, flexions passives' },
       ],
       muscles: ['Épaules', 'Triceps', 'Pectoraux', 'Serratus', 'Core'],
-      tip: 'Intent ballistique sur l\'isométrie : imaginer pousser le sol vers les pieds. Vadnal recommande 4×6 Pseudo Planche PU lean maximum — chaque rep doit simuler la position finale de planche. Pour le HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentric — c\'est ce qui protège la nuque et les épaules pendant que la force se construit. Qualité absolue sur chaque seconde tenue.'
-    },
-    b: {
-      day: 'Mardi · Planche B',
-      title: 'Planche Volume',
-      exercises: [
-        { name: 'Warm-up', sets: '5 min', note: 'Poignets + mobilisation épaules' },
-        { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding' },
-        { name: 'Planche volume — 60 s total', sets: '6×10s / 5×12s / 4×15s', note: 'Repos 90 s, progresser le format chaque semaine' },
-        { name: 'Tuck Front Lever', sets: '4 × 6-10 s', note: 'En assistance uniquement, dépression scapulaire' },
-        { name: 'Tractions tempo / Archer', sets: '4 × 5-6 reps', note: 'Sans lest : 3 s excentrique + 1 s pause menton au-dessus de la barre. Passe aux Archer (3-5/côté) une fois 10 tractions strictes acquises. Repos 120s' },
-        { name: 'Rowing anneaux / Australian pull-ups', sets: '4 × 8-12 reps', note: 'Pause 1 s poitrine aux anneaux, omoplates serrées. Pieds surélevés pour durcir. Repos 90s' },
-        { name: 'Front Lever Raises', sets: '3 × 6 reps', note: 'Contrôle excentrique 3 s' },
-        { name: 'Dragon Flag / L-sit', sets: '3×6 / 4×20-30s', note: 'Choisir selon fatigue core' },
-      ],
-      muscles: ['Grand dorsal', 'Rhomboïdes', 'Trapèze moyen', 'Biceps', 'Core', 'Avant-bras'],
-      tip: 'Objectif : accumuler 60 s total de tuck planche en volume. Commencer à 6×10 s puis progresser vers 4×15 s sur 4-6 semaines. Le Front Lever est en assistance uniquement — priorité au dos, le FL vient après les tractions. Sans lest, la surcharge passe par le tempo puis par le levier : 3 s d\'excentrique et une pause en haut rendent 5 reps bien plus dures que 5 reps rapides lestées, et l\'Archer déplace la charge sur un bras — c\'est la vraie route vers la traction à un bras. Le rowing est le contrepoids indispensable : toute la planche et le HSPU travaillent en protraction, sans tirage horizontal les rhomboïdes et le trapèze moyen/inférieur décrochent (facteur n°1 de l\'impingement d\'épaule). Serre les omoplates 1 s en haut de chaque rep.'
+      tip: 'Dimanche est ta séance la plus lourde, et ce n\'est pas un hasard : tu sors de ~36 h de repos complet (Shabbat), c\'est le jour où le système nerveux et les tendons sont les plus frais. Tout ce qui demande une intensité maximale va ici. Intent ballistique sur l\'isométrie : imaginer pousser le sol vers les pieds. Chaque rep de Pseudo Planche PU doit simuler la position finale de planche. Pour le HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique — c\'est ce qui protège la nuque et les épaules pendant que la force se construit. Séance 100 % haut du corps : tes jambes restent fraîches pour la course de lundi.'
     },
     cardio: {
-      day: 'Lundi · Cardio',
-      title: 'Course / Corde',
+      day: 'Lundi · Course qualité',
+      title: 'Course 5 km — Fractionné',
       exercises: [
-        { name: 'Échauffement marche', sets: '5 min', note: 'Cadence progressive' },
-        { name: 'HIIT corde à sauter', sets: '10 rounds', note: '30s on / 30s off' },
-        { name: 'Course Zone 2', sets: '20 min', note: '60-70% FC max' },
-        { name: 'Cool-down marche', sets: '5 min', note: 'Stretch mollets' },
+        { name: 'Échauffement trot', sets: '1 km', note: 'Très facile (RPE 3/10), puis 2 × 20 m de montées de genoux, talons-fesses et pas chassés' },
+        { name: 'Accélérations progressives', sets: '3 × 80 m', note: 'Monte jusqu\'à ~85 % sans sprinter, retour en marchant — repos 45 s' },
+        { name: 'Fractionné', sets: '6 × 400 m / 3 × 1 km', note: 'RPE 8/10 : un peu plus vite que ton allure 5 km, régulier du 1er au dernier. Récup 200 m en trottinant — repos 75 s. Note ton temps de chaque 400 m.' },
+        { name: 'Retour au calme', sets: '0,5 km', note: 'Trot très lent puis marche, étirements doux mollets et fléchisseurs de hanche' },
+        { name: 'Handstand micro-dose', sets: '5 min', note: 'Optionnel, le soir : 5-6 kick-ups ou holds au mur, zéro fatigue. Entretient la pratique distribuée.' },
       ],
-      muscles: ['Cardiovasculaire', 'Mollets', 'Coordination'],
-      tip: 'Zone 2 = pouvoir tenir une conversation sans s\'essouffler (60-70% FC max). Pour la corde : poignets souples, enjambements petits, bras proches du corps. Le HIIT booste l\'adaptation aérobie plus vite que le cardio seul.'
+      muscles: ['Cardiovasculaire', 'Mollets', 'Ischio-jambiers', 'Économie de course'],
+      tip: 'Lundi, tes jambes sont les plus fraîches de la semaine (Shabbat + dimanche 100 % haut du corps) : c\'est donc là que va la seule course intense. Avec deux sorties par semaine, le schéma le plus efficace est polarisé — une sortie dure, une vraiment facile, presque rien entre les deux (Seiler ; Muñoz 2014 chez des coureurs amateurs). Total ≈ 5 km : 1 km + 6 × (400 m + 200 m) + 0,5 km. Progresse par l\'allure, pas par la distance : 4 semaines de 6 × 400 m en cherchant à baisser tes temps, puis 4 semaines de 3 × 1 km (récup 400 m trot), et on alterne. Si tu fais autre chose le même jour, laisse au moins 6 h d\'écart.'
+    },
+    b: {
+      day: 'Mardi · Pull + Muscle-up',
+      title: 'Tirage & Muscle-up',
+      exercises: [
+        { name: 'Warm-up', sets: '5-7 min', note: 'Poignets, épaules, scap pulls à la barre 2 × 8, skin the cat lent 2 × 3 (mobilité en extension d\'épaule)' },
+        { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding courtes, qualité avant durée' },
+        { name: 'False grip ring holds', sets: '4 × 10-15 s', note: 'Poignet fléchi par-dessus l\'anneau, repos 60 s' },
+        { name: 'Chest-to-bar explosif', sets: '4 × 3-5 reps', note: 'Pull ultra-haut, coudes vers hanches, repos 2 min' },
+        { name: 'Slow MU négatif / Ring MU strict', sets: '3 × 3-4 / 3-4 séries', note: 'Négatif 5-7 s, puis reps qualité. Repos 2-3 min' },
+        { name: 'Tractions tempo / Archer', sets: '3 × 5-6 reps', note: 'Sans lest : 3 s excentrique + 1 s pause menton au-dessus de la barre. Passe aux Archer (3-5/côté) une fois 10 tractions strictes acquises. Repos 120s' },
+        { name: 'Tuck Front Lever', sets: '4 × 6-10 s', note: 'Dépression scapulaire, bras tendus. Palier suivant quand 4 × 10 s propres. Repos 90 s' },
+        { name: 'Rowing anneaux / Australian pull-ups', sets: '4 × 8-12 reps', note: 'Pause 1 s poitrine aux anneaux, omoplates serrées. Pieds surélevés pour durcir. Repos 90s' },
+        { name: 'Curl biceps haltères', sets: '3 × 10-12 reps', note: 'Tempo 2-0-2, supination complète en haut. Repos 60 s' },
+      ],
+      muscles: ['Grand dorsal', 'Rhomboïdes', 'Trapèze moyen', 'Biceps', 'Avant-bras', 'Core'],
+      tip: 'Le muscle-up ouvre la séance parce que c\'est un skill explosif : il se travaille frais, jamais après des séries lourdes de tractions. L\'ordre est voulu — explosif (MU) → force (tractions) → bras tendus (front lever) → volume (rowing, curls). Les 3 briques du muscle-up : false grip, pull chest-to-bar ultra-haut, transition coudes vers hanches ; un négatif lent de 5-7 s vaut plus que 10 reps bâclées. Les tractions passent à 3 séries : le chest-to-bar et le muscle-up sont déjà du tirage vertical, le volume total reste ~10 séries. Le rowing est le contrepoids indispensable de toute la protraction de la planche et du HSPU : ne le saute jamais.'
     },
     c: {
-      day: 'Jeudi · Skill C',
-      title: 'Jambes + Muscle-up',
+      day: 'Mercredi · Planche Volume',
+      title: 'Planche & HSPU Volume',
       exercises: [
-        { name: 'Handstand skill', sets: '10 min', note: 'Début de séance, esprit frais' },
-        { name: 'Bulgarian Split Squats', sets: '4 × 10 / jambe', note: 'Descente 3 s, genou dans l\'axe' },
-        { name: 'Nordic Curls', sets: '3 × 5 reps', note: 'Excentrique uniquement, 3-4 s' },
-        { name: 'Box Jumps', sets: '4 × 8 reps', note: 'Atterrissage souple, reset complet' },
-        { name: 'Calf Raises lestées', sets: '4 × 20 reps', note: 'Amplitude totale, pause basse' },
-        { name: 'False grip ring holds', sets: '5 × 10-15 s', note: 'Poignet fléchi par-dessus l\'anneau' },
-        { name: 'Chest-to-bar explosif', sets: '4 × 3-5 reps', note: 'Pull ultra-haut, coudes vers hanches' },
-        { name: 'Slow MU négatif / Ring MU strict', sets: '3 × 3-4 / 3-4 séries', note: 'Négatif 5-7 s, puis reps qualité' },
-        { name: 'Curl biceps haltères + Élévations latérales', sets: '3 × 12-15 + 3 × 15', note: 'Superset esthétique — bras & deltoïdes, tempo 2-0-2' },
+        { name: 'Warm-up', sets: '5 min', note: 'Poignets + mobilisation épaules + rotation externe bande 2 × 12' },
+        { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding. Poignets sensibles après mardi : reste au mur' },
+        { name: 'Planche volume — 60 s total', sets: '6×10s / 5×12s / 4×15s', note: 'Repos 90 s, progresser le format chaque semaine' },
+        { name: 'Pike HSPU pieds surélevés / Wall HSPU', sets: '3 × 6-10 reps', note: 'Volume sous-maximal (2 reps en réserve), tempo 3-0-1, tête qui passe devant les mains. Repos 2 min' },
+        { name: 'Pompes anneaux + Face pulls', sets: '3 × 8-12 + 3 × 15', note: 'Superset : anneaux tournés vers l\'extérieur en haut / face pulls légers, coudes hauts. Repos 90 s' },
+        { name: 'Élévations latérales', sets: '3 × 12-15 reps', note: 'Tempo 2-0-2, léger, coude légèrement fléchi. Repos 60 s' },
+        { name: 'Dragon Flag / L-sit', sets: '3×6 / 4×20-30s', note: 'Choisir selon fatigue core. Repos 90 s' },
+        { name: 'Cool-down poignets', sets: '3 min', note: 'Extensions, flexions passives' },
       ],
-      muscles: ['Quadriceps', 'Ischio-jambiers', 'Fessiers', 'Mollets', 'Grand dorsal', 'Avant-bras', 'Deltoïdes'],
-      tip: 'Le muscle-up se construit en 3 briques : false grip (poignet au-dessus de l\'anneau), pull chest-to-bar ultra-haut, et transition coudes vers hanches. Le slow négatif 5-7 s vaut plus que 10 reps sloppy. Maîtriser chaque brique séparément. Le superset bras/épaules en fin de séance ajoute du volume direct pour l\'hypertrophie (chaque set supplémentaire compte, avec rendement décroissant) — utile pour le côté esthétique sans nuire aux skills.'
+      muscles: ['Épaules', 'Pectoraux', 'Triceps', 'Deltoïdes', 'Deltoïde post.', 'Core'],
+      tip: 'Mercredi tombe 72 h après la séance lourde du dimanche : c\'est à peu près le temps qu\'il faut aux tendons pour boucler leur cycle de reconstruction (la synthèse de collagène culmine vers 24 h et redescend vers 72 h — Miller et al. 2005). C\'est la 2ᵉ exposition planche/HSPU de la semaine, en volume sous-maximal : la force se construit dimanche, mercredi ajoute du volume de qualité. Planche : accumuler 60 s propres, de 6×10 s vers 4×15 s sur 4-6 semaines. HSPU : garde 2 reps en réserve, jamais d\'échec. Les face pulls en superset équilibrent la poussée sans rallonger la séance, et la compression du L-sit sert directement la planche et le press handstand.'
+    },
+    cardio2: {
+      day: 'Jeudi · Course facile',
+      title: 'Course 5 km — Zone 2',
+      exercises: [
+        { name: 'Course Zone 2', sets: '5 km', note: 'Allure conversation : RPE 4-5/10, 60-70 % FC max. Les 500 premiers mètres encore plus lents. Si tu ne peux plus parler en phrases complètes, ralentis.' },
+        { name: 'Lignes droites', sets: '4 × 20 s', note: 'Accélérations progressives jusqu\'à ~90 %, relâché, sans sprint. Retour en marchant, repos 60 s' },
+        { name: 'Mobilité mollets & hanches', sets: '5 min', note: 'Mollets contre un mur, fente fléchisseurs de hanche, sans forcer' },
+        { name: 'Handstand micro-dose', sets: '5 min', note: 'Optionnel, le soir : 5-6 kick-ups ou holds au mur, zéro fatigue. Entretient la pratique distribuée.' },
+      ],
+      muscles: ['Cardiovasculaire', 'Mollets', 'Récupération active'],
+      tip: 'Jeudi est la sortie facile, et elle doit vraiment l\'être : demain c\'est jambes. La zone 2 développe la base aérobie sans créer de fatigue qui mordrait sur les split squats et les nordics. Le piège classique avec deux sorties par semaine, c\'est de courir les deux "moyennement vite" : trop dur pour récupérer, pas assez pour progresser. Les lignes droites en fin de sortie entretiennent la vitesse et la foulée pour un coût de fatigue quasi nul.'
     },
     d: {
-      day: 'Vendredi · Skill D',
-      title: 'Handstand Long',
+      day: 'Vendredi · Jambes + Handstand',
+      title: 'Jambes & Handstand',
       exercises: [
         { name: 'Wrist mobility', sets: '5 min', note: 'Circles, compressions, extensions passives + rotation externe bande 2×15' },
-        { name: 'HSPU Force — Deficit / Wall', sets: '4 × 3-6 reps', note: 'Priorité amplitude complète, contrôle 3-5 s en excentrique avant de forcer le concentric' },
-        { name: 'Handstand long', sets: '15-20 min', note: 'Chest-to-wall, freestanding, shapes' },
-        { name: 'Shoulder dislocations', sets: '3 × 10 reps', note: 'Bande élastique, progression ampleur' },
-        { name: 'Face pulls + Y-T-W au sol', sets: '3 × 15 + 3 × 8/lettre', note: 'Deltoïde postérieur et trapèze inférieur. Léger, coudes hauts, sans à-coups. Repos 60s' },
-        { name: 'Skin the cat', sets: '3 × 5 reps', note: 'Contrôle total, pause basse 2 s' },
-        { name: 'Planche lean léger', sets: '3-4 séries', note: 'Sans charge, protraction serratus' },
-        { name: 'Jefferson Curls', sets: '3 × 8 reps', note: 'Lentement, léger, vertèbre par vertèbre' },
+        { name: 'Handstand long', sets: '12-15 min', note: 'Chest-to-wall, freestanding, shapes' },
+        { name: 'Bulgarian Split Squats', sets: '3 × 8-10 / jambe', note: 'Descente 3 s, genou dans l\'axe. Repos 90 s' },
+        { name: 'Nordic Curls', sets: '3 × 4-6 reps', note: 'Excentrique 3-4 s, amortis avec les mains en bas. Repos 2 min' },
+        { name: 'Box Jumps', sets: '3 × 5 reps', note: 'Atterrissage souple et silencieux, reset complet entre chaque saut. Repos 60 s' },
+        { name: 'Mollets unilatéraux lestés', sets: '3 × 12-15 / jambe', note: 'Sur une marche, amplitude totale, pause 1 s en bas. Repos 60 s' },
+        { name: 'Y-T-W au sol + Shoulder dislocations', sets: '2 × 8/lettre + 2 × 10', note: 'Trapèze inférieur et mobilité d\'épaule : léger, lent, sans à-coups. Repos 45 s' },
+        { name: 'Jefferson Curls', sets: '2 × 8 reps', note: 'Lentement, très léger, vertèbre par vertèbre' },
       ],
-      muscles: ['Poignets', 'Épaules', 'Coiffe des rotateurs', 'Deltoïde postérieur', 'Trapèze inférieur', 'Mobilité spinale'],
-      tip: '4-5 expositions courtes/semaine battent 1 longue session. Le planche lean léger ici consolide le pattern moteur sans fatigue — idéal en fin de semaine. Pratique distribuée validée par la recherche en apprentissage moteur (Schmidt & Lee 2019). Pour le HSPU, progresse par phases : concentrique → excentrique → isométrique. Le Deficit HSPU (mains surélevées sur parallettes/plots) ajoute de l\'amplitude progressivement — c\'est le pont direct entre le Wall HSPU et la version freestanding.'
+      muscles: ['Quadriceps', 'Ischio-jambiers', 'Fessiers', 'Mollets', 'Poignets', 'Trapèze inf.'],
+      tip: 'Les jambes sont le vendredi parce que c\'est le jour le plus loin de ta course intense : derrière, Shabbat puis un dimanche 100 % haut du corps, soit 72 h avant de recourir lundi, jambes fraîches. Les programmes qui incluent les Nordic curls divisent environ par deux les blessures aux ischios (van Dyk et al. 2019) — précieux quand tu cours deux fois par semaine. Box jumps et mollets unilatéraux travaillent la raideur tendineuse, utile pour l\'économie de course. Séance courte (~60 min) pour finir largement avant l\'entrée de Shabbat : en hiver, fais-la le matin.'
     }
   };
 
@@ -2231,6 +2271,10 @@
     if (type !== 'time') {
       if (/\bmin\b/i.test(target)) type = 'time';
       else if (/\d\s*s\b/i.test(target) && !/reps?/i.test(target)) type = 'hold';
+      // Course : sur une distance on note le temps mis — en minutes pour les
+      // km ("5 km"), en secondes au chrono pour les fractions ("6 × 400 m").
+      else if (/\d\s*km\b/i.test(target)) type = 'time';
+      else if (/\d\s*m\b/i.test(target)) type = 'hold';
     }
 
     if (!Number.isFinite(count) || count < 1) count = 1;

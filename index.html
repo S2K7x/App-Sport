@@ -1210,209 +1210,115 @@
     #timerAddBtn { text-transform: none; letter-spacing: 0.02em; }
     .timer-btn.primary { background: var(--accent); box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25); }
 
-    /* ── PAGE PROGRÈS ── */
-    .chart-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-    .chart-big { font-size: 44px; line-height: 1; }
-    .chart-avg { text-align: right; padding-bottom: 4px; }
-    .chart-big small { font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--on-navy-2); margin-left: 4px; }
-
-    .stat-grid {
+    /* ── PAGE SYNCHRO ── */
+    .sync-stats {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      margin-top: 12px;
+      margin-top: 16px;
     }
-    .stat-card {
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      padding: 15px;
-      box-shadow: var(--shadow);
-      display: flex;
-      gap: 11px;
-      align-items: flex-start;
-    }
-    .stat-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .stat-icon svg { width: 16px; height: 16px; }
-    .stat-value { font-size: 28px; line-height: 1.05; }
-    .stat-unit { font-size: 13px; font-weight: 500; color: var(--label-3); margin-left: 3px; letter-spacing: 0; }
-    .stat-label { font-size: 12px; color: var(--label-2); line-height: 1.3; margin-top: 3px; }
-
-    .week-card {
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      padding: 16px;
-      box-shadow: var(--shadow);
-      margin-top: 10px;
-    }
-    .week-card-head { display: flex; align-items: baseline; justify-content: space-between; }
-    .week-card-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
-    .week-card-count { font-size: 13px; color: var(--label-2); }
-    .week-card-count b { font-size: 20px; font-weight: 300; color: var(--label); letter-spacing: -0.02em; }
-    .week-dots { display: flex; gap: 5px; margin-top: 12px; }
-    .week-dot { flex: 1; text-align: center; }
-    .week-dot i {
-      display: block;
-      height: 6px;
-      border-radius: 3px;
-      background: var(--fill);
-      margin-bottom: 5px;
-    }
-    .week-dot.on i { background: var(--accent); }
-    .week-dot span { font-size: 10px; font-weight: 600; color: var(--label-3); letter-spacing: 0.04em; }
-    .week-dot.today span { color: var(--accent); }
-
-    /* Records (« key lifts ») */
-    .records {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      margin: 0 calc(-1 * var(--gutter));
-      padding: 0 var(--gutter) 6px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-    }
-    .records::-webkit-scrollbar { display: none; }
-    .record {
-      flex: 0 0 62%;
-      max-width: 240px;
-      scroll-snap-align: start;
-      border-radius: var(--r-lg);
-      padding: 16px;
-      background: linear-gradient(150deg, var(--navy-2), var(--navy));
-      color: var(--on-navy);
-      box-shadow: var(--shadow);
-    }
-    .record:nth-child(even) { background: linear-gradient(150deg, var(--accent-2), var(--accent)); }
-    .record-name {
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.3;
-      color: var(--on-navy-2);
-      min-height: 34px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .record-val { font-size: 44px; line-height: 1; margin-top: 10px; }
-    .record-val small { font-size: 14px; font-weight: 500; letter-spacing: 0; margin-left: 4px; color: var(--on-navy-2); }
-    .record-date { font-size: 11.5px; color: var(--on-navy-3); margin-top: 6px; }
-
-    /* Échelles de skill */
-    .skill-block {
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      padding: 16px;
-      margin-bottom: 10px;
-      box-shadow: var(--shadow);
-    }
-    .skill-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-    .skill-name { font-size: 17px; font-weight: 600; letter-spacing: -0.018em; }
-    .skill-level {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 3px 9px;
-      border-radius: 6px;
-      font-variant-numeric: tabular-nums;
-    }
-    .skill-track { display: flex; gap: 4px; margin-bottom: 12px; align-items: flex-end; }
-    .skill-node {
-      flex: 1;
-      border-radius: 3px;
-      background: var(--fill);
-      transition: background 0.22s ease;
-    }
-    .skill-node.done { background: var(--accent-2); }
-    .skill-node.cur { background: var(--accent); }
-
-    .skill-current { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 14px; }
-    .skill-current span {
-      display: block;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--label-3);
-      margin-top: 2px;
-    }
-
-    .skill-btns { display: flex; gap: 8px; }
-    .skill-btn {
-      min-height: 44px;
-      padding: 10px 14px;
-      border-radius: var(--r-sm);
+    .sync-stat b { display: block; font-size: 30px; line-height: 1; }
+    .sync-stat b small { font-size: 13px; font-weight: 500; letter-spacing: 0; margin-left: 2px; color: var(--on-navy-2); }
+    .sync-stat span { display: block; font-size: 12px; color: var(--on-navy-2); margin-top: 4px; line-height: 1.3; }
+    .sync-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .sync-btn {
+      min-height: 50px;
       border: none;
-      background: var(--fill);
-      color: var(--label);
-      font-size: 14px;
+      border-radius: var(--r-md);
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-size: 15px;
       font-weight: 600;
-      cursor: pointer;
+      letter-spacing: -0.01em;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      letter-spacing: -0.01em;
+      gap: 8px;
+      cursor: pointer;
     }
-    .skill-btn svg { width: 14px; height: 14px; }
-    .skill-btn:first-child { flex: 0 0 48px; }
-    .skill-btn:last-child { flex: 1; background: var(--accent); color: #fff; }
-    .skill-btn:disabled { opacity: 0.32; cursor: default; }
-    .skill-btn:active:not(:disabled) { opacity: 0.65; }
+    .sync-btn svg { width: 17px; height: 17px; }
+    .sync-btn.secondary { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
+    .sync-btn:active { transform: scale(0.98); opacity: 0.85; }
+    .sync-btn:disabled { opacity: 0.45; }
+    .sync-status { font-size: 13px; color: var(--label-2); text-align: center; margin-top: 10px; min-height: 18px; }
 
-    /* Historique */
-    .history-item {
+    .sync-item {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
       background: var(--surface);
       border-radius: var(--r-md);
       padding: 11px 12px;
       margin-bottom: 8px;
       box-shadow: var(--shadow);
     }
-    .history-main { flex: 1; min-width: 0; }
-    .history-title {
+    .sync-main { flex: 1; min-width: 0; }
+    .sync-title {
       font-size: 15px;
       font-weight: 600;
       letter-spacing: -0.01em;
-      margin-bottom: 1px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .history-sub { font-size: 12.5px; color: var(--label-3); }
-    .history-del {
+    .sync-sub { font-size: 12.5px; color: var(--label-2); margin-top: 1px; }
+    .sync-src { font-size: 11.5px; color: var(--label-3); margin-top: 2px; }
+    .sync-more {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--accent);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .guide { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); margin-bottom: 10px; }
+    .guide summary {
+      list-style: none;
+      padding: 15px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .guide summary::-webkit-details-marker { display: none; }
+    .guide summary small { display: block; font-size: 12.5px; font-weight: 400; color: var(--label-3); margin-top: 2px; }
+    .guide summary::after { content: '+'; color: var(--label-3); font-weight: 400; font-size: 20px; line-height: 1; }
+    .guide[open] summary::after { content: '\2212'; }
+    .guide-body { padding: 0 16px 16px; font-size: 13.5px; line-height: 1.55; color: var(--label-2); }
+    .guide-body ol { margin: 0; padding-left: 20px; }
+    .guide-body li { margin-bottom: 7px; }
+    .guide-body b { color: var(--label); font-weight: 600; }
+    .guide-body p { margin: 0 0 8px; }
+    .guide-body code {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 12px;
+      background: var(--fill);
+      padding: 1px 5px;
+      border-radius: 5px;
+      color: var(--label);
+      overflow-wrap: anywhere;
+    }
+    .sync-clear {
+      display: block;
+      margin: 18px auto 6px;
       background: none;
       border: none;
       color: var(--label-3);
+      font: inherit;
+      font-size: 13px;
+      text-decoration: underline;
       cursor: pointer;
-      padding: 0;
-      width: 44px;
-      height: 44px;
-      margin-right: -8px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 10px;
     }
-    .history-del svg { width: 16px; height: 16px; }
-    .history-del:active { color: var(--accent); }
 
     .empty-note {
       text-align: center;
@@ -1805,62 +1711,83 @@
       </div>
     </div>
 
-    <!-- ═══ PAGE — PROGRÈS (statistiques) ═══ -->
-    <div class="page" id="page-progres">
+    <!-- ═══ PAGE — SYNCHRO (Apple Santé, Garmin, adidas Running) ═══ -->
+    <div class="page" id="page-sync">
       <div class="page-header">
         <div>
-          <div class="page-eyebrow caps">Statistiques</div>
-          <div class="page-title">Progrès</div>
+          <div class="page-eyebrow caps">Apple Santé · Garmin · adidas</div>
+          <div class="page-title">Synchro</div>
         </div>
       </div>
 
-      <div class="hero">
-        <div class="hero-eyebrow caps">Séances · 8 semaines</div>
-        <div class="chart-head">
-          <div class="chart-big num" id="chartTotal">0</div>
-          <div class="hero-sub chart-avg" id="chartAvg"></div>
-        </div>
-        <div class="hero-chart" id="weeksChart"></div>
+      <div id="syncHero"></div>
+
+      <div class="sync-actions">
+        <button class="sync-btn" onclick="pasteSync()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1M9.5 12.5l2 2 3.5-4"/></svg>
+          Coller depuis Raccourcis
+        </button>
+        <button class="sync-btn secondary" onclick="document.getElementById('syncFile').click()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5L12 11l2.5 2.5"/></svg>
+          Importer un fichier
+        </button>
+        <!-- Pas d'attribut accept : sur iOS, une extension inconnue (.gpx) grise le fichier dans le sélecteur. -->
+        <input type="file" id="syncFile" multiple hidden onchange="importFiles([...this.files]); this.value = ''">
       </div>
+      <div class="sync-status" id="syncStatus" role="status" aria-live="polite"></div>
 
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5.3 1.6 1.2 2.5 2 2.5-.5-3 0-5.5 1-8z"/></svg></div>
-          <div><span class="stat-value num" id="statStreak">0</span><span class="stat-unit">sem.</span><div class="stat-label">série en cours</div></div>
+      <div class="section-head"><span class="section-title caps">Activités importées</span></div>
+      <div id="syncList"></div>
+
+      <div class="section-head"><span class="section-title caps">Configurer</span></div>
+
+      <details class="guide">
+        <summary><span>Pourquoi pas de synchro automatique ?<small>Ce qu'une web app peut faire sur iPhone</small></span></summary>
+        <div class="guide-body">
+          <p><b>Apple Santé n'est pas accessible depuis une web app.</b> HealthKit est réservé aux apps natives de l'App Store : il n'existe aucune API web, même pour une app installée sur l'écran d'accueil.</p>
+          <p><b>Garmin et adidas Running n'ouvrent pas leurs données aux particuliers.</b> Les API Garmin sont réservées aux entreprises validées dans son programme développeur, et adidas Running n'a pas d'API publique.</p>
+          <p><b>La solution : Apple Santé comme point central.</b> Garmin Connect et adidas Running y écrivent tes activités. Un Raccourci iOS les relit et les passe à l'app par le presse-papiers. Un lien ne marcherait pas : l'app installée a un stockage séparé de Safari. Rien ne quitte ton téléphone.</p>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg></div>
-          <div><span class="stat-value num" id="statTotal">0</span><div class="stat-label" id="statTotalLabel">séances au total</div></div>
+      </details>
+
+      <details class="guide">
+        <summary><span>1. Envoyer Garmin et adidas vers Santé<small>Une fois, dans chaque app</small></span></summary>
+        <div class="guide-body">
+          <ol>
+            <li><b>Garmin Connect</b> : Réglages → Apps connectées → Apple Santé → active le partage. Garmin Connect doit être ouvert de temps en temps pour envoyer les données.</li>
+            <li><b>adidas Running</b> : Profil → roue dentée → Comptes partenaires → Apple Santé.</li>
+          </ol>
+          <p>Si une même course est enregistrée par les deux apps, elle n'apparaît qu'une fois ici : même type et départ à moins de 3 minutes d'écart = même activité.</p>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
-          <div><span class="stat-value num" id="statSets">0</span><div class="stat-label" id="statSetsLabel">séries validées</div></div>
+      </details>
+
+      <details class="guide">
+        <summary><span>2. Créer le Raccourci<small>~5 min, une seule fois</small></span></summary>
+        <div class="guide-body">
+          <ol>
+            <li>App <b>Raccourcis</b> → <b>+</b> → nomme-le « Synchro Planche OS ».</li>
+            <li>Ajoute <b>Rechercher des échantillons de santé</b> : type <b>Entraînements</b>, filtre <b>Date de début</b> dans les <b>14 derniers jours</b>.</li>
+            <li>Ajoute <b>Répéter avec chaque</b> élément.</li>
+            <li>Dans la boucle, ajoute <b>Dictionnaire</b> avec ces clés, chacune reliée à une propriété de l'<b>Élément répété</b> :
+              <code>type</code> (Type), <code>start</code> (Date de début — touche la variable et choisis le format <b>ISO 8601</b>), <code>duration</code> (Durée), <code>distance</code> (Distance), <code>energy</code> (Énergie), <code>source</code> (Source).</li>
+            <li>Après la boucle : <b>Copier dans le presse-papiers</b> les <b>Résultats de Répéter</b>.</li>
+            <li>Lance-le, ouvre Planche OS → Synchro → <b>Coller depuis Raccourcis</b>.</li>
+          </ol>
+          <p>Les noms de propriétés varient un peu selon la version d'iOS ; l'app accepte les clés en français ou en anglais, et les valeurs avec unités (« 5,02 km », « 32 min »).</p>
+          <p><b>Optionnel — récupération :</b> refais les étapes 2 à 4 avec <b>Fréquence cardiaque au repos</b> (clés <code>type</code> = texte « repos », <code>start</code>, <code>value</code> = Valeur), puis combine les deux listes avec <b>Ajouter à la variable</b> avant de copier. L'app compare ta FC de repos sur 7 jours à celle des semaines précédentes.</p>
+          <p>Astuce : ajoute le Raccourci à l'écran d'accueil, à côté de l'app.</p>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 2M9 2h6"/></svg></div>
-          <div><span class="stat-value num" id="statAvg">0</span><span class="stat-unit">min</span><div class="stat-label">durée moyenne</div></div>
+      </details>
+
+      <details class="guide">
+        <summary><span>Importer tout l'historique<small>Export Santé ou fichiers GPX</small></span></summary>
+        <div class="guide-body">
+          <p><b>Export Apple Santé</b> : Santé → ta photo → <b>Exporter toutes les données de santé</b> → Enregistrer dans Fichiers. Touche le .zip pour le décompresser, puis ici <b>Importer un fichier</b> → <code>apple_health_export/export.xml</code>. L'app garde les entraînements des 400 derniers jours, ta FC de repos et ta VFC. Le fichier peut peser plusieurs centaines de Mo : compte une minute.</p>
+          <p><b>GPX</b> : exporte une activité en .gpx depuis Garmin Connect ou adidas Running, puis <b>Importer un fichier</b> (plusieurs fichiers d'un coup possible). Distance, durée et FC sont recalculées depuis la trace.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="week-card">
-        <div class="week-card-head">
-          <span class="week-card-title">Cette semaine</span>
-          <span class="week-card-count"><b id="statWeek">0</b> / 6 séances</span>
-        </div>
-        <div class="week-dots" id="weekDots"></div>
-      </div>
-
-      <div id="recordsSection" hidden>
-        <div class="section-head"><span class="section-title caps">Meilleures perfs</span></div>
-        <div class="records" id="recordsWrap"></div>
-      </div>
-
-      <div class="section-head"><span class="section-title caps">Niveaux de skill</span></div>
-      <div id="skillsWrap"></div>
-
-      <div class="section-head"><span class="section-title caps">Historique</span></div>
-      <div id="historyWrap"></div>
-
+      <button class="sync-clear" id="syncClear" onclick="clearSync()">Effacer les données importées</button>
     </div>
 
     <!-- ═══ PAGE 2 — NUTRITION ═══ -->
@@ -2166,11 +2093,14 @@
       </svg>
       <span class="tab-label">Séances</span>
     </button>
-    <button class="tab-btn" id="tab-progres" onclick="switchTab('progres')">
+    <button class="tab-btn" id="tab-sync" onclick="switchTab('sync')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 20h18M6 20v-6M11 20V9M16 20v-9M21 20V5"/>
+        <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/>
+        <path d="M4 4v4h4"/>
+        <path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/>
+        <path d="M20 20v-4h-4"/>
       </svg>
-      <span class="tab-label">Progrès</span>
+      <span class="tab-label">Synchro</span>
     </button>
     <button class="tab-btn" id="tab-nutrition" onclick="switchTab('nutrition')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -2255,7 +2185,7 @@
     const tab = document.getElementById('tab-' + name);
     tab.classList.add('active');
     tab.setAttribute('aria-current', 'page');
-    if (name === 'progres') renderProgress();
+    if (name === 'sync') renderSync();
     if (name === 'seances') renderDashboard();
   }
 
@@ -2788,10 +2718,15 @@
     })() : '';
 
     // Chiffres clés
-    const thisWeek = store.history.filter(h => new Date(h.date) >= weekStart);
     document.getElementById('kpiTotal').textContent = store.history.length;
     document.getElementById('kpiSets').textContent = compact(store.history.reduce((n, h) => n + (h.setsDone || 0), 0));
-    document.getElementById('kpiWeek').textContent = thisWeek.length;
+    let weekDone = 0;
+    for (let i = 0; i <= today; i++) {
+      const d = new Date(weekStart);
+      d.setDate(d.getDate() + i);
+      if (dayDone(d)) weekDone++;
+    }
+    document.getElementById('kpiWeek').textContent = weekDone;
     const nTotal = store.history.length;
     const nSets = store.history.reduce((n, h) => n + (h.setsDone || 0), 0);
     document.getElementById('kpiTotalLabel').textContent = nTotal > 1 ? 'séances réalisées' : 'séance réalisée';
@@ -2800,22 +2735,21 @@
     // Dernière séance
     const last = store.history[0];
     document.getElementById('lastWrap').innerHTML = last ? `
-      <button class="last-row" onclick="switchTab('progres')">
+      <div class="last-row">
         ${dateBadge(new Date(last.date), 'sm')}
         <div class="last-main">
           <div class="last-eyebrow">Dernière séance</div>
           <div class="last-title">${last.title}</div>
           <div class="last-sub">${last.setsDone}/${last.totalSets} séries · ${last.durationMin} min</div>
         </div>
-        ${ICONS.chev}
-      </button>` : '';
+      </div>` : '';
 
     // Semaine : jour, date, séance ; un point si une séance a été enregistrée.
     document.getElementById('weekStrip').innerHTML = DAY_SHORT.map((name, i) => {
       const d = new Date(weekStart);
       d.setDate(d.getDate() + i);
       const key = sessionForDay(i);
-      const done = store.history.some(h => new Date(h.date).toDateString() === d.toDateString());
+      const done = dayDone(d);
       const tag = key
         ? `${SESSION_META[key].tag}<em>${SESSION_META[key].short}</em>`
         : 'Shabbat<em>off</em>';
@@ -2835,12 +2769,14 @@
     if (todayKey) {
       const s = sessions[todayKey];
       const times = store.history.filter(h => h.key === todayKey).length;
-      const doneToday = store.history.some(h => h.key === todayKey && new Date(h.date).toDateString() === now.toDateString());
+      const imported = syncMatch(todayKey, now);
+      const doneToday = !!imported || store.history.some(h => h.key === todayKey && new Date(h.date).toDateString() === now.toDateString());
       hero.innerHTML = `
         <div class="hero">
           <div class="hero-eyebrow caps">${doneToday ? 'Terminée aujourd\'hui' : (s.day.split(' · ')[1] || '')}</div>
           <div class="hero-title">${s.title}</div>
           <div class="hero-sub">${DAY_NAMES[today]} ${now.getDate()} ${MONTH_SHORT[now.getMonth()].toLowerCase()} · ${countLabel(todayKey)}</div>
+          ${imported ? `<div class="hero-sub">${imported.source} : ${workoutLine(imported)}</div>` : ''}
           <div class="hero-chart">${stepChart(setCounts(todayKey))}</div>
           <div class="hero-chart-label">Séries par exercice</div>
           <div class="hero-bottom">
@@ -2908,18 +2844,7 @@
      ══════════════════════════════════════════════════════ */
   const STORE_KEY = 'planche_os_v1';
 
-  const SKILL_LADDERS = {
-    planche:    { name: 'Planche',           steps: ['Planche Lean', 'Tuck Planche', 'Adv. Tuck 1 jambe', 'Advanced Tuck', 'Straddle Planche', 'Half Lay', 'Full Planche'] },
-    hspu:       { name: 'Handstand Push-Up', steps: ['Pike Push-Up', 'Pike pieds surélevés', 'Wall HSPU négatif', 'Wall HSPU strict', 'Deficit HSPU', 'HSPU freestanding'] },
-    handstand:  { name: 'Handstand',         steps: ['Wall HS 30 s', 'Wall HS 60 s', 'Kick-up libre', 'HS libre 5 s', 'HS libre 15 s', 'HS libre 30 s'] },
-    frontlever: { name: 'Front Lever',       steps: ['Tuck FL', 'One-Leg FL', 'Half Lay FL', 'Straddle FL', 'Full Front Lever'] },
-    muscleup:   { name: 'Muscle-Up',         steps: ['False grip hold', 'Chest-to-bar', 'MU négatif lent', 'Ring MU strict', 'MU barre strict'] },
-  };
-
-  // Niveaux de départ alignés sur la Phase 1 du programme.
-  const DEFAULT_SKILLS = { planche: 1, hspu: 2, handstand: 1, frontlever: 0, muscleup: 1 };
-
-  let store = { history: [], skills: { ...DEFAULT_SKILLS } };
+  let store = { history: [] };
 
   function loadStore() {
     try {
@@ -2928,7 +2853,7 @@
         const parsed = JSON.parse(raw);
         store = {
           history: Array.isArray(parsed.history) ? parsed.history : [],
-          skills: { ...DEFAULT_SKILLS, ...(parsed.skills || {}) },
+          ...(parsed.skills ? { skills: parsed.skills } : {}),
         };
       }
     } catch (e) {
@@ -3294,8 +3219,7 @@
     clearActive();
 
     closePlayer();
-    renderProgress();
-    switchTab('progres');
+    switchTab('seances');
     toast(`Séance enregistrée — ${setsDone}/${totalSets} séries · ${durationMin} min`);
   }
 
@@ -3490,7 +3414,7 @@
   });
 
   /* ══════════════════════════════════════════════════════
-     PAGE PROGRÈS
+     SEMAINE
      ══════════════════════════════════════════════════════ */
   function startOfWeek(d) {
     const date = new Date(d);
@@ -3499,190 +3423,582 @@
     return date;
   }
 
-  function renderProgress() {
-    const now = new Date();
-    const weekStart = startOfWeek(now);
-    const H = store.history;
+  /* ══════════════════════════════════════════════════════
+     SYNCHRO — Apple Santé, Garmin, adidas Running
+     Une web app n'a aucun accès à HealthKit (pas d'API web), Garmin
+     réserve ses API aux entreprises validées et adidas Running n'en a
+     pas de publique. Le pont passe donc par Apple Santé, où Garmin
+     Connect et adidas Running écrivent déjà :
+     - un Raccourci iOS lit les entraînements dans Santé et les copie
+       dans le presse-papiers → bouton « Coller » ;
+     - ou un fichier : export.xml de Santé, JSON du Raccourci, GPX.
+     Le stockage de l'app installée est séparé de celui de Safari : un
+     lien ouvert par le Raccourci n'arriverait pas ici, d'où le
+     presse-papiers. Rien ne quitte le téléphone.
+     ══════════════════════════════════════════════════════ */
+  const SYNC_KEY = 'planche_os_sync_v1';
+  const DAY_MS = 86400000;
+  let sync = { workouts: [], rhr: {}, hrv: {}, lastSync: null };
+  let syncShown = 15;
 
-    const thisWeek = H.filter(h => new Date(h.date) >= weekStart);
-    document.getElementById('statWeek').textContent = thisWeek.length;
-    document.getElementById('statTotal').textContent = H.length;
-    document.getElementById('statStreak').textContent = computeStreak();
-    const nSets = H.reduce((n, h) => n + (h.setsDone || 0), 0);
-    document.getElementById('statSets').textContent = compact(nSets);
-    document.getElementById('statSetsLabel').textContent = nSets > 1 ? 'séries validées' : 'série validée';
-    document.getElementById('statTotalLabel').textContent = H.length > 1 ? 'séances au total' : 'séance au total';
-    document.getElementById('statAvg').textContent = H.length
-      ? Math.round(H.reduce((n, h) => n + (h.durationMin || 0), 0) / H.length)
-      : 0;
-
-    // Séances par semaine sur les 8 dernières semaines (la plus récente à droite).
-    const weeks = Array.from({ length: 8 }, (_, i) => {
-      const start = new Date(weekStart);
-      start.setDate(start.getDate() - (7 - i) * 7);
-      const end = new Date(start);
-      end.setDate(end.getDate() + 7);
-      return { start, count: H.filter(h => { const d = new Date(h.date); return d >= start && d < end; }).length };
-    });
-    const total8 = weeks.reduce((n, w) => n + w.count, 0);
-    document.getElementById('chartTotal').innerHTML = `${total8}<small>séances</small>`;
-    document.getElementById('chartAvg').textContent = `${(total8 / 8).toFixed(1).replace('.', ',')} / sem. en moyenne`;
-    document.getElementById('weeksChart').innerHTML = weekBars(weeks);
-
-    // 7 pastilles = les 7 jours de la semaine en cours
-    document.getElementById('weekDots').innerHTML = DAY_SHORT.map((name, i) => {
-      const d = new Date(weekStart);
-      d.setDate(d.getDate() + i);
-      const on = H.some(h => new Date(h.date).toDateString() === d.toDateString());
-      return `<div class="week-dot ${on ? 'on' : ''} ${i === now.getDay() ? 'today' : ''}"><i></i><span>${name.charAt(0)}</span></div>`;
-    }).join('');
-
-    renderRecords();
-    renderSkills();
-    renderHistory();
-  }
-
-  // Histogramme hebdo : axe discret, barre de la semaine en cours en blanc.
-  function weekBars(weeks) {
-    const w = 300, h = 130, top = 10, bottom = 22;
-    const max = Math.max(6, ...weeks.map(x => x.count));
-    const slot = w / weeks.length;
-    const bw = slot * 0.62;
-    let out = '';
-    [0, 0.5, 1].forEach(t => {
-      const y = top + (h - top - bottom) * (1 - t);
-      out += `<line x1="0" x2="${w}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,0.09)"/>`;
-    });
-    weeks.forEach((wk, i) => {
-      const x = i * slot + (slot - bw) / 2;
-      const full = h - top - bottom;
-      const bh = wk.count ? Math.max(4, full * wk.count / max) : 2;
-      const y = top + full - bh;
-      const last = i === weeks.length - 1;
-      out += `<rect x="${x + bw * 0.3}" y="${y - 5}" width="${bw}" height="${bh + 5}" fill="rgba(255,255,255,0.08)"/>`;
-      out += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="2" fill="${last ? '#ffffff' : '#4f61f0'}"/>`;
-      if (wk.count) out += `<text x="${x + bw / 2}" y="${y - 8}" text-anchor="middle" font-size="10" font-weight="600" fill="rgba(255,255,255,${last ? 0.95 : 0.6})">${wk.count}</text>`;
-      out += `<text x="${x + bw / 2}" y="${h - 6}" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.45)">${wk.start.getDate()}/${wk.start.getMonth() + 1}</text>`;
-    });
-    return `<svg viewBox="0 0 ${w} ${h}" aria-label="Séances par semaine">${out}</svg>`;
-  }
-
-  // Meilleure valeur enregistrée par exercice (reps, secondes tenues…).
-  // Retrouve la prescription d'un exercice par son nom (pour savoir si c'est une distance).
-  const EX_SETS = {};
-  Object.values(sessions).forEach(s => s.exercises.forEach(ex => { EX_SETS[ex.name] = ex.sets; }));
-
-  function renderRecords() {
-    const best = {};
-    store.history.forEach(h => (h.exercises || []).forEach(e => {
-      const lower = isDistance(EX_SETS[e.name]);
-      // Durées d'échauffement / mobilité / skill : pas des performances.
-      if (e.type === 'time' && !lower) return;
-      const vals = (e.values || []).map(x => parseFloat(String(x).replace(',', '.'))).filter(x => Number.isFinite(x) && x > 0);
-      if (!vals.length) return;
-      // Sur une distance, le meilleur temps est le plus court.
-      const v = lower ? Math.min(...vals) : Math.max(...vals);
-      const cur = best[e.name];
-      if (!cur || (lower ? v < cur.v : v > cur.v)) best[e.name] = { v, type: e.type, date: h.date };
-    }));
-    const list = Object.entries(best)
-      .sort((a, b) => new Date(b[1].date) - new Date(a[1].date))
-      .slice(0, 10);
-    document.getElementById('recordsSection').hidden = !list.length;
-    document.getElementById('recordsWrap').innerHTML = list.map(([name, r]) => {
-      const d = new Date(r.date);
-      return `<div class="record">
-          <div class="record-name">${name}</div>
-          <div class="record-val num">${String(r.v).replace('.', ',')}<small>${unitFor(r.type)}</small></div>
-          <div class="record-date">${d.getDate()} ${MONTH_SHORT[d.getMonth()].toLowerCase()} ${d.getFullYear()}</div>
-        </div>`;
-    }).join('');
-  }
-
-  // Nombre de semaines consécutives (en remontant) avec au moins 3 séances.
-  function computeStreak() {
-    if (!store.history.length) return 0;
-    let streak = 0;
-    let cursor = startOfWeek(new Date());
-    for (let i = 0; i < 260; i++) {
-      const end = new Date(cursor);
-      end.setDate(end.getDate() + 7);
-      const count = store.history.filter(h => {
-        const d = new Date(h.date);
-        return d >= cursor && d < end;
-      }).length;
-      if (count >= 3) streak++;
-      // La semaine en cours est encore en construction : elle ne casse pas la série.
-      else if (i > 0) break;
-      cursor.setDate(cursor.getDate() - 7);
-    }
-    return streak;
-  }
-
-  function renderSkills() {
-    document.getElementById('skillsWrap').innerHTML = Object.entries(SKILL_LADDERS).map(([key, ladder]) => {
-      const lvl = Math.min(store.skills[key] ?? 0, ladder.steps.length - 1);
-      // Marches montantes : chaque palier est un peu plus haut que le précédent.
-      const nodes = ladder.steps.map((_, i) =>
-        `<div class="skill-node ${i < lvl ? 'done' : i === lvl ? 'cur' : ''}" style="height:${6 + i * 3}px"></div>`).join('');
-      const next = lvl < ladder.steps.length - 1
-        ? `Prochain : ${ladder.steps[lvl + 1]}`
-        : 'Palier final atteint';
-      return `
-        <div class="skill-block">
-          <div class="skill-head">
-            <span class="skill-name">${ladder.name}</span>
-            <span class="skill-level">${lvl + 1} / ${ladder.steps.length}</span>
-          </div>
-          <div class="skill-track">${nodes}</div>
-          <div class="skill-current">${ladder.steps[lvl]}<span>${next}</span></div>
-          <div class="skill-btns">
-            <button class="skill-btn" onclick="bumpSkill('${key}', -1)" ${lvl === 0 ? 'disabled' : ''} aria-label="Redescendre d'un palier">${ICONS.minus}</button>
-            <button class="skill-btn" onclick="bumpSkill('${key}', 1)" ${lvl >= ladder.steps.length - 1 ? 'disabled' : ''}>${ICONS.check}Palier validé</button>
-          </div>
-        </div>`;
-    }).join('');
-  }
-
-  function bumpSkill(key, delta) {
-    const ladder = SKILL_LADDERS[key];
-    const cur = store.skills[key] ?? 0;
-    const next = Math.max(0, Math.min(ladder.steps.length - 1, cur + delta));
-    store.skills[key] = next;
-    saveStore();
-    renderSkills();
-    if (delta > 0) {
-      vibrate([40, 60, 40]);
-      toast(`${ladder.name} → ${ladder.steps[next]}`);
+  function loadSync() {
+    try {
+      const raw = localStorage.getItem(SYNC_KEY);
+      if (!raw) return;
+      const p = JSON.parse(raw);
+      sync = {
+        workouts: Array.isArray(p.workouts) ? p.workouts : [],
+        rhr: p.rhr || {},
+        hrv: p.hrv || {},
+        lastSync: p.lastSync || null,
+      };
+    } catch (e) {
+      console.warn('Synchro illisible, réinitialisation', e);
     }
   }
 
-  function renderHistory() {
-    const wrap = document.getElementById('historyWrap');
-    if (!store.history.length) {
-      wrap.innerHTML = `<div class="empty-note">Aucune séance enregistrée.<br>
-        Lance une séance depuis l'onglet <strong>Séances</strong> — elle apparaîtra ici avec tes séries et ton temps.</div>`;
+  function saveSync() {
+    try {
+      localStorage.setItem(SYNC_KEY, JSON.stringify(sync));
+    } catch (e) {
+      toast('Sauvegarde impossible (stockage plein)');
+    }
+  }
+
+  const WORKOUT_TYPES = {
+    run:      { label: 'Course',          re: /run|course|jog|footing/i },
+    walk:     { label: 'Marche',          re: /walk|marche|hik|randonn/i },
+    bike:     { label: 'Vélo',            re: /cycl|bike|vélo|velo/i },
+    strength: { label: 'Renforcement',    re: /strength|force|functional|fonctionnel|muscu|calisth|core|gym/i },
+    hiit:     { label: 'HIIT',            re: /hiit|interval|fractionn|cross.?train|jump.?rope|corde/i },
+    swim:     { label: 'Natation',        re: /swim|natation|nage/i },
+    yoga:     { label: 'Yoga / mobilité', re: /yoga|pilates|flexib|stretch|étir|etir|mobilit|cooldown/i },
+  };
+
+  function workoutType(name) {
+    const n = String(name || '').replace(/^HKWorkoutActivityType/, '');
+    for (const [k, t] of Object.entries(WORKOUT_TYPES)) if (t.re.test(n)) return k;
+    return 'other';
+  }
+
+  function sourceName(s) {
+    const n = String(s || '').trim();
+    if (/garmin/i.test(n)) return 'Garmin';
+    if (/adidas|runtastic/i.test(n)) return 'adidas Running';
+    if (/watch/i.test(n)) return 'Apple Watch';
+    if (/iphone/i.test(n)) return 'iPhone';
+    return n || 'Apple Santé';
+  }
+
+  // "5,02 km", "5 020 m", 5.02 → nombre (virgule française acceptée).
+  function toNumber(v) {
+    if (v == null || v === '') return null;
+    const n = parseFloat(String(v).replace(/\s/g, '').replace(',', '.'));
+    return Number.isFinite(n) ? n : null;
+  }
+
+  // Distance en mètres ; sans unité écrite, on suppose des km.
+  function toMeters(v, unitHint) {
+    const n = toNumber(v);
+    if (!(n > 0)) return null;
+    const unit = (String(v).trim().match(/[a-z]+$/i)?.[0] || unitHint || 'km').toLowerCase();
+    if (unit === 'm') return n;
+    if (unit === 'mi') return n * 1609.344;
+    if (unit === 'yd') return n * 0.9144;
+    return n * 1000;
+  }
+
+  // 1920, "32 min", "0:32:10", "32:10", "1 h 05 min", "PT32M10S" → secondes.
+  // Un nombre nu sous 400 est lu en minutes : aucun entraînement ne dure 6 min.
+  function toSeconds(v) {
+    if (v == null || v === '') return null;
+    const s = String(v).trim();
+    let m = s.match(/^(\d+):(\d{1,2})(?::(\d{1,2}))?$/);
+    if (m) return m[3] != null ? +m[1] * 3600 + +m[2] * 60 + +m[3] : +m[1] * 60 + +m[2];
+    m = s.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:([\d.]+)S)?$/i);
+    if (m) return (+m[1] || 0) * 3600 + (+m[2] || 0) * 60 + (+m[3] || 0);
+    if (/[a-z]/i.test(s)) {
+      let total = 0;
+      let hit = false;
+      s.replace(/(\d+(?:[.,]\d+)?)\s*(h|hr|heures?|hours?|min|mn|minutes?|s|sec|secondes?|seconds?)\b/gi, (_, n, u) => {
+        const x = parseFloat(n.replace(',', '.'));
+        u = u.toLowerCase();
+        total += u.startsWith('h') ? x * 3600 : /^m/.test(u) ? x * 60 : x;
+        hit = true;
+      });
+      return hit ? total : null;
+    }
+    const n = toNumber(s);
+    if (!(n > 0)) return null;
+    return n < 400 ? n * 60 : n;
+  }
+
+  const FR_MONTHS = ['jan', 'fév', 'mar', 'avr', 'mai', 'juin', 'juil', 'aoû', 'sep', 'oct', 'nov', 'déc'];
+
+  // ISO 8601, export Santé "2026-09-28 07:12:03 +0300", "28/09/2026 07:12",
+  // ou "28 sept. 2026 à 07:12".
+  function toDate(v) {
+    if (!v) return null;
+    let s = String(v).trim();
+    let m = s.match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}(?::\d{2})?)\s*([+-]\d{2}):?(\d{2})$/);
+    if (m) s = `${m[1]}T${m[2]}${m[3]}:${m[4]}`;
+    m = s.match(/^(\d{1,2})[/.](\d{1,2})[/.](\d{4})(?:\D+(\d{1,2})[:h](\d{2}))?/);
+    if (m) return new Date(+m[3], m[2] - 1, +m[1], +(m[4] || 12), +(m[5] || 0));
+    m = s.match(/^(\d{1,2})\s+([a-zéû]+)\.?\s+(\d{4})(?:\D+(\d{1,2})[:h](\d{2}))?/i);
+    if (m) {
+      const word = m[2].toLowerCase().replace('fev', 'fév').replace('aou', 'aoû').replace('dec', 'déc');
+      const mi = FR_MONTHS.findIndex(p => word.startsWith(p));
+      if (mi >= 0) return new Date(+m[3], mi, +m[1], +(m[4] || 12), +(m[5] || 0));
+    }
+    const d = new Date(s);
+    return isNaN(d) ? null : d;
+  }
+
+  function dayKey(d) {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  function makeWorkout({ name, start, dur, dist, kcal, hr, source }) {
+    if (!(start instanceof Date) || isNaN(start)) return null;
+    const type = workoutType(name);
+    return {
+      id: `${start.getTime()}-${type}`,
+      type,
+      name: String(name || '').replace(/^HKWorkoutActivityType/, ''),
+      start: start.toISOString(),
+      dur: dur > 0 ? Math.round(dur) : null,
+      dist: dist > 0 ? Math.round(dist) : null,
+      kcal: kcal > 0 ? Math.round(kcal) : null,
+      hr: hr > 0 ? Math.round(hr) : null,
+      source: sourceName(source),
+    };
+  }
+
+  // Clés tolérantes : français ou anglais, accents et casse ignorés.
+  function pick(o, keys) {
+    for (const k of Object.keys(o)) {
+      const norm = k.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z]/g, '');
+      if (keys.includes(norm)) return o[k];
+    }
+    return undefined;
+  }
+
+  // Un objet venu du Raccourci : un entraînement, ou une mesure de récup.
+  function fromObject(o) {
+    if (!o || typeof o !== 'object') return null;
+    const start = toDate(pick(o, ['start', 'startdate', 'date', 'debut', 'datededebut', 'begin']));
+    if (!start) return null;
+    const name = pick(o, ['type', 'activity', 'activitytype', 'workouttype', 'sport', 'name', 'nom', 'typedentrainement', 'entrainement', 'metric']);
+    const value = toNumber(pick(o, ['value', 'valeur']));
+    if (/resting|repos|rhr/i.test(name) && value) return { metric: 'rhr', date: start, value };
+    if (/variab|hrv|vfc/i.test(name) && value) return { metric: 'hrv', date: start, value };
+    let dur = toSeconds(pick(o, ['duration', 'duree', 'durationseconds', 'seconds', 'time', 'temps']));
+    const end = toDate(pick(o, ['end', 'enddate', 'fin', 'datedefin']));
+    if (!dur && end) dur = (end - start) / 1000;
+    return makeWorkout({
+      name,
+      start,
+      dur,
+      dist: toMeters(pick(o, ['distance', 'dist', 'km', 'distancekm'])),
+      kcal: toNumber(pick(o, ['energy', 'calories', 'kcal', 'energie', 'activeenergy', 'energieactive'])),
+      hr: toNumber(pick(o, ['hr', 'heartrate', 'avghr', 'fc', 'frequencecardiaque', 'fcmoyenne', 'averageheartrate'])),
+      source: pick(o, ['source', 'sourcename', 'app', 'appareil', 'device']),
+    });
+  }
+
+  // Tous les objets JSON de premier niveau d'un texte, quel que soit le
+  // séparateur : tableau, un objet par ligne, ou objets collés.
+  function extractObjects(text) {
+    const out = [];
+    let depth = 0, start = -1, inStr = false, esc = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inStr) {
+        if (esc) esc = false;
+        else if (c === '\\') esc = true;
+        else if (c === '"') inStr = false;
+        continue;
+      }
+      if (c === '"') inStr = true;
+      else if (c === '{') { if (depth++ === 0) start = i; }
+      else if (c === '}' && depth > 0 && --depth === 0) {
+        try { out.push(JSON.parse(text.slice(start, i + 1))); } catch (e) { /* objet illisible ignoré */ }
+      }
+    }
+    return out;
+  }
+
+  function parseText(text, filename) {
+    const res = { workouts: [], metrics: [] };
+    const t = (text || '').trim();
+    if (!t) return res;
+    if (t.startsWith('<')) {
+      if (/<gpx[\s>]/i.test(t)) {
+        const w = parseGpx(t, filename);
+        if (w) res.workouts.push(w);
+      } else {
+        const found = new Map(), metrics = new Map();
+        scanHealthXml(t, found, metrics, 0);
+        res.workouts.push(...found.values());
+        res.metrics.push(...metrics.values());
+      }
+      return res;
+    }
+    let objs = extractObjects(t);
+    // { "workouts": [...] } : on descend d'un niveau.
+    objs = objs.flatMap(o => Array.isArray(o.workouts) ? o.workouts : Array.isArray(o.data) ? o.data : [o]);
+    if (!objs.length) {
+      // Repli : une activité par ligne, "type ; début ; durée ; distance ; énergie ; FC ; source".
+      t.split(/\r?\n/).forEach(line => {
+        const f = line.split(/\s*[;|\t]\s*/);
+        if (f.length < 3) return;
+        objs.push({ type: f[0], start: f[1], duration: f[2], distance: f[3], energy: f[4], hr: f[5], source: f[6] });
+      });
+    }
+    objs.forEach(o => {
+      const r = fromObject(o);
+      if (!r) return;
+      if (r.metric) res.metrics.push(r);
+      else res.workouts.push(r);
+    });
+    return res;
+  }
+
+  function xmlAttrs(tag) {
+    const a = {};
+    tag.replace(/([\w:]+)="([^"]*)"/g, (_, k, v) => {
+      a[k] = v.replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+    });
+    return a;
+  }
+
+  function healthWorkout(a, body, since) {
+    const start = toDate(a.startDate);
+    if (!start || start.getTime() < since) return null;
+    let dur = parseFloat(a.duration);
+    if (a.durationUnit === 'min') dur *= 60;
+    else if (a.durationUnit === 'hr' || a.durationUnit === 'h') dur *= 3600;
+    if (!(dur > 0)) {
+      const end = toDate(a.endDate);
+      dur = end ? (end - start) / 1000 : null;
+    }
+    let dist = a.totalDistance ? toMeters(a.totalDistance, a.totalDistanceUnit) : null;
+    let kcal = a.totalEnergyBurned ? parseFloat(a.totalEnergyBurned) / (a.totalEnergyBurnedUnit === 'kJ' ? 4.184 : 1) : null;
+    let hr = null;
+    // Exports récents : distance, énergie et FC dans des <WorkoutStatistics>.
+    (body.match(/<WorkoutStatistics\s[^>]*>/g) || []).forEach(tag => {
+      const st = xmlAttrs(tag);
+      if (/Distance/.test(st.type) && !dist) dist = toMeters(st.sum, st.unit);
+      else if (/ActiveEnergyBurned/.test(st.type) && !kcal) kcal = parseFloat(st.sum) / (st.unit === 'kJ' ? 4.184 : 1);
+      else if (/HeartRate$/.test(st.type)) hr = parseFloat(st.average);
+    });
+    return makeWorkout({ name: a.workoutActivityType, start, dur, dist, kcal, hr, source: a.sourceName });
+  }
+
+  // Parcourt le tampon : garde les <Workout> complets et les mesures de
+  // récup, renvoie la fin non traitée (élément coupé par le découpage).
+  function scanHealthXml(buf, found, metrics, since) {
+    const rec = /<Record type="HKQuantityTypeIdentifier(RestingHeartRate|HeartRateVariabilitySDNN)"[^>]*>/g;
+    let m;
+    while ((m = rec.exec(buf))) {
+      const a = xmlAttrs(m[0]);
+      const d = toDate(a.startDate);
+      const value = parseFloat(a.value);
+      if (d && d.getTime() >= since && value > 0) {
+        metrics.set(m[1] + a.startDate, { metric: m[1] === 'RestingHeartRate' ? 'rhr' : 'hrv', date: d, value });
+      }
+    }
+    let cut = -1;
+    const wre = /<Workout\s[^>]*>/g;
+    while ((m = wre.exec(buf))) {
+      const open = m[0];
+      let body = '';
+      if (!open.endsWith('/>')) {
+        const close = buf.indexOf('</Workout>', m.index);
+        if (close < 0) { cut = m.index; break; }
+        body = buf.slice(m.index + open.length, close);
+        wre.lastIndex = close + 10;
+      }
+      const w = healthWorkout(xmlAttrs(open), body, since);
+      if (w) found.set(w.id, w);
+    }
+    if (cut < 0) {
+      const lt = buf.lastIndexOf('<');
+      cut = lt < 0 ? buf.length : lt;
+    }
+    return buf.slice(cut);
+  }
+
+  // export.xml fait souvent plusieurs centaines de Mo : lecture par
+  // morceaux de 4 Mo pour ne jamais le charger en entier en mémoire.
+  async function importHealthExport(file) {
+    const CHUNK = 4 << 20;
+    const decoder = new TextDecoder();
+    const since = Date.now() - 400 * DAY_MS;
+    const found = new Map(), metrics = new Map();
+    let buf = '';
+    for (let pos = 0; pos < file.size; pos += CHUNK) {
+      const bytes = await file.slice(pos, pos + CHUNK).arrayBuffer();
+      buf += decoder.decode(bytes, { stream: pos + CHUNK < file.size });
+      buf = scanHealthXml(buf, found, metrics, since);
+      setSyncStatus(`Lecture de l'export Santé… ${Math.min(100, Math.round((pos + CHUNK) / file.size * 100))} %`);
+    }
+    return { workouts: [...found.values()], metrics: [...metrics.values()] };
+  }
+
+  function haversine(a, b) {
+    const R = 6371000, rad = Math.PI / 180;
+    const dLat = (b[0] - a[0]) * rad, dLon = (b[1] - a[1]) * rad;
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * rad) * Math.cos(b[0] * rad) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+
+  // GPX exporté de Garmin Connect ou d'adidas Running.
+  function parseGpx(text, filename) {
+    const doc = new DOMParser().parseFromString(text, 'application/xml');
+    if (doc.getElementsByTagName('parsererror').length) return null;
+    const pts = [...doc.getElementsByTagName('trkpt')];
+    if (pts.length < 2) return null;
+    let dist = 0, hrSum = 0, hrN = 0, prev = null;
+    const times = [];
+    pts.forEach(p => {
+      const cur = [+p.getAttribute('lat'), +p.getAttribute('lon')];
+      if (prev) dist += haversine(prev, cur);
+      prev = cur;
+      const t = p.getElementsByTagName('time')[0];
+      if (t) times.push(t.textContent);
+      const hr = [...p.getElementsByTagName('*')].find(e => e.localName === 'hr');
+      if (hr && +hr.textContent > 0) { hrSum += +hr.textContent; hrN++; }
+    });
+    const start = toDate(times[0]);
+    const end = toDate(times[times.length - 1]);
+    const label = doc.getElementsByTagName('type')[0]?.textContent
+      || doc.getElementsByTagName('name')[0]?.textContent || filename || '';
+    return makeWorkout({
+      // Sans type reconnu, un GPX est presque toujours une course.
+      name: workoutType(label) === 'other' ? 'running' : label,
+      start,
+      dur: start && end ? (end - start) / 1000 : null,
+      dist,
+      hr: hrN ? hrSum / hrN : null,
+      source: doc.documentElement.getAttribute('creator') || filename,
+    });
+  }
+
+  // Même type et départ à moins de 3 min d'écart = même activité (enregistrée
+  // par deux apps, ou réimportée) : on complète au lieu de dupliquer.
+  function mergeWorkouts(list) {
+    let added = 0;
+    list.forEach(w => {
+      const t = new Date(w.start).getTime();
+      const twin = sync.workouts.find(x => x.type === w.type && Math.abs(new Date(x.start).getTime() - t) < 3 * 60000);
+      if (twin) {
+        ['dur', 'dist', 'kcal', 'hr'].forEach(k => { if (twin[k] == null && w[k] != null) twin[k] = w[k]; });
+      } else {
+        sync.workouts.push(w);
+        added++;
+      }
+    });
+    sync.workouts.sort((a, b) => new Date(b.start) - new Date(a.start));
+    if (sync.workouts.length > 600) sync.workouts.length = 600;
+    return added;
+  }
+
+  // Une valeur par jour (moyenne des mesures du jour), 120 jours gardés.
+  function mergeMetrics(list) {
+    const days = {};
+    list.forEach(({ metric, date, value }) => {
+      const k = metric + '|' + dayKey(date);
+      (days[k] = days[k] || []).push(value);
+    });
+    Object.entries(days).forEach(([k, vals]) => {
+      const [metric, day] = k.split('|');
+      sync[metric][day] = Math.round(vals.reduce((n, v) => n + v, 0) / vals.length);
+    });
+    const oldest = dayKey(new Date(Date.now() - 120 * DAY_MS));
+    ['rhr', 'hrv'].forEach(m => Object.keys(sync[m]).forEach(d => { if (d < oldest) delete sync[m][d]; }));
+  }
+
+  function setSyncStatus(msg) {
+    document.getElementById('syncStatus').textContent = msg;
+  }
+
+  async function pasteSync() {
+    let text = '';
+    try {
+      text = await navigator.clipboard.readText();
+    } catch (e) {
+      setSyncStatus('Presse-papiers inaccessible — utilise « Importer un fichier ».');
       return;
     }
-    wrap.innerHTML = store.history.slice(0, 30).map(h => {
-      const d = new Date(h.date);
-      return `
-        <div class="history-item">
-          ${dateBadge(d, 'sm')}
-          <div class="history-main">
-            <div class="history-title">${h.title}</div>
-            <div class="history-sub">${h.setsDone}/${h.totalSets} séries · ${h.durationMin} min</div>
-          </div>
-          <button class="history-del" onclick="deleteEntry(${h.id})" aria-label="Supprimer cette séance">${ICONS.trash}</button>
-        </div>`;
-    }).join('');
+    applyImport(parseText(text));
   }
 
-  function deleteEntry(id) {
-    if (!confirm('Supprimer cette séance de l\'historique ?')) return;
-    store.history = store.history.filter(h => h.id !== id);
-    saveStore();
-    renderProgress();
+  async function importFiles(files) {
+    const all = { workouts: [], metrics: [] };
+    for (const f of files) {
+      try {
+        const r = /\.xml$/i.test(f.name) || f.size > 20 << 20
+          ? await importHealthExport(f)
+          : parseText(await f.text(), f.name);
+        all.workouts.push(...r.workouts);
+        all.metrics.push(...r.metrics);
+      } catch (e) {
+        console.warn('Import impossible', f.name, e);
+      }
+    }
+    applyImport(all);
+  }
+
+  function applyImport(r) {
+    if (!r.workouts.length && !r.metrics.length) {
+      setSyncStatus('Rien de reconnu dans ces données — voir « Configurer » plus bas.');
+      return;
+    }
+    const added = mergeWorkouts(r.workouts);
+    mergeMetrics(r.metrics);
+    sync.lastSync = new Date().toISOString();
+    saveSync();
+    renderSync();
+    renderDashboard();
+    const known = r.workouts.length - added;
+    const parts = [`${added} nouvelle${added > 1 ? 's' : ''} activité${added > 1 ? 's' : ''}`];
+    if (known) parts.push(`${known} déjà connue${known > 1 ? 's' : ''}`);
+    if (r.metrics.length) parts.push(`${r.metrics.length} mesure${r.metrics.length > 1 ? 's' : ''} de récup`);
+    setSyncStatus(parts.join(' · '));
+    vibrate(30);
+  }
+
+  function clearSync() {
+    if (!confirm('Effacer toutes les données importées ? Tes séances enregistrées dans l\'app ne sont pas touchées.')) return;
+    sync = { workouts: [], rhr: {}, hrv: {}, lastSync: null };
+    saveSync();
+    renderSync();
+    renderDashboard();
+    setSyncStatus('Données importées effacées');
+  }
+
+  /* ── Lien avec le programme ── */
+  const RUN_KEYS = ['cardio', 'cardio2'];
+
+  function syncOn(d) {
+    const k = d.toDateString();
+    return sync.workouts.filter(w => new Date(w.start).toDateString() === k);
+  }
+
+  // Activité importée qui correspond à la séance prévue ce jour-là : une
+  // course les jours de course, un entraînement de force les autres jours.
+  function syncMatch(key, d) {
+    const want = RUN_KEYS.includes(key) ? ['run'] : ['strength', 'hiit', 'other'];
+    return syncOn(d).find(w => want.includes(w.type)) || null;
+  }
+
+  // Jour validé : séance faite dans l'app, ou activité importée correspondante.
+  function dayDone(d) {
+    if (store.history.some(h => new Date(h.date).toDateString() === d.toDateString())) return true;
+    const key = sessionForDay(d.getDay());
+    return !!(key && syncMatch(key, d));
+  }
+
+  function fmtDur(sec) {
+    const s = Math.round(sec);
+    const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), r = s % 60;
+    return h ? `${h} h ${String(m).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`;
+  }
+
+  function workoutLine(w) {
+    const parts = [];
+    if (w.dist) parts.push(`${(w.dist / 1000).toFixed(2).replace('.', ',')} km`);
+    if (w.dur) parts.push(fmtDur(w.dur));
+    if (w.type === 'run' && w.dist && w.dur) {
+      const p = Math.round(w.dur / (w.dist / 1000));
+      parts.push(`${Math.floor(p / 60)}'${String(p % 60).padStart(2, '0')}"/km`);
+    }
+    if (w.hr) parts.push(`${w.hr} bpm`);
+    if (!w.dist && w.kcal) parts.push(`${w.kcal} kcal`);
+    return parts.join(' · ') || 'Sans détail';
+  }
+
+  function avgMetric(map, fromDays, toDays = 0) {
+    const lo = dayKey(new Date(Date.now() - fromDays * DAY_MS));
+    const hi = dayKey(new Date(Date.now() - toDays * DAY_MS));
+    const vals = Object.entries(map).filter(([d]) => d > lo && d <= hi).map(([, v]) => v);
+    return vals.length ? Math.round(vals.reduce((n, v) => n + v, 0) / vals.length) : null;
+  }
+
+  function ago(iso) {
+    const min = Math.round((Date.now() - new Date(iso)) / 60000);
+    if (min < 1) return 'à l\'instant';
+    if (min < 60) return `il y a ${min} min`;
+    if (min < 1440) return `il y a ${Math.round(min / 60)} h`;
+    const d = new Date(iso);
+    return `le ${d.getDate()} ${MONTH_SHORT[d.getMonth()].toLowerCase()}`;
+  }
+
+  function renderSync() {
+    const now = new Date();
+    const weekAgo = new Date(now - 7 * DAY_MS);
+    const recent = sync.workouts.filter(w => new Date(w.start) >= weekAgo);
+    const km = recent.filter(w => w.type === 'run').reduce((n, w) => n + (w.dist || 0), 0) / 1000;
+
+    // Courses prévues cette semaine (jusqu'à aujourd'hui) et faites.
+    const weekStart = startOfWeek(now);
+    let runPlanned = 0, runDone = 0;
+    RUN_KEYS.forEach(key => {
+      const d = new Date(weekStart);
+      d.setDate(d.getDate() + SESSION_META[key].dow);
+      if (d > now) return;
+      runPlanned++;
+      if (syncMatch(key, d) || store.history.some(h => h.key === key && new Date(h.date).toDateString() === d.toDateString())) runDone++;
+    });
+
+    const rhr7 = avgMetric(sync.rhr, 7);
+    const rhr30 = avgMetric(sync.rhr, 37, 7);
+    const hrv7 = avgMetric(sync.hrv, 7);
+    let note = '';
+    if (rhr7 && rhr30) {
+      const diff = rhr7 - rhr30;
+      note = diff >= 5
+        ? `FC de repos ${diff} bpm au-dessus de ta moyenne des semaines précédentes : signe possible de fatigue, garde de la marge sur les séances lourdes.`
+        : `FC de repos ${diff > 0 ? '+' + diff : diff} bpm par rapport à ta moyenne des semaines précédentes.`;
+    }
+    if (hrv7) note += `${note ? ' ' : ''}VFC moyenne sur 7 jours : ${hrv7} ms.`;
+
+    document.getElementById('syncHero').innerHTML = `
+      <div class="hero">
+        <div class="hero-eyebrow caps">7 derniers jours</div>
+        <div class="hero-title">${km ? `${km.toFixed(1).replace('.', ',')} km courus` : sync.workouts.length ? 'Aucune course' : 'Pas encore de données'}</div>
+        <div class="hero-sub">${sync.lastSync ? `Dernière synchro ${ago(sync.lastSync)}` : 'Jamais synchronisé'}</div>
+        <div class="sync-stats">
+          <div class="sync-stat"><b class="num">${recent.length}</b><span>activité${recent.length > 1 ? 's' : ''}</span></div>
+          <div class="sync-stat"><b class="num">${runDone}<small>/${runPlanned}</small></b><span>courses prévues faites</span></div>
+          <div class="sync-stat"><b class="num">${rhr7 || '—'}${rhr7 ? '<small>bpm</small>' : ''}</b><span>FC de repos</span></div>
+        </div>
+        ${note ? `<p class="hero-text">${note}</p>` : ''}
+      </div>`;
+
+    const list = document.getElementById('syncList');
+    if (!sync.workouts.length) {
+      list.innerHTML = `<div class="empty-note">Aucune activité importée pour l'instant.<br>
+        Suis <strong>Configurer</strong> ci-dessous — 5 minutes, une seule fois.</div>`;
+    } else {
+      list.innerHTML = sync.workouts.slice(0, syncShown).map(w => {
+        const d = new Date(w.start);
+        const key = sessionForDay(d.getDay());
+        const planned = key && syncMatch(key, d) === w ? ` · ${sessions[key].title}` : '';
+        return `
+          <div class="sync-item">
+            ${dateBadge(d, 'sm')}
+            <div class="sync-main">
+              <div class="sync-title">${(WORKOUT_TYPES[w.type] || {}).label || w.name || 'Activité'}${planned}</div>
+              <div class="sync-sub">${workoutLine(w)}</div>
+              <div class="sync-src">${w.source} · ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}</div>
+            </div>
+          </div>`;
+      }).join('') + (sync.workouts.length > syncShown
+        ? `<button class="sync-more" onclick="syncShown += 30; renderSync()">Afficher plus</button>` : '');
+    }
+    document.getElementById('syncClear').hidden = !sync.workouts.length && !Object.keys(sync.rhr).length;
   }
 
   /* ══════════════════════════════════════════════════════
@@ -3719,7 +4035,8 @@
      INIT
      ══════════════════════════════════════════════════════ */
   loadStore();
-  renderProgress();
+  loadSync();
+  renderSync();
   renderDashboard();
 
   const tabParam = new URLSearchParams(location.search).get('tab');

@@ -33,10 +33,10 @@
       "url": "./index.html?tab=seances"
     },
     {
-      "name": "Mes progrès",
-      "short_name": "Progrès",
-      "description": "Historique, streak et niveaux de skills",
-      "url": "./index.html?tab=progres"
+      "name": "Synchro",
+      "short_name": "Synchro",
+      "description": "Importer les activités d'Apple Santé, Garmin et adidas Running",
+      "url": "./index.html?tab=sync"
     }
   ]
 }

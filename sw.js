@@ -3,7 +3,7 @@
    sous-sol, mode avion). Les données d'entraînement vivent dans localStorage,
    donc une fois le shell en cache l'app est pleinement utilisable hors ligne. */
 
-const VERSION = 'planche-os-v3';
+const VERSION = 'planche-os-v4';
 const SHELL = [
   './',
   './index.html',
@@ -37,16 +37,25 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
 
   // Navigation : réseau d'abord pour récupérer la dernière version du programme,
-  // cache en secours quand il n'y a pas de réseau.
+  // cache en secours. Un réseau faible (sous-sol, salle) ne doit pas bloquer
+  // l'ouverture : au-delà de 3 s on sert la copie en cache, et la réponse
+  // réseau, si elle finit par arriver, met quand même le cache à jour.
   if (req.mode === 'navigate') {
+    const network = fetch(req).then(res => {
+      if (res && res.ok) {
+        const copy = res.clone();
+        caches.open(VERSION).then(c => c.put('./index.html', copy));
+      }
+      return res;
+    });
+    const cached = () => caches.match('./index.html').then(r => r || caches.match('./'));
+    const timeout = new Promise(resolve => setTimeout(resolve, 3000)).then(cached);
+
+    event.waitUntil(network.catch(() => null));
     event.respondWith(
-      fetch(req)
-        .then(res => {
-          const copy = res.clone();
-          caches.open(VERSION).then(c => c.put('./index.html', copy));
-          return res;
-        })
-        .catch(() => caches.match('./index.html').then(r => r || caches.match('./')))
+      Promise.race([network, timeout])
+        .then(res => res || network)
+        .catch(() => cached().then(r => r || network))
     );
     return;
   }

@@ -237,12 +237,42 @@ d'entraînement sont stockées localement sur le téléphone.
   automatiquement dans la série
 - L'écran reste allumé pendant toute la séance
 
-### Suivre la progression
-Onglet **Progrès** :
-- Séances de la semaine, total, et série de semaines consécutives (≥ 3 séances)
-- Échelles de skill (planche, HSPU, handstand, front lever, muscle-up) —
-  valide un palier quand tu le tiens avec forme parfaite
-- Historique des séances avec séries validées et durée
+### Synchroniser Apple Santé, Garmin et adidas Running
+Onglet **Synchro** : importe les activités enregistrées ailleurs, affiche les
+7 derniers jours (km courus, activités, FC de repos) et valide automatiquement
+les séances du programme. Une course importée un lundi ou un jeudi coche la
+course prévue ; un entraînement de force coche la séance du jour.
+
+**Ce qui est possible, et ce qui ne l'est pas.** Une PWA ne peut pas lire
+Apple Santé : HealthKit est réservé aux apps natives, sans aucune API web.
+Garmin réserve ses API (Health, Activity) aux entreprises validées dans son
+[programme développeur](https://developer.garmin.com/gc-developer-program/),
+et adidas Running n'a pas d'API publique. Aucune synchro automatique en
+arrière-plan n'est donc possible depuis une web app. Par ailleurs, l'app
+installée a un [stockage séparé de Safari](https://bugs.webkit.org/show_bug.cgi?id=181849) :
+un lien ouvert par un Raccourci arriverait dans Safari, pas dans l'app.
+
+**Le pont retenu : Apple Santé comme point central.**
+1. Garmin Connect ([partage vers Santé](https://support.garmin.com/en-US/?faq=lK5FPB9iPF5PXFkIpFlFPA))
+   et adidas Running ([Comptes partenaires → Apple Santé](https://help.runtastic.com/hc/en-us/articles/201577972-Synchronize-adidas-Running-Data-to-Apple-Health))
+   écrivent leurs activités dans Santé.
+2. Un Raccourci iOS (*Rechercher des échantillons de santé* → *Répéter* →
+   *Dictionnaire* → *Copier dans le presse-papiers*) relit les entraînements.
+3. Dans l'app, **Coller depuis Raccourcis** lit le presse-papiers
+   ([API Clipboard de WebKit](https://webkit.org/blog/10855/async-clipboard-api/)).
+   iOS demande une confirmation « Coller » : c'est normal.
+
+Les étapes détaillées sont dans l'onglet (section *Configurer*).
+
+**Imports ponctuels** (bouton *Importer un fichier*) :
+- `export.xml` de Santé (*Exporter toutes les données de santé*) : les
+  entraînements des 400 derniers jours, la FC de repos et la VFC. Le fichier
+  est lu par morceaux de 4 Mo, il peut donc peser plusieurs centaines de Mo.
+- `.gpx` exportés de Garmin Connect ou d'adidas Running : distance, durée et
+  FC moyenne sont recalculées depuis la trace.
+
+Une activité enregistrée deux fois (même type, départ à moins de 3 min
+d'écart) n'est gardée qu'une fois. Tout reste stocké sur le téléphone.
 
 ### Design
 

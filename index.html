@@ -947,6 +947,37 @@
       padding-top: 2px;
     }
 
+    /* Blocs dépliants (<details>) */
+    .fold > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .fold > summary::-webkit-details-marker { display: none; }
+    .fold-chev {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--label-3);
+      transition: transform 0.2s ease;
+    }
+    .fold[open] > summary .fold-chev { transform: rotate(180deg); }
+    .modal-tip.fold > summary { margin-bottom: 0; }
+    .modal-tip.fold[open] > summary { margin-bottom: 8px; }
+    .modal-tip.fold > summary .fold-chev { color: inherit; opacity: 0.7; }
+    .drill-fold { margin-top: 8px; }
+    .drill-fold > summary {
+      justify-content: flex-start;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .drill-fold > summary .fold-chev { color: var(--accent); width: 14px; height: 14px; }
+
     .drill-list {
       list-style: none;
       margin: 8px 0 0;
@@ -1123,13 +1154,14 @@
       box-shadow: var(--shadow);
       border: 1.5px solid transparent;
       color: var(--label);
-      font: inherit;
-      cursor: pointer;
       transition: border-color 0.2s ease, opacity 0.2s ease;
     }
     .drill-row.done { border-color: var(--accent-line); }
     .drill-row.done .drill-txt { opacity: 0.55; }
     .drill-box {
+      padding: 0;
+      background: none;
+      cursor: pointer;
       width: 24px;
       height: 24px;
       border-radius: 7px;
@@ -1144,6 +1176,8 @@
     .drill-box svg { width: 15px; height: 15px; }
     .drill-row.done .drill-box { background: var(--accent); border-color: var(--accent); color: #fff; }
     .drill-txt { flex: 1; min-width: 0; }
+    .drill-txt > summary { align-items: flex-start; }
+    .drill-txt > summary .fold-chev { margin-top: 3px; }
     .drill-txt b { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
     .drill-txt em {
       font-style: normal;
@@ -3196,10 +3230,13 @@
 
   const MOBILITY_TIP = 'Le dos banane vient rarement du dos : quand l\'épaule ne monte pas à 180° ou que le haut du dos reste raide, les lombaires se creusent pour compenser, et des fléchisseurs de hanche courts basculent le bassin vers l\'avant. L\'échauffement attaque les trois causes (haut du dos, flexion d\'épaule, hanches), puis remet le gainage hollow juste avant le handstand. Pour la planche : poignets en extension, protraction (serratus) et lean progressif. Avant la séance, tout reste actif ou court (≤ 30 s) pour ne pas perdre de force ; les étirements longs sont au retour au calme. Teste-toi chaque semaine aux wall slides : si tes bras touchent le mur sans que le bas du dos décolle, ta ligne de handstand est libérée.';
 
+  const FOLD_CHEV = '<svg class="fold-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+
   function drillListHtml(list) {
     if (!list || !list.length) return '';
-    return '<ol class="drill-list">' + list.map(d =>
-      `<li><span>${d.n}</span><b>${d.d}</b></li>`).join('') + '</ol>';
+    return `<details class="fold drill-fold"><summary>Voir les ${list.length} exercices${FOLD_CHEV}</summary>`
+      + '<ol class="drill-list">' + list.map(d =>
+      `<li><span>${d.n}</span><b>${d.d}</b></li>`).join('') + '</ol></details>';
   }
 
   // ── MODAL OPEN/CLOSE ──
@@ -3256,16 +3293,16 @@
     html += '</div>';
 
     if (s.exercises.some(ex => ex.drills && ex.drills.some(d => d === DRILL.wallSlide))) {
-      html += `<div class="modal-tip">
-        <div class="modal-tip-label caps">Mobilité : pourquoi ces drills</div>
+      html += `<details class="modal-tip fold">
+        <summary class="modal-tip-label caps">Mobilité : pourquoi ces drills${FOLD_CHEV}</summary>
         <p>${MOBILITY_TIP}</p>
-      </div>`;
+      </details>`;
     }
 
-    html += `<div class="modal-tip">
-      <div class="modal-tip-label caps">Tip d'optimisation</div>
+    html += `<details class="modal-tip fold">
+      <summary class="modal-tip-label caps">Tip d'optimisation${FOLD_CHEV}</summary>
       <p>${s.tip}</p>
-    </div>`;
+    </details>`;
 
     html += `<button class="btn-start" style="margin-top:20px" onclick="startWorkout('${id}')">${ICONS.play}Démarrer la séance</button>`;
 
@@ -4737,12 +4774,12 @@
 
     const drillsDone = ex.drills ? ex.drills.filter(d => d.done).length : 0;
     const drillBlock = ex.drills
-      ? `<div class="player-sets-label caps">Circuit — ${drillsDone} / ${ex.drills.length}</div>
+      ? `<div class="player-sets-label caps" id="drillCount">Circuit — ${drillsDone} / ${ex.drills.length} · touche un nom pour la consigne</div>
          <div class="drill-check">${ex.drills.map((d, i) => `
-          <button class="drill-row ${d.done ? 'done' : ''}" id="drillRow${i}" onclick="toggleDrill(${i})" aria-pressed="${d.done}">
-            <span class="drill-box">${ICONS.check}</span>
-            <span class="drill-txt"><b>${d.n}</b><em>${d.d}</em><small>${d.c}</small></span>
-          </button>`).join('')}</div>`
+          <div class="drill-row ${d.done ? 'done' : ''}" id="drillRow${i}">
+            <button class="drill-box" onclick="toggleDrill(${i})" aria-pressed="${d.done}" aria-label="Valider ${d.n}">${ICONS.check}</button>
+            <details class="drill-txt fold"><summary><span><b>${d.n}</b><em>${d.d}</em></span>${FOLD_CHEV}</summary><small>${d.c}</small></details>
+          </div>`).join('')}</div>`
       : '';
 
     const nextEx = session.exercises[session.idx + 1];
@@ -4839,12 +4876,10 @@
       const row = document.getElementById('drillRow' + i);
       if (!row) return;
       row.classList.toggle('done', d.done);
-      row.setAttribute('aria-pressed', d.done);
+      row.querySelector('.drill-box').setAttribute('aria-pressed', d.done);
     });
-    const label = document.querySelector('#playerBody .drill-check');
-    if (label && label.previousElementSibling) {
-      label.previousElementSibling.textContent = `Circuit — ${ex.drills.filter(d => d.done).length} / ${ex.drills.length}`;
-    }
+    const label = document.getElementById('drillCount');
+    if (label) label.textContent = `Circuit — ${ex.drills.filter(d => d.done).length} / ${ex.drills.length} · touche un nom pour la consigne`;
   }
 
   function nextExercise() {

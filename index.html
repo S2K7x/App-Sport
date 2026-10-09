@@ -947,6 +947,35 @@
       padding-top: 2px;
     }
 
+    .drill-list {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0;
+      counter-reset: drill;
+    }
+    .drill-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--label-2);
+      line-height: 1.4;
+      padding: 3px 0;
+      counter-increment: drill;
+    }
+    .drill-list li span::before {
+      content: counter(drill) ". ";
+      color: var(--label-3);
+      font-variant-numeric: tabular-nums;
+    }
+    .drill-list li b {
+      font-weight: 600;
+      color: var(--label);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     .modal-tip {
       margin-top: 20px;
       padding: 18px;
@@ -1079,6 +1108,58 @@
     }
 
     .player-sets-label { color: var(--label-3); margin-bottom: 10px; }
+
+    .drill-check { margin-bottom: 22px; }
+    .drill-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      border: 1.5px solid transparent;
+      color: var(--label);
+      font: inherit;
+      cursor: pointer;
+      transition: border-color 0.2s ease, opacity 0.2s ease;
+    }
+    .drill-row.done { border-color: var(--accent-line); }
+    .drill-row.done .drill-txt { opacity: 0.55; }
+    .drill-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      border: 1.5px solid var(--separator);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: transparent;
+    }
+    .drill-box svg { width: 15px; height: 15px; }
+    .drill-row.done .drill-box { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .drill-txt { flex: 1; min-width: 0; }
+    .drill-txt b { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+    .drill-txt em {
+      font-style: normal;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+    .drill-txt small {
+      display: block;
+      font-size: 13px;
+      color: var(--label-2);
+      line-height: 1.45;
+      margin-top: 3px;
+    }
 
     .set-row {
       display: flex;
@@ -2940,13 +3021,54 @@
     return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">${grid}${back}${front}</svg>`;
   }
 
+  /* ══════════════════════════════════════════════════════
+     MOBILITÉ — échauffements et retours au calme
+     Avant la séance : mobilité active et étirements courts (≤ 30 s),
+     qui préparent sans coûter de force (Behm et al. 2016). Après :
+     statique long, là où l'amplitude se gagne.
+     Le dos « banane » en handstand vient rarement du dos lui-même :
+     flexion d'épaule incomplète, haut du dos raide et fléchisseurs
+     de hanche courts obligent les lombaires à compenser. Chaque
+     routine attaque ces trois causes + poignets et serratus (planche).
+     ══════════════════════════════════════════════════════ */
+  const DRILL = {
+    wrists:    { n: 'Poignets en quadrupédie', d: '10 / sens', c: 'Bascules avant-arrière doigts devant, sur les côtés puis vers toi, puis 10 levers de paume. Prépare l\'extension de poignet de la planche et du handstand.' },
+    catCow:    { n: 'Cat-cow segmenté', d: '8 lentes', c: 'Vertèbre par vertèbre. Sur le dos rond, bascule le bassin en rétroversion : c\'est ce contrôle du bassin qui empêche la banane.' },
+    thread:    { n: 'Thread the needle', d: '6 / côté', c: 'À quatre pattes, glisse un bras sous le corps puis ouvre-le vers le plafond en suivant la main des yeux. Rotation du haut du dos, bassin immobile.' },
+    puppy:     { n: 'Puppy pose sur banc', d: '3 × 10 s', c: 'Mains sur un banc, bras tendus, poitrine qui descend vers le sol, côtes rentrées. Ouvre la flexion d\'épaule et l\'extension thoracique sans creuser les lombaires.' },
+    dislocate: { n: 'Shoulder dislocates (bâton / bande)', d: '10 lentes', c: 'Bras tendus, aucun à-coup. Resserre la prise de quelques cm toutes les 2-3 semaines.' },
+    wallSlide: { n: 'Wall slides dos au mur', d: '8 reps', c: 'Talons à 20 cm du mur, bas du dos et tête plaqués. Monte les bras sans que les côtes sortent : là où le dos décolle, c\'est ta vraie limite d\'épaule — et c\'est là que naît la banane.' },
+    hipFlexor: { n: 'Fente fléchisseurs de hanche', d: '30 s / côté', c: 'Genou au sol, serre le fessier et rentre le bassin AVANT d\'avancer, bras du côté du genou levé au-dessus de la tête. Des fléchisseurs courts basculent le bassin vers l\'avant = dos creusé à l\'envers.' },
+    extRot:    { n: 'Rotation externe bande', d: '12 / bras', c: 'Coude collé au corps, lent. Coiffe des rotateurs, contrepoids de toute la poussée.' },
+    pullApart: { n: 'Band pull-aparts', d: '15 reps', c: 'Omoplates qui se serrent, sans hausser les épaules.' },
+    scapPU:    { n: 'Scapula push-ups', d: '10 reps', c: 'Bras tendus : laisse la poitrine descendre entre les omoplates puis pousse le sol au maximum (protraction). Réveille le serratus, moteur n°1 de la planche.' },
+    leanRock:  { n: 'Planche lean rocks', d: '2 × 8', c: 'Doigts vers l\'extérieur, bras verrouillés, bassin rentré, dos rond (protraction) : avance les épaules devant les mains puis reviens. Augmente l\'inclinaison au fil des reps.' },
+    hollow:    { n: 'Hollow body hold', d: '2 × 20 s', c: 'Lombaires collées au sol, côtes rentrées, bassin en rétroversion, bras derrière les oreilles. C\'est la forme exacte d\'un handstand droit, couché.' },
+    wallShrug: { n: 'Shrugs en handstand ventre au mur', d: '8 reps', c: 'Pousse le sol pour monter les épaules vers les oreilles. Épaule active = angle d\'épaule ouvert = plus besoin de cambrer pour t\'aligner.' },
+    scapPull:  { n: 'Scap pulls à la barre', d: '2 × 8', c: 'Bras tendus, descends puis remonte uniquement avec les omoplates.' },
+    skinCat:   { n: 'Skin the cat lent / German hang', d: '2 × 3 + 10 s en bas', c: 'Extension d\'épaule et ouverture des pectoraux. Descends seulement jusqu\'à une tension confortable.' },
+    legSwing:  { n: 'Balancés de jambe', d: '10 + 10 / jambe', c: 'Avant-arrière puis latéraux, amplitude progressive, buste immobile.' },
+    hip9090:   { n: 'Hip switches 90/90', d: '8 / côté', c: 'Assis, genoux à 90°, bascule les genoux d\'un côté à l\'autre buste droit. Rotations interne et externe de hanche.' },
+    cossack:   { n: 'Cossack squats', d: '6 / côté', c: 'Pieds très écartés, descends sur une jambe, l\'autre tendue pointe vers le haut. Adducteurs et chevilles.' },
+    squatPry:  { n: 'Squat profond (pry)', d: '45 s', c: 'Talons au sol, coudes qui poussent les genoux vers l\'extérieur, balance doucement le poids. Hanches et chevilles.' },
+    pikeComp:  { n: 'Compression pike active', d: '2 × 10', c: 'Assis jambes tendues, mains à côté des genoux : décolle les talons en serrant les hanches. Compression du tuck planche, du L-sit et du press handstand.' },
+    // Retours au calme : statique long
+    wristStr:  { n: 'Étirement poignets', d: '30 s / sens', c: 'Extension puis flexion passives, sans douleur.' },
+    puppyLong: { n: 'Puppy pose au mur (statique)', d: '2 × 45 s', c: 'Après l\'effort, le statique long fait gagner de l\'amplitude. Côtes rentrées, respire dans le haut du dos.' },
+    couch:     { n: 'Couch stretch', d: '45 s / côté', c: 'Genou contre le mur, pied en hauteur, fessier serré et bassin rentré. L\'étirement de référence des fléchisseurs de hanche (psoas, droit fémoral).' },
+    pancake:   { n: 'Pike puis pancake assis', d: '45 s + 45 s', c: 'Dos long, bascule depuis les hanches sans arrondir. Ischios et adducteurs : la souplesse qui rend la compression plus facile.' },
+    calf:      { n: 'Mollets contre un mur', d: '30 s / jambe', c: 'Jambe tendue, puis genou fléchi pour le soléaire.' },
+  };
+  const drills = (...keys) => keys.map(k => DRILL[k]);
+
   // ── MODAL DATA ──
   const sessions = {
     a: {
       day: 'Dimanche · Push Force',
       title: 'Planche Force Max',
       exercises: [
-        { name: 'Warm-up poignets & scapula', sets: '5-7 min', note: 'Rotations, compressions, protraction + rotation externe bande 2×12 et band pull-aparts 2×15 (coiffe + rétraction)' },
+        { name: 'Mobilité handstand & planche', sets: '10-12 min', note: 'Poignets → haut du dos → épaules → hanches → serratus → gainage. Coche chaque drill au fur et à mesure.',
+          drills: drills('wrists', 'catCow', 'thread', 'puppy', 'wallSlide', 'hipFlexor', 'extRot', 'pullApart', 'scapPU', 'leanRock', 'hollow') },
         { name: 'Handstand skill', sets: '8-10 min', note: 'Drills mur ou freestanding, esprit frais' },
         { name: 'HSPU Force — négatif contrôlé', sets: '4 × 3-6 reps', note: 'Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip. Repos 2-3 min' },
         { name: 'Tuck Planche isométrique', sets: '5 × 8-10 s', note: 'Intent "pousser le sol", bras verrouillés, repos 2-3 min' },
@@ -2954,7 +3076,8 @@
         { name: 'Planche lean → tuck dynamique / négative', sets: '3 × 3-5', note: 'Transition contrôlée, repos 90 s' },
         { name: 'Ring Dips lestés', sets: '3 × 6-8 reps', note: 'Amplitude complète, anneau stable, repos 2 min' },
         { name: 'Scapular PU + Élévation 45° haltère', sets: '3 × 10 + 3 × 12', note: 'Superset serratus & deltoïde ant.' },
-        { name: 'Cool-down poignets', sets: '3 min', note: 'Extensions, flexions passives' },
+        { name: 'Cool-down souplesse', sets: '5 min', note: 'Statique long : c\'est maintenant que l\'amplitude se gagne.',
+          drills: drills('wristStr', 'puppyLong', 'couch') },
       ],
       muscles: ['Épaules', 'Triceps', 'Pectoraux', 'Serratus', 'Core'],
       tip: 'Dimanche est ta séance la plus lourde, et ce n\'est pas un hasard : tu sors de ~36 h de repos complet (Shabbat), c\'est le jour où le système nerveux et les tendons sont les plus frais. Tout ce qui demande une intensité maximale va ici. Intent ballistique sur l\'isométrie : imaginer pousser le sol vers les pieds. Chaque rep de Pseudo Planche PU doit simuler la position finale de planche. Pour le HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique — c\'est ce qui protège la nuque et les épaules pendant que la force se construit. Séance 100 % haut du corps : tes jambes restent fraîches pour la course de lundi.'
@@ -2976,7 +3099,8 @@
       day: 'Mardi · Pull + Muscle-up',
       title: 'Tirage & Muscle-up',
       exercises: [
-        { name: 'Warm-up', sets: '5-7 min', note: 'Poignets, épaules, scap pulls à la barre 2 × 8, skin the cat lent 2 × 3 (mobilité en extension d\'épaule)' },
+        { name: 'Mobilité épaules & haut du dos', sets: '10 min', note: 'Flexion ET extension d\'épaule, rotation thoracique, puis gainage avant le handstand. Coche chaque drill au fur et à mesure.',
+          drills: drills('wrists', 'catCow', 'thread', 'dislocate', 'scapPull', 'skinCat', 'wallSlide', 'hipFlexor', 'hollow') },
         { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding courtes, qualité avant durée' },
         { name: 'False grip ring holds', sets: '4 × 10-15 s', note: 'Poignet fléchi par-dessus l\'anneau, repos 60 s' },
         { name: 'Chest-to-bar explosif', sets: '4 × 3-5 reps', note: 'Pull ultra-haut, coudes vers hanches, repos 2 min' },
@@ -2993,14 +3117,16 @@
       day: 'Mercredi · Planche Volume',
       title: 'Planche & HSPU Volume',
       exercises: [
-        { name: 'Warm-up', sets: '5 min', note: 'Poignets + mobilisation épaules + rotation externe bande 2 × 12' },
+        { name: 'Mobilité handstand & planche', sets: '10 min', note: 'Version volume : plus de flexion d\'épaule et de compression. Coche chaque drill au fur et à mesure.',
+          drills: drills('wrists', 'catCow', 'dislocate', 'wallSlide', 'hipFlexor', 'extRot', 'scapPU', 'leanRock', 'pikeComp', 'hollow') },
         { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding. Poignets sensibles après mardi : reste au mur' },
         { name: 'Planche volume — 60 s total', sets: '6×10s / 5×12s / 4×15s', note: 'Repos 90 s, progresser le format chaque semaine' },
         { name: 'Pike HSPU pieds surélevés / Wall HSPU', sets: '3 × 6-10 reps', note: 'Volume sous-maximal (2 reps en réserve), tempo 3-0-1, tête qui passe devant les mains. Repos 2 min' },
         { name: 'Pompes anneaux + Face pulls', sets: '3 × 8-12 + 3 × 15', note: 'Superset : anneaux tournés vers l\'extérieur en haut / face pulls légers, coudes hauts. Repos 90 s' },
         { name: 'Élévations latérales', sets: '3 × 12-15 reps', note: 'Tempo 2-0-2, léger, coude légèrement fléchi. Repos 60 s' },
         { name: 'Dragon Flag / L-sit', sets: '3×6 / 4×20-30s', note: 'Choisir selon fatigue core. Repos 90 s' },
-        { name: 'Cool-down poignets', sets: '3 min', note: 'Extensions, flexions passives' },
+        { name: 'Cool-down souplesse', sets: '5 min', note: 'Statique long : c\'est maintenant que l\'amplitude se gagne.',
+          drills: drills('wristStr', 'pancake', 'couch') },
       ],
       muscles: ['Épaules', 'Pectoraux', 'Triceps', 'Deltoïdes', 'Deltoïde post.', 'Core'],
       tip: 'Mercredi tombe 72 h après la séance lourde du dimanche : c\'est à peu près le temps qu\'il faut aux tendons pour boucler leur cycle de reconstruction (la synthèse de collagène culmine vers 24 h et redescend vers 72 h — Miller et al. 2005). C\'est la 2ᵉ exposition planche/HSPU de la semaine, en volume sous-maximal : la force se construit dimanche, mercredi ajoute du volume de qualité. Planche : accumuler 60 s propres, de 6×10 s vers 4×15 s sur 4-6 semaines. HSPU : garde 2 reps en réserve, jamais d\'échec. Les face pulls en superset équilibrent la poussée sans rallonger la séance, et la compression du L-sit sert directement la planche et le press handstand.'
@@ -3011,7 +3137,8 @@
       exercises: [
         { name: 'Course Zone 2', sets: '5 km', note: 'Allure conversation : RPE 4-5/10, 60-70 % FC max. Les 500 premiers mètres encore plus lents. Si tu ne peux plus parler en phrases complètes, ralentis.' },
         { name: 'Lignes droites', sets: '4 × 20 s', note: 'Accélérations progressives jusqu\'à ~90 %, relâché, sans sprint. Retour en marchant, repos 60 s' },
-        { name: 'Mobilité mollets & hanches', sets: '5 min', note: 'Mollets contre un mur, fente fléchisseurs de hanche, sans forcer' },
+        { name: 'Mobilité mollets & hanches', sets: '6-8 min', note: 'Statique long après la course, sans forcer : le couch stretch est celui qui sert le plus ton handstand.',
+          drills: drills('calf', 'couch', 'hip9090', 'pancake') },
         { name: 'Handstand micro-dose', sets: '5 min', note: 'Optionnel, le soir : 5-6 kick-ups ou holds au mur, zéro fatigue. Entretient la pratique distribuée.' },
       ],
       muscles: ['Cardiovasculaire', 'Mollets', 'Récupération active'],
@@ -3021,28 +3148,29 @@
       day: 'Vendredi · Jambes + Handstand',
       title: 'Jambes & Handstand',
       exercises: [
-        { name: 'Wrist mobility', sets: '5 min', note: 'Circles, compressions, extensions passives + rotation externe bande 2×15' },
+        { name: 'Mobilité hanches & handstand', sets: '10-12 min', note: 'Hanches d\'abord (prépare aussi les jambes), puis ligne d\'épaule et gainage pour le long bloc handstand. Coche chaque drill au fur et à mesure.',
+          drills: drills('wrists', 'legSwing', 'hip9090', 'cossack', 'squatPry', 'hipFlexor', 'wallSlide', 'wallShrug', 'hollow') },
         { name: 'Handstand long', sets: '12-15 min', note: 'Chest-to-wall, freestanding, shapes' },
         { name: 'Bulgarian Split Squats', sets: '3 × 8-10 / jambe', note: 'Descente 3 s, genou dans l\'axe. Repos 90 s' },
         { name: 'Nordic Curls', sets: '3 × 4-6 reps', note: 'Excentrique 3-4 s, amortis avec les mains en bas. Repos 2 min' },
         { name: 'Box Jumps', sets: '3 × 5 reps', note: 'Atterrissage souple et silencieux, reset complet entre chaque saut. Repos 60 s' },
         { name: 'Mollets unilatéraux lestés', sets: '3 × 12-15 / jambe', note: 'Sur une marche, amplitude totale, pause 1 s en bas. Repos 60 s' },
-        { name: 'Y-T-W au sol + Shoulder dislocations', sets: '2 × 8/lettre + 2 × 10', note: 'Trapèze inférieur et mobilité d\'épaule : léger, lent, sans à-coups. Repos 45 s' },
+        { name: 'Y-T-W au sol', sets: '2 × 8/lettre', note: 'Trapèze inférieur : léger, lent, sans à-coups. Le Y renforce exactement la fin de flexion d\'épaule qui manque en handstand. Repos 45 s' },
         { name: 'Jefferson Curls', sets: '2 × 8 reps', note: 'Lentement, très léger, vertèbre par vertèbre' },
       ],
       muscles: ['Quadriceps', 'Ischio-jambiers', 'Fessiers', 'Mollets', 'Poignets', 'Trapèze inf.'],
-      tip: 'Les jambes sont le vendredi parce que c\'est le jour le plus loin de ta course intense : derrière, Shabbat puis un dimanche 100 % haut du corps, soit 72 h avant de recourir lundi, jambes fraîches. Les programmes qui incluent les Nordic curls divisent environ par deux les blessures aux ischios (van Dyk et al. 2019) — précieux quand tu cours deux fois par semaine. Box jumps et mollets unilatéraux travaillent la raideur tendineuse, utile pour l\'économie de course. Séance courte (~60 min) pour finir largement avant l\'entrée de Shabbat : en hiver, fais-la le matin.'
+      tip: 'Les jambes sont le vendredi parce que c\'est le jour le plus loin de ta course intense : derrière, Shabbat puis un dimanche 100 % haut du corps, soit 72 h avant de recourir lundi, jambes fraîches. Les programmes qui incluent les Nordic curls divisent environ par deux les blessures aux ischios (van Dyk et al. 2019) — précieux quand tu cours deux fois par semaine. Box jumps et mollets unilatéraux travaillent la raideur tendineuse, utile pour l\'économie de course. Séance courte (~65 min) pour finir largement avant l\'entrée de Shabbat : en hiver, fais-la le matin.'
     }
   };
 
   // Place de chaque séance dans la semaine (0 = dimanche) et infos de carte.
   const SESSION_META = {
-    a:       { dow: 0, tag: 'Push',   short: 'A',  duration: '~75 min' },
+    a:       { dow: 0, tag: 'Push',   short: 'A',  duration: '~85 min' },
     cardio:  { dow: 1, tag: 'Course', short: 'Q',  duration: '~35 min', blocks: true },
-    b:       { dow: 2, tag: 'Pull',   short: 'B',  duration: '~75 min' },
-    c:       { dow: 3, tag: 'Push',   short: 'C',  duration: '~70 min' },
-    cardio2: { dow: 4, tag: 'Course', short: 'Z2', duration: '~40 min', blocks: true },
-    d:       { dow: 5, tag: 'Jambes', short: 'D',  duration: '~60 min' },
+    b:       { dow: 2, tag: 'Pull',   short: 'B',  duration: '~80 min' },
+    c:       { dow: 3, tag: 'Push',   short: 'C',  duration: '~80 min' },
+    cardio2: { dow: 4, tag: 'Course', short: 'Z2', duration: '~45 min', blocks: true },
+    d:       { dow: 5, tag: 'Jambes', short: 'D',  duration: '~65 min' },
   };
   const SESSION_ORDER = Object.keys(SESSION_META).sort((x, y) => SESSION_META[x].dow - SESSION_META[y].dow);
 
@@ -3064,6 +3192,14 @@
   function countLabel(key) {
     const n = sessions[key].exercises.length;
     return `${n} ${SESSION_META[key].blocks ? 'blocs' : 'exercices'} · ${SESSION_META[key].duration}`;
+  }
+
+  const MOBILITY_TIP = 'Le dos banane vient rarement du dos : quand l\'épaule ne monte pas à 180° ou que le haut du dos reste raide, les lombaires se creusent pour compenser, et des fléchisseurs de hanche courts basculent le bassin vers l\'avant. L\'échauffement attaque les trois causes (haut du dos, flexion d\'épaule, hanches), puis remet le gainage hollow juste avant le handstand. Pour la planche : poignets en extension, protraction (serratus) et lean progressif. Avant la séance, tout reste actif ou court (≤ 30 s) pour ne pas perdre de force ; les étirements longs sont au retour au calme. Teste-toi chaque semaine aux wall slides : si tes bras touchent le mur sans que le bas du dos décolle, ta ligne de handstand est libérée.';
+
+  function drillListHtml(list) {
+    if (!list || !list.length) return '';
+    return '<ol class="drill-list">' + list.map(d =>
+      `<li><span>${d.n}</span><b>${d.d}</b></li>`).join('') + '</ol>';
   }
 
   // ── MODAL OPEN/CLOSE ──
@@ -3113,11 +3249,18 @@
     s.exercises.forEach((ex, i) => {
       html += `<div class="exercise-item">
         <div class="exercise-idx">${i + 1}</div>
-        <div class="exercise-name">${ex.name}<span class="exercise-note">${ex.note}</span></div>
+        <div class="exercise-name">${ex.name}<span class="exercise-note">${ex.note}</span>${drillListHtml(ex.drills)}</div>
         <div class="exercise-sets">${ex.sets}</div>
       </div>`;
     });
     html += '</div>';
+
+    if (s.exercises.some(ex => ex.drills && ex.drills.some(d => d === DRILL.wallSlide))) {
+      html += `<div class="modal-tip">
+        <div class="modal-tip-label caps">Mobilité : pourquoi ces drills</div>
+        <p>${MOBILITY_TIP}</p>
+      </div>`;
+    }
 
     html += `<div class="modal-tip">
       <div class="modal-tip-label caps">Tip d'optimisation</div>
@@ -4519,6 +4662,7 @@
           type: meta.type,
           rest: meta.rest,
           dist: isDistance(ex.sets),
+          drills: ex.drills ? ex.drills.map(d => ({ ...d, done: false })) : undefined,
           prev: previousValues(key, ex.name),
           entries: Array.from({ length: deloadCount(meta.count) }, () => ({ done: false, value: '' })),
         };
@@ -4591,6 +4735,16 @@
       ? `<button class="btn-start secondary" style="margin-top:6px" onclick="startHoldTimer()">${ICONS.timer}${ex.dist ? 'Chrono de la fraction' : 'Chrono de hold'}</button>`
       : '';
 
+    const drillsDone = ex.drills ? ex.drills.filter(d => d.done).length : 0;
+    const drillBlock = ex.drills
+      ? `<div class="player-sets-label caps">Circuit — ${drillsDone} / ${ex.drills.length}</div>
+         <div class="drill-check">${ex.drills.map((d, i) => `
+          <button class="drill-row ${d.done ? 'done' : ''}" id="drillRow${i}" onclick="toggleDrill(${i})" aria-pressed="${d.done}">
+            <span class="drill-box">${ICONS.check}</span>
+            <span class="drill-txt"><b>${d.n}</b><em>${d.d}</em><small>${d.c}</small></span>
+          </button>`).join('')}</div>`
+      : '';
+
     const nextEx = session.exercises[session.idx + 1];
     const upNext = nextEx
       ? `<div class="up-next">
@@ -4605,6 +4759,7 @@
       <div class="player-ex-name">${ex.name}</div>
       <div class="player-ex-target">${ex.sets}</div>
       <div class="player-ex-note">${ex.note}</div>
+      ${drillBlock}
       <div class="player-sets-label caps">Séries — note tes ${unit}</div>
       ${prevHint}
       ${rows}
@@ -4658,6 +4813,37 @@
       // Repos automatique, sauf sur la dernière série de l'exercice.
       const isLast = i === ex.entries.length - 1;
       if (settings.autoRest && ex.rest > 0 && !isLast) startRestTimer(Math.max(15, ex.rest + settings.restAdjust));
+    }
+  }
+
+  // Coche un drill de mobilité ; le circuit complet valide la série.
+  function toggleDrill(i) {
+    if (!session) return;
+    const ex = session.exercises[session.idx];
+    if (!ex.drills || !ex.drills[i]) return;
+    const d = ex.drills[i];
+    d.done = !d.done;
+    if (d.done) vibrate(20);
+    saveActive();
+    const allDone = ex.drills.every(x => x.done);
+    if (allDone && ex.entries[0] && !ex.entries[0].done) {
+      renderDrillState(ex);
+      toggleSet(0);
+    } else {
+      renderDrillState(ex);
+    }
+  }
+
+  function renderDrillState(ex) {
+    ex.drills.forEach((d, i) => {
+      const row = document.getElementById('drillRow' + i);
+      if (!row) return;
+      row.classList.toggle('done', d.done);
+      row.setAttribute('aria-pressed', d.done);
+    });
+    const label = document.querySelector('#playerBody .drill-check');
+    if (label && label.previousElementSibling) {
+      label.previousElementSibling.textContent = `Circuit — ${ex.drills.filter(d => d.done).length} / ${ex.drills.length}`;
     }
   }
 

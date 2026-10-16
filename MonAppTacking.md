@@ -15,12 +15,12 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 | Jour | Séance | Contenu |
 |---|---|---|
 | Dimanche | **A — Push Force** | Planche + HSPU lourds, dips lestés |
-| Lundi | **Course qualité** | 5 km fractionné (bureau) |
+| Lundi | **Course qualité** | 6-7 km fractionné, cycle de 3 semaines (bureau) |
 | Mardi | **B — Pull + Muscle-up** | Muscle-up, tractions, front lever, rowing |
 | Mercredi | **C — Planche Volume** | Planche + HSPU en volume, deltoïdes, core |
-| Jeudi | **Course facile** | 5 km en zone 2 (bureau) |
-| Vendredi | **D — Jambes + Handstand** | Handstand long, jambes, prévention (séance courte avant Shabbat) |
-| Samedi | Repos — Shabbat | |
+| Jeudi | **Course facile** | 5 → 7 km en zone 2 (bureau) |
+| Vendredi | **D — Jambes + Handstand** | Handstand long, jambes, 2ᵉ jour de tirage en supersets, prévention (avant Shabbat) |
+| Samedi | Repos — Shabbat | Marche tranquille 45-60 min (allure de conversation) |
 
 ### Pourquoi cette organisation
 
@@ -33,8 +33,9 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 - **Chaque groupe musculaire 2×/semaine.** C'est la fréquence minimale
   recommandée pour la force et l'hypertrophie ([Schoenfeld et al. 2016](https://pubmed.ncbi.nlm.nih.gov/27102172/),
   [ACSM](https://acsm.org/resistance-training-guidelines-update-2026/)) :
-  poussée dimanche + mercredi, tirage mardi + (face pulls) mercredi + (Y-T-W) vendredi,
-  jambes vendredi + 2 courses.
+  poussée dimanche + mercredi, tirage mardi + vendredi (tractions et front
+  lever en superset avec les jambes), jambes mardi (squat unilatéral) +
+  vendredi + 2 courses.
 - **Course intense le lundi, facile le jeudi.** Lundi les jambes sont
   fraîches (Shabbat + dimanche 100 % haut du corps). Jeudi la sortie est
   facile parce que vendredi c'est jambes. Avec 2 sorties, le modèle polarisé
@@ -58,7 +59,13 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 - **Handstand 6×/semaine** : 4 blocs en séance + 2 micro-doses optionnelles
   de 5 min le soir des jours de course. La pratique distribuée bat une
   longue session (Schmidt & Lee 2019).
-- **Vendredi court (~60 min)** pour finir largement avant l'entrée de
+- **Supersets non concurrents** (jambes + tirage, bras + jambes) : ils
+  font gagner du temps, au prix d'un peu plus de récupération
+  ([Weakley et al. 2017](https://doi.org/10.1007/s00421-017-3680-3)) — le
+  vendredi, Shabbat la couvre. C'est
+  ce qui permet d'ajouter un 2ᵉ jour de tirage et une 2ᵉ exposition jambes
+  sans rallonger les séances.
+- **Vendredi ~70 min** pour finir largement avant l'entrée de
   Shabbat — en hiver, le matin.
 
 ## Phases de progression
@@ -86,11 +93,11 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 - Warm-up poignets & scapula — 5-7 min : rotations, compressions, protraction + rotation externe bande 2×12 et band pull-aparts 2×15
 - Handstand skill — 8-10 min : drills mur ou freestanding, esprit frais
 - **HSPU Force — négatif contrôlé — 4 × 3-6 reps** : Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip. Repos 2-3 min
-- Tuck Planche isométrique — 5 × 8-10 s : intent "pousser le sol", repos 2-3 min
+- Tuck Planche isométrique — 5 × 8-10 s : intent "pousser le sol" ; séries 4-5 au palier suivant (advanced tuck 3-5 s) car la force isométrique est spécifique à l'angle travaillé ([Oranchuk et al. 2019](https://openrepository.aut.ac.nz/items/1a37e689-0027-4a12-9815-07ff2818b768/full)), repos 2-3 min
 - Pseudo Planche PU sur parallettes — 4 × 5-8 reps : tempo 3-1-1, lean maximal, repos 2 min
 - Planche lean → tuck dynamique / négative — 3 × 3-5 : transition contrôlée, repos 90 s
 - Ring Dips lestés — 3 × 6-8 reps : amplitude complète, anneau stable, repos 2 min
-- Scapular PU + Élévation 45° haltère — 3 × 10 + 3 × 12 : superset serratus & deltoïde antérieur
+- Élévations latérales + Scapular PU — 3 × 12-15 + 3 × 10 : superset deltoïde latéral & serratus (le deltoïde antérieur est déjà saturé par la planche et le HSPU)
 - Cool-down poignets — 3 min : extensions, flexions passives
 
 Muscles ciblés : Épaules, Triceps, Pectoraux, Serratus, Core
@@ -100,19 +107,29 @@ ballistique sur l'isométrie — imaginer pousser le sol vers les pieds. Pour le
 HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique. Séance
 100 % haut du corps : les jambes restent fraîches pour la course de lundi.
 
-## Course qualité — 5 km fractionné (Lundi, bureau)
+## Course qualité — 6-7 km fractionné (Lundi, bureau)
 
-- Échauffement trot — 1 km : très facile (RPE 3/10), puis gammes (montées de genoux, talons-fesses, pas chassés)
+- Échauffement trot — 1 km : très facile (RPE 3/10), puis gammes (montées de genoux, talons-fesses, pas chassés) et 2 × 15 pogo jumps — la pliométrie et la force lourde améliorent l'économie de course ([Llanos-Lagos et al. 2024](https://repository.essex.ac.uk/37272/))
 - Accélérations progressives — 3 × 80 m : jusqu'à ~85 %, retour en marchant, repos 45 s
-- **Fractionné — 6 × 400 m** : RPE 8/10, un peu plus vite que l'allure 5 km, récup 200 m en trottinant (~75 s). Note le temps de chaque 400 m
+- **Fractionné — cycle de 3 semaines**, récup 2-3 min en trottinant :
+  - Semaine 1, VO2max : 4 × 1000 m à 90-95 % FC max (RPE 8-9)
+  - Semaine 2, vitesse : 6 × 400 m un peu plus vite que l'allure 5 km, récup 200 m (~75 s)
+  - Semaine 3, côtes : 8 × 45 s en côte à 6-8 % (RPE 9), retour en trottinant
+  - Semaine avant chaque décharge : test 5 km chrono
 - Retour au calme — 0,5 km : trot très lent puis marche, étirements doux
 - Handstand micro-dose — 5 min (optionnel, le soir)
 
 Muscles ciblés : Cardiovasculaire, Mollets, Ischio-jambiers, Économie de course
 
-Tip : total ≈ 5 km. Progresse par l'allure, pas par la distance : 4 semaines
-de 6 × 400 m en cherchant à baisser les temps, puis 4 semaines de 3 × 1 km
-(récup 400 m trot), et on alterne.
+Tip : les répétitions de 3-4 min sont le meilleur levier de la VO2max —
+4 × 4 min font gagner ~7 % de VO2max en 8 semaines, l'endurance continue à
+volume égal ne la fait pas bouger
+([Helgerud et al. 2007](https://pubmed.ncbi.nlm.nih.gov/17414804/)) — et les
+répétitions longues gardent plus longtemps au-dessus de 90 % de la VO2max que
+les courtes ([étude 2025](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11743937/)).
+Les 400 m entretiennent la vitesse, les côtes travaillent la force spécifique
+et l'économie de course. Le test 5 km donne une mesure objective toutes les
+6 semaines.
 
 ## Séance B — Pull + Muscle-up (Mardi)
 
@@ -120,11 +137,11 @@ de 6 × 400 m en cherchant à baisser les temps, puis 4 semaines de 3 × 1 km
 - Handstand skill — 8-10 min : expositions freestanding courtes
 - False grip ring holds — 4 × 10-15 s : poignet fléchi par-dessus l'anneau, repos 60 s
 - Chest-to-bar explosif — 4 × 3-5 reps : pull ultra-haut, coudes vers hanches, repos 2 min
-- Slow MU négatif / Ring MU strict — 3 × 3-4 : négatif 5-7 s, puis reps qualité, repos 2-3 min
+- Slow MU négatif / Ring MU strict — 3 × 3-4 : négatif 5-7 s, puis reps qualité, jamais à l'échec (planche bras tendus le lendemain) ; si biceps/coude tire mercredi, une semaine sur deux. Repos 2-3 min
 - **Tractions tempo / Archer — 3 × 5-6 reps** : sans lest, 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; Archer (3-5/côté) une fois 10 tractions strictes acquises
 - Tuck Front Lever — 4 × 6-10 s : dépression scapulaire, palier suivant à 4 × 10 s propres
 - **Rowing anneaux / Australian pull-ups — 4 × 8-12 reps** : pause 1 s poitrine aux anneaux, omoplates serrées
-- Curl biceps haltères — 3 × 10-12 reps : tempo 2-0-2, repos 60 s
+- Curl incliné + Pistol / Shrimp squat — 3 × 10-12 + 3 × 5-8 / jambe : curl sur banc incliné, biceps étiré comme bras tendus en planche ([méta-analyse 2026](https://pmc.ncbi.nlm.nih.gov/articles/PMC12869050) : travailler en position longue fait plus grossir) ; : superset bras / jambes, squat à 2-3 reps en réserve. 2ᵉ exposition jambes de la semaine, repos 60 s
 
 Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Avant-bras, Core
 
@@ -137,10 +154,10 @@ vertical (~10 séries au total). Le rowing ne se saute jamais.
 
 - Warm-up — 5 min : poignets, épaules, rotation externe bande 2 × 12
 - Handstand skill — 8-10 min : freestanding ; au mur si poignets sensibles après mardi
-- Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine
-- **Pike HSPU pieds surélevés / Wall HSPU — 3 × 6-10 reps** : 2 reps en réserve, tempo 3-0-1, repos 2 min
+- Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine (sauf si biceps/coude sensible après mardi)
+- **Pike HSPU pieds surélevés / Wall HSPU — 4 × 6-10 reps** : 2 reps en réserve, tempo 3-0-1, repos 2 min
 - Pompes anneaux + Face pulls — 3 × 8-12 + 3 × 15 : superset, repos 90 s
-- Élévations latérales — 3 × 12-15 reps : tempo 2-0-2, léger
+- Élévations latérales penché (lean-away) — 3 × 12-15 reps : charge le deltoïde en bas du mouvement, tempo 2-0-2, léger
 - Dragon Flag / L-sit — 3×6 / 4×20-30s : selon fatigue core
 - Cool-down poignets — 3 min
 
@@ -150,9 +167,9 @@ Tip : 72 h après dimanche, 2ᵉ exposition planche/HSPU de la semaine, en
 volume sous-maximal — la force se construit dimanche, mercredi ajoute du
 volume de qualité. Jamais d'échec sur le HSPU ici.
 
-## Course facile — 5 km zone 2 (Jeudi, bureau)
+## Course facile — 5-7 km zone 2 (Jeudi, bureau)
 
-- Course Zone 2 — 5 km : allure conversation, RPE 4-5/10, 60-70 % FC max
+- Course Zone 2 — 5-7 km : allure conversation, RPE 4-5/10, 60-70 % FC max. +0,5 km toutes les 2 semaines jusqu'à 7 km, jamais plus de 10 % au-dessus de la plus longue sortie du mois ([Frandsen et al. 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12421110/)) ; retour à 5 km en deload
 - Lignes droites — 4 × 20 s : accélérations progressives jusqu'à ~90 %, sans sprint, repos 60 s en marchant
 - Mobilité mollets & hanches — 5 min
 - Handstand micro-dose — 5 min (optionnel, le soir)
@@ -166,22 +183,23 @@ vite" : trop dur pour récupérer, pas assez pour progresser.
 ## Séance D — Jambes + Handstand (Vendredi)
 
 - Wrist mobility — 5 min : circles, compressions, extensions passives + rotation externe bande 2×15
-- Handstand long — 12-15 min : chest-to-wall, freestanding, shapes
-- Bulgarian Split Squats — 3 × 8-10 / jambe : descente 3 s, repos 90 s
-- **Nordic Curls — 3 × 4-6 reps** : excentrique 3-4 s, repos 2 min
-- Box Jumps — 3 × 5 reps : atterrissage souple, reset complet
-- Mollets unilatéraux lestés — 3 × 12-15 / jambe : sur une marche, pause 1 s en bas
-- Y-T-W au sol + Shoulder dislocations — 2 × 8/lettre + 2 × 10
-- Jefferson Curls — 2 × 8 reps : très léger, vertèbre par vertèbre
+- Handstand long — 10-12 min : chest-to-wall, freestanding, shapes
+- Box Jumps — 3 × 5 reps : en premier (explosif = frais), atterrissage souple, reset complet
+- **Bulgarian Split Squats + Tractions — 4 × 8-10 / jambe + 3 × 5** : superset jambes / tirage, BSS pied avant surélevé 5-10 cm, descente 3 s, tractions à 2 reps en réserve, repos 90 s
+- **Nordic Curls + Tuck Front Lever — 3 × 4-6 + 3 × 6-10 s** : excentrique 3-4 s / front lever 1-2 s sous ton max, repos 2 min
+- Hip thrust unilatéral + Reverse Nordic — 3 × 10-12 / jambe + 3 × 6-10 : superset fessiers / quadriceps en position longue ([Alonso-Fernández et al. 2019](https://portalcientifico.uvigo.gal/documentos/5fa622882999524ed108606d))
+- Mollets unilatéraux lestés + Y-T-W — 3 × 12-15 / jambe + 2 × 8/lettre : superset, repos 45 s
+- Jefferson Curls + Poignets lestés — 2 × 8 + 2 × 15 : superset, curls de poignet flexion et extension légers ([prévention des douleurs de poignet en gymnastique](https://pubmed.ncbi.nlm.nih.gov/28902754/))
 
-Muscles ciblés : Quadriceps, Ischio-jambiers, Fessiers, Mollets, Poignets, Trapèze inférieur
+Muscles ciblés : Quadriceps, Fessiers, Ischio-jambiers, Grand dorsal, Mollets, Poignets, Trapèze inférieur
 
 Tip : les programmes incluant les Nordic curls divisent environ par deux les
 blessures aux ischios ([van Dyk et al. 2019](https://bjsm.bmj.com/content/53/21/1362)) —
 précieux quand tu cours 2×/semaine. Box jumps et mollets unilatéraux
 travaillent la raideur tendineuse, utile pour l'économie de course
 ([méta-analyse 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9653533/)).
-Séance ~60 min pour finir bien avant Shabbat.
+Vendredi est aussi le 2ᵉ jour de tirage, en superset avec les jambes.
+Séance ~75 min pour finir bien avant Shabbat.
 
 ## Équilibre push / pull
 
@@ -193,11 +211,13 @@ Volume hebdomadaire par catégorie :
 
 | Catégorie | Avant | Maintenant |
 |---|---|---|
-| Poussée (planche, HSPU, dips, PPPU, pompes anneaux) | ~35 | ~30 |
-| Tirage vertical (tractions, C2B, muscle-up) | 11 | 10 |
-| Bras tendus (front lever) | 7 | 4 |
-| Tirage horizontal + rétraction (rowing, face pulls, Y-T-W) | 7 | 9 |
-| Jambes | 15 | 12 + 2 courses |
+| Poussée (planche, HSPU, dips, PPPU, pompes anneaux) | ~30 | ~31 (dont HSPU 7 → 8) |
+| Deltoïde latéral (élévations latérales) | 3 | 6 |
+| Tirage vertical (tractions, C2B, muscle-up) | 10 (1 jour) | 13 (2 jours) |
+| Bras tendus (front lever) | 4 (1 jour) | 7 (2 jours) |
+| Tirage horizontal + rétraction (rowing, face pulls, Y-T-W) | 9 | 9 |
+| Jambes (quadriceps / fessiers) | ~3 / ~3, 1 jour | ~10 / ~10, 2 jours |
+| Course | 10 km | 11-14 km, fractionné en cycle de 3 semaines + test 5 km |
 
 Le tirage horizontal est le contrepoids mécanique de la protraction. Sans lui,
 le trapèze supérieur compense pendant que le trapèze inférieur et les
@@ -206,14 +226,69 @@ risque n°1 en handstand. Ne saute ni le rowing (mardi), ni les face pulls
 (mercredi), ni les Y-T-W (vendredi).
 
 ## Règle de progression
+- **Feu tricolore avant chaque séance** : sommeil < 6 h, VFC nettement sous ta moyenne de la semaine ou douleur articulaire → retire 1 série par exercice, pas de record. Ajuster selon la VFC ne fait pas mieux en moyenne qu'un plan fixe, mais réduit le nombre de personnes qui ne progressent pas ([méta-analyse 2021](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8507742/)).
+- **Position longue** : quand c'est possible (curl incliné, élévations penchées, BSS surélevé, Reverse Nordic), le muscle est chargé étiré — gain d'hypertrophie modeste mais régulier ([méta-analyse 2026](https://pmc.ncbi.nlm.nih.gov/articles/PMC12869050)).
 - Ne passe au niveau suivant que lorsque tu tiens la position cible avec forme parfaite, sur 3 séries stables, sans douleur.
 - Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines pour éviter le plateau et protéger poignets/tendons. Pendant le deload, les deux courses passent en zone 2.
 
 ## Nutrition
-- Maintien 66-68 kg optimal pour le ratio force/poids
-- Protéines : 1,8 g/kg/j (cible recherche : 1,6-2,2 g/kg/j), idéalement réparties sur la journée + 30-40 g avant le coucher
-- Créatine monohydrate 5 g/j, Oméga-3 2-3 g EPA+DHA/j, hydratation 35-40 ml/kg/j
-- Sommeil 7-9 h/nuit — c'est le principal levier de récupération pour les isométries (planche, front lever, HSPU)
+
+Objectif : construire du muscle et de la force sans prendre de gras qui
+alourdirait la planche, et récupérer de 6 séances par semaine.
+
+### Calories et macros
+- **Dépense** : Mifflin-St Jeor × 1,6 (6 séances + 2 courses par semaine),
+  ≈ 2 600 kcal à 67 kg. Ce n'est qu'une estimation : le suivi du poids la corrige.
+- **Objectif recommandé : maintien** (recomposition). Chez des pratiquants
+  entraînés, manger à l'équilibre avec assez de protéines donne des gains de
+  muscle comparables à un surplus, avec moins de gras
+  ([synthèse Helms](https://summify.io/discover/is-bulking-necessary-for-muscle-gain-episode-138-VRz4m7/)).
+  Prise lente : +8 % (cible +0,25 % du poids par semaine). Sèche : −15 %
+  (au plus 0,5-0,7 % par semaine).
+- **Protéines : 2,0 g/kg/j** (2,2 en sèche). Le plateau moyen est vers
+  1,6 g/kg, 2,2 couvre presque tout le monde
+  ([Morton et al. 2018](https://pubmed.ncbi.nlm.nih.gov/28698222/)).
+- **Lipides : ~1 g/kg/j**. **Glucides : le reste**, soit ~5-6 g/kg —
+  la fourchette recommandée pour ~1 h d'entraînement par jour
+  ([recommandations glucides](https://www.gssiweb.org/gssiu_content/pdf/FINAL%20Carbohydrate%20Intake%20Recommendations%20for%20Athletes_6.3.21.pdf)).
+
+### Répartition : 4 repas protéinés
+0,4 à 0,55 g/kg par repas (~27-37 g), 4 fois par jour, espacés de 3-4 h
+([Schoenfeld & Aragon 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC5828430/)),
+dont le dernier 30-60 min avant le coucher en protéines lentes (skyr,
+fromage blanc) : sur 12 semaines, une prise de ~30 g avant de dormir a
+amélioré force et volume musculaire
+([Snijders et al. 2019](https://public-pages-files-2025.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2019.00017/text)).
+
+### Jeûne intermittent : fenêtre de 12 h au lieu de 6 h
+Le jeûne intermittent avec musculation préserve le muscle sans apporter
+de bonus ([méta-analyse 2024](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11434652/)).
+Une fenêtre de 6 h (14:00-20:00) empêche surtout les 4 repas protéinés et
+la prise avant le coucher. Nouveaux horaires recommandés : 09:00-21:00
+(jeûne nocturne de 12 h), 07:30-20:30 les jours de bureau. L'onglet Fast
+propose de les appliquer en un tap.
+
+### Suivi du poids
+Pesée le matin, 3 à 7 fois par semaine ; l'app compare la moyenne des
+7 derniers jours à celle des 7 jours d'avant. Si le rythme sort de la cible,
+les calories bougent de ±150 kcal, au plus une fois toutes les 2 semaines.
+
+### Suppléments
+| Complément | Dose | Niveau de preuve |
+|---|---|---|
+| Créatine monohydrate | 3-5 g/j, tous les jours | Fort |
+| Vitamine D3 | 1000-2000 UI/j d'octobre à mars, idéalement après dosage | Fort si carence ([méta-analyse 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6490896)) |
+| Caféine | ~3 mg/kg, 45-60 min avant les séances A et Q, jamais < 8 h du coucher | Fort ([ISSN 2021](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7777221/)) |
+| Oméga-3 | 1-2 g EPA+DHA/j, ou poisson gras 2×/semaine | Modéré, surtout courbatures |
+| Whey / caséine | Seulement pour compléter les protéines | Pratique |
+| Gélatine 15 g + vit. C 50 mg | 45-60 min avant A et C, si poignets/coudes tirent | Préliminaire ([Shaw 2017](https://pubmed.ncbi.nlm.nih.gov/27852613/)) |
+
+Inutiles : BCAA, glutamine, brûleurs, boosters. Un bilan sanguin annuel
+(ferritine, vitamine D, B12) vaut plus.
+
+### Hydratation et sommeil
+- 35-40 ml/kg/j, + 500 ml par heure de course
+- Sommeil 7-9 h/nuit — le principal levier de récupération
 
 ## Suivi recommandé
 - Objectif semaine : 6 séances (A, B, C, D + 2 courses) — Shabbat en repos complet
@@ -241,8 +316,8 @@ d'entraînement sont stockées localement sur le téléphone.
 Onglet tout-en-un (Nutrition et l'ancien Fuel fusionnés), en trois vues :
 - **Journal** : ce que tu as mangé, jour par jour (flèches pour revenir en
   arrière). Totaux kcal / protéines / glucides / lipides face à tes cibles,
-  compteur de repas protéinés (≥ 0,4 g/kg, 3 par jour), eau (objectif
-  35 ml/kg), créatine et oméga-3 cochés. Ajout en un tap depuis les
+  compteur de repas protéinés (≥ 0,4 g/kg, 4 par jour), eau (objectif
+  35 ml/kg), créatine, oméga-3 et vitamine D cochés. Ajout en un tap depuis les
   recettes favorites et les aliments déjà notés ; un nom connu remplit les
   macros tout seul. Les macros restent optionnelles. Un repas hors de ta
   fenêtre de jeûne est signalé.
@@ -267,14 +342,16 @@ le timing autour de la séance compte peu
   fenêtre, boutons Commencer / Rompre. Si tu as oublié le bouton, « Depuis
   21:00 » démarre le jeûne à l'heure prévue. Noter un repas pendant un jeûne
   le termine à l'heure du repas.
+- **Conseil** : si une fenêtre fait moins de 10 h, une carte propose les
+  horaires recommandés (09:00 – 21:00).
 - **Ressenti** de 1 à 5 en un tap après chaque jeûne, et une note libre.
 - **Semaine** : durée de chaque jeûne face à la durée prévue, moyenne,
   objectifs atteints.
 - **Suivi** : 10 derniers jours ; un jour non noté se valide en un tap avec
   les heures prévues, ou s'ajuste.
 - **Mes horaires** : ouverture et fermeture de la fenêtre pour chaque jour.
-  Par défaut 13:00 – 21:00, et 07:30 – 20:30 les jours de bureau (lundi,
-  jeudi) où tu manges le matin.
+  Par défaut 09:00 – 21:00 (jeûne nocturne de 12 h), et 07:30 – 20:30 les
+  jours de bureau (lundi, jeudi).
 
 Le 16:8 combiné à la musculation fait perdre du gras sans perte de muscle
 ni de force ([méta-analyse 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11434652/),

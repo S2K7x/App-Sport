@@ -2281,10 +2281,12 @@
             </div>
             <div class="water-bar"><i id="waterBar"></i></div>
           </div>
-          <label class="pref-row"><span class="pref-label">Créatine<small>5 g, tous les jours, même au repos</small></span>
+          <label class="pref-row"><span class="pref-label">Créatine<small>3-5 g, tous les jours, même au repos</small></span>
             <input class="switch" type="checkbox" data-supp="creatine"></label>
-          <label class="pref-row"><span class="pref-label">Oméga-3<small>2-3 g d'EPA + DHA</small></span>
+          <label class="pref-row"><span class="pref-label">Oméga-3<small>1-2 g d'EPA + DHA, ou poisson gras au menu</small></span>
             <input class="switch" type="checkbox" data-supp="omega3"></label>
+          <label class="pref-row"><span class="pref-label">Vitamine D3<small>1000-2000 UI, d'octobre à mars</small></span>
+            <input class="switch" type="checkbox" data-supp="vitd"></label>
         </div>
       </section>
 
@@ -2305,12 +2307,12 @@
           </div>
           <div class="calc-label caps">Objectif</div>
           <div class="goal-toggle">
-            <button class="goal-btn" data-goal="maintien" onclick="setGoal('maintien')">Maintien</button>
-            <button class="goal-btn active" data-goal="masse" onclick="setGoal('masse')">Prise masse</button>
-            <button class="goal-btn" data-goal="seche" onclick="setGoal('seche')">Sèche</button>
+            <button class="goal-btn active" data-goal="maintien" onclick="setGoal('maintien', true)">Maintien</button>
+            <button class="goal-btn" data-goal="masse" onclick="setGoal('masse', true)">Prise lente</button>
+            <button class="goal-btn" data-goal="seche" onclick="setGoal('seche', true)">Sèche</button>
           </div>
           <p class="calc-note">
-            <b>Note :</b> Maintien 65–67 kg optimal pour la planche (rapport force/poids). Ne pas couper agressivement — la force absolue en dépend.
+            <b>Recommandé : Maintien.</b> À ton niveau, manger à l'équilibre avec 2 g/kg de protéines construit autant de muscle qu'un surplus, avec moins de gras, et garde ton rapport force/poids pour la planche. <b>Prise lente</b> (+8 %) : vise +0,25 % du poids par semaine, ~0,15 kg. <b>Sèche</b> (−15 %) : au plus 0,5-0,7 % par semaine, sinon la force baisse.
           </p>
         </div>
 
@@ -2345,8 +2347,36 @@
             </div>
           </div>
         </div>
+        <div class="section-head"><span class="section-title caps">Suivi du poids</span></div>
+        <div class="calc-card" id="weighCard"></div>
+
         <div class="section-head"><span class="section-title caps">Protéines par repas</span></div>
         <div class="calc-card" id="protMealCard"></div>
+
+        <div class="section-head"><span class="section-title caps">Ta journée type</span></div>
+        <div class="calc-card" id="dayPlanCard"></div>
+
+        <div class="section-head"><span class="section-title caps">Quoi mettre dans l'assiette</span></div>
+        <div class="calc-card">
+          <div class="info-list">
+            <div class="info-item"><div class="info-dot"></div><div>
+              <div class="info-title">La méthode de l'assiette</div>
+              <div class="info-desc">À chaque repas : ¼ protéines (une paume et demie : viande, poisson, œufs, skyr, tofu), ¼ à ⅓ féculents (un à deux poings : riz, pâtes, pommes de terre, pain complet, avoine), ½ légumes, et un pouce de bon gras (huile d'olive, avocat, noix). Les jours de grosse séance, un poing de féculents en plus.</div>
+            </div></div>
+            <div class="info-item"><div class="info-dot"></div><div>
+              <div class="info-title">Les aliments à avoir toujours</div>
+              <div class="info-desc">Œufs, poulet ou dinde, thon et sardines en boîte, saumon ou maquereau (2 fois par semaine : c'est ta vraie source d'oméga-3), skyr ou fromage blanc, lentilles et pois chiches, riz, avoine, pommes de terre, pain complet, bananes, fruits rouges surgelés, légumes surgelés, huile d'olive, noix.</div>
+            </div></div>
+            <div class="info-item"><div class="info-dot"></div><div>
+              <div class="info-title">Fibres, fruits et légumes</div>
+              <div class="info-desc">Au moins 400 g de fruits et légumes par jour (5 portions) et ~30 g de fibres : légumineuses, céréales complètes, fruits. Ce sont eux qui apportent le magnésium, le potassium, la vitamine C (collagène des tendons) et le fer dont un coureur a besoin.</div>
+            </div></div>
+            <div class="info-item"><div class="info-dot"></div><div>
+              <div class="info-title">À limiter</div>
+              <div class="info-desc">Alcool (il freine la récupération et le sommeil), boissons sucrées, fritures et ultra-transformés au quotidien. Pas d'interdit : la règle des 80/20 suffit.</div>
+            </div></div>
+          </div>
+        </div>
 
         <!-- Suppléments -->
         <div class="section-head"><span class="section-title caps">Suppléments</span></div>
@@ -2355,22 +2385,57 @@
             <div class="info-item">
               <div class="info-dot"></div>
               <div>
-                <div class="info-title">Créatine monohydrate — 5 g/j</div>
-                <div class="info-desc">Améliore la force maximale et la récupération. En maintien continu.</div>
+                <div class="info-title">Créatine monohydrate — 3-5 g/j · preuve forte</div>
+                <div class="info-desc">Le complément le mieux prouvé pour la force et la masse musculaire. Tous les jours, à n'importe quelle heure, sans phase de charge ni de pause. Prends du monohydrate simple.</div>
               </div>
             </div>
             <div class="info-item">
               <div class="info-dot"></div>
               <div>
-                <div class="info-title">Oméga-3 — 2-3 g EPA+DHA/j</div>
-                <div class="info-desc">Anti-inflammatoire, récupération articulaire et tendineuse. Essentiel en planche-training.</div>
+                <div class="info-title">Oméga-3 — 1-2 g EPA+DHA/j · preuve modérée</div>
+                <div class="info-desc">Aident surtout à récupérer des courbatures. Aucune preuve solide sur les tendons ni sur la force. Si tu manges du poisson gras 2 fois par semaine, ils deviennent facultatifs.</div>
               </div>
             </div>
             <div class="info-item">
               <div class="info-dot"></div>
               <div>
                 <div class="info-title">Hydratation — 35-40 ml/kg/j</div>
-                <div class="info-desc">Prioritaire pour la force et la résistance des tendons. ~2,3–2,7 L/j à 67 kg.</div>
+                <div class="info-desc">~2,3-2,7 L/j à 67 kg, + 500 ml par heure de course. Urine claire = bien hydraté. Pincée de sel si tu transpires beaucoup.</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Vitamine D3 — 1000-2000 UI/j d'octobre à mars · si carence</div>
+                <div class="info-desc">40 à 70 % des sportifs manquent de vitamine D en hiver ; la supplémentation aide la force quand on est carencé. Idéal : un dosage sanguin (25-OH-D) en fin d'hiver. Ne pas dépasser 4000 UI/j.</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Caféine — ~3 mg/kg, 45-60 min avant · optionnel</div>
+                <div class="info-desc">~200 mg (un double expresso) avant la séance A du dimanche et le fractionné du lundi : gain prouvé en force et en endurance. Jamais dans les 8 h avant le coucher, le sommeil compte plus.</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Protéine en poudre (whey, caséine) · pratique</div>
+                <div class="info-desc">Pas magique : c'est de la nourriture. Utile seulement si tu n'arrives pas à tes protéines avec de vrais repas.</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Gélatine/collagène + vitamine C · essai possible</div>
+                <div class="info-desc">15 g + 50 mg de vitamine C 45-60 min avant les séances A et C (poignets, coudes). Ça double un marqueur de synthèse du collagène, mais les preuves sur les tendons sont encore préliminaires. À essayer si les poignets ou les coudes tirent.</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-dot"></div>
+              <div>
+                <div class="info-title">Inutiles avec ton alimentation</div>
+                <div class="info-desc">BCAA, glutamine, brûleurs de graisse, boosters de testostérone, multivitamines « sport ». Un bilan sanguin une fois par an (ferritine, vitamine D, B12) vaut plus que tous ces produits.</div>
               </div>
             </div>
           </div>
@@ -2390,8 +2455,8 @@
             <div class="info-item">
               <div class="info-dot"></div>
               <div>
-                <div class="info-title">Shabbat — repos complet</div>
-                <div class="info-desc">Le seul jour sans entraînement, placé pile avant la séance la plus lourde (dimanche). Pas de rattrapage ni de "petite séance" : c'est ce repos qui rend 6 jours d'entraînement soutenables.</div>
+                <div class="info-title">Shabbat — repos complet + marche</div>
+                <div class="info-desc">Le seul jour sans entraînement, placé pile avant la séance la plus lourde (dimanche). Pas de rattrapage ni de "petite séance" : c'est ce repos qui rend 6 jours d'entraînement soutenables. Une marche tranquille de 45-60 min (allure de conversation) ajoute de l'endurance de base sans fatigue et aide la récupération.</div>
               </div>
             </div>
             <div class="info-item">
@@ -2405,7 +2470,7 @@
               <div class="info-dot"></div>
               <div>
                 <div class="info-title">Protéine avant coucher — 30-40 g</div>
-                <div class="info-desc">Caséine/whey ou skyr avant dodo, favorise la synthèse protéique nocturne. La quantité totale/jour reste plus importante que le timing exact.</div>
+                <div class="info-desc">Skyr, fromage blanc ou caséine 30-60 min avant de dormir : ces protéines lentes sont absorbées pendant la nuit et, sur 12 semaines, ont amélioré force et volume musculaire. La quantité totale/jour reste plus importante que le timing exact.</div>
               </div>
             </div>
             <div class="info-item">
@@ -2430,6 +2495,7 @@
       </div>
 
       <div id="fastHero"></div>
+      <div id="fastAdvice"></div>
 
       <div class="section-head"><span class="section-title caps">Cette semaine</span></div>
       <div class="calc-card" id="fastWeek"></div>
@@ -2457,13 +2523,13 @@
             <div class="info-dot"></div>
             <div>
               <div class="info-title">Jeûne et entraînement de force</div>
-              <div class="info-desc">Chez des pratiquants de musculation, le 16:8 fait perdre du gras sans perte de muscle ni de force, à condition de garder assez de protéines (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11434652/" target="_blank" rel="noopener">méta-analyse 2024</a>).</div>
+              <div class="info-desc">Le jeûne intermittent n'apporte aucun bonus pour le muscle ou la force : il les préserve au mieux, à condition de manger assez de protéines (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11434652/" target="_blank" rel="noopener">méta-analyse 2024</a>). Une fenêtre très courte (6 h) empêche surtout de répartir 4 repas protéinés et d'en avoir un avant le coucher. D'où la recommandation : un jeûne nocturne de ~12 h, fenêtre de ~12 h.</div>
             </div>
           </div>
           <div class="info-item">
             <div class="info-dot"></div>
             <div>
-              <div class="info-title">Trois vrais repas dans la fenêtre</div>
+              <div class="info-title">Quatre repas protéinés dans la fenêtre</div>
               <div class="info-desc" id="fastProtTip"></div>
             </div>
           </div>
@@ -3105,29 +3171,29 @@
           drills: drills('wrists', 'catCow', 'thread', 'puppy', 'wallSlide', 'hipFlexor', 'extRot', 'pullApart', 'scapPU', 'leanRock', 'hollow') },
         { name: 'Handstand skill', sets: '8-10 min', note: 'Drills mur ou freestanding, esprit frais' },
         { name: 'HSPU Force — négatif contrôlé', sets: '4 × 3-6 reps', note: 'Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip. Repos 2-3 min' },
-        { name: 'Tuck Planche isométrique', sets: '5 × 8-10 s', note: 'Intent "pousser le sol", bras verrouillés, repos 2-3 min' },
+        { name: 'Tuck Planche isométrique', sets: '5 × 8-10 s', note: 'Intent "pousser le sol", bras verrouillés. Séries 4 et 5 : essaie le palier suivant (advanced tuck, dos plat) 3-5 s, même avec un peu d\'aide. La force isométrique se gagne surtout à l\'angle travaillé : il faut toucher la position visée chaque semaine. Repos 2-3 min' },
         { name: 'Pseudo Planche PU sur parallettes', sets: '4 × 5-8 reps', note: 'Tempo 3-1-1, lean maximal, repos 2 min' },
         { name: 'Planche lean → tuck dynamique / négative', sets: '3 × 3-5', note: 'Transition contrôlée, repos 90 s' },
         { name: 'Ring Dips lestés', sets: '3 × 6-8 reps', note: 'Amplitude complète, anneau stable, repos 2 min' },
-        { name: 'Scapular PU + Élévation 45° haltère', sets: '3 × 10 + 3 × 12', note: 'Superset serratus & deltoïde ant.' },
+        { name: 'Élévations latérales + Scapular PU', sets: '3 × 12-15 + 3 × 10', note: 'Superset deltoïde latéral & serratus. Latérales légères, tempo 2-0-2, coude légèrement fléchi. Le deltoïde antérieur est déjà saturé par la planche et le HSPU : c\'est le latéral qui fait la largeur d\'épaules. Repos 60 s' },
         { name: 'Cool-down souplesse', sets: '5 min', note: 'Statique long : c\'est maintenant que l\'amplitude se gagne.',
           drills: drills('wristStr', 'puppyLong', 'couch') },
       ],
       muscles: ['Épaules', 'Triceps', 'Pectoraux', 'Serratus', 'Core'],
-      tip: 'Dimanche est ta séance la plus lourde, et ce n\'est pas un hasard : tu sors de ~36 h de repos complet (Shabbat), c\'est le jour où le système nerveux et les tendons sont les plus frais. Tout ce qui demande une intensité maximale va ici. Intent ballistique sur l\'isométrie : imaginer pousser le sol vers les pieds. Chaque rep de Pseudo Planche PU doit simuler la position finale de planche. Pour le HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique — c\'est ce qui protège la nuque et les épaules pendant que la force se construit. Séance 100 % haut du corps : tes jambes restent fraîches pour la course de lundi.'
+      tip: 'Dimanche est ta séance la plus lourde, et ce n\'est pas un hasard : tu sors de ~36 h de repos complet (Shabbat), c\'est le jour où le système nerveux et les tendons sont les plus frais. Tout ce qui demande une intensité maximale va ici. Intent ballistique sur l\'isométrie : imaginer pousser le sol vers les pieds. Chaque rep de Pseudo Planche PU doit simuler la position finale de planche. Pour le HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique — c\'est ce qui protège la nuque et les épaules pendant que la force se construit. Règle du feu tricolore avant de commencer : sommeil < 6 h, VFC nettement sous ta moyenne ou douleur articulaire → retire 1 série par exercice et pas de record aujourd\'hui. Séance 100 % haut du corps : tes jambes restent fraîches pour la course de lundi. Les élévations latérales remplacent l\'élévation à 45° : le deltoïde antérieur reçoit déjà des dizaines de séries de planche et de HSPU, c\'est le latéral qui manquait (6 séries/sem. au lieu de 3).'
     },
     cardio: {
       day: 'Lundi · Course qualité',
-      title: 'Course 5 km — Fractionné',
+      title: 'Course 6-7 km — Fractionné',
       exercises: [
-        { name: 'Échauffement trot', sets: '1 km', note: 'Très facile (RPE 3/10), puis 2 × 20 m de montées de genoux, talons-fesses et pas chassés' },
+        { name: 'Échauffement trot', sets: '1 km', note: 'Très facile (RPE 3/10), puis 2 × 20 m de montées de genoux, talons-fesses et pas chassés, puis 2 × 15 pogo jumps (petits rebonds chevilles raides, contact au sol le plus court possible). La pliométrie améliore l\'économie de course (Llanos-Lagos et al. 2024).' },
         { name: 'Accélérations progressives', sets: '3 × 80 m', note: 'Monte jusqu\'à ~85 % sans sprinter, retour en marchant — repos 45 s' },
-        { name: 'Fractionné', sets: '6 × 400 m / 3 × 1 km', note: 'RPE 8/10 : un peu plus vite que ton allure 5 km, régulier du 1er au dernier. Récup 200 m en trottinant — repos 75 s. Note ton temps de chaque 400 m.' },
+        { name: 'Fractionné', sets: '4 × 1000 m / 6 × 400 m / 8 × 45 s côte', note: 'Cycle de 3 semaines, repos 2-3 min en trottinant. Semaine 1 — VO2max : 4 × 1000 m à 90-95 % FC max (RPE 8-9), ~3 min 30 à 4 min 30 chacun, régulier du 1er au dernier. Semaine 2 — vitesse : 6 × 400 m un peu plus vite que ton allure 5 km (RPE 8), récup 200 m trot (~75 s). Semaine 3 — côtes : 8 × 45 s en côte à 6-8 % (RPE 9), retour en trottinant. Puis on recommence. La semaine avant chaque décharge : test 5 km chrono à la place, pour mesurer tes progrès et recaler tes allures. Note le temps de chaque répétition.' },
         { name: 'Retour au calme', sets: '0,5 km', note: 'Trot très lent puis marche, étirements doux mollets et fléchisseurs de hanche' },
         { name: 'Handstand micro-dose', sets: '5 min', note: 'Optionnel, le soir : 5-6 kick-ups ou holds au mur, zéro fatigue. Entretient la pratique distribuée.' },
       ],
       muscles: ['Cardiovasculaire', 'Mollets', 'Ischio-jambiers', 'Économie de course'],
-      tip: 'Lundi, tes jambes sont les plus fraîches de la semaine (Shabbat + dimanche 100 % haut du corps) : c\'est donc là que va la seule course intense. Avec deux sorties par semaine, le schéma le plus efficace est polarisé — une sortie dure, une vraiment facile, presque rien entre les deux (Seiler ; Muñoz 2014 chez des coureurs amateurs). Total ≈ 5 km : 1 km + 6 × (400 m + 200 m) + 0,5 km. Progresse par l\'allure, pas par la distance : 4 semaines de 6 × 400 m en cherchant à baisser tes temps, puis 4 semaines de 3 × 1 km (récup 400 m trot), et on alterne. Si tu fais autre chose le même jour, laisse au moins 6 h d\'écart.'
+      tip: 'Lundi, tes jambes sont les plus fraîches de la semaine (Shabbat + dimanche 100 % haut du corps) : c\'est donc là que va la seule course intense. Avec deux sorties par semaine, le schéma le plus efficace est polarisé — une sortie dure, une vraiment facile, presque rien entre les deux (Seiler ; Muñoz 2014 chez des coureurs amateurs). Le fractionné tourne sur 3 semaines. Les répétitions de 3-4 min (4 × 1000 m) sont le meilleur levier de la VO2max : 4 × 4 min font gagner ~7 % de VO2max en 8 semaines, quand l\'endurance continue à volume égal ne la fait pas bouger (Helgerud et al. 2007), et les répétitions longues gardent plus longtemps au-dessus de 90 % de la VO2max que les courtes (étude 2025). Les 400 m entretiennent la vitesse ; les côtes développent la force spécifique et l\'économie de course, sans les chocs d\'un sprint à plat. Le test 5 km toutes les 6 semaines te donne un chiffre objectif de progression. Total ≈ 6-7 km. Si tu fais autre chose le même jour, laisse au moins 6 h d\'écart.'
     },
     b: {
       day: 'Mardi · Pull + Muscle-up',
@@ -3138,14 +3204,14 @@
         { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding courtes, qualité avant durée' },
         { name: 'False grip ring holds', sets: '4 × 10-15 s', note: 'Poignet fléchi par-dessus l\'anneau, repos 60 s' },
         { name: 'Chest-to-bar explosif', sets: '4 × 3-5 reps', note: 'Pull ultra-haut, coudes vers hanches, repos 2 min' },
-        { name: 'Slow MU négatif / Ring MU strict', sets: '3 × 3-4 / 3-4 séries', note: 'Négatif 5-7 s, puis reps qualité. Repos 2-3 min' },
+        { name: 'Slow MU négatif / Ring MU strict', sets: '3 × 3-4 / 3-4 séries', note: 'Négatif 5-7 s, puis reps qualité, jamais à l\'échec : demain c\'est planche bras tendus, le tendon du biceps travaille deux jours de suite. Si le biceps ou le coude tire mercredi matin, fais le muscle-up une semaine sur deux. Repos 2-3 min' },
         { name: 'Tractions tempo / Archer', sets: '3 × 5-6 reps', note: 'Sans lest : 3 s excentrique + 1 s pause menton au-dessus de la barre. Passe aux Archer (3-5/côté) une fois 10 tractions strictes acquises. Repos 120s' },
         { name: 'Tuck Front Lever', sets: '4 × 6-10 s', note: 'Dépression scapulaire, bras tendus. Palier suivant quand 4 × 10 s propres. Repos 90 s' },
         { name: 'Rowing anneaux / Australian pull-ups', sets: '4 × 8-12 reps', note: 'Pause 1 s poitrine aux anneaux, omoplates serrées. Pieds surélevés pour durcir. Repos 90s' },
-        { name: 'Curl biceps haltères', sets: '3 × 10-12 reps', note: 'Tempo 2-0-2, supination complète en haut. Repos 60 s' },
+        { name: 'Curl incliné + Pistol / Shrimp squat', sets: '3 × 10-12 + 3 × 5-8 / jambe', note: 'Superset bras / jambes : les deux ne se gênent pas, donc 0 min de plus. Curl sur banc incliné à 45-60°, bras pendants derrière le buste, tempo 2-0-2, supination complète : le biceps travaille étiré, comme bras tendus en planche. Squat sur une jambe contrôlé, 2-3 reps en réserve (pistol assisté à une poignée ou sur une boîte si besoin). 2ᵉ exposition jambes de la semaine, loin de la course de lundi et 72 h avant vendredi. Repos 60 s' },
       ],
-      muscles: ['Grand dorsal', 'Rhomboïdes', 'Trapèze moyen', 'Biceps', 'Avant-bras', 'Core'],
-      tip: 'Le muscle-up ouvre la séance parce que c\'est un skill explosif : il se travaille frais, jamais après des séries lourdes de tractions. L\'ordre est voulu — explosif (MU) → force (tractions) → bras tendus (front lever) → volume (rowing, curls). Les 3 briques du muscle-up : false grip, pull chest-to-bar ultra-haut, transition coudes vers hanches ; un négatif lent de 5-7 s vaut plus que 10 reps bâclées. Les tractions passent à 3 séries : le chest-to-bar et le muscle-up sont déjà du tirage vertical, le volume total reste ~10 séries. Le rowing est le contrepoids indispensable de toute la protraction de la planche et du HSPU : ne le saute jamais.'
+      muscles: ['Grand dorsal', 'Rhomboïdes', 'Trapèze moyen', 'Biceps', 'Avant-bras', 'Quadriceps', 'Fessiers', 'Core'],
+      tip: 'Le muscle-up ouvre la séance parce que c\'est un skill explosif : il se travaille frais, jamais après des séries lourdes de tractions. L\'ordre est voulu — explosif (MU) → force (tractions) → bras tendus (front lever) → volume (rowing, curls). Les 3 briques du muscle-up : false grip, pull chest-to-bar ultra-haut, transition coudes vers hanches ; un négatif lent de 5-7 s vaut plus que 10 reps bâclées. Les tractions passent à 3 séries : le chest-to-bar et le muscle-up sont déjà du tirage vertical, le volume total reste ~10 séries. Le rowing est le contrepoids indispensable de toute la protraction de la planche et du HSPU : ne le saute jamais. Le squat unilatéral en superset avec les curls donne aux jambes une 2ᵉ séance par semaine sans rallonger la séance : s\'entraîner deux fois par semaine fait mieux progresser qu\'une seule (Schoenfeld et al. 2016). Le curl incliné charge le biceps en position longue : c\'est là qu\'il grossit le plus (Wolf et al. 2023 ; méta-analyse 2026), et c\'est exactement la position du biceps bras tendus en planche et en front lever.'
     },
     c: {
       day: 'Mercredi · Planche Volume',
@@ -3154,29 +3220,29 @@
         { name: 'Mobilité handstand & planche', sets: '10 min', note: 'Version volume : plus de flexion d\'épaule et de compression. Coche chaque drill au fur et à mesure.',
           drills: drills('wrists', 'catCow', 'dislocate', 'wallSlide', 'hipFlexor', 'extRot', 'scapPU', 'leanRock', 'pikeComp', 'hollow') },
         { name: 'Handstand skill', sets: '8-10 min', note: 'Expositions freestanding. Poignets sensibles après mardi : reste au mur' },
-        { name: 'Planche volume — 60 s total', sets: '6×10s / 5×12s / 4×15s', note: 'Repos 90 s, progresser le format chaque semaine' },
-        { name: 'Pike HSPU pieds surélevés / Wall HSPU', sets: '3 × 6-10 reps', note: 'Volume sous-maximal (2 reps en réserve), tempo 3-0-1, tête qui passe devant les mains. Repos 2 min' },
+        { name: 'Planche volume — 60 s total', sets: '6×10s / 5×12s / 4×15s', note: 'Repos 90 s, progresser le format chaque semaine. Biceps ou coude sensible après le muscle-up d\'hier : reste au format de la semaine passée, ne progresse pas' },
+        { name: 'Pike HSPU pieds surélevés / Wall HSPU', sets: '4 × 6-10 reps', note: 'Volume sous-maximal (2 reps en réserve), tempo 3-0-1, tête qui passe devant les mains. Repos 2 min' },
         { name: 'Pompes anneaux + Face pulls', sets: '3 × 8-12 + 3 × 15', note: 'Superset : anneaux tournés vers l\'extérieur en haut / face pulls légers, coudes hauts. Repos 90 s' },
-        { name: 'Élévations latérales', sets: '3 × 12-15 reps', note: 'Tempo 2-0-2, léger, coude légèrement fléchi. Repos 60 s' },
+        { name: 'Élévations latérales penché (lean-away)', sets: '3 × 12-15 reps', note: 'Une main tient un poteau, buste penché à ~20° du côté opposé : le deltoïde est chargé dès le bas du mouvement, là où il est étiré. Tempo 2-0-2, léger, coude légèrement fléchi. Repos 60 s' },
         { name: 'Dragon Flag / L-sit', sets: '3×6 / 4×20-30s', note: 'Choisir selon fatigue core. Repos 90 s' },
         { name: 'Cool-down souplesse', sets: '5 min', note: 'Statique long : c\'est maintenant que l\'amplitude se gagne.',
           drills: drills('wristStr', 'pancake', 'couch') },
       ],
       muscles: ['Épaules', 'Pectoraux', 'Triceps', 'Deltoïdes', 'Deltoïde post.', 'Core'],
-      tip: 'Mercredi tombe 72 h après la séance lourde du dimanche : c\'est à peu près le temps qu\'il faut aux tendons pour boucler leur cycle de reconstruction (la synthèse de collagène culmine vers 24 h et redescend vers 72 h — Miller et al. 2005). C\'est la 2ᵉ exposition planche/HSPU de la semaine, en volume sous-maximal : la force se construit dimanche, mercredi ajoute du volume de qualité. Planche : accumuler 60 s propres, de 6×10 s vers 4×15 s sur 4-6 semaines. HSPU : garde 2 reps en réserve, jamais d\'échec. Les face pulls en superset équilibrent la poussée sans rallonger la séance, et la compression du L-sit sert directement la planche et le press handstand.'
+      tip: 'Mercredi tombe 72 h après la séance lourde du dimanche : c\'est à peu près le temps qu\'il faut aux tendons pour boucler leur cycle de reconstruction (la synthèse de collagène culmine vers 24 h et redescend vers 72 h — Miller et al. 2005). C\'est la 2ᵉ exposition planche/HSPU de la semaine, en volume sous-maximal : la force se construit dimanche, mercredi ajoute du volume de qualité. Planche : accumuler 60 s propres, de 6×10 s vers 4×15 s sur 4-6 semaines. HSPU : 4 séries (8 séries/sem. au total pour un objectif principal), garde 2 reps en réserve, jamais d\'échec. Les face pulls en superset équilibrent la poussée sans rallonger la séance, et la compression du L-sit sert directement la planche et le press handstand.'
     },
     cardio2: {
       day: 'Jeudi · Course facile',
-      title: 'Course 5 km — Zone 2',
+      title: 'Course 5-7 km — Zone 2',
       exercises: [
-        { name: 'Course Zone 2', sets: '5 km', note: 'Allure conversation : RPE 4-5/10, 60-70 % FC max. Les 500 premiers mètres encore plus lents. Si tu ne peux plus parler en phrases complètes, ralentis.' },
+        { name: 'Course Zone 2', sets: '5-7 km', note: 'Allure conversation : RPE 4-5/10, 60-70 % FC max. Les 500 premiers mètres encore plus lents. Si tu ne peux plus parler en phrases complètes, ralentis. Progression : +0,5 km toutes les 2 semaines jusqu\'à 7 km si ton emploi du temps le permet ; jamais plus de 10 % au-dessus de ta plus longue sortie du mois. Deload : retour à 5 km.' },
         { name: 'Lignes droites', sets: '4 × 20 s', note: 'Accélérations progressives jusqu\'à ~90 %, relâché, sans sprint. Retour en marchant, repos 60 s' },
         { name: 'Mobilité mollets & hanches', sets: '6-8 min', note: 'Statique long après la course, sans forcer : le couch stretch est celui qui sert le plus ton handstand.',
           drills: drills('calf', 'couch', 'hip9090', 'pancake') },
         { name: 'Handstand micro-dose', sets: '5 min', note: 'Optionnel, le soir : 5-6 kick-ups ou holds au mur, zéro fatigue. Entretient la pratique distribuée.' },
       ],
       muscles: ['Cardiovasculaire', 'Mollets', 'Récupération active'],
-      tip: 'Jeudi est la sortie facile, et elle doit vraiment l\'être : demain c\'est jambes. La zone 2 développe la base aérobie sans créer de fatigue qui mordrait sur les split squats et les nordics. Le piège classique avec deux sorties par semaine, c\'est de courir les deux "moyennement vite" : trop dur pour récupérer, pas assez pour progresser. Les lignes droites en fin de sortie entretiennent la vitesse et la foulée pour un coût de fatigue quasi nul.'
+      tip: 'Jeudi est la sortie facile, et elle doit vraiment l\'être : demain c\'est jambes. La zone 2 développe la base aérobie sans créer de fatigue qui mordrait sur les split squats et les nordics. Le piège classique avec deux sorties par semaine, c\'est de courir les deux "moyennement vite" : trop dur pour récupérer, pas assez pour progresser. Les lignes droites en fin de sortie entretiennent la vitesse et la foulée pour un coût de fatigue quasi nul. À 10 km/semaine, c\'est le volume facile, pas l\'intensité, qui limite ta progression : d\'où l\'allongement progressif de cette sortie vers 7 km. Le risque de blessure vient surtout d\'une sortie qui dépasse nettement la plus longue du mois précédent (Frandsen et al. 2025), donc +0,5 km à la fois.'
     },
     d: {
       day: 'Vendredi · Jambes + Handstand',
@@ -3184,27 +3250,27 @@
       exercises: [
         { name: 'Mobilité hanches & handstand', sets: '10-12 min', note: 'Hanches d\'abord (prépare aussi les jambes), puis ligne d\'épaule et gainage pour le long bloc handstand. Coche chaque drill au fur et à mesure.',
           drills: drills('wrists', 'legSwing', 'hip9090', 'cossack', 'squatPry', 'hipFlexor', 'wallSlide', 'wallShrug', 'hollow') },
-        { name: 'Handstand long', sets: '12-15 min', note: 'Chest-to-wall, freestanding, shapes' },
-        { name: 'Bulgarian Split Squats', sets: '3 × 8-10 / jambe', note: 'Descente 3 s, genou dans l\'axe. Repos 90 s' },
-        { name: 'Nordic Curls', sets: '3 × 4-6 reps', note: 'Excentrique 3-4 s, amortis avec les mains en bas. Repos 2 min' },
-        { name: 'Box Jumps', sets: '3 × 5 reps', note: 'Atterrissage souple et silencieux, reset complet entre chaque saut. Repos 60 s' },
-        { name: 'Mollets unilatéraux lestés', sets: '3 × 12-15 / jambe', note: 'Sur une marche, amplitude totale, pause 1 s en bas. Repos 60 s' },
-        { name: 'Y-T-W au sol', sets: '2 × 8/lettre', note: 'Trapèze inférieur : léger, lent, sans à-coups. Le Y renforce exactement la fin de flexion d\'épaule qui manque en handstand. Repos 45 s' },
-        { name: 'Jefferson Curls', sets: '2 × 8 reps', note: 'Lentement, très léger, vertèbre par vertèbre' },
+        { name: 'Handstand long', sets: '10-12 min', note: 'Chest-to-wall, freestanding, shapes' },
+        { name: 'Box Jumps', sets: '3 × 5 reps', note: 'En premier, système nerveux frais : l\'explosif ne se travaille jamais fatigué. Atterrissage souple et silencieux, reset complet entre chaque saut. Repos 60 s' },
+        { name: 'Bulgarian Split Squats + Tractions', sets: '4 × 8-10 / jambe + 3 × 5', note: 'Superset jambes / tirage : BSS pied avant surélevé de 5-10 cm (amplitude plus grande, fessier et quadriceps plus étirés), descente 3 s, genou dans l\'axe, haltères quand 10 reps passent facilement. Tractions strictes, 2 reps en réserve (pas de tempo ici, c\'est le volume du 2ᵉ jour de tirage). Repos 90 s' },
+        { name: 'Nordic Curls + Tuck Front Lever', sets: '3 × 4-6 reps + 3 × 6-10 s', note: 'Superset : Nordic excentrique 3-4 s, amortis avec les mains en bas / Front lever même palier que mardi, 1-2 s sous ton max. Repos 2 min' },
+        { name: 'Hip thrust unilatéral + Reverse Nordic', sets: '3 × 10-12 / jambe + 3 × 6-10', note: 'Superset : hip thrust dos sur un banc, haltère sur la hanche, pause 1 s en haut, bassin rentré / Reverse Nordic à genoux, buste droit, bascule en arrière jusqu\'où tu contrôles puis remonte : quadriceps en position longue, le droit fémoral que les squats travaillent peu. Commence à 2 × 6 en petite amplitude. Repos 60 s' },
+        { name: 'Mollets unilatéraux lestés + Y-T-W', sets: '3 × 12-15 / jambe + 2 × 8/lettre', note: 'Superset : mollets sur une marche, amplitude totale, pause 1 s en bas / Y-T-W au sol léger et lent : le Y renforce exactement la fin de flexion d\'épaule qui manque en handstand. Repos 45 s' },
+        { name: 'Jefferson Curls + Poignets lestés', sets: '2 × 8 reps + 2 × 15', note: 'Superset : Jefferson très léger, vertèbre par vertèbre / curls de poignet en flexion puis en extension avec un haltère léger, avant-bras sur la cuisse. Des poignets forts encaissent mieux la charge de la planche et du handstand. Repos 45 s' },
       ],
-      muscles: ['Quadriceps', 'Ischio-jambiers', 'Fessiers', 'Mollets', 'Poignets', 'Trapèze inf.'],
-      tip: 'Les jambes sont le vendredi parce que c\'est le jour le plus loin de ta course intense : derrière, Shabbat puis un dimanche 100 % haut du corps, soit 72 h avant de recourir lundi, jambes fraîches. Les programmes qui incluent les Nordic curls divisent environ par deux les blessures aux ischios (van Dyk et al. 2019) — précieux quand tu cours deux fois par semaine. Box jumps et mollets unilatéraux travaillent la raideur tendineuse, utile pour l\'économie de course. Séance courte (~65 min) pour finir largement avant l\'entrée de Shabbat : en hiver, fais-la le matin.'
+      muscles: ['Quadriceps', 'Fessiers', 'Ischio-jambiers', 'Grand dorsal', 'Mollets', 'Poignets', 'Trapèze inf.'],
+      tip: 'Les jambes sont le vendredi parce que c\'est le jour le plus loin de ta course intense : derrière, Shabbat puis un dimanche 100 % haut du corps, soit 72 h avant de recourir lundi, jambes fraîches. Les programmes qui incluent les Nordic curls divisent environ par deux les blessures aux ischios (van Dyk et al. 2019) — précieux quand tu cours deux fois par semaine. Box jumps et mollets unilatéraux travaillent la raideur tendineuse, utile pour l\'économie de course. Vendredi est aussi ton 2ᵉ jour de tirage : tractions et front lever en superset avec les jambes, des muscles qui ne se gênent pas, donc la séance ne s\'allonge presque pas. Les supersets font gagner du temps mais demandent un peu plus de récupération (Weakley et al. 2017) : le vendredi, Shabbat est juste derrière. Avec mardi, les jambes ont 2 séances par semaine (~10 séries quadriceps et ~10 fessiers au lieu de ~3) et le dos aussi. Le Reverse Nordic travaille le quadriceps étiré et allonge ses fibres (Alonso-Fernández et al. 2019). Séance ~75 min, finis largement avant l\'entrée de Shabbat : en hiver, fais-la le matin.'
     }
   };
 
   // Place de chaque séance dans la semaine (0 = dimanche) et infos de carte.
   const SESSION_META = {
     a:       { dow: 0, tag: 'Push',   short: 'A',  duration: '~85 min' },
-    cardio:  { dow: 1, tag: 'Course', short: 'Q',  duration: '~35 min', blocks: true },
+    cardio:  { dow: 1, tag: 'Course', short: 'Q',  duration: '~45 min', blocks: true },
     b:       { dow: 2, tag: 'Pull',   short: 'B',  duration: '~80 min' },
     c:       { dow: 3, tag: 'Push',   short: 'C',  duration: '~80 min' },
-    cardio2: { dow: 4, tag: 'Course', short: 'Z2', duration: '~45 min', blocks: true },
-    d:       { dow: 5, tag: 'Jambes', short: 'D',  duration: '~65 min' },
+    cardio2: { dow: 4, tag: 'Course', short: 'Z2', duration: '~50 min', blocks: true },
+    d:       { dow: 5, tag: 'Jambes', short: 'D',  duration: '~75 min' },
   };
   const SESSION_ORDER = Object.keys(SESSION_META).sort((x, y) => SESSION_META[x].dow - SESSION_META[y].dow);
 
@@ -3449,7 +3515,7 @@
   const FAST_KEY = 'planche_os_fast_v1';
   const OFFICE_DAYS = [1, 4]; // lundi et jeudi : bureau, petit-déjeuner le matin
   const DEFAULT_SCHEDULE = [0, 1, 2, 3, 4, 5, 6].map(d =>
-    OFFICE_DAYS.includes(d) ? { start: '07:30', end: '20:30' } : { start: '13:00', end: '21:00' });
+    OFFICE_DAYS.includes(d) ? { start: '07:30', end: '20:30' } : { start: '09:00', end: '21:00' });
 
   let fast = { schedule: DEFAULT_SCHEDULE.map(s => ({ ...s })), log: [] };
   let fastEditing = null; // { id } pour modifier, { day } pour noter un jour sans suivi
@@ -3842,7 +3908,7 @@
           <span class="sched-sep">–</span>
           <input type="time" class="pref-input time" data-day="${i}" data-k="end" value="${s.end}" aria-label="${DAY_NAMES[i]}, fermeture">
         </div>`;
-    }).join('') + '<button class="pref-row pref-btn" onclick="resetSchedule()">Revenir aux horaires par défaut<small>13:00 – 21:00, et 07:30 – 20:30 les jours de bureau</small></button>';
+    }).join('') + '<button class="pref-row pref-btn" onclick="resetSchedule()">Appliquer les horaires recommandés<small>09:00 – 21:00 (jeûne de 12 h), et 07:30 – 20:30 les jours de bureau</small></button>';
   }
 
   document.getElementById('fastSchedule').addEventListener('change', e => {
@@ -3854,8 +3920,24 @@
     if (typeof renderJournal === 'function') renderJournal();
   });
 
+  // Fenêtre trop courte : on propose les horaires recommandés.
+  function renderFastAdvice() {
+    const spans = fast.schedule.map(s => {
+      const [ah, am] = s.start.split(':').map(Number), [bh, bm] = s.end.split(':').map(Number);
+      let m = (bh * 60 + bm) - (ah * 60 + am);
+      if (m <= 0) m += 24 * 60;
+      return m;
+    });
+    const min = Math.min(...spans);
+    document.getElementById('fastAdvice').innerHTML = min < 10 * 60 ? `
+      <div class="calc-card" style="margin-top:12px">
+        <p class="calc-note" style="margin:0 0 12px"><b>Ta fenêtre la plus courte fait ${fmtH(min * 60000)}.</b> C'est trop court pour 4 repas protéinés, dont un avant le coucher. Pour ton programme, un jeûne nocturne de ~12 h fait aussi bien pour la forme, sans freiner le muscle ni la récupération.</p>
+        <button class="sync-btn" onclick="resetSchedule()">Passer à 09:00 – 21:00</button>
+      </div>` : '';
+  }
+
   function resetSchedule() {
-    if (!confirm('Revenir aux horaires par défaut ?')) return;
+    if (!confirm('Appliquer les horaires recommandés ?')) return;
     fast.schedule = DEFAULT_SCHEDULE.map(s => ({ ...s }));
     saveFast();
     renderFast();
@@ -3868,7 +3950,8 @@
     renderFastSchedule();
     const per = Math.round(0.4 * readWeight());
     document.getElementById('fastProtTip').textContent =
-      `Avec une fenêtre de 8 h, place 3 repas d'au moins ${per} g de protéines (0,4 g/kg), par exemple à l'ouverture, en milieu de fenêtre et avant la fermeture. Si tu t'es entraîné à jeun, fais du premier repas le plus protéiné.`;
+      `Place 4 repas d'au moins ${per} g de protéines (0,4 g/kg), espacés de 3-4 h : à l'ouverture, au déjeuner, au goûter ou après la séance, et le dernier 30-60 min avant le coucher (protéines lentes : skyr, fromage blanc) — règle l'heure de fermeture en conséquence dans « Mes horaires ». Si tu t'es entraîné à jeun, mange un repas protéiné dans l'heure qui suit.`;
+    renderFastAdvice();
   }
 
   // Le minuteur avance tout seul quand l'onglet est affiché.
@@ -3895,6 +3978,26 @@
 
   // Macros approximatives, par portion décrite. kcal = 4 × P + 4 × G + 9 × L, arrondi.
   const RECIPES = [
+    { id: 'saumon', cat: 'repas', name: 'Saumon, patate douce, brocoli', badges: ['Oméga-3', 'Riche en protéines', '25 min'],
+      ing: '150 g de saumon · 250 g de patate douce · 200 g de brocoli · 1 c.c. d\'huile d\'olive · citron, sel, poivre',
+      steps: 'Patate douce en cubes au four 25 min à 200 °C avec l\'huile. Saumon au four les 12 dernières minutes. Brocoli vapeur 6 min. Citron au moment de servir. Deux fois par semaine, il remplace la gélule d\'oméga-3.',
+      kcal: 604, p: 39, g: 58, l: 24 },
+    { id: 'omelette', cat: 'repas', name: 'Omelette 3 œufs, pain complet, crudités', badges: ['10 min', 'Économique'],
+      ing: '3 œufs · 2 tranches de pain complet (70 g) · tomate, concombre · 1 c.c. d\'huile d\'olive',
+      steps: 'Battre les œufs, cuire 3 min à feu moyen dans l\'huile. Servir avec le pain et les crudités. Parfait pour ouvrir la fenêtre.',
+      kcal: 437, p: 26, g: 36, l: 21 },
+    { id: 'dahl', cat: 'repas', name: 'Dahl de lentilles corail et riz', badges: ['Batch', 'Économique', 'Fibres'],
+      ing: '80 g de lentilles corail · 60 g de riz · 100 ml de lait de coco léger · ½ boîte de tomates · oignon, ail, curry, cumin · 1 c.c. d\'huile',
+      steps: 'Faire revenir oignon, ail et épices. Ajouter lentilles, tomates, lait de coco et 300 ml d\'eau, 15 min à feu doux. Servir avec le riz. Ajoute 150 g de yaourt grec à côté pour +15 g de protéines.',
+      kcal: 565, p: 23, g: 89, l: 13 },
+    { id: 'oats', cat: 'repas', name: 'Overnight oats au skyr', badges: ['Jour bureau', 'Riche en protéines', '5 min'],
+      ing: '60 g d\'avoine · 150 g de skyr · 150 ml de lait · 1 c.s. de graines de chia · 100 g de fruits rouges',
+      steps: 'Tout mélanger dans un bocal la veille au soir, au frigo. Se mange froid le matin au bureau. Les glucides de l\'avoine nourrissent la course du soir.',
+      kcal: 446, p: 30, g: 59, l: 10 },
+    { id: 'coucher', cat: 'snack', name: 'Skyr du soir, noix et cannelle', badges: ['Avant coucher', 'Riche en protéines', '1 min'],
+      ing: '250 g de skyr ou de fromage blanc · 15 g de noix · cannelle',
+      steps: 'Le dernier repas, 30-60 min avant de dormir. Ces protéines lentes sont absorbées pendant la nuit.',
+      kcal: 255, p: 27, g: 12, l: 11 },
     { id: 'shakshuka', cat: 'repas', name: 'Shakshuka + pita', badges: ['Riche en protéines', '20 min'],
       ing: '3 œufs · 1 boîte de tomates concassées · ½ poivron · ½ oignon · ail · cumin, paprika · 1 c.s. huile d\'olive · 1 pita',
       steps: 'Faire revenir oignon, poivron et ail 5 min dans l\'huile. Ajouter tomates et épices, laisser réduire 8 min. Creuser 3 puits, y casser les œufs, couvrir 5-6 min. Servir avec la pita.',
@@ -4204,7 +4307,7 @@
           ${macroRow('Glucides', t.g, goal.g)}
           ${macroRow('Lipides', t.l, goal.l)}
         </div>
-        <div class="food-foot">Repas protéinés : <b>${protMeals} / 3</b> (au moins ${perMeal} g chacun)</div>
+        <div class="food-foot">Repas protéinés : <b>${protMeals} / 4</b> (au moins ${perMeal} g chacun)</div>
       </div>`;
 
     // Raccourcis : recettes favorites puis aliments les plus notés.
@@ -4237,7 +4340,7 @@
   }
 
   const STAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z"/></svg>';
-  const BADGE_CLASS = { 'Riche en protéines': 'badge-green', 'OK à jeun': 'badge-green', 'Jour bureau': 'badge-green', 'Facile': 'badge-green', 'Économique': 'badge-yellow', 'Batch': 'badge-yellow' };
+  const BADGE_CLASS = { 'Oméga-3': 'badge-green', 'Fibres': 'badge-green', 'Avant coucher': 'badge-green', 'Riche en protéines': 'badge-green', 'OK à jeun': 'badge-green', 'Jour bureau': 'badge-green', 'Facile': 'badge-green', 'Économique': 'badge-yellow', 'Batch': 'badge-yellow' };
 
   function renderRecipes() {
     document.getElementById('recipeFilters').innerHTML = RECIPE_CATS.map(([k, label]) =>
@@ -4265,14 +4368,15 @@
     const wkg = readWeight();
     const lo = Math.round(0.4 * wkg), hi = Math.round(0.55 * wkg);
     const w = windowOf(new Date());
-    const mid = new Date((w.open.getTime() + w.close.getTime()) / 2);
+    const span = w.close - w.open;
+    const at = f => hm(new Date(w.open.getTime() + span * f));
     document.getElementById('protMealCard').innerHTML = `
       <div class="info-list">
         <div class="info-item">
           <div class="info-dot"></div>
           <div>
-            <div class="info-title">${lo} à ${hi} g par repas, 3 repas</div>
-            <div class="info-desc">0,4 à 0,55 g/kg par repas, sur au moins 3-4 repas, maximise la construction musculaire (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5828430/" target="_blank" rel="noopener">Schoenfeld & Aragon 2018</a>). Dans ta fenêtre d'aujourd'hui : vers ${hm(w.open)}, ${hm(mid)} et ${hm(new Date(w.close.getTime() - 45 * 60000))}.</div>
+            <div class="info-title">${lo} à ${hi} g par repas, 4 repas</div>
+            <div class="info-desc">0,4 à 0,55 g/kg par repas, sur 4 repas espacés de 3-4 h, maximise la construction musculaire (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5828430/" target="_blank" rel="noopener">Schoenfeld & Aragon 2018</a>) : à quantité égale, 4 prises de 20 g font mieux que 2 de 40 g. Aujourd'hui : vers ${hm(w.open)}, ${at(0.33)}, ${at(0.66)} et ${hm(new Date(w.close.getTime() - 30 * 60000))} (protéines lentes avant le coucher).</div>
           </div>
         </div>
         <div class="info-item">
@@ -4283,6 +4387,128 @@
           </div>
         </div>
       </div>`;
+    renderDayPlan();
+    renderWeigh();
+  }
+
+  // Journée type : les cibles du jour réparties en 4 repas, avec des aliments concrets.
+  function renderDayPlan() {
+    const t = macroTargets();
+    const wkg = readWeight();
+    const pm = Math.round(t.p / 4);
+    const gkg = (t.g / wkg).toFixed(1).replace('.', ',');
+    const meals = [
+      ['Repas 1 · ouverture', `${pm} g de protéines`, 'Omelette 3 œufs + 2 tranches de pain complet + un fruit, ou overnight oats au skyr (jours de bureau).'],
+      ['Repas 2 · déjeuner', `${pm} g de protéines + gros féculents`, '150 g de poulet, poisson ou 2 boîtes de thon + 1 à 2 poings de riz, pâtes ou pommes de terre + ½ assiette de légumes + 1 c.s. d\'huile d\'olive.'],
+      ['Repas 3 · autour de la séance', `${pm} g de protéines + glucides`, '1-3 h avant : repas ou collation riche en glucides (banane, pain, riz, avoine). Après : skyr + fruits + granola, ou un vrai repas dans les 2 h.'],
+      ['Repas 4 · avant le coucher', `${pm} g de protéines lentes`, '250 g de skyr ou de fromage blanc + une poignée de noix, 30-60 min avant de dormir.'],
+    ];
+    document.getElementById('dayPlanCard').innerHTML = `
+      <p class="calc-note" style="margin:0 0 14px"><b>${fmtInt(t.kcal)} kcal</b> · ${t.p} g de protéines (${(t.p / wkg).toFixed(1).replace('.', ',')} g/kg) · ${t.g} g de glucides (${gkg} g/kg) · ${t.l} g de lipides. Les glucides sont le carburant de tes séances de 80 min et de ta course : ne les coupe pas.</p>
+      <div class="info-list">${meals.map(([title, sub, desc]) => `
+        <div class="info-item"><div class="info-dot"></div><div>
+          <div class="info-title">${title} — ${sub}</div>
+          <div class="info-desc">${desc}</div>
+        </div></div>`).join('')}
+        <div class="info-item"><div class="info-dot"></div><div>
+          <div class="info-title">Jours de course</div>
+          <div class="info-desc">Lundi (fractionné) : petit-déjeuner riche en glucides et repas de midi normal, cours 2-3 h après. Bois 500 ml dans l'heure qui précède.</div>
+        </div></div>
+        <div class="info-item"><div class="info-dot"></div><div>
+          <div class="info-title">Shabbat</div>
+          <div class="info-desc">Repas plus copieux et plus tardifs : garde simplement une portion de protéines à chaque repas, et un peu moins de féculents puisque c'est ton jour off.</div>
+        </div></div>
+      </div>`;
+  }
+
+  /* ── Suivi du poids : moyenne sur 7 jours, comparée aux 7 jours d'avant.
+     Le poids du jour varie de 1-2 kg avec l'eau et le sel ; seule la tendance
+     compte. Si le rythme sort de la cible, l'app ajuste les calories de
+     ±150 kcal, au plus une fois toutes les 2 semaines (le temps de voir l'effet). */
+  const WEIGH_KEY = 'planche_os_weigh_v1';
+  let weighLog = {};
+  let weighAdj = { kcal: 0, at: 0 };
+  try {
+    const wl = JSON.parse(localStorage.getItem(WEIGH_KEY) || 'null');
+    if (wl && wl.days) { weighLog = wl.days; weighAdj = { kcal: Number(wl.adj) || 0, at: Number(wl.at) || 0 }; }
+  } catch (e) { /* pesées illisibles : on repart de zéro */ }
+
+  function saveWeigh() {
+    try { localStorage.setItem(WEIGH_KEY, JSON.stringify({ days: weighLog, adj: weighAdj.kcal, at: weighAdj.at })); } catch (e) {}
+  }
+
+  function weighAvg(fromDaysAgo, toDaysAgo) {
+    const vals = [];
+    for (let i = fromDaysAgo; i < toDaysAgo; i++) {
+      const v = weighLog[dayKey(addDays(new Date(), -i))];
+      if (v) vals.push(v);
+    }
+    return vals.length >= 3 ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+  }
+
+  // Variation hebdomadaire en % du poids (moyenne 7 j vs 7 j précédents).
+  function weighRate() {
+    const now = weighAvg(0, 7), before = weighAvg(7, 14);
+    return now && before ? { now, before, pct: (now - before) / before * 100 } : null;
+  }
+
+  function weighTargetRange() {
+    return currentGoal === 'masse' ? [0.1, 0.4] : currentGoal === 'seche' ? [-0.7, -0.3] : [-0.2, 0.2];
+  }
+
+  function weighAdjust() {
+    return weighAdj.kcal;
+  }
+
+  // Direction conseillée d'après la tendance : +1 (manger plus), −1, ou 0.
+  function weighDirection() {
+    const r = weighRate();
+    if (!r) return 0;
+    const [lo, hi] = weighTargetRange();
+    return r.pct < lo ? 1 : r.pct > hi ? -1 : 0;
+  }
+
+  function logWeigh() {
+    const el = document.getElementById('weighInput');
+    const v = parseFloat(String(el.value).replace(',', '.'));
+    if (!(v >= 30 && v <= 250)) { el.focus(); return; }
+    weighLog[dayKey(new Date())] = Math.round(v * 10) / 10;
+    const keys = Object.keys(weighLog).sort();
+    while (keys.length > 120) delete weighLog[keys.shift()];
+    const dir = weighDirection();
+    if (dir && Date.now() - weighAdj.at >= 14 * DAY_MS) {
+      weighAdj = { kcal: Math.max(-600, Math.min(600, weighAdj.kcal + 150 * dir)), at: Date.now() };
+    }
+    saveWeigh();
+    const avg = weighAvg(0, 7);
+    if (avg) { document.getElementById('weightInput').value = String(Math.round(avg * 10) / 10).replace('.', ','); saveNutri(); }
+    calcMacros();
+  }
+
+  function renderWeigh() {
+    const today = weighLog[dayKey(new Date())];
+    const r = weighRate();
+    const [lo, hi] = weighTargetRange();
+    const fmt = n => n.toFixed(1).replace('.', ',');
+    const pct = n => (n > 0 ? '+' : '') + n.toFixed(2).replace('.', ',') + ' %';
+    let verdict;
+    if (!r) {
+      const n = Object.keys(weighLog).length;
+      verdict = `Pèse-toi le matin, après les toilettes, avant de manger, 3 à 7 fois par semaine. La tendance s'affiche après 2 semaines (${n} pesée${n > 1 ? 's' : ''} notée${n > 1 ? 's' : ''}).`;
+    } else {
+      const dir = weighDirection();
+      verdict = `Moyenne 7 j : <b>${fmt(r.now)} kg</b> (avant : ${fmt(r.before)} kg), soit ${pct(r.pct)} par semaine. Cible : ${pct(lo)} à ${pct(hi)}. `
+        + (dir > 0 ? 'Trop lent : ' : dir < 0 ? 'Trop rapide : ' : 'Dans la cible : ne change rien. ')
+        + (dir ? 'les calories sont ajustées de 150 kcal (une fois toutes les 2 semaines). ' : '')
+        + (weighAdj.kcal ? `Ajustement total : ${weighAdj.kcal > 0 ? '+' : ''}${weighAdj.kcal} kcal.` : '');
+    }
+    document.getElementById('weighCard').innerHTML = `
+      <div class="calc-input-wrap">
+        <input class="calc-input" type="text" id="weighInput" inputmode="decimal" autocomplete="off" placeholder="${today ? fmt(today) : 'Poids du jour'}" aria-label="Poids du jour en kg">
+        <span class="calc-input-unit">kg</span>
+      </div>
+      <button class="sync-btn" style="margin-top:10px" onclick="logWeigh()">${today ? 'Corriger la pesée du jour' : 'Noter la pesée du jour'}</button>
+      <p class="calc-note" style="margin:12px 0 0">${verdict}</p>`;
   }
 
   function setNutriView(v) {
@@ -4311,7 +4537,7 @@
 
   // ── NUTRITION CALCULATOR ──
   const NUTRI_KEY = 'planche_os_nutri';
-  let currentGoal = 'masse';
+  let currentGoal = 'maintien';
 
   // "67,5" (clavier français) comme "67.5" ; hors bornes plausibles → valeur par défaut.
   function readWeight() {
@@ -4323,17 +4549,19 @@
     try { localStorage.setItem(NUTRI_KEY, JSON.stringify({ weight: document.getElementById('weightInput').value, goal: currentGoal })); } catch (e) {}
   }
 
-  // Cibles du jour : Mifflin-St Jeor (profil des Réglages) × activité, selon l'objectif.
+  // Cibles du jour : Mifflin-St Jeor (profil des Réglages) × 1,6 (6 séances + course
+  // par semaine). Protéines 2 g/kg (2,2 en sèche), lipides ~1 g/kg, glucides = le reste
+  // (5-7 g/kg pour ~1 h d'entraînement par jour). Le suivi du poids corrige l'estimation.
   function macroTargets() {
     const weight = readWeight();
     const mb = (10 * weight) + (6.25 * settings.height) - (5 * settings.age) + (settings.sex === 'f' ? -161 : 5);
-    const tdee = mb * 1.55;
-    let kcal;
-    if (currentGoal === 'maintien') kcal = tdee + 150;
-    else if (currentGoal === 'masse') kcal = tdee + 300;
-    else kcal = tdee - 400;
-    kcal = Math.round(kcal);
-    return { kcal, p: Math.round(1.8 * weight), g: Math.round((kcal * 0.45) / 4), l: Math.round((kcal * 0.25) / 9) };
+    const tdee = mb * 1.6;
+    const factor = currentGoal === 'masse' ? 1.08 : currentGoal === 'seche' ? 0.85 : 1;
+    const kcal = Math.round(tdee * factor + weighAdjust());
+    const p = Math.round((currentGoal === 'seche' ? 2.2 : 2.0) * weight);
+    const l = Math.round((currentGoal === 'seche' ? 0.9 : 1.0) * weight);
+    const g = Math.max(0, Math.round((kcal - 4 * p - 9 * l) / 4));
+    return { kcal, p, g, l };
   }
 
   function calcMacros() {
@@ -4356,7 +4584,9 @@
     renderFood();
   }
 
-  function setGoal(goal) {
+  function setGoal(goal, byUser) {
+    // Nouvel objectif choisi : l'ajustement tiré des pesées repart de zéro.
+    if (byUser && goal !== currentGoal) { weighAdj = { kcal: 0, at: 0 }; saveWeigh(); }
     currentGoal = goal;
     document.querySelectorAll('.goal-btn').forEach(b => {
       const on = b.dataset.goal === goal;
@@ -4373,8 +4603,8 @@
   try {
     const n = JSON.parse(localStorage.getItem(NUTRI_KEY) || 'null');
     if (n && n.weight) document.getElementById('weightInput').value = n.weight;
-    setGoal(n && ['maintien', 'masse', 'seche'].includes(n.goal) ? n.goal : 'masse');
-  } catch (e) { setGoal('masse'); }
+    setGoal(n && ['maintien', 'masse', 'seche'].includes(n.goal) ? n.goal : 'maintien');
+  } catch (e) { setGoal('maintien'); }
 
   /* ══════════════════════════════════════════════════════
      TABLEAU DE BORD (onglet Séances)
@@ -4482,7 +4712,7 @@
         <div class="hero">
           <div class="hero-eyebrow caps">Repos complet</div>
           <div class="hero-title">Shabbat Shalom</div>
-          <p class="hero-text">Aucune séance aujourd'hui. C'est ce jour off qui rend les 6 autres soutenables — et qui prépare la séance la plus lourde de la semaine.</p>
+          <p class="hero-text">Aucune séance aujourd'hui. C'est ce jour off qui rend les 6 autres soutenables — et qui prépare la séance la plus lourde de la semaine. Seul mouvement prévu : une marche tranquille de 45-60 min, à allure de conversation. Elle ajoute de l'endurance de base sans aucune fatigue.</p>
           <div class="hero-bottom">
             <div class="hero-stat"><span>Demain</span><div style="font-size:17px;font-weight:600;margin-top:2px">${sessions[nextKey].title}</div></div>
             <button class="hero-btn ghost" onclick="openModal('${nextKey}')">Aperçu</button>
@@ -5886,7 +6116,7 @@
     renderStorage();
   }
 
-  const BACKUP_KEYS = { store: STORE_KEY, sync: SYNC_KEY, settings: SETTINGS_KEY, nutri: NUTRI_KEY, food: FOOD_KEY, fast: FAST_KEY };
+  const BACKUP_KEYS = { store: STORE_KEY, sync: SYNC_KEY, settings: SETTINGS_KEY, nutri: NUTRI_KEY, food: FOOD_KEY, fast: FAST_KEY, weigh: WEIGH_KEY };
 
   async function exportBackup() {
     const data = { app: 'PLANCHE OS', version: 1, date: new Date().toISOString() };

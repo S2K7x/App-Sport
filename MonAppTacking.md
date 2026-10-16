@@ -93,7 +93,7 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 - Warm-up poignets & scapula — 5-7 min : rotations, compressions, protraction + rotation externe bande 2×12 et band pull-aparts 2×15
 - Handstand skill — 8-10 min : drills mur ou freestanding, esprit frais
 - **HSPU Force — négatif contrôlé — 4 × 3-6 reps** : Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip. Repos 2-3 min
-- Tuck Planche isométrique — 5 × 8-10 s : intent "pousser le sol", repos 2-3 min
+- Tuck Planche isométrique — 5 × 8-10 s : intent "pousser le sol" ; séries 4-5 au palier suivant (advanced tuck 3-5 s) car la force isométrique est spécifique à l'angle travaillé ([Oranchuk et al. 2019](https://openrepository.aut.ac.nz/items/1a37e689-0027-4a12-9815-07ff2818b768/full)), repos 2-3 min
 - Pseudo Planche PU sur parallettes — 4 × 5-8 reps : tempo 3-1-1, lean maximal, repos 2 min
 - Planche lean → tuck dynamique / négative — 3 × 3-5 : transition contrôlée, repos 90 s
 - Ring Dips lestés — 3 × 6-8 reps : amplitude complète, anneau stable, repos 2 min
@@ -109,7 +109,7 @@ HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique. Séance
 
 ## Course qualité — 5 km fractionné (Lundi, bureau)
 
-- Échauffement trot — 1 km : très facile (RPE 3/10), puis gammes (montées de genoux, talons-fesses, pas chassés)
+- Échauffement trot — 1 km : très facile (RPE 3/10), puis gammes (montées de genoux, talons-fesses, pas chassés) et 2 × 15 pogo jumps — la pliométrie et la force lourde améliorent l'économie de course ([Llanos-Lagos et al. 2024](https://repository.essex.ac.uk/37272/))
 - Accélérations progressives — 3 × 80 m : jusqu'à ~85 %, retour en marchant, repos 45 s
 - **Fractionné — 6 × 400 m** : RPE 8/10, un peu plus vite que l'allure 5 km, récup 200 m en trottinant (~75 s). Note le temps de chaque 400 m
 - Retour au calme — 0,5 km : trot très lent puis marche, étirements doux
@@ -131,7 +131,7 @@ de 6 × 400 m en cherchant à baisser les temps, puis 4 semaines de 3 × 1 km
 - **Tractions tempo / Archer — 3 × 5-6 reps** : sans lest, 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; Archer (3-5/côté) une fois 10 tractions strictes acquises
 - Tuck Front Lever — 4 × 6-10 s : dépression scapulaire, palier suivant à 4 × 10 s propres
 - **Rowing anneaux / Australian pull-ups — 4 × 8-12 reps** : pause 1 s poitrine aux anneaux, omoplates serrées
-- Curl biceps + Pistol / Shrimp squat — 3 × 10-12 + 3 × 5-8 / jambe : superset bras / jambes, squat à 2-3 reps en réserve. 2ᵉ exposition jambes de la semaine, repos 60 s
+- Curl incliné + Pistol / Shrimp squat — 3 × 10-12 + 3 × 5-8 / jambe : curl sur banc incliné, biceps étiré comme bras tendus en planche ([méta-analyse 2026](https://pmc.ncbi.nlm.nih.gov/articles/PMC12869050) : travailler en position longue fait plus grossir) ; : superset bras / jambes, squat à 2-3 reps en réserve. 2ᵉ exposition jambes de la semaine, repos 60 s
 
 Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Avant-bras, Core
 
@@ -147,7 +147,7 @@ vertical (~10 séries au total). Le rowing ne se saute jamais.
 - Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine (sauf si biceps/coude sensible après mardi)
 - **Pike HSPU pieds surélevés / Wall HSPU — 4 × 6-10 reps** : 2 reps en réserve, tempo 3-0-1, repos 2 min
 - Pompes anneaux + Face pulls — 3 × 8-12 + 3 × 15 : superset, repos 90 s
-- Élévations latérales — 3 × 12-15 reps : tempo 2-0-2, léger
+- Élévations latérales penché (lean-away) — 3 × 12-15 reps : charge le deltoïde en bas du mouvement, tempo 2-0-2, léger
 - Dragon Flag / L-sit — 3×6 / 4×20-30s : selon fatigue core
 - Cool-down poignets — 3 min
 
@@ -175,11 +175,11 @@ vite" : trop dur pour récupérer, pas assez pour progresser.
 - Wrist mobility — 5 min : circles, compressions, extensions passives + rotation externe bande 2×15
 - Handstand long — 10-12 min : chest-to-wall, freestanding, shapes
 - Box Jumps — 3 × 5 reps : en premier (explosif = frais), atterrissage souple, reset complet
-- **Bulgarian Split Squats + Tractions — 4 × 8-10 / jambe + 3 × 5** : superset jambes / tirage, BSS descente 3 s, tractions à 2 reps en réserve, repos 90 s
+- **Bulgarian Split Squats + Tractions — 4 × 8-10 / jambe + 3 × 5** : superset jambes / tirage, BSS pied avant surélevé 5-10 cm, descente 3 s, tractions à 2 reps en réserve, repos 90 s
 - **Nordic Curls + Tuck Front Lever — 3 × 4-6 + 3 × 6-10 s** : excentrique 3-4 s / front lever 1-2 s sous ton max, repos 2 min
-- Hip thrust unilatéral — 3 × 10-12 / jambe : dos sur un banc, haltère, pause 1 s en haut
+- Hip thrust unilatéral + Reverse Nordic — 3 × 10-12 / jambe + 3 × 6-10 : superset fessiers / quadriceps en position longue ([Alonso-Fernández et al. 2019](https://portalcientifico.uvigo.gal/documentos/5fa622882999524ed108606d))
 - Mollets unilatéraux lestés + Y-T-W — 3 × 12-15 / jambe + 2 × 8/lettre : superset, repos 45 s
-- Jefferson Curls — 2 × 8 reps : très léger, vertèbre par vertèbre
+- Jefferson Curls + Poignets lestés — 2 × 8 + 2 × 15 : superset, curls de poignet flexion et extension légers ([prévention des douleurs de poignet en gymnastique](https://pubmed.ncbi.nlm.nih.gov/28902754/))
 
 Muscles ciblés : Quadriceps, Fessiers, Ischio-jambiers, Grand dorsal, Mollets, Poignets, Trapèze inférieur
 
@@ -189,7 +189,7 @@ précieux quand tu cours 2×/semaine. Box jumps et mollets unilatéraux
 travaillent la raideur tendineuse, utile pour l'économie de course
 ([méta-analyse 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9653533/)).
 Vendredi est aussi le 2ᵉ jour de tirage, en superset avec les jambes.
-Séance ~70 min pour finir bien avant Shabbat.
+Séance ~75 min pour finir bien avant Shabbat.
 
 ## Équilibre push / pull
 
@@ -206,7 +206,7 @@ Volume hebdomadaire par catégorie :
 | Tirage vertical (tractions, C2B, muscle-up) | 10 (1 jour) | 13 (2 jours) |
 | Bras tendus (front lever) | 4 (1 jour) | 7 (2 jours) |
 | Tirage horizontal + rétraction (rowing, face pulls, Y-T-W) | 9 | 9 |
-| Jambes (quadriceps / fessiers) | ~3 / ~3, 1 jour | ~7 / ~10, 2 jours |
+| Jambes (quadriceps / fessiers) | ~3 / ~3, 1 jour | ~10 / ~10, 2 jours |
 | Course | 10 km | 10 → 12 km |
 
 Le tirage horizontal est le contrepoids mécanique de la protraction. Sans lui,
@@ -216,6 +216,8 @@ risque n°1 en handstand. Ne saute ni le rowing (mardi), ni les face pulls
 (mercredi), ni les Y-T-W (vendredi).
 
 ## Règle de progression
+- **Feu tricolore avant chaque séance** : sommeil < 6 h, VFC nettement sous ta moyenne de la semaine ou douleur articulaire → retire 1 série par exercice, pas de record. Ajuster selon la VFC ne fait pas mieux en moyenne qu'un plan fixe, mais réduit le nombre de personnes qui ne progressent pas ([méta-analyse 2021](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8507742/)).
+- **Position longue** : quand c'est possible (curl incliné, élévations penchées, BSS surélevé, Reverse Nordic), le muscle est chargé étiré — gain d'hypertrophie modeste mais régulier ([méta-analyse 2026](https://pmc.ncbi.nlm.nih.gov/articles/PMC12869050)).
 - Ne passe au niveau suivant que lorsque tu tiens la position cible avec forme parfaite, sur 3 séries stables, sans douleur.
 - Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines pour éviter le plateau et protéger poignets/tendons. Pendant le deload, les deux courses passent en zone 2.
 

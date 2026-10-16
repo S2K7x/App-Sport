@@ -20,7 +20,7 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 | Mercredi | **C — Planche Volume** | Planche + HSPU en volume, deltoïdes, core |
 | Jeudi | **Course facile** | 5 → 7 km en zone 2 (bureau) |
 | Vendredi | **D — Jambes + Handstand** | Handstand long, jambes, 2ᵉ jour de tirage en supersets, prévention (avant Shabbat) |
-| Samedi | Repos — Shabbat | |
+| Samedi | Repos — Shabbat | Marche tranquille 45-60 min (allure de conversation) |
 
 ### Pourquoi cette organisation
 
@@ -232,10 +232,63 @@ risque n°1 en handstand. Ne saute ni le rowing (mardi), ni les face pulls
 - Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines pour éviter le plateau et protéger poignets/tendons. Pendant le deload, les deux courses passent en zone 2.
 
 ## Nutrition
-- Maintien 66-68 kg optimal pour le ratio force/poids
-- Protéines : 1,8 g/kg/j (cible recherche : 1,6-2,2 g/kg/j), idéalement réparties sur la journée + 30-40 g avant le coucher
-- Créatine monohydrate 5 g/j, Oméga-3 2-3 g EPA+DHA/j, hydratation 35-40 ml/kg/j
-- Sommeil 7-9 h/nuit — c'est le principal levier de récupération pour les isométries (planche, front lever, HSPU)
+
+Objectif : construire du muscle et de la force sans prendre de gras qui
+alourdirait la planche, et récupérer de 6 séances par semaine.
+
+### Calories et macros
+- **Dépense** : Mifflin-St Jeor × 1,6 (6 séances + 2 courses par semaine),
+  ≈ 2 600 kcal à 67 kg. Ce n'est qu'une estimation : le suivi du poids la corrige.
+- **Objectif recommandé : maintien** (recomposition). Chez des pratiquants
+  entraînés, manger à l'équilibre avec assez de protéines donne des gains de
+  muscle comparables à un surplus, avec moins de gras
+  ([synthèse Helms](https://summify.io/discover/is-bulking-necessary-for-muscle-gain-episode-138-VRz4m7/)).
+  Prise lente : +8 % (cible +0,25 % du poids par semaine). Sèche : −15 %
+  (au plus 0,5-0,7 % par semaine).
+- **Protéines : 2,0 g/kg/j** (2,2 en sèche). Le plateau moyen est vers
+  1,6 g/kg, 2,2 couvre presque tout le monde
+  ([Morton et al. 2018](https://pubmed.ncbi.nlm.nih.gov/28698222/)).
+- **Lipides : ~1 g/kg/j**. **Glucides : le reste**, soit ~5-6 g/kg —
+  la fourchette recommandée pour ~1 h d'entraînement par jour
+  ([recommandations glucides](https://www.gssiweb.org/gssiu_content/pdf/FINAL%20Carbohydrate%20Intake%20Recommendations%20for%20Athletes_6.3.21.pdf)).
+
+### Répartition : 4 repas protéinés
+0,4 à 0,55 g/kg par repas (~27-37 g), 4 fois par jour, espacés de 3-4 h
+([Schoenfeld & Aragon 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC5828430/)),
+dont le dernier 30-60 min avant le coucher en protéines lentes (skyr,
+fromage blanc) : sur 12 semaines, une prise de ~30 g avant de dormir a
+amélioré force et volume musculaire
+([Snijders et al. 2019](https://public-pages-files-2025.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2019.00017/text)).
+
+### Jeûne intermittent : fenêtre de 12 h au lieu de 6 h
+Le jeûne intermittent avec musculation préserve le muscle sans apporter
+de bonus ([méta-analyse 2024](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11434652/)).
+Une fenêtre de 6 h (14:00-20:00) empêche surtout les 4 repas protéinés et
+la prise avant le coucher. Nouveaux horaires recommandés : 09:00-21:00
+(jeûne nocturne de 12 h), 07:30-20:30 les jours de bureau. L'onglet Fast
+propose de les appliquer en un tap.
+
+### Suivi du poids
+Pesée le matin, 3 à 7 fois par semaine ; l'app compare la moyenne des
+7 derniers jours à celle des 7 jours d'avant. Si le rythme sort de la cible,
+les calories bougent de ±150 kcal, au plus une fois toutes les 2 semaines.
+
+### Suppléments
+| Complément | Dose | Niveau de preuve |
+|---|---|---|
+| Créatine monohydrate | 3-5 g/j, tous les jours | Fort |
+| Vitamine D3 | 1000-2000 UI/j d'octobre à mars, idéalement après dosage | Fort si carence ([méta-analyse 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6490896)) |
+| Caféine | ~3 mg/kg, 45-60 min avant les séances A et Q, jamais < 8 h du coucher | Fort ([ISSN 2021](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7777221/)) |
+| Oméga-3 | 1-2 g EPA+DHA/j, ou poisson gras 2×/semaine | Modéré, surtout courbatures |
+| Whey / caséine | Seulement pour compléter les protéines | Pratique |
+| Gélatine 15 g + vit. C 50 mg | 45-60 min avant A et C, si poignets/coudes tirent | Préliminaire ([Shaw 2017](https://pubmed.ncbi.nlm.nih.gov/27852613/)) |
+
+Inutiles : BCAA, glutamine, brûleurs, boosters. Un bilan sanguin annuel
+(ferritine, vitamine D, B12) vaut plus.
+
+### Hydratation et sommeil
+- 35-40 ml/kg/j, + 500 ml par heure de course
+- Sommeil 7-9 h/nuit — le principal levier de récupération
 
 ## Suivi recommandé
 - Objectif semaine : 6 séances (A, B, C, D + 2 courses) — Shabbat en repos complet
@@ -263,8 +316,8 @@ d'entraînement sont stockées localement sur le téléphone.
 Onglet tout-en-un (Nutrition et l'ancien Fuel fusionnés), en trois vues :
 - **Journal** : ce que tu as mangé, jour par jour (flèches pour revenir en
   arrière). Totaux kcal / protéines / glucides / lipides face à tes cibles,
-  compteur de repas protéinés (≥ 0,4 g/kg, 3 par jour), eau (objectif
-  35 ml/kg), créatine et oméga-3 cochés. Ajout en un tap depuis les
+  compteur de repas protéinés (≥ 0,4 g/kg, 4 par jour), eau (objectif
+  35 ml/kg), créatine, oméga-3 et vitamine D cochés. Ajout en un tap depuis les
   recettes favorites et les aliments déjà notés ; un nom connu remplit les
   macros tout seul. Les macros restent optionnelles. Un repas hors de ta
   fenêtre de jeûne est signalé.
@@ -289,14 +342,16 @@ le timing autour de la séance compte peu
   fenêtre, boutons Commencer / Rompre. Si tu as oublié le bouton, « Depuis
   21:00 » démarre le jeûne à l'heure prévue. Noter un repas pendant un jeûne
   le termine à l'heure du repas.
+- **Conseil** : si une fenêtre fait moins de 10 h, une carte propose les
+  horaires recommandés (09:00 – 21:00).
 - **Ressenti** de 1 à 5 en un tap après chaque jeûne, et une note libre.
 - **Semaine** : durée de chaque jeûne face à la durée prévue, moyenne,
   objectifs atteints.
 - **Suivi** : 10 derniers jours ; un jour non noté se valide en un tap avec
   les heures prévues, ou s'ajuste.
 - **Mes horaires** : ouverture et fermeture de la fenêtre pour chaque jour.
-  Par défaut 13:00 – 21:00, et 07:30 – 20:30 les jours de bureau (lundi,
-  jeudi) où tu manges le matin.
+  Par défaut 09:00 – 21:00 (jeûne nocturne de 12 h), et 07:30 – 20:30 les
+  jours de bureau (lundi, jeudi).
 
 Le 16:8 combiné à la musculation fait perdre du gras sans perte de muscle
 ni de force ([méta-analyse 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11434652/),

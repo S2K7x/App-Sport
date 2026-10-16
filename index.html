@@ -3118,16 +3118,16 @@
     },
     cardio: {
       day: 'Lundi · Course qualité',
-      title: 'Course 5 km — Fractionné',
+      title: 'Course 6-7 km — Fractionné',
       exercises: [
         { name: 'Échauffement trot', sets: '1 km', note: 'Très facile (RPE 3/10), puis 2 × 20 m de montées de genoux, talons-fesses et pas chassés, puis 2 × 15 pogo jumps (petits rebonds chevilles raides, contact au sol le plus court possible). La pliométrie améliore l\'économie de course (Llanos-Lagos et al. 2024).' },
         { name: 'Accélérations progressives', sets: '3 × 80 m', note: 'Monte jusqu\'à ~85 % sans sprinter, retour en marchant — repos 45 s' },
-        { name: 'Fractionné', sets: '6 × 400 m / 3 × 1 km', note: 'RPE 8/10 : un peu plus vite que ton allure 5 km, régulier du 1er au dernier. Récup 200 m en trottinant — repos 75 s. Note ton temps de chaque 400 m.' },
+        { name: 'Fractionné', sets: '4 × 1000 m / 6 × 400 m / 8 × 45 s côte', note: 'Cycle de 3 semaines, repos 2-3 min en trottinant. Semaine 1 — VO2max : 4 × 1000 m à 90-95 % FC max (RPE 8-9), ~3 min 30 à 4 min 30 chacun, régulier du 1er au dernier. Semaine 2 — vitesse : 6 × 400 m un peu plus vite que ton allure 5 km (RPE 8), récup 200 m trot (~75 s). Semaine 3 — côtes : 8 × 45 s en côte à 6-8 % (RPE 9), retour en trottinant. Puis on recommence. La semaine avant chaque décharge : test 5 km chrono à la place, pour mesurer tes progrès et recaler tes allures. Note le temps de chaque répétition.' },
         { name: 'Retour au calme', sets: '0,5 km', note: 'Trot très lent puis marche, étirements doux mollets et fléchisseurs de hanche' },
         { name: 'Handstand micro-dose', sets: '5 min', note: 'Optionnel, le soir : 5-6 kick-ups ou holds au mur, zéro fatigue. Entretient la pratique distribuée.' },
       ],
       muscles: ['Cardiovasculaire', 'Mollets', 'Ischio-jambiers', 'Économie de course'],
-      tip: 'Lundi, tes jambes sont les plus fraîches de la semaine (Shabbat + dimanche 100 % haut du corps) : c\'est donc là que va la seule course intense. Avec deux sorties par semaine, le schéma le plus efficace est polarisé — une sortie dure, une vraiment facile, presque rien entre les deux (Seiler ; Muñoz 2014 chez des coureurs amateurs). Total ≈ 5 km : 1 km + 6 × (400 m + 200 m) + 0,5 km. Progresse par l\'allure, pas par la distance : 4 semaines de 6 × 400 m en cherchant à baisser tes temps, puis 4 semaines de 3 × 1 km (récup 400 m trot), et on alterne. Si tu fais autre chose le même jour, laisse au moins 6 h d\'écart.'
+      tip: 'Lundi, tes jambes sont les plus fraîches de la semaine (Shabbat + dimanche 100 % haut du corps) : c\'est donc là que va la seule course intense. Avec deux sorties par semaine, le schéma le plus efficace est polarisé — une sortie dure, une vraiment facile, presque rien entre les deux (Seiler ; Muñoz 2014 chez des coureurs amateurs). Le fractionné tourne sur 3 semaines. Les répétitions de 3-4 min (4 × 1000 m) sont le meilleur levier de la VO2max : 4 × 4 min font gagner ~7 % de VO2max en 8 semaines, quand l\'endurance continue à volume égal ne la fait pas bouger (Helgerud et al. 2007), et les répétitions longues gardent plus longtemps au-dessus de 90 % de la VO2max que les courtes (étude 2025). Les 400 m entretiennent la vitesse ; les côtes développent la force spécifique et l\'économie de course, sans les chocs d\'un sprint à plat. Le test 5 km toutes les 6 semaines te donne un chiffre objectif de progression. Total ≈ 6-7 km. Si tu fais autre chose le même jour, laisse au moins 6 h d\'écart.'
     },
     b: {
       day: 'Mardi · Pull + Muscle-up',
@@ -3200,7 +3200,7 @@
   // Place de chaque séance dans la semaine (0 = dimanche) et infos de carte.
   const SESSION_META = {
     a:       { dow: 0, tag: 'Push',   short: 'A',  duration: '~85 min' },
-    cardio:  { dow: 1, tag: 'Course', short: 'Q',  duration: '~35 min', blocks: true },
+    cardio:  { dow: 1, tag: 'Course', short: 'Q',  duration: '~45 min', blocks: true },
     b:       { dow: 2, tag: 'Pull',   short: 'B',  duration: '~80 min' },
     c:       { dow: 3, tag: 'Push',   short: 'C',  duration: '~80 min' },
     cardio2: { dow: 4, tag: 'Course', short: 'Z2', duration: '~50 min', blocks: true },

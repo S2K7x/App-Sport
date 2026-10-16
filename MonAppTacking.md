@@ -15,7 +15,7 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 | Jour | Séance | Contenu |
 |---|---|---|
 | Dimanche | **A — Push Force** | Planche + HSPU lourds, dips lestés |
-| Lundi | **Course qualité** | 5 km fractionné (bureau) |
+| Lundi | **Course qualité** | 6-7 km fractionné, cycle de 3 semaines (bureau) |
 | Mardi | **B — Pull + Muscle-up** | Muscle-up, tractions, front lever, rowing |
 | Mercredi | **C — Planche Volume** | Planche + HSPU en volume, deltoïdes, core |
 | Jeudi | **Course facile** | 5 → 7 km en zone 2 (bureau) |
@@ -107,19 +107,29 @@ ballistique sur l'isométrie — imaginer pousser le sol vers les pieds. Pour le
 HSPU : maîtrise le négatif (3-5 s) avant de chercher le concentrique. Séance
 100 % haut du corps : les jambes restent fraîches pour la course de lundi.
 
-## Course qualité — 5 km fractionné (Lundi, bureau)
+## Course qualité — 6-7 km fractionné (Lundi, bureau)
 
 - Échauffement trot — 1 km : très facile (RPE 3/10), puis gammes (montées de genoux, talons-fesses, pas chassés) et 2 × 15 pogo jumps — la pliométrie et la force lourde améliorent l'économie de course ([Llanos-Lagos et al. 2024](https://repository.essex.ac.uk/37272/))
 - Accélérations progressives — 3 × 80 m : jusqu'à ~85 %, retour en marchant, repos 45 s
-- **Fractionné — 6 × 400 m** : RPE 8/10, un peu plus vite que l'allure 5 km, récup 200 m en trottinant (~75 s). Note le temps de chaque 400 m
+- **Fractionné — cycle de 3 semaines**, récup 2-3 min en trottinant :
+  - Semaine 1, VO2max : 4 × 1000 m à 90-95 % FC max (RPE 8-9)
+  - Semaine 2, vitesse : 6 × 400 m un peu plus vite que l'allure 5 km, récup 200 m (~75 s)
+  - Semaine 3, côtes : 8 × 45 s en côte à 6-8 % (RPE 9), retour en trottinant
+  - Semaine avant chaque décharge : test 5 km chrono
 - Retour au calme — 0,5 km : trot très lent puis marche, étirements doux
 - Handstand micro-dose — 5 min (optionnel, le soir)
 
 Muscles ciblés : Cardiovasculaire, Mollets, Ischio-jambiers, Économie de course
 
-Tip : total ≈ 5 km. Progresse par l'allure, pas par la distance : 4 semaines
-de 6 × 400 m en cherchant à baisser les temps, puis 4 semaines de 3 × 1 km
-(récup 400 m trot), et on alterne.
+Tip : les répétitions de 3-4 min sont le meilleur levier de la VO2max —
+4 × 4 min font gagner ~7 % de VO2max en 8 semaines, l'endurance continue à
+volume égal ne la fait pas bouger
+([Helgerud et al. 2007](https://pubmed.ncbi.nlm.nih.gov/17414804/)) — et les
+répétitions longues gardent plus longtemps au-dessus de 90 % de la VO2max que
+les courtes ([étude 2025](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11743937/)).
+Les 400 m entretiennent la vitesse, les côtes travaillent la force spécifique
+et l'économie de course. Le test 5 km donne une mesure objective toutes les
+6 semaines.
 
 ## Séance B — Pull + Muscle-up (Mardi)
 
@@ -207,7 +217,7 @@ Volume hebdomadaire par catégorie :
 | Bras tendus (front lever) | 4 (1 jour) | 7 (2 jours) |
 | Tirage horizontal + rétraction (rowing, face pulls, Y-T-W) | 9 | 9 |
 | Jambes (quadriceps / fessiers) | ~3 / ~3, 1 jour | ~10 / ~10, 2 jours |
-| Course | 10 km | 10 → 12 km |
+| Course | 10 km | 11-14 km, fractionné en cycle de 3 semaines + test 5 km |
 
 Le tirage horizontal est le contrepoids mécanique de la protraction. Sans lui,
 le trapèze supérieur compense pendant que le trapèze inférieur et les

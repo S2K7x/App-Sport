@@ -18,8 +18,8 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 | Lundi | **Course qualité** | 5 km fractionné (bureau) |
 | Mardi | **B — Pull + Muscle-up** | Muscle-up, tractions, front lever, rowing |
 | Mercredi | **C — Planche Volume** | Planche + HSPU en volume, deltoïdes, core |
-| Jeudi | **Course facile** | 5 km en zone 2 (bureau) |
-| Vendredi | **D — Jambes + Handstand** | Handstand long, jambes, prévention (séance courte avant Shabbat) |
+| Jeudi | **Course facile** | 5 → 7 km en zone 2 (bureau) |
+| Vendredi | **D — Jambes + Handstand** | Handstand long, jambes, 2ᵉ jour de tirage en supersets, prévention (avant Shabbat) |
 | Samedi | Repos — Shabbat | |
 
 ### Pourquoi cette organisation
@@ -33,8 +33,9 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 - **Chaque groupe musculaire 2×/semaine.** C'est la fréquence minimale
   recommandée pour la force et l'hypertrophie ([Schoenfeld et al. 2016](https://pubmed.ncbi.nlm.nih.gov/27102172/),
   [ACSM](https://acsm.org/resistance-training-guidelines-update-2026/)) :
-  poussée dimanche + mercredi, tirage mardi + (face pulls) mercredi + (Y-T-W) vendredi,
-  jambes vendredi + 2 courses.
+  poussée dimanche + mercredi, tirage mardi + vendredi (tractions et front
+  lever en superset avec les jambes), jambes mardi (squat unilatéral) +
+  vendredi + 2 courses.
 - **Course intense le lundi, facile le jeudi.** Lundi les jambes sont
   fraîches (Shabbat + dimanche 100 % haut du corps). Jeudi la sortie est
   facile parce que vendredi c'est jambes. Avec 2 sorties, le modèle polarisé
@@ -58,7 +59,13 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 - **Handstand 6×/semaine** : 4 blocs en séance + 2 micro-doses optionnelles
   de 5 min le soir des jours de course. La pratique distribuée bat une
   longue session (Schmidt & Lee 2019).
-- **Vendredi court (~60 min)** pour finir largement avant l'entrée de
+- **Supersets non concurrents** (jambes + tirage, bras + jambes) : ils
+  font gagner du temps, au prix d'un peu plus de récupération
+  ([Weakley et al. 2017](https://doi.org/10.1007/s00421-017-3680-3)) — le
+  vendredi, Shabbat la couvre. C'est
+  ce qui permet d'ajouter un 2ᵉ jour de tirage et une 2ᵉ exposition jambes
+  sans rallonger les séances.
+- **Vendredi ~70 min** pour finir largement avant l'entrée de
   Shabbat — en hiver, le matin.
 
 ## Phases de progression
@@ -90,7 +97,7 @@ jours de bureau : pas de calisthénie, une course de 5 km.
 - Pseudo Planche PU sur parallettes — 4 × 5-8 reps : tempo 3-1-1, lean maximal, repos 2 min
 - Planche lean → tuck dynamique / négative — 3 × 3-5 : transition contrôlée, repos 90 s
 - Ring Dips lestés — 3 × 6-8 reps : amplitude complète, anneau stable, repos 2 min
-- Scapular PU + Élévation 45° haltère — 3 × 10 + 3 × 12 : superset serratus & deltoïde antérieur
+- Élévations latérales + Scapular PU — 3 × 12-15 + 3 × 10 : superset deltoïde latéral & serratus (le deltoïde antérieur est déjà saturé par la planche et le HSPU)
 - Cool-down poignets — 3 min : extensions, flexions passives
 
 Muscles ciblés : Épaules, Triceps, Pectoraux, Serratus, Core
@@ -120,11 +127,11 @@ de 6 × 400 m en cherchant à baisser les temps, puis 4 semaines de 3 × 1 km
 - Handstand skill — 8-10 min : expositions freestanding courtes
 - False grip ring holds — 4 × 10-15 s : poignet fléchi par-dessus l'anneau, repos 60 s
 - Chest-to-bar explosif — 4 × 3-5 reps : pull ultra-haut, coudes vers hanches, repos 2 min
-- Slow MU négatif / Ring MU strict — 3 × 3-4 : négatif 5-7 s, puis reps qualité, repos 2-3 min
+- Slow MU négatif / Ring MU strict — 3 × 3-4 : négatif 5-7 s, puis reps qualité, jamais à l'échec (planche bras tendus le lendemain) ; si biceps/coude tire mercredi, une semaine sur deux. Repos 2-3 min
 - **Tractions tempo / Archer — 3 × 5-6 reps** : sans lest, 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; Archer (3-5/côté) une fois 10 tractions strictes acquises
 - Tuck Front Lever — 4 × 6-10 s : dépression scapulaire, palier suivant à 4 × 10 s propres
 - **Rowing anneaux / Australian pull-ups — 4 × 8-12 reps** : pause 1 s poitrine aux anneaux, omoplates serrées
-- Curl biceps haltères — 3 × 10-12 reps : tempo 2-0-2, repos 60 s
+- Curl biceps + Pistol / Shrimp squat — 3 × 10-12 + 3 × 5-8 / jambe : superset bras / jambes, squat à 2-3 reps en réserve. 2ᵉ exposition jambes de la semaine, repos 60 s
 
 Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Avant-bras, Core
 
@@ -137,8 +144,8 @@ vertical (~10 séries au total). Le rowing ne se saute jamais.
 
 - Warm-up — 5 min : poignets, épaules, rotation externe bande 2 × 12
 - Handstand skill — 8-10 min : freestanding ; au mur si poignets sensibles après mardi
-- Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine
-- **Pike HSPU pieds surélevés / Wall HSPU — 3 × 6-10 reps** : 2 reps en réserve, tempo 3-0-1, repos 2 min
+- Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine (sauf si biceps/coude sensible après mardi)
+- **Pike HSPU pieds surélevés / Wall HSPU — 4 × 6-10 reps** : 2 reps en réserve, tempo 3-0-1, repos 2 min
 - Pompes anneaux + Face pulls — 3 × 8-12 + 3 × 15 : superset, repos 90 s
 - Élévations latérales — 3 × 12-15 reps : tempo 2-0-2, léger
 - Dragon Flag / L-sit — 3×6 / 4×20-30s : selon fatigue core
@@ -150,9 +157,9 @@ Tip : 72 h après dimanche, 2ᵉ exposition planche/HSPU de la semaine, en
 volume sous-maximal — la force se construit dimanche, mercredi ajoute du
 volume de qualité. Jamais d'échec sur le HSPU ici.
 
-## Course facile — 5 km zone 2 (Jeudi, bureau)
+## Course facile — 5-7 km zone 2 (Jeudi, bureau)
 
-- Course Zone 2 — 5 km : allure conversation, RPE 4-5/10, 60-70 % FC max
+- Course Zone 2 — 5-7 km : allure conversation, RPE 4-5/10, 60-70 % FC max. +0,5 km toutes les 2 semaines jusqu'à 7 km, jamais plus de 10 % au-dessus de la plus longue sortie du mois ([Frandsen et al. 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12421110/)) ; retour à 5 km en deload
 - Lignes droites — 4 × 20 s : accélérations progressives jusqu'à ~90 %, sans sprint, repos 60 s en marchant
 - Mobilité mollets & hanches — 5 min
 - Handstand micro-dose — 5 min (optionnel, le soir)
@@ -166,22 +173,23 @@ vite" : trop dur pour récupérer, pas assez pour progresser.
 ## Séance D — Jambes + Handstand (Vendredi)
 
 - Wrist mobility — 5 min : circles, compressions, extensions passives + rotation externe bande 2×15
-- Handstand long — 12-15 min : chest-to-wall, freestanding, shapes
-- Bulgarian Split Squats — 3 × 8-10 / jambe : descente 3 s, repos 90 s
-- **Nordic Curls — 3 × 4-6 reps** : excentrique 3-4 s, repos 2 min
-- Box Jumps — 3 × 5 reps : atterrissage souple, reset complet
-- Mollets unilatéraux lestés — 3 × 12-15 / jambe : sur une marche, pause 1 s en bas
-- Y-T-W au sol + Shoulder dislocations — 2 × 8/lettre + 2 × 10
+- Handstand long — 10-12 min : chest-to-wall, freestanding, shapes
+- Box Jumps — 3 × 5 reps : en premier (explosif = frais), atterrissage souple, reset complet
+- **Bulgarian Split Squats + Tractions — 4 × 8-10 / jambe + 3 × 5** : superset jambes / tirage, BSS descente 3 s, tractions à 2 reps en réserve, repos 90 s
+- **Nordic Curls + Tuck Front Lever — 3 × 4-6 + 3 × 6-10 s** : excentrique 3-4 s / front lever 1-2 s sous ton max, repos 2 min
+- Hip thrust unilatéral — 3 × 10-12 / jambe : dos sur un banc, haltère, pause 1 s en haut
+- Mollets unilatéraux lestés + Y-T-W — 3 × 12-15 / jambe + 2 × 8/lettre : superset, repos 45 s
 - Jefferson Curls — 2 × 8 reps : très léger, vertèbre par vertèbre
 
-Muscles ciblés : Quadriceps, Ischio-jambiers, Fessiers, Mollets, Poignets, Trapèze inférieur
+Muscles ciblés : Quadriceps, Fessiers, Ischio-jambiers, Grand dorsal, Mollets, Poignets, Trapèze inférieur
 
 Tip : les programmes incluant les Nordic curls divisent environ par deux les
 blessures aux ischios ([van Dyk et al. 2019](https://bjsm.bmj.com/content/53/21/1362)) —
 précieux quand tu cours 2×/semaine. Box jumps et mollets unilatéraux
 travaillent la raideur tendineuse, utile pour l'économie de course
 ([méta-analyse 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9653533/)).
-Séance ~60 min pour finir bien avant Shabbat.
+Vendredi est aussi le 2ᵉ jour de tirage, en superset avec les jambes.
+Séance ~70 min pour finir bien avant Shabbat.
 
 ## Équilibre push / pull
 
@@ -193,11 +201,13 @@ Volume hebdomadaire par catégorie :
 
 | Catégorie | Avant | Maintenant |
 |---|---|---|
-| Poussée (planche, HSPU, dips, PPPU, pompes anneaux) | ~35 | ~30 |
-| Tirage vertical (tractions, C2B, muscle-up) | 11 | 10 |
-| Bras tendus (front lever) | 7 | 4 |
-| Tirage horizontal + rétraction (rowing, face pulls, Y-T-W) | 7 | 9 |
-| Jambes | 15 | 12 + 2 courses |
+| Poussée (planche, HSPU, dips, PPPU, pompes anneaux) | ~30 | ~31 (dont HSPU 7 → 8) |
+| Deltoïde latéral (élévations latérales) | 3 | 6 |
+| Tirage vertical (tractions, C2B, muscle-up) | 10 (1 jour) | 13 (2 jours) |
+| Bras tendus (front lever) | 4 (1 jour) | 7 (2 jours) |
+| Tirage horizontal + rétraction (rowing, face pulls, Y-T-W) | 9 | 9 |
+| Jambes (quadriceps / fessiers) | ~3 / ~3, 1 jour | ~7 / ~10, 2 jours |
+| Course | 10 km | 10 → 12 km |
 
 Le tirage horizontal est le contrepoids mécanique de la protraction. Sans lui,
 le trapèze supérieur compense pendant que le trapèze inférieur et les

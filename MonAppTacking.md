@@ -16,13 +16,17 @@
   de 10-12 min qui ne se raccourcit jamais.
 - **En extérieur, à la Sportek du parc HaYarkon (Tel Aviv).** Barres de
   traction, barres parallèles, bancs, marches.
-- **Matériel : élastiques et anneaux, pas de poids.** Les élastiques donnent
-  des gains de force comparables aux charges classiques
-  ([Lopes et al. 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6383082)), et
-  une charge légère fait autant grossir qu'une lourde quand la série finit
+- **Matériel : gilet lesté de 10 kg, anneaux, parallettes, élastiques.**
+  Le gilet (15 % du poids du corps) sert aux exercices de force : dips,
+  tractions, split squats, pistols, mollets, soulevé de terre unilatéral. Les
+  charges lourdes sont ce qui fait le plus progresser la force maximale ; pour
+  le muscle, une charge légère fait autant qu'une lourde quand la série finit
   près de l'échec ([Schoenfeld et al. 2017](https://pubmed.ncbi.nlm.nih.gov/28834797/)).
-  La progression se fait par l'unilatéral, le tempo, l'élastique et le sac à
-  dos chargé. Seule la force maximale des jambes reste limitée par le matériel.
+  Les élastiques couvrent l'isolation (épaules, biceps, triceps, poignets) :
+  ils donnent des gains de force comparables aux charges classiques
+  ([Lopes et al. 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6383082)).
+  Jamais de gilet pour courir ni pour sauter. Seule la force maximale des
+  jambes reste un peu limitée par le matériel.
 - **Chaleur.** L'été, il faut 1 à 2 semaines pour s'acclimater
   ([Racinais et al. 2015](https://opus.lib.uts.edu.au/handle/10453/36140)) :
   les courses se calent sur l'effort perçu et la fréquence cardiaque, pas sur
@@ -35,7 +39,7 @@ jours de bureau : pas de calisthénie, une course à 7 h avant le travail.
 
 | Jour | Séance | Contenu |
 |---|---|---|
-| Dimanche | **A — Push Force** | Planche en premier, HSPU lourd, dips aux anneaux |
+| Dimanche | **A — Push Force** | Planche en premier, HSPU lourd, dips lestés aux anneaux, puis course facile optionnelle de 3-5 km |
 | Lundi | **Course qualité** | 6-7 km fractionné, cycle de 3 semaines (bureau) |
 | Mardi | **B — Pull Force** | Chest-to-bar, tractions, front lever, rowing, ischios |
 | Mercredi | **C — Planche Volume** | Planche + HSPU en volume, deltoïdes, triceps, gainage latéral |
@@ -66,7 +70,7 @@ jours de bureau : pas de calisthénie, une course à 7 h avant le travail.
   recommandée pour la force et l'hypertrophie ([Schoenfeld et al. 2016](https://pubmed.ncbi.nlm.nih.gov/27102172/),
   [ACSM](https://acsm.org/resistance-training-guidelines-update-2026/)) :
   poussée dimanche + mercredi, tirage mardi + vendredi, jambes mardi
-  (squat et soulevé de terre unilatéraux) + vendredi + 2 courses. Les ischios
+  (squat et soulevé de terre unilatéraux) + vendredi + 2 à 3 courses. Les ischios
   ont désormais eux aussi leurs deux séances.
 - **Course intense le lundi, facile le jeudi.** Lundi les jambes sont
   fraîches (Shabbat + dimanche 100 % haut du corps). Jeudi la sortie est
@@ -81,13 +85,25 @@ jours de bureau : pas de calisthénie, une course à 7 h avant le travail.
   Shabbat, puis dimanche haut du corps. Split squats et nordics ne mordent
   donc jamais sur une course, et la course facile de jeudi ne gêne pas la
   séance jambes.
-- **Course et calisthénie ne se touchent pas.** L'entraînement concurrent ne
-  freine ni la force ni l'hypertrophie ; seule la force explosive est un peu
-  réduite, et surtout quand les deux sont dans la même séance
-  ([Schumann et al. 2022](https://link.springer.com/article/10.1007/s40279-021-01587-7)).
+- **Une 3ᵉ course, optionnelle, le dimanche.** Trois jours de cardio soutenu
+  par semaine, c'est le minimum que recommande l'ACSM pour développer
+  l'endurance ([Garber et al. 2011](https://digitalcommons.uri.edu/kinesiology_facpubs/137)),
+  et c'est la charge totale, volume × intensité, qui prédit le gain de VO2max
+  ([méta-régression 2025](https://pubmed.ncbi.nlm.nih.gov/39390310/)). Elle se
+  place le dimanche après la séance A : les jambes sortent de Shabbat, la
+  séance est 100 % haut du corps, et le mercredi reste un jour sans impact
+  entre les deux blocs de jambes. Elle est courte et facile pour ne rien
+  coûter au fractionné du lundi. Ce placement est un choix de programmation,
+  pas un résultat d'étude. La rater ne change rien à la semaine.
+- **Les deux courses principales ne touchent pas la calisthénie.**
+  L'entraînement concurrent ne freine ni la force ni l'hypertrophie ; seule
+  la force explosive est un peu réduite, et surtout quand les deux sont dans
+  la même séance
+  ([Schumann et al. 2022](https://link.springer.com/article/10.1007/s40279-021-01587-7)) —
+  les sauts sont le vendredi, sans course.
   La course (contrairement au vélo) peut freiner un peu l'hypertrophie des
   fibres des jambes ([Lundberg et al. 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9474354/)) —
-  sans conséquence pour le haut du corps, et limité à 11-14 km/semaine.
+  sans conséquence pour le haut du corps, et limité à 11-19 km/semaine.
 - **Handstand 6×/semaine** : 4 blocs en séance + 2 micro-doses de 5 min le
   soir des jours de course. La pratique distribuée bat une longue session
   (Schmidt & Lee 2019). La consigne centrale : corriger l'équilibre avec les
@@ -130,9 +146,10 @@ progression vers la full planche.
 - Handstand skill — 8-10 min : drills mur ou freestanding, correction par les poignets
 - **Tuck Planche isométrique — 5 × 8-10 s** : en premier. Intent "pousser le sol" ; séries 4-5 au palier suivant (advanced tuck 3-5 s) car la force isométrique est spécifique à l'angle travaillé ([Oranchuk et al. 2019](https://pubmed.ncbi.nlm.nih.gov/30580468/)). 40-50 s de contraction par séance, dans la fourchette conseillée pour la force maximale ([Lum & Barbosa 2019](https://bibliotecadigital.ipb.pt/handle/10198/19389)). Repos 2-3 min
 - **HSPU Force — négatif contrôlé — 4 × 3-6 reps** : Wall HSPU (chest-to-wall) descente 3-5 s, ou Deficit HSPU si négatif complet acquis. Jamais de kip. Repos 2-3 min
-- Pseudo Planche PU sur barres basses — 4 × 5-8 reps : tempo 3-1-1, lean maximal, repos 2 min
-- Dips aux anneaux, tempo — 3 × 6-10 reps : descente 3 s, pause 1 s en bas ; sac à dos chargé à 10 reps propres. Repos 2 min
+- Pseudo Planche PU sur parallettes — 4 × 5-8 reps : poignets neutres, tempo 3-1-1, lean maximal ; gilet quand 4 × 8 passent. Repos 2 min
+- Ring Dips lestés — 3 × 6-8 reps : gilet de 10 kg, amplitude complète, descente 2-3 s ; sans gilet en tempo lent si 6 reps ne passent pas. Repos 2 min
 - Élévations latérales élastique + Scapular PU — 3 × 12-20 + 3 × 10 : superset deltoïde latéral & serratus, dernières reps difficiles
+- **Course facile, optionnelle — 3-5 km** : zone 2, juste après la séance ou le soir. 3 km au départ, +0,5 km toutes les 2 semaines jusqu'à 5 km. À sauter si le feu est orange, en décharge ou si les jambes sont lourdes
 - Cool-down souplesse — 6 min : poignets, puppy pose 2 × 60 s, couch stretch 60 s/côté
 
 Muscles ciblés : Épaules, Triceps, Pectoraux, Serratus, Core
@@ -142,7 +159,8 @@ rapporte de moins en moins de force
 ([Pelland et al. 2024](https://sportrxiv.org/index.php/server/preprint/view/460)).
 Les négatives lean → tuck ont été retirées ; les Pseudo Planche PU couvrent le
 travail dynamique. Séance 100 % haut du corps : les jambes restent fraîches
-pour la course de lundi.
+pour la course de lundi, et la course facile optionnelle vient après la
+force, jamais avant.
 
 ## Course qualité — 6-7 km fractionné (Lundi, bureau, ~50 min)
 
@@ -172,10 +190,10 @@ une banane 15-20 min avant si tu te sens à plat.
 - Mobilité épaules & haut du dos — 10 min : poignets, épaules, scap pulls 2 × 8, skin the cat lent 2 × 3
 - Handstand skill — 8-10 min : expositions freestanding courtes
 - Chest-to-bar explosif — 4 × 3-5 reps : pull ultra-haut, coudes vers hanches, repos 2 min
-- **Tractions tempo / Archer — 4 × 5-6 reps** : 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; Archer (3-5/côté) une fois 10 tractions strictes acquises
+- **Tractions tempo / Archer — 4 × 5-6 reps** : 3 s d'excentrique + 1 s de pause menton au-dessus de la barre ; gilet de 10 kg quand 4 × 6 passent ; Archer (3-5/côté) une fois 10 tractions strictes acquises
 - Tuck Front Lever — 4 × 6-10 s : dépression scapulaire, palier suivant à 4 × 10 s propres
-- **Rowing anneaux + Soulevé de terre unilatéral élastique — 4 × 8-12 + 3 × 8-12 / jambe** : superset dos / ischios. Rowing avec pause 1 s poitrine aux anneaux ; soulevé de terre jambes tendues sur une jambe, élastique sous le pied, descente 3 s jusqu'à l'étirement complet
-- Curl élastique bras derrière + Pistol / Shrimp squat — 3 × 10-15 + 3 × 5-8 / jambe : curl dos à l'ancrage, biceps étiré comme bras tendus en planche ; squat unilatéral à 2-3 reps en réserve
+- **Rowing anneaux + Soulevé de terre unilatéral élastique — 4 × 8-12 + 3 × 8-12 / jambe** : superset dos / ischios. Rowing avec pause 1 s poitrine aux anneaux ; soulevé de terre jambes tendues sur une jambe, gilet de 10 kg + élastique sous le pied, descente 3 s jusqu'à l'étirement complet
+- Curl élastique bras derrière + Pistol / Shrimp squat — 3 × 10-15 + 3 × 5-8 / jambe : curl dos à l'ancrage, biceps étiré comme bras tendus en planche ; squat unilatéral à 2-3 reps en réserve, gilet quand 8 reps passent
 
 Muscles ciblés : Grand dorsal, Rhomboïdes, Trapèze moyen, Biceps, Ischio-jambiers, Quadriceps, Fessiers, Core
 
@@ -191,7 +209,7 @@ Le rowing ne se saute jamais.
 - Handstand skill — 8-10 min : freestanding ; au mur si poignets sensibles
 - Planche volume — 60 s total : 6×10s / 5×12s / 4×15s, repos 90 s, progresser le format chaque semaine
 - **Pike HSPU pieds surélevés / Wall HSPU — 4 × 6-10 reps** : 2 reps en réserve, tempo 3-0-1, repos 2 min
-- Pompes anneaux + Face pulls élastique — 3 × 8-12 + 3 × 15 : superset, repos 90 s
+- Pompes anneaux + Face pulls élastique — 3 × 8-12 + 3 × 15 : superset, gilet sur les pompes quand 3 × 12 passent, repos 90 s
 - **Élévations latérales penché + Extension triceps au-dessus de la tête — 3 × 12-20 + 3 × 10-15** : superset à l'élastique. La longue portion du triceps grossit ~1,5 fois plus bras au-dessus de la tête ([Maeo et al. 2022](https://pubmed.ncbi.nlm.nih.gov/35819335/))
 - Dragon Flag / L-sit — 3×6 / 4×20-30s : selon fatigue core
 - **Copenhagen plank — 2 × 20-30 s / côté** : gainage latéral, obliques et adducteurs
@@ -215,8 +233,8 @@ utile quand tu cours et que tu vises la straddle planche.
 Muscles ciblés : Cardiovasculaire, Mollets, Récupération active
 
 Tip : facile doit vraiment vouloir dire facile — demain c'est jambes. Le
-piège avec deux sorties par semaine est de courir les deux "moyennement
-vite" : trop dur pour récupérer, pas assez pour progresser.
+piège avec deux ou trois sorties par semaine est de les courir toutes
+"moyennement vite" : trop dur pour récupérer, pas assez pour progresser.
 
 ## Séance D — Jambes + Muscle-up (Vendredi, ~90 min)
 
@@ -224,10 +242,10 @@ vite" : trop dur pour récupérer, pas assez pour progresser.
 - Handstand long — 10-12 min : chest-to-wall, freestanding, shapes
 - **Muscle-up, false grip + négatif lent — 3 × 3-4 reps** : 10 s de false grip avant chaque série, puis négatif 5-7 s ou Ring MU strict. Jamais à l'échec. Repos 2-3 min
 - **Sauts — 4 × 5 box jumps + 3 × 5 sauts en longueur**, précédés de 2 × 15 pogo jumps : ~65 contacts, système nerveux frais
-- **Bulgarian Split Squats + Tractions — 4 × 8-10 / jambe + 3 × 5** : superset jambes / tirage, BSS pied avant surélevé 5-10 cm, descente 3 s ; élastique ou sac à dos quand 10 reps passent
+- **Bulgarian Split Squats + Tractions — 4 × 8-10 / jambe + 3 × 5** : superset jambes / tirage, BSS pied avant surélevé 5-10 cm, descente 3 s ; gilet de 10 kg dès que 10 reps passent, puis élastique en plus
 - **Nordic Curls + Tuck Front Lever — 3 × 4-6 + 3 × 6-10 s** : excentrique 3-4 s / front lever 1-2 s sous ton max, repos 2 min
 - Hip thrust unilatéral + Reverse Nordic — 3 × 10-15 / jambe + 3 × 6-10 : superset fessiers / quadriceps en position longue ([Alonso-Fernández et al. 2019](https://portalcientifico.uvigo.gal/documentos/5fa622882999524ed108606d))
-- Mollets unilatéraux + Y-T-W — 3 × 12-20 / jambe + 2 × 8/lettre : pause 2 s en bas, proche de l'échec
+- Mollets unilatéraux lestés + Y-T-W — 3 × 12-15 / jambe + 2 × 8/lettre : gilet de 10 kg, pause 2 s en bas, proche de l'échec
 - Jefferson Curls + Poignets élastique — 2 × 8 + 2 × 15 : Jefferson au poids du corps, curls de poignet flexion et extension ([prévention des douleurs de poignet en gymnastique](https://pubmed.ncbi.nlm.nih.gov/28902754/))
 - Cool-down souplesse — 5 min : pancake, couch stretch, mollets
 
@@ -256,7 +274,7 @@ Séries par semaine et par catégorie :
 | Gainage latéral / adducteurs | 0 | 2 par côté |
 | Sauts | ~15 + 30 pogos | ~35 + 75 pogos |
 | Étirement statique (épaules, pancake) | 1,5-3 min | ~8 min chacun |
-| Course | 11-14 km, 4 × 1000 m 1 semaine sur 3 | 11-14 km, 4 × 1000 m 2 semaines sur 3 |
+| Course | 11-14 km en 2 sorties, 4 × 1000 m 1 semaine sur 3 | 11-14 km en 2 sorties + 3-5 km optionnels le dimanche, 4 × 1000 m 2 semaines sur 3 |
 
 Pour la souplesse, les gains plafonnent vers 10 min d'étirement statique par
 muscle et par semaine ([Ingram et al. 2025](https://pubmed.ncbi.nlm.nih.gov/39614059/)) ;
@@ -275,9 +293,9 @@ ce travail se justifie d'abord par l'équilibre musculaire et la posture.
 ## Règle de progression
 - **Feu tricolore avant chaque séance** : sommeil < 6 h, VFC nettement sous ta moyenne de la semaine ou douleur articulaire → retire 1 série par exercice, pas de record. Ajuster selon la VFC ne fait pas mieux en moyenne qu'un plan fixe, mais réduit le nombre de personnes qui ne progressent pas ([méta-analyse 2021](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8507742/)).
 - **Position longue** : quand c'est possible (curl bras derrière, élévations penchées, extension au-dessus de la tête, BSS surélevé, soulevé de terre unilatéral, Reverse Nordic), le muscle est chargé étiré ([Wolf et al. 2025, revue systématique](https://pmc.ncbi.nlm.nih.gov/articles/PMC12869050)).
-- **Sans poids** : sur les exercices à l'élastique ou au poids du corps, termine les séries à 1-2 reps de l'échec. Quand le haut de la fourchette passe, durcis : élastique plus fort, tempo plus lent, levier plus long, sac à dos.
+- **Gilet et élastiques** : le gilet de 10 kg s'ajoute dès que le haut de la fourchette passe au poids du corps (dips, tractions, split squats, pistols, mollets). Sur les exercices à l'élastique, termine les séries à 1-2 reps de l'échec ; ensuite durcis par un élastique plus fort, un tempo plus lent ou un levier plus long.
 - Ne passe au niveau suivant que lorsque tu tiens la position cible avec forme parfaite, sur 3 séries stables, sans douleur.
-- Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines. Jamais d'arrêt complet : une semaine sans entraînement n'apporte rien et freine un peu la force ([Coleman et al. 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC10809978/)). La décharge allégée est une pratique de terrain plus qu'un fait prouvé : avance-la si le feu est orange deux séances de suite, repousse-la d'une semaine si tout progresse. Pendant le deload, les deux courses passent en zone 2.
+- Deload : 1 semaine allégée (volume -40 à -50 %) toutes les 5-6 semaines. Jamais d'arrêt complet : une semaine sans entraînement n'apporte rien et freine un peu la force ([Coleman et al. 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC10809978/)). La décharge allégée est une pratique de terrain plus qu'un fait prouvé : avance-la si le feu est orange deux séances de suite, repousse-la d'une semaine si tout progresse. Pendant le deload, les deux courses passent en zone 2 et la course optionnelle saute.
 
 ## Nutrition
 
@@ -285,7 +303,7 @@ Objectif : construire du muscle et de la force sans prendre de gras qui
 alourdirait la planche, et récupérer de 6 séances par semaine.
 
 ### Calories et macros
-- **Dépense** : Mifflin-St Jeor × 1,6 (6 séances + 2 courses par semaine),
+- **Dépense** : Mifflin-St Jeor × 1,6 (4 séances + 2 à 3 courses par semaine),
   ≈ 2 560 kcal à 65 kg. Ce n'est qu'une estimation : le suivi du poids la corrige.
 - **Objectif recommandé : maintien** (recomposition). Dans un essai sur des
   pratiquants entraînés, un surplus plus grand a surtout ajouté du gras, sans
@@ -347,7 +365,7 @@ Inutiles : BCAA, glutamine, brûleurs, boosters. Un bilan sanguin annuel
 - Sommeil 7-9 h/nuit — réveil à 7 h, donc couché vers 22 h 30-23 h, à heure fixe
 
 ## Suivi recommandé
-- Objectif semaine : 6 séances (A, B, C, D + 2 courses) — Shabbat en repos complet
+- Objectif semaine : 6 séances (A, B, C, D + 2 courses) — Shabbat en repos complet. La course facile du dimanche est un bonus, hors objectif
 - Log à noter après chaque séance : type de séance, durée, RPE, PR, sensations, douleurs, progression
 
 ## L'app (PWA)
